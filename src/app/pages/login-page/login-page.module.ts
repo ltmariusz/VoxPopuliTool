@@ -5,11 +5,16 @@ import { RouterModule, Routes } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { LoginModule } from "../../components/login/login.module";
 import { FooterModule } from 'src/app/components/footer/footer.module';
+import { LoginComponent } from 'src/app/components/login/login.component';
+import { ReminderPasswordModule } from 'src/app/components/reminder-password/reminder-password.module';
 
 
 const routes: Routes = [
   {
-    path:'',component:LoginPageComponent
+    path:'',component:LoginPageComponent,
+    // children:[
+    //     {path: 'login-page',loadChildren:() => import('./../../components/login/login.module').then(m=>m.LoginModule)}
+    // ]
   }
 ]
 
@@ -27,6 +32,7 @@ const routes: Routes = [
         MatCardModule,
         RouterModule.forChild(routes),
         LoginModule,
+        ReminderPasswordModule,
         FooterModule
     ]
 })

@@ -6,9 +6,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-
+const routes: Routes=[
+  {path: '', component:ReminderPasswordComponent}
+]
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { Routes } from '@angular/router';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    RouterModule.forChild(routes),
   ],
   exports:[
     ReminderPasswordComponent
