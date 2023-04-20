@@ -10,7 +10,8 @@ const routes: Routes = [
     {path: '',component: LoginComponent},
     {path: 'password', component: ReminderPasswordComponent}
   ]},
-  { path: '**', redirectTo: 'login-page', pathMatch:'full'},
+  { path: 'home', loadChildren: () => import('./pages/home-page/home-page.module').then(m=>m.HomePageModule)}
+  // { path: '**', redirectTo: 'login-page', pathMatch:'full'},
   // { path: '**', component: LoginPageComponent}
 ];
 

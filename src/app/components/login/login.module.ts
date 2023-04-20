@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes=[
   {path: '', component:LoginComponent}
@@ -24,6 +25,9 @@ const routes: Routes=[
     MatInputModule,
     MatProgressSpinnerModule,
     RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
   ],
   exports: [
     LoginComponent

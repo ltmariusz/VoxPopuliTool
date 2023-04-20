@@ -1,0 +1,19 @@
+@import '/src/style/colors.scss';
+.side_nav_link{
+    background-color: $white;
+    padding: 12px 0px;
+    padding-left: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+.side_nav_link:hover{
+    background-color: rgba(0,0,0,.04);
+}
+.side_nav_link a{
+    text-decoration: none;
+    color: $dark;
+    font-size: 1rem;
+    margin-left: 8px;
+}
