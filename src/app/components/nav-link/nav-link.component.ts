@@ -9,9 +9,9 @@ export class NavLinkComponent {
   @Input()
   url?: string;
   @Input()
-  icon: string = 'chevron_right';
+  icon?: string = 'chevron_right';
   @Input()
-  iconType: string = 'material-icons-outlined';
+  iconType?: string = 'material-icons-outlined';
   @Input()
-  name: string = 'brak nazwy';
+  name?: string = 'brak nazwy';
 }

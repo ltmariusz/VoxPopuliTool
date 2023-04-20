@@ -17,7 +17,7 @@ export class HomePageComponent {
   inputs = [
     {
       url: 'home/form-creator',
-      icon: 'route',
+      icon: 'edit_document',
       name: 'Tworzenie ankiety',
     }
   ]
