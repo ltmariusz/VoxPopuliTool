@@ -13,11 +13,10 @@ export class HomePageComponent {
   menushow?: boolean 
   nazwa?: string 
 
-
   inputs = [
     {
       url: 'home/form-creator',
-      icon: 'edit_document',
+      icon: 'post_add',
       name: 'Tworzenie ankiety',
     }
   ]
