@@ -13,7 +13,7 @@ const routes: Routes = [
     {path: 'password', component: ReminderPasswordComponent}
   ]},
   { path: 'home', loadChildren: () => import('./pages/home-page/home-page.module').then(m=>m.HomePageModule)},
-  { path: 'new-password', component: NewPasswordPageComponent},
+  { path: 'new-password', loadChildren: ()=>import('./pages/new-password-page/new-password-page.module').then(m=>m.NewPasswordPageModule)},
   { path: '**', redirectTo: 'login-page', pathMatch:'full'},
 ];
 

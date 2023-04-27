@@ -12,9 +12,6 @@ import { ReminderPasswordModule } from 'src/app/components/reminder-password/rem
 const routes: Routes = [
   {
     path:'',component:LoginPageComponent,
-    // children:[
-    //     {path: 'login-page',loadChildren:() => import('./../../components/login/login.module').then(m=>m.LoginModule)}
-    // ]
   }
 ]
 
