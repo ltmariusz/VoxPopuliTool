@@ -15,9 +15,14 @@ export class HomePageComponent {
 
   inputs = [
     {
-      url: 'home/form-creator',
+      url: 'form-creator',
       icon: 'post_add',
       name: 'Tworzenie ankiety',
+    },
+    {
+      url: 'form-list',
+      icon: 'post_add',
+      name: 'Lista ankiet',
     }
   ]
 }

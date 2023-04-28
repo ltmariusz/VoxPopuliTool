@@ -17,6 +17,10 @@ const routes: Routes =[
       {
         path: 'form-creator',
         loadChildren: () => import('../form-creator-page/form-creator-page.module').then(m => m.FormCreatorPageModule)
+      },
+      {
+        path: 'form-list',
+        loadChildren: () => import('../form-list-page/form-list-page.module').then(m=>m.FormListPageModule)
       }
     ]
   }
