@@ -3,9 +3,14 @@
     justify-content: space-between;
 }
 
-.new-answer {
-    // background-color: red;
+.answer{
+    display: flex;
+    align-items: center;
 }
+
+// .new-answer {
+//     // background-color: red;
+// }
 
 ::ng-deep.mdc-text-field--filled:not(.mdc-text-field--disabled){
     background-color: #FFFFFF;

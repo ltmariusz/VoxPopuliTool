@@ -1,8 +1,9 @@
 <mat-card>
     <mat-card-content>
         Dodaj kolejne pytanie:
-        <button mat-button color="primary">jednokrotny wybór</button>
-        <button mat-button color="primary">wielokrotny wybór</button>
-        <button mat-button color="primary">długa odpowiedź</button>
+        <button mat-button color="primary" (click)="oneChoiseCreate()">jednokrotny wybór</button>
+        <button mat-button color="primary" (click)="fewChoiseCreate()">wielokrotny wybór</button>
+        <button mat-button color="primary" (click)="longAnswerCreate()">długa odpowiedź</button>
+        <button mat-button color="primary" (click)="rateCreate()">ocena</button>
     </mat-card-content>
 </mat-card>

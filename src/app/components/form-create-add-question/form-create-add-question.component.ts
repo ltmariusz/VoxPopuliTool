@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class FormCreateAddQuestionComponent {
 
+
+  oneChoiseCreate(){
+    console.log(" ")
+  }
+  fewChoiseCreate(){
+
+  }
+  longAnswerCreate(){
+
+  }
+  rateCreate(){
+
+  }
+
 }

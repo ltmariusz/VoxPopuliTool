@@ -1,16 +1,18 @@
-.add-button{
+.complete-button{
     position:fixed;
     bottom:30px;
     right: 30px;
     font-size: 75px;
     width: 75px;
-    height: 75px;
+    height: 70px;
     cursor: pointer;
 }
-.add-button:hover{
+
+
+.complete-button:hover{
     color:#3f51b5d0;
 }
-.add-button:active{
+.complete-button:active{
     color:#37479e;
 }
 .create-post {
