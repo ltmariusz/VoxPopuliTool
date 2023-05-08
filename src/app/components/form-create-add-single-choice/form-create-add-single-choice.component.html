@@ -10,11 +10,17 @@
                 <input matInput type="text">
             </mat-form-field>
         </div>
-        <div>
-            1
-            <mat-form-field class="new-answer" appearance="fill">
-                <input matInput placeholder="Favorite food" value="dodaj odpowiedz">
-            </mat-form-field>
+        <div *ngFor="let answer of numberOfAnswer;let i = index">
+            <div class="answer">
+                {{i+1}}.
+                <mat-form-field class="new-answer" appearance="fill" (click)="clickCreateNewAnswer(answer)">
+                    <input matInput placeholder="dodaj odpowiedz">
+                    <button *ngIf="answer.last===false" matSuffix mat-icon-button aria-label="delete"
+                        (click)="deleteAnswer(i)">
+                        <mat-icon class="complete-button" color="primary">close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
         </div>
 
     </mat-card-content>
