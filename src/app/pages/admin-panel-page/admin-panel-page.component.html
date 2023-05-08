@@ -1,4 +1,21 @@
 <div *ngIf="this.newUserPanel == false" (click)="addNewUser()" class="add_user">
     Dodaj nowego użytkownika
 </div>
+<div *ngIf="this.newUserPanel == true" class="add_user_panel">
+    <div class="header">
+        <!-- <mat-icon class="icon" fontIcon="arrow_back"></mat-icon> -->
+        Dane nowego użtkownika
+    </div>
+    <div class="content">
+        sdbfbsd<br>
+        fdgdf<br>
+        fdgdfgf<br>
+        dfgdf<br>
+        gdf
+        <div class="buttons">
+            <button color="warn" mat-button>Anuluj</button>
+            <button color="primary" mat-button>Dodaj</button>
+        </div>
+    </div>
+</div>
 <app-users-list></app-users-list>

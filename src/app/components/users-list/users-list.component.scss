@@ -25,7 +25,7 @@
 .item_padding{
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
-    cursor: pointer;
+    // cursor: pointer;
 }
 .item_padding:hover{
     background-color: #fafafad3;
@@ -131,6 +131,7 @@
 }
 .settings_icon{
     margin-right: 0.5rem;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 900px){
