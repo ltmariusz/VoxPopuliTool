@@ -10,7 +10,7 @@ export class HomePageComponent {
 
 
   menuMode: MatDrawerMode = 'side'
-  menushow?: boolean 
+  menushow?: boolean = true
   nazwa?: string 
 
   inputs = [

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AdminPanelPageComponent {
 
+  newUserPanel = false
+
+  addNewUser(){
+    this.newUserPanel = true
+  }
+
 }

@@ -1,1 +1,4 @@
-<p>admin-panel-page works!</p>
+<div *ngIf="this.newUserPanel == false" (click)="addNewUser()" class="add_user">
+    Dodaj nowego użytkownika
+</div>
+<app-users-list></app-users-list>
