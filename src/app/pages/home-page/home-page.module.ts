@@ -21,6 +21,10 @@ const routes: Routes =[
       {
         path: 'form-list',
         loadChildren: () => import('../form-list-page/form-list-page.module').then(m=>m.FormListPageModule)
+      },
+      {
+        path: 'admin-panel',
+        loadChildren: () => import('../admin-panel-page/admin-panel-page.module').then(m=>m.AdminPanelPageModule)
       }
     ]
   }

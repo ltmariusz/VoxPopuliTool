@@ -23,6 +23,11 @@ export class HomePageComponent {
       url: 'form-list',
       icon: 'post_add',
       name: 'Lista ankiet',
+    },
+    {
+      url: 'admin-panel',
+      icon: 'admin_panel_settings',
+      name: 'Panel admina',
     }
   ]
 }
