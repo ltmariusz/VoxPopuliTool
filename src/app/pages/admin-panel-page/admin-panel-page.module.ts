@@ -9,6 +9,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+import { CustomDialogModule } from 'src/app/components/dialogs/custom-dialog.module';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   exports: [
     AdminPanelPageComponent

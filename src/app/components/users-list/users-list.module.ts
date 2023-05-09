@@ -4,19 +4,23 @@ import { UsersListComponent } from './users-list.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatButtonModule} from '@angular/material/button';
+import { CustomDialogModule } from '../dialogs/custom-dialog.module';
 
 
 
 @NgModule({
   declarations: [
-    UsersListComponent
+    UsersListComponent,
+
   ],
   imports: [
     CommonModule,
     MatIconModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
+    CustomDialogModule
   ],
   exports: [
     UsersListComponent

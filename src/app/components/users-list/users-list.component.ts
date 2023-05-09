@@ -38,7 +38,7 @@ export class UsersListComponent {
 
   openDialogNewPassword(enterAnimationDuration: string, exitAnimationDuration: string): void {
     const dialogRef = this.dialog.open(NewPasswordDialogComponent, {
-      width: '250px',
+      width: 'auto',
       enterAnimationDuration,
       exitAnimationDuration,
     });
