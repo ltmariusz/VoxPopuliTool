@@ -1,7 +1,13 @@
 <app-form-create-title class="create-post"></app-form-create-title>
 
+<div *ngFor="let item of list">
+    <div [ngSwitch]="conditionExpression">
+        <app-form-create-add-single-choice *ngSwitchCase="1"></app-form-create-add-single-choice>
+        <div *ngSwitchCase="2">output2</div>
+        <div *ngSwitchCase="3">output3</div>
+    </div>
+</div>
 
-<app-form-create-add-single-choice></app-form-create-add-single-choice>
 
 <app-form-create-add-question class="create-post" style="margin-top: 8px;"></app-form-create-add-question>
 

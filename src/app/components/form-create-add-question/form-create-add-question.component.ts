@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 
 @Component({
   selector: 'app-form-create-add-question',
@@ -7,17 +8,19 @@ import { Component } from '@angular/core';
 })
 export class FormCreateAddQuestionComponent {
 
+  constructor(
+    private createFormsManagementService: CreateFormsManagementService) { }
 
-  oneChoiseCreate(){
-    console.log(" ")
+  oneChoiseCreate() {
+    this.createFormsManagementService.oneChoiseCreate();
   }
-  fewChoiseCreate(){
+  fewChoiseCreate() {
 
   }
-  longAnswerCreate(){
+  longAnswerCreate() {
 
   }
-  rateCreate(){
+  rateCreate() {
 
   }
 
