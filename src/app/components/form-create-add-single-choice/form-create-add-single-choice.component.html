@@ -1,8 +1,12 @@
 <mat-card>
     <mat-card-content class="form-container">
         <div class="title-and-delete-button">
-            [numer] jednokrotny wybór
-            <button mat-button color="warn" class="delete-question">usuń</button>
+            [{{indexOfForms}}] jednokrotny wybór
+            <button mat-button color="warn" class="delete-question" (click)="deleteThisQuestion()">usuń<mat-icon color="warn">delete</mat-icon></button>
+            <!-- <button mat-fab extended color="warn">
+                <mat-icon>delete</mat-icon>
+                usuń
+            </button> -->
         </div>
         <div class="give-title">
             <mat-form-field class="full-width-field" appearance="outline">
