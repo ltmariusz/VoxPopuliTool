@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UsersListComponent } from './users-list.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -14,7 +15,8 @@ import {MatMenuModule} from '@angular/material/menu';
   imports: [
     CommonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ],
   exports: [
     UsersListComponent
