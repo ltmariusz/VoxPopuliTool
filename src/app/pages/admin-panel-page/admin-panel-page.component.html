@@ -1,4 +1,4 @@
-<div *ngIf="this.newUserPanel == false" (click)="addNewUser()" class="add_user">
+<div *ngIf="this.newUserPanel == false" (click)="panelNewUserCard()" class="add_user">
     Dodaj nowego użytkownika
 </div>
 <div *ngIf="this.newUserPanel == true" class="add_user_panel">
@@ -7,14 +7,34 @@
         Dane nowego użtkownika
     </div>
     <div class="content">
-        sdbfbsd<br>
-        fdgdf<br>
-        fdgdfgf<br>
-        dfgdf<br>
-        gdf
+        <form [formGroup]="formAddUser" class="example-form">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Imię i nazwisko</mat-label>
+              <input formControlName="name" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Akronim</mat-label>
+              <input formControlName="akronim" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>E-mail</mat-label>
+              <input formControlName="mail" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                  <mat-option value="aktywny">
+                    Aktywny
+                  </mat-option>
+                  <mat-option value="nieaktywny">
+                    Nieaktywny
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </form>
         <div class="buttons">
-            <button color="warn" mat-button>Anuluj</button>
-            <button color="primary" mat-button>Dodaj</button>
+            <button color="warn" (click)="panelNewUserCard()" mat-button>Anuluj</button>
+            <button color="primary" (click)="addNewUser()" mat-button>Dodaj</button>
         </div>
     </div>
 </div>

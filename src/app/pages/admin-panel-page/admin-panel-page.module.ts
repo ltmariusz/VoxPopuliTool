@@ -5,6 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { UsersListModule } from 'src/app/components/users-list/users-list.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 const routes: Routes = [
@@ -20,7 +24,12 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     UsersListModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   exports: [
     AdminPanelPageComponent
