@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 
 @Component({
@@ -6,9 +6,14 @@ import { CreateFormsManagementService } from 'src/app/services/management/create
   templateUrl: './form-creator-page.component.html',
   styleUrls: ['./form-creator-page.component.scss']
 })
-export class FormCreatorPageComponent {
+export class FormCreatorPageComponent implements OnDestroy{
 
 constructor(private createFormsManagementService: CreateFormsManagementService){ }
+  ngOnDestroy(){
+    this.createFormsManagementService.listOfCreatingForms = new Array
+    this.createFormsManagementService.indexOfCreatingForms = 0
+
+  }
 
   // list:Array<any> = [1,2]
 list = this.createFormsManagementService.listOfCreatingForms 

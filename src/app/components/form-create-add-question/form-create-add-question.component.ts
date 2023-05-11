@@ -15,13 +15,13 @@ export class FormCreateAddQuestionComponent {
     this.createFormsManagementService.oneChoiseCreate();
   }
   fewChoiseCreate() {
-
+    this.createFormsManagementService.fewChoiseCreate()
   }
   longAnswerCreate() {
-
+    this.createFormsManagementService.longAnswerCreate()
   }
   rateCreate() {
-
+    this.createFormsManagementService.rateCreate()
   }
 
 }

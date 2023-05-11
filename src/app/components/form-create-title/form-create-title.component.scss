@@ -4,7 +4,9 @@
 .full-width-field {
     width: 100%;
   }
-
+  mat-card{
+    margin-bottom: 8px;
+  }
   ::ng-deep.mdc-text-field--filled:not(.mdc-text-field--disabled){
     background-color: #FFFFFF;
 }
