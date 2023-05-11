@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 
-interface Answers{
+export interface Answers{
  last:boolean;
 }
 
@@ -9,10 +9,10 @@ interface Answers{
 @Component({
   selector: 'app-form-create-add-single-choice',
   templateUrl: './form-create-add-single-choice.component.html',
-  styleUrls: ['./form-create-add-single-choice.component.scss']
+  styleUrls: ['../../../style/style-of-answers.scss']
 })
 
-export default class FormCreateAddSingleChoiceComponent implements OnInit,OnDestroy {
+export class FormCreateAddSingleChoiceComponent implements OnInit,OnDestroy {
 
   constructor(private createFormsManagementService:CreateFormsManagementService){}
 

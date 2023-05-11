@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
+import { CreateFormsManagementService, Question } from 'src/app/services/management/create-forms-management.service';
 
 @Component({
   selector: 'app-form-creator-page',
@@ -16,6 +16,6 @@ constructor(private createFormsManagementService: CreateFormsManagementService){
   }
 
   // list:Array<any> = [1,2]
-list = this.createFormsManagementService.listOfCreatingForms 
-conditionExpression = 1
+list:Array<Question> = this.createFormsManagementService.listOfCreatingForms 
+conditionExpression = this.createFormsManagementService.switchWitchComponentAdd
 }

@@ -1,10 +1,11 @@
 <app-form-create-title class="create-post"></app-form-create-title>
 
 <div *ngFor="let item of list; let i = index">
-    <div [ngSwitch]="conditionExpression">
+    <div [ngSwitch]="item.witchQuestionTupe">
         <app-form-create-add-single-choice *ngSwitchCase="1" [index]="i"></app-form-create-add-single-choice>
-        <div *ngSwitchCase="2">output2</div>
-        <div *ngSwitchCase="3">output3</div>
+        <app-form-create-add-multiply-choice *ngSwitchCase="2" [index]="i"></app-form-create-add-multiply-choice>
+        <app-form-create-add-long-answer *ngSwitchCase="3" [index]="i">output3</app-form-create-add-long-answer>
+        <!--<div *ngSwitchCase="4" [index]="i">output3</div> -->
     </div>
 </div>
 
