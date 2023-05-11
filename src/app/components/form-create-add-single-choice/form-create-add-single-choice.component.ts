@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 
 interface Answers{
@@ -12,7 +12,7 @@ interface Answers{
   styleUrls: ['./form-create-add-single-choice.component.scss']
 })
 
-export class FormCreateAddSingleChoiceComponent implements OnInit,OnDestroy {
+export default class FormCreateAddSingleChoiceComponent implements OnInit,OnDestroy {
 
   constructor(private createFormsManagementService:CreateFormsManagementService){}
 
@@ -22,10 +22,15 @@ export class FormCreateAddSingleChoiceComponent implements OnInit,OnDestroy {
 
   indexOfForms!: number;
 
+  /**zmienna odpowiadająca za licznik pytania (wzięte z ngfor z form-creator-page) */
+  @Input() index!: number;
+
+
   ngOnInit() {
     this.indexOfForms = this.createFormsManagementService.indexOfCreatingForms
     this.createFormsManagementService.indexOfCreatingForms
     console.log(this.indexOfForms)
+    console.log(this.index +" przekazany index")
   }
   ngOnDestroy(){
     // this.createFormsManagementService.indexOfCreatingForms = 0
@@ -35,8 +40,7 @@ export class FormCreateAddSingleChoiceComponent implements OnInit,OnDestroy {
     // this.numberOfAnswer = [{last: true}]
   }
   deleteThisQuestion(){
-    console.log(this.indexOfForms)
-    this.createFormsManagementService.listOfCreatingForms.splice(this.indexOfForms-1,1)
+    this.createFormsManagementService.listOfCreatingForms.splice(this.index,1)
     console.log(this.createFormsManagementService.listOfCreatingForms[this.indexOfForms-1])
   }
 
