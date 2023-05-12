@@ -11,9 +11,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit{
 
-  subUserLogin?: Subscription
+  subUserIsLogin?: Subscription
   customErrorUserIsLogin?: string
   loadingUserIsLogin = false
+
+  subLogin?: Subscription
+  customErrorLogin?: string
+  loadingLogin = false
 
   loginForm = new FormGroup({
     email: new FormControl ('', [Validators.required, Validators.email]),
@@ -27,7 +31,7 @@ export class LoginComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    
+    this.checkUserIsLogin()
   }
 
   get f() {
@@ -41,39 +45,64 @@ export class LoginComponent implements OnInit{
     this.router.navigateByUrl('/home');
   }
 
-  // checkUserIsLogin(){
-  //     this.subUserLogin = this.authRest.getUser().subscribe({
-  //       next: (response) => {
-  //         if(response.body){
-  //           this.router.navigateByUrl('/home');
-  //         }
-  //         else{
-  //           this.customErrorUserIsLogin = 'Brak obiektu odpowiedzi';
-  //         }
-  //       },
-  //       error: (errorResponse) => {
-  //         switch (errorResponse.status) {
-  //           case 400:
-  //           case 401:
-  //           case 403:
-  //             this.loadingUserIsLogin = false;
-  //             break;
+  checkUserIsLogin(){
+    this.subUserIsLogin = this.authRest.getUser().subscribe({
+      next: (response) => {
+        if(response.body){
+          this.router.navigateByUrl('/home');
+        }
+        else{
+          this.customErrorUserIsLogin = 'Brak obiektu odpowiedzi';
+        }
+      },
+      error: (errorResponse) => {
+        switch (errorResponse.status) {
+          case 400:
+          case 401:
+          case 403:
+            this.loadingUserIsLogin = false;
+            break;
           
-  //           default:
-  //             this.customErrorUserIsLogin = 'Błąd serwera'
-  //             break;
-  //         }
-  //         // console.log(this.customError);
-  //       },
-  //       complete: () => {
-  //         this.loadingUserIsLogin = false;
-  //       }
-  //     }
-  //   )
-  // }
+          default:
+            this.customErrorUserIsLogin = 'Błąd serwera'
+            break;
+        }
+        // console.log(this.customError);
+      },
+      complete: () => {
+        this.loadingUserIsLogin = false;
+      }
+    })
+  }
 
   submitDONE(){
-
+    this.subLogin = this.authRest.getUser().subscribe({
+      next: (response) => {
+        if(response.body){
+          this.router.navigateByUrl('/home');
+        }
+        else{
+          this.customErrorLogin = 'Brak obiektu odpowiedzi';
+        }
+      },
+      error: (errorResponse) => {
+        switch (errorResponse.status) {
+          case 400:
+          case 401:
+          case 403:
+            this.loadingLogin = false;
+            break;
+        
+          default:
+            this.customErrorLogin = 'Błąd serwera'
+            break;
+        }
+        // console.log(this.customError);
+      },
+      complete: () => {
+        this.loadingLogin = false;
+      }
+    })
   }
 
 
