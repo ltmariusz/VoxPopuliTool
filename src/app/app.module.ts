@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageModule } from './pages/login-page/login-page.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { UserDataService } from './services/global-services/user-data.service';
 
 
 @NgModule({
@@ -20,8 +23,16 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     // LoginPageModule
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    UserDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

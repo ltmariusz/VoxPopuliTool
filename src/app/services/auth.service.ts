@@ -30,6 +30,10 @@ export interface Login{
   password: string
 }
 
+export interface User{
+  
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,12 +47,12 @@ export class AuthService {
 
   //----------------GET----------------//
 
-  // getUser():Observable<HttpResponse<any>>{
-  //   return this.http.get<any>(this.PATH ,{
-  //     observe: 'response',
-  //     responseType: 'json'
-  //   })
-  // }
+  getUser():Observable<HttpResponse<User>>{
+    return this.http.get<User>(this.PATH ,{
+      observe: 'response',
+      responseType: 'json'
+    })
+  }
 
   //----------------POST----------------//
 

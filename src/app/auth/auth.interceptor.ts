@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor{
         // let token = JSON.parse(localStorage.getItem("auth_app_token")!)
         // token = token.value.replace('Bearer ', '')
         if (!token) {
-            window.location.assign('/dashboard/pages')
+            window.location.assign('/login-page')
         }
         var authRequest = req.clone({
             headers: req.headers.set('Authorization', `Bearer ${token}`)
