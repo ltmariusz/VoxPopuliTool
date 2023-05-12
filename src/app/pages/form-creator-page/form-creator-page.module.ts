@@ -8,6 +8,7 @@ import { FormCreateAddQuestionModule } from 'src/app/components/form-create-add-
 import { FormCreateAddSingleChoiceModule } from 'src/app/components/form-create-add-single-choice/form-create-add-single-choice.module';
 import { FormCreateAddMultiplyChoiceModule } from 'src/app/components/form-create-add-multiply-choice/form-create-add-multiply-choice.module';
 import { FormCreateAddLongAnswerModule } from 'src/app/components/form-create-add-long-answer/form-create-add-long-answer.module';
+import { FormCreateAddRateModule } from 'src/app/components/form-create-add-rate/form-create-add-rate.module';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
     FormCreateAddSingleChoiceModule,
     FormCreateAddMultiplyChoiceModule,
     FormCreateAddLongAnswerModule,
+    FormCreateAddRateModule,
     MatIconModule,
   ],
   exports: [

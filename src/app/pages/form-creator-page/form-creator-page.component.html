@@ -4,8 +4,8 @@
     <div [ngSwitch]="item.witchQuestionTupe">
         <app-form-create-add-single-choice *ngSwitchCase="1" [index]="i"></app-form-create-add-single-choice>
         <app-form-create-add-multiply-choice *ngSwitchCase="2" [index]="i"></app-form-create-add-multiply-choice>
-        <app-form-create-add-long-answer *ngSwitchCase="3" [index]="i">output3</app-form-create-add-long-answer>
-        <!--<div *ngSwitchCase="4" [index]="i">output3</div> -->
+        <app-form-create-add-long-answer *ngSwitchCase="3" [index]="i"></app-form-create-add-long-answer>
+        <app-form-create-add-rate *ngSwitchCase="4" [index]="i"></app-form-create-add-rate>
     </div>
 </div>
 
@@ -14,4 +14,4 @@
 
 
 
-<mat-icon class="complete-button" color="primary">check_circle</mat-icon>
+<mat-icon class="complete-button" color="primary" (click)="submitForms()">check_circle</mat-icon>

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormCreateAddLongAnswerComponent } from './form-create-add-long-answer.component';
-import { MatIconModule } from '@angular/material/icon';
+import { FormCreateAddRateComponent } from './form-create-add-rate.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -12,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    FormCreateAddLongAnswerComponent
+    FormCreateAddRateComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   exports:[
-    FormCreateAddLongAnswerComponent
+    FormCreateAddRateComponent
   ]
 })
-export class FormCreateAddLongAnswerModule { }
+export class FormCreateAddRateModule { }

@@ -46,6 +46,9 @@ export class CreateFormsManagementService {
     this.indexOfCreatingForms++
     //numer 4 "ocena"
     this.listOfCreatingForms.push({ index: this.indexOfCreatingForms, witchQuestionTupe: 4 })
-
   }
+  submitForms(){
+    console.log("test")
+  }
+
 }

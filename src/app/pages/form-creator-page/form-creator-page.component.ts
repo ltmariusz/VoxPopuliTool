@@ -14,6 +14,10 @@ constructor(private createFormsManagementService: CreateFormsManagementService){
     this.createFormsManagementService.indexOfCreatingForms = 0
 
   }
+  submitForms(){
+    
+    this.createFormsManagementService.submitForms()
+  }
 
   // list:Array<any> = [1,2]
 list:Array<Question> = this.createFormsManagementService.listOfCreatingForms 
