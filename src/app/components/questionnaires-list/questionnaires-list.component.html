@@ -1,0 +1,75 @@
+<div class="container_list">
+    <div class="items">
+        <div class="item bg_card desktop info_card_header">
+            <div class="row_list">
+                <div class="icon">
+                    <mat-icon class="green_c" fontIcon=""></mat-icon>
+                    <!-- <mat-icon class="red_c" *ngIf="user.status == 'nieaktywny'" fontIcon="person"></mat-icon> -->
+                    <!-- <mat-icon class="grey_c" *ngIf="user.status == 'archiwum'" fontIcon="person"></mat-icon> -->
+                </div>
+                <div class="name txt_title">
+                    <p>Nazwa ankiety</p>
+                </div>
+                <!-- <div class="icons txt_title">
+                    <p>Dostęp</p>
+                </div> -->
+                <!-- <div class="acronim txt_title">
+                    <p>Akronim</p>
+                </div> -->
+                <!-- <div class="email txt_title">
+                    <p>E-mail</p>
+                </div> -->
+            </div>
+            <!-- <div class="btn action_txt txt_title">
+                <p>Akcja</p>
+            </div> -->
+            <div class="icons txt_title">
+                <p>Typ</p>
+            </div>
+        </div>
+        <div class="scroll">
+            <div class="item item_padding" (click)="clickItem(questionnaire.id)" *ngFor="let questionnaire of this.questionnairesList">
+                <!-- <div class="icon mobile"> -->
+                    <!-- <mat-icon class="green_c " fontIcon="person"></mat-icon> -->
+                    <!-- <mat-icon class="red_c" *ngIf="user.activated == false && user.archived == false" fontIcon="person"></mat-icon> -->
+                    <!-- <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon> -->
+                <!-- </div> -->
+                <div class="row_list">
+                    <div class="icon desktop">
+                        <mat-icon class="green_c questionnaire_icon" *ngIf="questionnaire.type == 'Osobista'" fontIcon="help_center"></mat-icon>
+                        <mat-icon class="green_c questionnaires_icon" *ngIf="questionnaire.type == 'Ogólna'" fontIcon="quiz"></mat-icon>
+                        <!-- <mat-icon class="red_c" *ngIf="user.activated == false && user.archived == false" fontIcon="person"></mat-icon> -->
+                        <!-- <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon> -->
+                    </div>
+                    <div class="name">
+                        <p>{{questionnaire.name}}</p>
+                    </div>
+                    <!-- <div class="icons">
+                        <img *ngIf="user.mobileCash" src="./assets/mobilna_kasa.ico" alt="">
+                    </div> -->
+                    <!-- <div class="acronim">
+                        <p>{{user.acronym}}</p>
+                    </div> -->
+                    <!-- <div class="email">
+                        <p>{{user.email}}</p>
+                    </div> -->
+                </div>
+                <!-- <div class="btn">
+                    <button (click)="editUser(user.id)" mat-raised-button color="primary"><mat-icon fontIcon="settings"></mat-icon></button>
+                </div> -->
+                 <div class="icons">
+                    <p>{{questionnaire.type}}</p>
+                </div> 
+                <!-- <mat-menu #menu="matMenu">
+                    <button (click)="openDialogNewPassword('200ms', '100ms')" mat-menu-item>Zmiana hasła użytkownika</button>
+                    <button *ngIf="user.activated == false" (click)="openDialogActiveUser('200ms', '100ms')" mat-menu-item>Aktywacja użytkownika</button>
+                </mat-menu> -->
+            </div>
+        </div>
+        
+    </div>
+    <!-- <div *ngIf="managementManagerRest.loading" class="spinner">
+        <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" [value]="value">
+        </mat-progress-spinner>
+    </div> -->
+</div>
