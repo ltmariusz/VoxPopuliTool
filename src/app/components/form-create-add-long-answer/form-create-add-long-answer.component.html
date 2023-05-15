@@ -16,10 +16,12 @@
 
         </div>
         <div class="give-title">
-            <mat-form-field class="full-width-field" appearance="outline">
-                <mat-label>Podaj pytanie</mat-label>
-                <input matInput type="text">
-            </mat-form-field>
+            <form [formGroup]="longAnswerForms">
+                <mat-form-field class="full-width-field" appearance="outline">
+                    <mat-label>Podaj pytanie</mat-label>
+                    <input matInput type="text" formControlName="longAnswerQuestionInput">
+                </mat-form-field>
+            </form>
         </div>
         <div>
             <div class="answer">

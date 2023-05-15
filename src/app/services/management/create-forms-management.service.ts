@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 export interface Question {
   index: number;
@@ -9,6 +9,11 @@ export interface Question {
   providedIn: 'root'
 })
 export class CreateFormsManagementService {
+
+  getAllFormsEmitter: EventEmitter<any> = new EventEmitter();
+
+  titleForm?:string // zmienic
+  descriptionForm?:string
 
   constructor() { }
 
@@ -49,6 +54,9 @@ export class CreateFormsManagementService {
   }
   submitForms(){
     console.log("test")
+    this.getAllFormsEmitter.emit()
+    console.log(this.titleForm)
+    console.log(this.descriptionForm)
   }
 
 }

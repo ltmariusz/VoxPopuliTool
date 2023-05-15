@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 
 export interface Answers{
@@ -24,6 +25,12 @@ export class FormCreateAddSingleChoiceComponent implements OnInit,OnDestroy {
 
   /**zmienna odpowiadająca za licznik pytania (wzięte z ngfor z form-creator-page) */
   @Input() index!: number;
+
+  singleChoiceForm = new FormGroup({
+    singleChoiceQuestionInput: new FormControl('',[Validators.required]),
+    singleAnswersInput: new FormControl('',Validators.required) //ZMIENIC NA REAKTYWNE
+  })
+
 
 
   ngOnInit() {
