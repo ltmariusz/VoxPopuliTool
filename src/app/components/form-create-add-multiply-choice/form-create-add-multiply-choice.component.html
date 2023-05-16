@@ -1,3 +1,4 @@
+<!-- <form [formGroup]="multiplyChoiceForm"> -->
 <form [formGroup]="multiplyChoiceForm">
     <mat-card>
         <mat-card-content class="form-container">
@@ -17,7 +18,33 @@
                     <input matInput type="text" formControlName="multiplyChoiceQuestionInput">
                 </mat-form-field>
             </div>
-            <div *ngFor="let answer of numberOfAnswer;let i = index">
+            <div formArrayName="answerControlNames">
+                <div *ngFor="let answer of answerControlNames.controls; let i = index; last as isLast">
+                    <div class="answer">
+                        <!-- <div *ngIf="answer.last===false; else elseBlock" class="idex-of-answer">{{i+1}}.</div> -->
+                        <div>{{i+1}}.</div>
+                        <!-- <ng-template #elseBlock>
+                            <div class="idex-of-answer" [formControl]="answer"></div>
+                        </ng-template> -->
+                        
+                        <mat-form-field class="new-answer" appearance="fill" (click)="clickCreateNewAnswer(answer)">
+                            
+                            <input matInput [formControlName]="i">
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>{{answerControlNames.controls.length+1}}</div>
+
+                <mat-form-field class="new-answer" appearance="fill">
+                    <input matInput (click)="clickCreateNewAnswer('test')">
+                </mat-form-field>
+                    
+            </div>
+            <button (click)="clickCreateNewAnswer('xD')">new </button>
+
+            <!-- ------------------------------------------------------------------------------------------------------ -->
+            <!-- <div *ngFor="let answer of numberOfAnswer;let i = index">
                 <div class="answer">
                     <div *ngIf="answer.last===false; else elseBlock" class="idex-of-answer">{{i+1}}.</div>
                     <ng-template #elseBlock>
@@ -25,17 +52,22 @@
                     </ng-template>
 
                     <mat-form-field class="new-answer" appearance="fill" (click)="clickCreateNewAnswer(answer)">
-                        <input matInput *ngIf="answer.last===false" placeholder="dodaj odpowiedz">
-                        <input matInput *ngIf="answer.last===true" placeholder="dodaj odpowiedz" [formControlName]="'nowyFormControler' + i">
+                        <input matInput *ngIf="answer.last===false" placeholder="dodaj odpowiedz" [formControlName]="'answerControl'">
+
+                        <input matInput *ngIf="answer.last===true" placeholder="dodaj odpowiedz">
                         <button *ngIf="answer.last===false" matSuffix mat-icon-button aria-label="delete"
                             (click)="deleteAnswer(i)">
                             <mat-icon class="complete-button" color="primary">close</mat-icon>
                         </button>
                     </mat-form-field>
                 </div>
-            </div>
-            <button (click)="showAll()">test</button>
-            <!-- <button (click)="showAll()"></button> -->
+            </div> -->
+            <!-- ------------------------------------------------------------------------------------------------------ -->
+
+
+            <!-- <button (click)="addItem()">test</button>
+            <button (click)="test()">test</button> -->
+            <button (click)="showAll()"></button>
         </mat-card-content>
     </mat-card>
 </form>
