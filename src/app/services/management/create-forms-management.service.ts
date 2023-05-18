@@ -91,13 +91,13 @@ export class CreateFormsManagementService {
           break;
         case 4:
           console.log("rateCreate service")
-
           break;
 
         default:
           break;
       }
     }
+    //Przechowuje aktualny 
     console.log(this.createdQuestionArray)
   }
 
