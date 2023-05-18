@@ -11,11 +11,11 @@ export class FormCreateAddQuestionComponent {
   constructor(
     private createFormsManagementService: CreateFormsManagementService) { }
 
-  oneChoiseCreate() {
-    this.createFormsManagementService.oneChoiseCreate();
+  oneChoiceCreate() {
+    this.createFormsManagementService.oneChoiceCreate();
   }
-  fewChoiseCreate() {
-    this.createFormsManagementService.fewChoiseCreate()
+  fewChoiceCreate() {
+    this.createFormsManagementService.fewChoiceCreate()
   }
   longAnswerCreate() {
     this.createFormsManagementService.longAnswerCreate()

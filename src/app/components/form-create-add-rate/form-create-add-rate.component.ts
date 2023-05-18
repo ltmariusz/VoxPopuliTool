@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 
 @Component({
@@ -11,25 +11,32 @@ export class FormCreateAddRateComponent implements OnInit {
 
 
 
-  constructor(private createFormsManagementService: CreateFormsManagementService) { }
+  constructor(private createFormsManagementService: CreateFormsManagementService,
+    private fb:FormBuilder) { }
 
   @Input() index!: number
+  rateForm!:FormGroup
 
-  rateForm = new FormGroup({
-    rateQuestionInput: new FormControl('', [Validators.required])
-  })
+  // rateForm = new FormGroup({
+  //   rateQuestionInput: new FormControl('', [Validators.required])
+  // })
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.rateForm= this.fb.group({
+      rateQuestionInput: ['',[Validators.required]]
+    })
+    this.getRateForm()
+  }
 
   deleteThisQuestion() {
     this.createFormsManagementService.listOfCreatingForms.splice(this.index, 1)
   }
 
 
-  getTitleForm() {
+  getRateForm() {
     this.createFormsManagementService.getAllFormsEmitter.subscribe(
       res => {
-
+        this.createFormsManagementService.createdQuestionArray?.push({question: this.rateForm.get('rateQuestionInput')?.value })
         // this.createFormsManagementService.titleForm = this.createFormsTitle.get('titleForm')?.value!
         // this.createFormsManagementService.descriptionForm = this.createFormsTitle.get('descriptionForm')?.value!
       })

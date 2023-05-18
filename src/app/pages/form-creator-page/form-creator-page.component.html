@@ -1,7 +1,7 @@
 <app-form-create-title class="create-post"></app-form-create-title>
 
 <div *ngFor="let item of list; let i = index">
-    <div [ngSwitch]="item.witchQuestionTupe">
+    <div [ngSwitch]="item.witchQuestionType">
         <app-form-create-add-single-choice *ngSwitchCase="1" [index]="i"></app-form-create-add-single-choice>
         <app-form-create-add-multiply-choice *ngSwitchCase="2" [index]="i"></app-form-create-add-multiply-choice>
         <app-form-create-add-long-answer *ngSwitchCase="3" [index]="i"></app-form-create-add-long-answer>
@@ -13,5 +13,4 @@
 <app-form-create-add-question class="create-post" style="margin-top: 8px;"></app-form-create-add-question>
 
 
-
-<mat-icon class="complete-button" color="primary" (click)="submitForms()">check_circle</mat-icon>
+<div class="complete-button"><div class="fill"></div><mat-icon  color="primary" (click)="submitForms()">check_circle</mat-icon><div class="fill"></div></div>
