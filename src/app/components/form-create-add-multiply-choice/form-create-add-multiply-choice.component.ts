@@ -24,19 +24,6 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
 
   @Input() index!: number;
 
-  multiplyAnswer = new FormArray([new FormControl('', Validators.required)]);
-  addInputControl() {
-    this.multiplyAnswer.push(new FormControl('', Validators.required));
-  }
-
-
-
-  // multiplyChoiceForm: FormGroup = new FormGroup({
-  //   multiplyChoiceQuestionInput: new FormControl('', [Validators.required]),
-  //   nowyFormControler0: new FormControl('', [Validators.required]) //ZMIENIC NA REAKTYWNE
-  // })
-
-  // answerControlName: any[] = []
   numberOfAnswer: Array<Answers> = [{ last: true }]
   formControlCounter = 1; // Licznik formControlów
 
@@ -52,24 +39,27 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
     this.createFormsManagementService.indexOfCreatingForms
     console.log(this.indexOfForms)
     console.log(this.index + " przekazany index")
+    this.getMultipleChoice()
   }
 
-  createItem(): FormGroup {
-    return this.fb.group({
-      answerControl: new FormControl('', [Validators.required]),
+  getMultipleChoice() {
+    this.createFormsManagementService.getAllFormsEmitter.subscribe(res => {
+      let multiplyChoiceQuestion = this.multiplyChoiceForm.get('multiplyChoiceQuestionInput')?.value
+      let allMultiplyChoices = new Array<string>
+      for (let i = 0; i < this.answerControlNames.controls.length; i++) {
+        const element = this.answerControlNames.controls[i].value;
+        allMultiplyChoices.push(element)
+      }
+      this.createFormsManagementService.createdQuestionArray?.push({ question: multiplyChoiceQuestion, allAnswers: allMultiplyChoices, isMultiply: true })
     })
+
   }
+
+
   get answerControlNames() {
     return this.multiplyChoiceForm.get('answerControlNames') as FormArray;
-   }
+  }
 
-  // addItem(): void {
-  //   this.answerControlNames.push(this.createItem())
-  //   console.log(this.multiplyChoiceForm)
-  // }
-  // removeItem(i:any):void{
-  //   this.answerControlNames.removeAt(i)
-  // }
   test() {
     console.log(this.multiplyChoiceForm.get('answerControlNames'))
     console.log(this.multiplyChoiceForm)
@@ -90,28 +80,17 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
    * doda nową moliwość odpowiedzi
    * @param answer 
    */
-  clickCreateNewAnswer(answer: any) {
-    // this.addItem()
-    console.log(this.answerControlNames.controls.length)
-    if(this.answerControlNames.controls.length){
+  clickCreateNewAnswer() {
+    // console.log(this.answerControlNames.controls.length)
+    // if (this.answerControlNames.controls.length) {
 
-    }
+    // }
     (this.multiplyChoiceForm.get('answerControlNames') as FormArray).push(this.fb.control(''))
     console.log(this.multiplyChoiceForm)
-
-    // if (answer.last == true) {
-    //   // this.addNewFormControl()
-    //   this.addItem()
-
-    //   this.numberOfAnswer.push({ last: true })
-
-    //   // this.answerControlName.push()
-    //   this.numberOfAnswer[this.numberOfAnswer.length - 2].last = false
-    // }
   }
   deleteAnswer(index: number) {
+    this.answerControlNames.removeAt(index);
     console.log(index)
-    this.numberOfAnswer.splice(index, 1)
   }
 
 
@@ -134,9 +113,13 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
     //   const answerControl = this.multiplyChoiceForm.get('multiplyAnswer.' + i) as FormControl;
     //   console.log(answerControl.value);
     // }
-    console.log("tu")
     console.log(this.multiplyChoiceForm.value)
+    console.log(this.multiplyChoiceForm.get('multiplyChoiceQuestionInput')?.value)
+    for (let i = 0; i < this.answerControlNames.controls.length; i++) {
+      const element = this.answerControlNames.controls[i].value;
+      console.log(element)
 
+    }
   }
 
 
