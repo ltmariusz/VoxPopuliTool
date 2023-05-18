@@ -6,6 +6,9 @@ import { FormCreateTitleModule } from 'src/app/components/form-create-title/form
 import { MatIconModule } from '@angular/material/icon';
 import { FormCreateAddQuestionModule } from 'src/app/components/form-create-add-question/form-create-add-question.module';
 import { FormCreateAddSingleChoiceModule } from 'src/app/components/form-create-add-single-choice/form-create-add-single-choice.module';
+import { FormCreateAddMultiplyChoiceModule } from 'src/app/components/form-create-add-multiply-choice/form-create-add-multiply-choice.module';
+import { FormCreateAddLongAnswerModule } from 'src/app/components/form-create-add-long-answer/form-create-add-long-answer.module';
+import { FormCreateAddRateModule } from 'src/app/components/form-create-add-rate/form-create-add-rate.module';
 
 
 const routes: Routes = [
@@ -25,7 +28,10 @@ const routes: Routes = [
     FormCreateTitleModule,
     FormCreateAddQuestionModule,
     FormCreateAddSingleChoiceModule,
-    MatIconModule
+    FormCreateAddMultiplyChoiceModule,
+    FormCreateAddLongAnswerModule,
+    FormCreateAddRateModule,
+    MatIconModule,
   ],
   exports: [
     FormCreatorPageComponent

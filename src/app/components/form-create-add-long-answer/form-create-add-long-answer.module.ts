@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormCreateAddQuestionComponent } from './form-create-add-question.component';
-import { MatCardModule } from '@angular/material/card';
+import { FormCreateAddLongAnswerComponent } from './form-create-add-long-answer.component';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    FormCreateAddQuestionComponent
+    FormCreateAddLongAnswerComponent
   ],
   imports: [
     CommonModule,
@@ -18,9 +20,12 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
-    FormCreateAddQuestionComponent
+    FormCreateAddLongAnswerComponent
   ]
 })
-export class FormCreateAddQuestionModule { }
+export class FormCreateAddLongAnswerModule { }

@@ -1,0 +1,41 @@
+<form [formGroup]="multiplyChoiceForm">
+    <mat-card>
+        <mat-card-content class="form-container">
+
+            <div class="title-of-question-and-delete-button">
+                <!-- <div class="title-of-question"> [{{index+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">check_box</mat-icon>jednokrotny wybór</div> -->
+                <div class="title-of-question"> [{{index+1}}] <mat-icon color="primary"
+                        fontSet="material-icons-outlined">library_add_check</mat-icon>
+                </div>
+                <button mat-button color="warn" class="delete-question" (click)="deleteThisQuestion()">usuń<mat-icon
+                        color="warn">delete</mat-icon></button>
+
+            </div>
+            <div class="give-title">
+                <mat-form-field class="full-width-field" appearance="outline">
+                    <mat-label>Podaj pytanie</mat-label>
+                    <input matInput type="text" formControlName="multiplyChoiceQuestionInput">
+                </mat-form-field>
+            </div>
+            <div *ngFor="let answer of numberOfAnswer;let i = index">
+                <div class="answer">
+                    <div *ngIf="answer.last===false; else elseBlock" class="idex-of-answer">{{i+1}}.</div>
+                    <ng-template #elseBlock>
+                        <div class="idex-of-answer"></div>
+                    </ng-template>
+
+                    <mat-form-field class="new-answer" appearance="fill" (click)="clickCreateNewAnswer(answer)">
+                        <input matInput *ngIf="answer.last===false" placeholder="dodaj odpowiedz">
+                        <input matInput *ngIf="answer.last===true" placeholder="dodaj odpowiedz" [formControlName]="'nowyFormControler' + i">
+                        <button *ngIf="answer.last===false" matSuffix mat-icon-button aria-label="delete"
+                            (click)="deleteAnswer(i)">
+                            <mat-icon class="complete-button" color="primary">close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button (click)="showAll()">test</button>
+            <!-- <button (click)="showAll()"></button> -->
+        </mat-card-content>
+    </mat-card>
+</form>

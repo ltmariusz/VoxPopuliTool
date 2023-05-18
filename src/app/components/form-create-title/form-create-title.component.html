@@ -1,3 +1,4 @@
+<!-- <mat-card tabindex="-1" (focus)="myFocusFunction()" (blur)="blurr()"> -->
 <mat-card>
     <mat-card-header>
         <mat-card-title>Tworzenie nowej ankiety</mat-card-title>
@@ -5,15 +6,17 @@
     <mat-card-content>
         <h3>Podaj nazwę nowej ankiety </h3>
         <div class="give-title">
-            <mat-form-field class="full-width-field" appearance="outline">
-                <mat-label>Nazwa</mat-label>
-                <input matInput type="text">
-            </mat-form-field>
-            <mat-form-field class="full-width-field xd" appearance="fill">
-                <mat-label>opis</mat-label>
-                <input matInput type="text">
-            </mat-form-field>
+            <form [formGroup]="createFormsTitle">
+                <mat-form-field class="full-width-field" appearance="outline">
+                    <mat-label>Nazwa</mat-label>
+                    <input matInput type="text" formControlName="titleForm">
+                </mat-form-field>
+                <mat-form-field class="full-width-field xd" appearance="fill">
+                    <mat-label>opis</mat-label>
+                    <input matInput type="text" formControlName="descriptionForm">
+                </mat-form-field>
+            </form>
         </div>
-
+        <!-- <button (click)="click()"></button> -->
     </mat-card-content>
 </mat-card>
