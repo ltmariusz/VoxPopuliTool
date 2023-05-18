@@ -92,6 +92,10 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
    */
   clickCreateNewAnswer(answer: any) {
     // this.addItem()
+    console.log(this.answerControlNames.controls.length)
+    if(this.answerControlNames.controls.length){
+
+    }
     (this.multiplyChoiceForm.get('answerControlNames') as FormArray).push(this.fb.control(''))
     console.log(this.multiplyChoiceForm)
 

@@ -22,24 +22,25 @@
                 <div *ngFor="let answer of answerControlNames.controls; let i = index; last as isLast">
                     <div class="answer">
                         <!-- <div *ngIf="answer.last===false; else elseBlock" class="idex-of-answer">{{i+1}}.</div> -->
-                        <div>{{i+1}}.</div>
+                        <div class="idex-of-answer">{{i+1}}.</div>
                         <!-- <ng-template #elseBlock>
                             <div class="idex-of-answer" [formControl]="answer"></div>
                         </ng-template> -->
-                        
+
                         <mat-form-field class="new-answer" appearance="fill" (click)="clickCreateNewAnswer(answer)">
-                            
                             <input matInput [formControlName]="i">
-                            
+                            <button matSuffix mat-icon-button aria-label="delete" (click)="deleteAnswer(i)">
+                                <mat-icon class="complete-button" color="primary">close</mat-icon>
+                            </button>
                         </mat-form-field>
                     </div>
                 </div>
-                <div>{{answerControlNames.controls.length+1}}</div>
-
-                <mat-form-field class="new-answer" appearance="fill">
-                    <input matInput (click)="clickCreateNewAnswer('test')">
-                </mat-form-field>
-                    
+                <div class="answer">
+                    <div class="idex-of-answer">{{answerControlNames.controls.length+1}}</div>
+                    <mat-form-field class="new-answer" appearance="fill">
+                        <input matInput (click)="clickCreateNewAnswer('test')">
+                    </mat-form-field>
+                </div>
             </div>
             <button (click)="clickCreateNewAnswer('xD')">new </button>
 
