@@ -50,7 +50,7 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
         const element = this.answerControlNames.controls[i].value;
         allMultiplyChoices.push(element)
       }
-      this.createFormsManagementService.createdQuestionArray?.push({ question: multiplyChoiceQuestion, allAnswers: allMultiplyChoices, isMultiply: true })
+      this.createFormsManagementService.createdQuestionArray?.push({typeOfQuestion:1, question: multiplyChoiceQuestion, allAnswers: allMultiplyChoices, isMultiply: true })
     })
 
   }
