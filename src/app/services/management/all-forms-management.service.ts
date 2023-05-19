@@ -95,22 +95,16 @@ export class AllFormsManagementService {
       isMultiply: false,
     },
     {
-      typeOfQuestion:0,
+      typeOfQuestion:2,
       question: "Ile dni ma rok przestępny?",
-      allAnswers: ["366"],
-      isMultiply: false,
     },
     {
-      typeOfQuestion:0,
-      question: "Kto wynalazł żarówkę?",
-      allAnswers: ["Thomas Edison"],
-      isMultiply: false,
+      typeOfQuestion:2,
+      question: "opowiedz mi osobie",
     },
     {
-      typeOfQuestion:0,
-      question: "Jak nazywa się stolica Francji?",
-      allAnswers: ["Paryż"],
-      isMultiply: false,
+      typeOfQuestion:3,
+      question: "Jak bardzo nas lubisz",
     },
   ];
 

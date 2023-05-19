@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { OneQuestion } from 'src/app/services/management/create-forms-management.service';
 
 @Component({
-  selector: 'app-answer-form-long-answer',
-  templateUrl: './answer-form-long-answer.component.html',
-  styleUrls: ['../../../style/style-of-answers.scss', './answer-form-long-answer.component.scss']
+  selector: 'app-answer-form-single-choice',
+  templateUrl: './answer-form-single-choice.component.html',
+  styleUrls: ['../../../style/style-of-answers.scss','./answer-form-single-choice.component.scss']
 })
-export class AnswerFormLongAnswerComponent implements OnInit{
+export class AnswerFormSingleChoiceComponent implements OnInit{
  
   constructor(){}
 
@@ -25,6 +24,5 @@ export class AnswerFormLongAnswerComponent implements OnInit{
     console.log(this.index)
     this.question = this.listOfQuestionToShow.question
   }
-
 
 }

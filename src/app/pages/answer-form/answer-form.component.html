@@ -3,9 +3,20 @@
     <div class="content">
         <app-answer-form-title></app-answer-form-title>
         <!-- Utworzyć switch case do wyświetlania ankiety -->
-        <div>
-            <app-answer-form-long-answer></app-answer-form-long-answer>
+        <div *ngFor="let item of listOfQuestionToShow; let i = index">
+            <div [ngSwitch]="listOfQuestionToShow[i].typeOfQuestion">
+                <div *ngSwitchCase="0">
+                    <app-answer-form-single-choice [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]"></app-answer-form-single-choice>
+                </div>
+                <div *ngSwitchCase="1">multichoice</div>
+                <div *ngSwitchCase="2">
+                    <app-answer-form-long-answer [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
+                    </app-answer-form-long-answer>
+                </div>
+                <div *ngSwitchCase="3">rate</div>
+                <div *ngSwitchDefault>błąd</div>
+            </div>
+
         </div>
     </div>
-
 </div>
