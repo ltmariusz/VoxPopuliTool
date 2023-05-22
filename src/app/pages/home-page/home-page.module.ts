@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { NavLinkModule } from 'src/app/components/nav-link/nav-link.module';
+import { SelectedQuestionnaireModule } from 'src/app/components/selected-questionnaire/selected-questionnaire.module';
+import { SelectedQuestionnaireComponent } from 'src/app/components/selected-questionnaire/selected-questionnaire.component';
 
 const routes: Routes =[
   {
@@ -20,7 +22,11 @@ const routes: Routes =[
       },
       {
         path: 'form-list',
-        loadChildren: () => import('../form-list-page/form-list-page.module').then(m=>m.FormListPageModule)
+        loadChildren: () => import('../form-list-page/form-list-page.module').then(m=>m.FormListPageModule),
+      },
+      {
+        path: 'questionnaire',
+        loadChildren: () => import('../../components/selected-questionnaire/selected-questionnaire.module').then(m=>m.SelectedQuestionnaireModule)
       },
       {
         path: 'admin-panel',
