@@ -1,14 +1,24 @@
 <h2>Ankieta 0543BBY Owoce leśne</h2>
 <div class="list_of_items">
     <div *ngFor="let questionnaire of poll; let i = index" class="card">
-        <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-            check_box</mat-icon>
-            <div class="title">Testowe pytanie, co na śniadanie?</div>
-        </div>
-        <div class="answer_list">
-            <div *ngFor="let answer of questionnaire.answer; let indexAnswer = index" class="answer">
-                {{alphabet[indexAnswer]}}. {{answer.title}}
+        <div class="column">
+            <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
+                check_box</mat-icon>
+                <div class="title">Testowe pytanie, co na śniadanie?</div>
+            </div>
+            <div class="answer_list">
+                <div *ngFor="let answer of questionnaire.answer; let indexAnswer = index" class="answer">
+                    {{alphabet[indexAnswer]}}. {{answer.title}}
+                </div>
             </div>
         </div>
+        <div id="chart">
+            <apx-chart
+              [series]="arrayWithSeriesCount![i]"
+              [chart]="chartOptions.chart!"
+              [labels]="arrayWithLabelNames![i]"
+              [responsive]="chartOptions.responsive!"
+            ></apx-chart>
+          </div>
     </div>
 </div>
