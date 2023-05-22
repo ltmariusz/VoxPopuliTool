@@ -11,10 +11,14 @@ export class AnswerFormComponent implements OnInit {
   constructor(private allFormsManagementService: AllFormsManagementService) { }
 
   listOfQuestionToShow!: Array<OneQuestion>
+  titleForm!: string
+  descriptionForm!: string
 
   ngOnInit() {
-    console.log(this.allFormsManagementService.exampleOfForm1)
-    this.listOfQuestionToShow = this.allFormsManagementService.exampleOfForm1
+    // console.log(this.allFormsManagementService.exampleOfForm2)
+    this.titleForm = this.allFormsManagementService.exampleOfForm2.title
+    this.descriptionForm = this.allFormsManagementService.exampleOfForm2.description
+    this.listOfQuestionToShow = this.allFormsManagementService.exampleOfForm2.questions
   }
 
 

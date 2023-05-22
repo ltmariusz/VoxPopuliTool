@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AllFormsManagementService } from 'src/app/services/management/all-forms-management.service';
 import { OneQuestion } from 'src/app/services/management/create-forms-management.service';
 
 @Component({
@@ -9,8 +10,10 @@ import { OneQuestion } from 'src/app/services/management/create-forms-management
 })
 export class AnswerFormLongAnswerComponent implements OnInit{
  
-  constructor(){}
-
+  constructor(
+    private allFormsManagementService: AllFormsManagementService,
+    private fb:FormBuilder
+    ){}
 
   // najpewnie to będzie zmienna typu input
  @Input() index!: number
@@ -18,13 +21,21 @@ export class AnswerFormLongAnswerComponent implements OnInit{
   
  question!:string
 
-
+    longAnswerForm!:FormGroup
 
   ngOnInit() {
-    console.log(this.listOfQuestionToShow)
-    console.log(this.index)
+    this.longAnswerForm = this.fb.group({
+      textInput: ['',[Validators.required]]
+    })
+
     this.question = this.listOfQuestionToShow.question
+    this.getLongAnswer()
   }
 
-
+  getLongAnswer(){
+    this.allFormsManagementService.getAllAnswerEmitter.subscribe(res=>{
+      this.longAnswerForm.get('textInput')!.value
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({question:this.question,answer:[this.longAnswerForm.get('textInput')!.value]})
+    })
+  }
 }
