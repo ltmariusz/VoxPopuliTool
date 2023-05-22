@@ -13,9 +13,7 @@ import { UserDataService } from './services/global-services/user-data.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
-    
+    AppComponent,    
     
     
     // LoginPageComponent
@@ -25,7 +23,7 @@ import { UserDataService } from './services/global-services/user-data.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     // LoginPageModule
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-questionnaires-list',
@@ -20,8 +21,12 @@ export class QuestionnairesListComponent {
     },
   ]
 
-  clickItem(id: number){
+  constructor(
+    private router: Router,
+  ){ }
 
+  clickItem(id: number){
+    this.router.navigateByUrl('/home/questionnaire');
   }
 
 }
