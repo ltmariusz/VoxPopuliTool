@@ -15,7 +15,6 @@ export class AnswerFormComponent implements OnInit {
   ngOnInit() {
     console.log(this.allFormsManagementService.exampleOfForm1)
     this.listOfQuestionToShow = this.allFormsManagementService.exampleOfForm1
-
   }
 
 

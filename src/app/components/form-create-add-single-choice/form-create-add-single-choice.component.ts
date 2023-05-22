@@ -56,7 +56,7 @@ export class FormCreateAddSingleChoiceComponent implements OnInit, OnDestroy {
       for (let i = 0; i < this.singleAnswersControlNames.controls.length; i++) {
         allSingleChoices.push(this.singleAnswersControlNames.controls[i].value)
       }
-      this.createFormsManagementService.createdQuestionArray?.push({typeOfQuestion:0,question:singleChoiceQuestion, allAnswers:allSingleChoices, isMultiply: false})
+      this.createFormsManagementService.createdQuestionArray?.push({typeOfQuestion:0,question:singleChoiceQuestion, allAnswers:allSingleChoices})
       // let oneChoiceCreate
     })
   }

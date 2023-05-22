@@ -21,6 +21,8 @@ export class AllFormsManagementService {
 
   constructor() { }
 
+
+  // PRZYKLADOWE DANE ((MOZNA USUNAC isMultiply))
   exampleOfForm1: Array<OneQuestion>=[
     {
       typeOfQuestion:0,

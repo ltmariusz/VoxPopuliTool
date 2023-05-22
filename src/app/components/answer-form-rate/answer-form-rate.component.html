@@ -3,16 +3,16 @@
         <div class="title-of-question">
             <div class="number-and-icon">
                 [{{index+1}}]
-                <mat-icon color="primary" fontSet="material-icons-outlined">check_box</mat-icon>
+                <mat-icon color="primary" fontSet="material-icons-outlined">star_half</mat-icon>
             </div>
             <!-- <div class="question">{{question}}</div> -->
             <div class="question">{{listOfQuestionToShow.question}}</div>
         </div>
-
         <div>
-            <mat-radio-group *ngFor="let item of listOfQuestionToShow.allAnswers" class="full-width-field answer-field" appearance="outline">
-                <mat-radio-button class="answer" value="1">{{item}}</mat-radio-button>
-            </mat-radio-group>
+            <mat-form-field appearance="outline" >
+                <mat-label>podaj cyfrę</mat-label>
+                <input matInput placeholder="Placeholder" type="number">
+            </mat-form-field>
         </div>
     </mat-card-content>
 </mat-card>

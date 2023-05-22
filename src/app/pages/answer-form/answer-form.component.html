@@ -6,17 +6,22 @@
         <div *ngFor="let item of listOfQuestionToShow; let i = index">
             <div [ngSwitch]="listOfQuestionToShow[i].typeOfQuestion">
                 <div *ngSwitchCase="0">
-                    <app-answer-form-single-choice [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]"></app-answer-form-single-choice>
+                    <app-answer-form-single-choice [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
+                    </app-answer-form-single-choice>
                 </div>
-                <div *ngSwitchCase="1">multichoice</div>
+                <div *ngSwitchCase="1">
+                    <app-answer-form-multiply-choice [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
+                    </app-answer-form-multiply-choice>
+                </div>
                 <div *ngSwitchCase="2">
                     <app-answer-form-long-answer [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
                     </app-answer-form-long-answer>
                 </div>
-                <div *ngSwitchCase="3">rate</div>
+                <div *ngSwitchCase="3"><app-answer-form-rate [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]"></app-answer-form-rate></div>
                 <div *ngSwitchDefault>błąd</div>
             </div>
 
         </div>
+        <app-answer-form-confirm></app-answer-form-confirm>
     </div>
 </div>

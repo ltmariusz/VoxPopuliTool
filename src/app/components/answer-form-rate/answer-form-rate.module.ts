@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AnswerFormSingleChoiceComponent } from './answer-form-single-choice.component';
+import { AnswerFormRateComponent } from './answer-form-rate.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatRadioModule } from '@angular/material/radio';
 
 
 
 @NgModule({
   declarations: [
-    AnswerFormSingleChoiceComponent
+    AnswerFormRateComponent,
   ],
   imports: [
     CommonModule,
@@ -24,9 +23,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRadioModule
-  ], exports: [
-    AnswerFormSingleChoiceComponent
+  ],exports:[
+    AnswerFormRateComponent
   ]
 })
-export class AnswerFormSingleChoiceModule { }
+export class AnswerFormRateModule { }

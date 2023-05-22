@@ -1,0 +1,10 @@
+.confirm-field{
+    margin-top: 16px
+}
+@media only screen and (max-width:800px){
+
+    .confirm-button{
+        width: 100px!important;
+        min-width: unset!important;
+    }
+}

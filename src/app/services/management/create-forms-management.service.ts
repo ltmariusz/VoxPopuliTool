@@ -15,7 +15,6 @@ export interface OneQuestion {
   typeOfQuestion: number;
   question: string;
   allAnswers?: Array<string>;
-  isMultiply?: boolean;
 }
 
 @Injectable({

@@ -1,1 +1,17 @@
-<p>answer-form-multiply-choice works!</p>
+<mat-card>
+    <mat-card-content class="form-container">
+        <div class="title-of-question">
+            <div class="number-and-icon">
+                [{{index+1}}]
+                <mat-icon color="primary" fontSet="material-icons-outlined">library_add_check</mat-icon>
+            </div>
+            <!-- <div class="question">{{question}}</div> -->
+            <div class="question">{{listOfQuestionToShow.question}}</div>
+        </div>
+        <div>
+            <div *ngFor="let item of listOfQuestionToShow.allAnswers" class="full-width-field answer-field" appearance="outline">
+                <mat-checkbox >{{item}}</mat-checkbox>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
