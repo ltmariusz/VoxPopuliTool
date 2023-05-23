@@ -53,7 +53,7 @@
     margin-left: 0.5rem;
 }
 .name{
-    width: 20%;
+    // width: 20%;
 }
 .email{
     width: 50%;
@@ -169,6 +169,14 @@
     border-radius: 3px;
     cursor: pointer;
 }
+.btn_edit{
+    background-color: #c4d620;
+    border: none;
+    padding: 6px 12px;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
 .mat_accord{
     width: 100%;
 }
@@ -183,6 +191,12 @@
 .icon_to_personal_list_arrow{
     margin-bottom: 8px;
     margin-left: 1rem;
+}
+.personal_questionnaire_list{
+    margin-left: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
 }
 
 
@@ -239,6 +253,7 @@
         align-items: start;
         flex-direction: column;
         row-gap: 6px;
+        margin-right: 0px;
     }
     .mat_panel{
         // height: 80px;

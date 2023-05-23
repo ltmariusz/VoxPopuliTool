@@ -19,6 +19,10 @@ export class QuestionnairesListComponent {
         {
           id: 0,
           name: "testowa ankieta osobista nr 1",
+        },
+        {
+          id: 1,
+          name: "super nowa jak supernowa",
         }
       ]
     },
@@ -96,6 +100,14 @@ export class QuestionnairesListComponent {
     //     // console.log('Anuluj');
     //   }
     // })
+  }
+
+  editQuestionnaire(id: number){
+
+  }
+
+  editQuestionnairePersonal(id: number){
+
   }
 
 }
