@@ -14,15 +14,15 @@ export class AnswerFormTitleComponent implements OnInit{
    * tytuł ankiety
    */
   @Input() titleForm!: string
-  
-  // titleOfForm = "Tytuł Ankiety"
-  
+    
   /**
    * Opis ankiety
    */
   @Input() descriptionForm!: string
   // descriptionOfForm = "W tym miejscu pojawiać się będzie opis utworzonej ankiety"
   
+  
+
   
   ngOnInit() {
     this.allFormsManagementService.getAllAnswerEmitter.subscribe(res=>{

@@ -19,11 +19,14 @@ export class AnswerFormRateComponent implements OnInit {
 
   question!: string
   rateAnswerForm!: FormGroup
-  selectedStars: number = 0;
-  stars: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+
+  selectedStars!: number;
+  stars: number[] = [1, 2, 3, 4, 5];
 
   selectStars(star: number): void {
     this.selectedStars = star;
+    console.log(star)
   }
 
   ngOnInit() {
@@ -44,7 +47,7 @@ export class AnswerFormRateComponent implements OnInit {
       console.log("test")
 
       this.rateAnswerForm.get('rateInput')!.value
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.question, answer: [this.rateAnswerForm.get('rateInput')!.value] })
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.question, answer: [this.selectedStars.toString()] })
 
     })
   }
