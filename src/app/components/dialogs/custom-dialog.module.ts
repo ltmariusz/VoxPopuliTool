@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ActiveUserDialogComponent } from './active-user-dialog/active-user-dialog.component';
 import { CloseQuestionnaireDialogComponent } from './close-questionnaire-dialog/close-questionnaire-dialog.component';
+import { CloseQuestionnairePersonalDialogComponent } from './close-questionnaire-personal-dialog/close-questionnaire-personal-dialog.component';
 
 
 
@@ -17,7 +18,8 @@ import { CloseQuestionnaireDialogComponent } from './close-questionnaire-dialog/
   declarations: [
     NewPasswordDialogComponent,
     ActiveUserDialogComponent,
-    CloseQuestionnaireDialogComponent
+    CloseQuestionnaireDialogComponent,
+    CloseQuestionnairePersonalDialogComponent
   ],
   imports: [
     CommonModule,
