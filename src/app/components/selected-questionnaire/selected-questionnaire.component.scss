@@ -32,3 +32,17 @@
     flex-direction: column;
     row-gap: 1rem;
 }
+.row_title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+// .row_title .rate{
+    
+// } 
+.row_title .rate mat-icon{
+    font-size: 2rem;
+    width: auto;
+    height: auto;
+    color: #ecc828;   
+}

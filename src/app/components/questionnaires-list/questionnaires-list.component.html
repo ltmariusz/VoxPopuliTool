@@ -2,74 +2,80 @@
     <div class="items">
         <div class="item bg_card desktop info_card_header">
             <div class="row_list">
-                <div class="icon">
+                <div class="icon_title">
                     <mat-icon class="green_c" fontIcon=""></mat-icon>
-                    <!-- <mat-icon class="red_c" *ngIf="user.status == 'nieaktywny'" fontIcon="person"></mat-icon> -->
-                    <!-- <mat-icon class="grey_c" *ngIf="user.status == 'archiwum'" fontIcon="person"></mat-icon> -->
                 </div>
                 <div class="name txt_title">
                     <p>Nazwa ankiety</p>
                 </div>
-                <!-- <div class="icons txt_title">
-                    <p>Dostęp</p>
-                </div> -->
-                <!-- <div class="acronim txt_title">
-                    <p>Akronim</p>
-                </div> -->
-                <!-- <div class="email txt_title">
-                    <p>E-mail</p>
-                </div> -->
             </div>
-            <!-- <div class="btn action_txt txt_title">
-                <p>Akcja</p>
-            </div> -->
             <div class="icons txt_title">
-                <p>Typ</p>
+                <!-- <p>Typ</p> -->
             </div>
         </div>
         <div class="scroll">
-            <div class="item item_padding" (click)="clickItem(questionnaire.id)" *ngFor="let questionnaire of this.questionnairesList">
-                <!-- <div class="icon mobile"> -->
-                    <!-- <mat-icon class="green_c " fontIcon="person"></mat-icon> -->
-                    <!-- <mat-icon class="red_c" *ngIf="user.activated == false && user.archived == false" fontIcon="person"></mat-icon> -->
-                    <!-- <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon> -->
-                <!-- </div> -->
+            <!-- <div class="item item_padding" *ngFor="let questionnaire of this.questionnairesList">
                 <div class="row_list">
                     <div class="icon desktop">
                         <mat-icon class="green_c questionnaire_icon" *ngIf="questionnaire.type == 'Osobista'" fontIcon="help_center"></mat-icon>
                         <mat-icon class="green_c questionnaires_icon" *ngIf="questionnaire.type == 'Ogólna'" fontIcon="quiz"></mat-icon>
-                        <!-- <mat-icon class="red_c" *ngIf="user.activated == false && user.archived == false" fontIcon="person"></mat-icon> -->
-                        <!-- <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon> -->
                     </div>
                     <div class="name">
                         <p>{{questionnaire.name}}</p>
                     </div>
-                    <!-- <div class="icons">
-                        <img *ngIf="user.mobileCash" src="./assets/mobilna_kasa.ico" alt="">
-                    </div> -->
-                    <!-- <div class="acronim">
-                        <p>{{user.acronym}}</p>
-                    </div> -->
-                    <!-- <div class="email">
-                        <p>{{user.email}}</p>
-                    </div> -->
                 </div>
-                <!-- <div class="btn">
-                    <button (click)="editUser(user.id)" mat-raised-button color="primary"><mat-icon fontIcon="settings"></mat-icon></button>
-                </div> -->
                  <div class="icons">
-                    <p>{{questionnaire.type}}</p>
+                    <button class="btn_generate_new_personal">Wygeneruj osobistą</button>
+                    <button (click)="clickItem(questionnaire.id)" class="btn_statistic">Statystyki</button>
+                    <button (click)="openDialogCloseQuestionnaire('200ms', '100ms')" class="btn_close">Zakończ</button>
                 </div> 
-                <!-- <mat-menu #menu="matMenu">
-                    <button (click)="openDialogNewPassword('200ms', '100ms')" mat-menu-item>Zmiana hasła użytkownika</button>
-                    <button *ngIf="user.activated == false" (click)="openDialogActiveUser('200ms', '100ms')" mat-menu-item>Aktywacja użytkownika</button>
-                </mat-menu> -->
-            </div>
+            </div> -->
+
+            <mat-accordion class="mat_accord">
+                <mat-expansion-panel *ngFor="let questionnaire of this.questionnairesList" hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="row_list">
+                            <div class="icon desktop">
+                                <mat-icon class="green_c questionnaire_icon" *ngIf="questionnaire.type == 'Osobista'" fontIcon="help_center"></mat-icon>
+                                <mat-icon class="green_c questionnaires_icon" *ngIf="questionnaire.type == 'Ogólna'" fontIcon="quiz"></mat-icon>
+                            </div>
+                            <div class="name">
+                                <p>{{questionnaire.name}}</p>
+                            </div>
+                        </div>
+                         <div class="icons">
+                            <button *ngIf="!questionnaire.personalList" class="btn_generate_new_personal">Wygeneruj osobistą</button>
+                            <button (click)="clickItem(questionnaire.id)" class="btn_statistic">Statystyki</button>
+                            <button (click)="openDialogCloseQuestionnaire('200ms', '100ms')" class="btn_close">Zakończ</button>
+                        </div> 
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <p *ngIf="!questionnaire.personalList">Brak osobistych ankiet</p>
+                  <!-- <p *ngIf="questionnaire.personalList">Lista osobistych ankiet</p> -->
+                  <div *ngIf="questionnaire.personalList" class="personal_questionnaire_list">
+                    <!-- <p>Lista osobistych ankiet</p> -->
+                    <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
+                    <div class="item_personal" *ngFor="let questionnairePersonal of questionnaire.personalList">
+                        <div class="row_list">
+                            <div class="icon desktop">
+                                <mat-icon class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
+                            </div>
+                            <div class="name">
+                                <p>{{questionnairePersonal.name}}</p>
+                            </div>
+                        </div>
+                        <div class="icons">
+                            <!-- <button class="btn_generate_new_personal">Wygeneruj osobistą</button> -->
+                            <!-- <button (click)="clickItem(questionnairePersonal.id)" class="btn_statistic">Statystyki</button> -->
+                            <button (click)="openDialogCloseQuestionnaire('200ms', '100ms')" class="btn_close">Zakończ</button>
+                        </div> 
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+
+
         </div>
-        
     </div>
-    <!-- <div *ngIf="managementManagerRest.loading" class="spinner">
-        <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" [value]="value">
-        </mat-progress-spinner>
-    </div> -->
 </div>

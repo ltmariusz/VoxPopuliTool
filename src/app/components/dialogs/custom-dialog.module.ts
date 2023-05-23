@@ -9,13 +9,15 @@ import { NewPasswordDialogComponent } from './new-password-dialog/new-password-d
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ActiveUserDialogComponent } from './active-user-dialog/active-user-dialog.component';
+import { CloseQuestionnaireDialogComponent } from './close-questionnaire-dialog/close-questionnaire-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     NewPasswordDialogComponent,
-    ActiveUserDialogComponent
+    ActiveUserDialogComponent,
+    CloseQuestionnaireDialogComponent
   ],
   imports: [
     CommonModule,
