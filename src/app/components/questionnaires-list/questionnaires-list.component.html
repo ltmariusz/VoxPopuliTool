@@ -24,11 +24,11 @@
                 <p>Akcja</p>
             </div> -->
             <div class="icons txt_title">
-                <p>Typ</p>
+                <!-- <p>Typ</p> -->
             </div>
         </div>
         <div class="scroll">
-            <div class="item item_padding" (click)="clickItem(questionnaire.id)" *ngFor="let questionnaire of this.questionnairesList">
+            <div class="item item_padding" *ngFor="let questionnaire of this.questionnairesList">
                 <!-- <div class="icon mobile"> -->
                     <!-- <mat-icon class="green_c " fontIcon="person"></mat-icon> -->
                     <!-- <mat-icon class="red_c" *ngIf="user.activated == false && user.archived == false" fontIcon="person"></mat-icon> -->
@@ -58,7 +58,10 @@
                     <button (click)="editUser(user.id)" mat-raised-button color="primary"><mat-icon fontIcon="settings"></mat-icon></button>
                 </div> -->
                  <div class="icons">
-                    <p>{{questionnaire.type}}</p>
+                    <!-- <p>{{questionnaire.type}}</p> -->
+                    <button class="btn_generate_new_personal">Wygeneruj osobistą</button>
+                    <button (click)="clickItem(questionnaire.id)" class="btn_statistic">Statystyki</button>
+                    <button class="btn_close">Zakończ</button>
                 </div> 
                 <!-- <mat-menu #menu="matMenu">
                     <button (click)="openDialogNewPassword('200ms', '100ms')" mat-menu-item>Zmiana hasła użytkownika</button>
