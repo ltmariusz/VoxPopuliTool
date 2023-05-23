@@ -21,7 +21,7 @@ export class HomePageComponent {
     },
     {
       url: 'form-list',
-      icon: 'post_add',
+      icon: 'manage_search',
       name: 'Lista ankiet',
     },
     {

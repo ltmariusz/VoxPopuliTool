@@ -5,7 +5,7 @@ import { OneQuestion } from 'src/app/services/management/create-forms-management
 
 export interface ChosenOrNotMultipleChoice {
   answer: string,
-  chosenOrNot: boolean
+  checked: boolean
 }
 
 @Component({
@@ -30,7 +30,7 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
 
   multipleChoiceAnswers: Array<string> = new Array
 
-  tymczasowa!:any
+  tymczasowa!: any
 
   ngOnInit() {
     //  console.log(this.listOfQuestionToShow)
@@ -39,25 +39,35 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
     this.howMuchAnswers = this.listOfQuestionToShow.allAnswers!.length
     for (let i = 0; i < this.howMuchAnswers; i++) {
       const element = this.listOfQuestionToShow.allAnswers![i];
-      this.chosenOrNot.push({ answer: element, chosenOrNot: false })
+      this.chosenOrNot.push({ answer: element, checked: false })
     }
     this.question = this.listOfQuestionToShow.question
     this.getMultipleChoice()
   }
 
-  clickOnCheckbox(whichIsClick: any) {
-    this.chosenOrNot.find(element => element.answer==whichIsClick)!.chosenOrNot=!this.chosenOrNot.find(element => element.answer==whichIsClick)?.chosenOrNot
-        // console.log(whichIsClick)
-    console.log(this.chosenOrNot)
+  showAnswers() {
+    for (const item of this.chosenOrNot) {
+      if (item.checked) {
+        console.log(`Zmienna ${item.answer} została wybrana.`);
+      }
+    }
   }
-  getMultipleChoice(){
-    this.allFormsManagementService.getAllAnswerEmitter.subscribe(res=>{
-      this.chosenOrNot.forEach(element => {
-        if(element.chosenOrNot===true){
-          this.multipleChoiceAnswers.push(element.answer)
+
+
+
+  // clickOnCheckbox(whichIsClick: any) {
+  //   this.chosenOrNot.find(element => element.answer==whichIsClick)!.checked=!this.chosenOrNot.find(element => element.answer==whichIsClick)?.checked
+  //       // console.log(whichIsClick)
+  //   console.log(this.chosenOrNot)
+  // }
+  getMultipleChoice() {
+    this.allFormsManagementService.getAllAnswerEmitter.subscribe(res => {
+      for (const item of this.chosenOrNot) {
+        if (item.checked) {
+          this.multipleChoiceAnswers.push(item.answer)
         }
-      });
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({question:this.question,answer:this.multipleChoiceAnswers})
+      }
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.question, answer: this.multipleChoiceAnswers })
     })
   }
 }

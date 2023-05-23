@@ -19,7 +19,12 @@ export class AnswerFormRateComponent implements OnInit {
 
   question!: string
   rateAnswerForm!: FormGroup
+  selectedStars: number = 0;
+  stars: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+  selectStars(star: number): void {
+    this.selectedStars = star;
+  }
 
   ngOnInit() {
     this.rateAnswerForm = this.fb.group({
@@ -35,8 +40,12 @@ export class AnswerFormRateComponent implements OnInit {
 
   getRateAnswer() {
     this.allFormsManagementService.getAllAnswerEmitter.subscribe(res => {
+      console.log(this.rateAnswerForm.get('rateInput')!.value)
+      console.log("test")
+
       this.rateAnswerForm.get('rateInput')!.value
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({question:this.question,answer:this.rateAnswerForm.get('rateInput')!.value})
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.question, answer: [this.rateAnswerForm.get('rateInput')!.value] })
+
     })
   }
 

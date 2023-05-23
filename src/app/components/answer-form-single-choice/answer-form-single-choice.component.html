@@ -10,8 +10,8 @@
         </div>
 
         <div>
-            <mat-radio-group class="full-width-field answer-field" appearance="outline">
-                <mat-radio-button *ngFor="let item of listOfQuestionToShow.allAnswers" class="answer" value="item" (click)="getClick(item)">
+            <mat-radio-group class="answer-field" appearance="outline" [(ngModel)]="selectedRatio" (change)="onRatioChange()">
+                <mat-radio-button *ngFor="let item of listOfQuestionToShow.allAnswers" class="answer" [value]="item" (click)="getClick(item)">
                     {{item}}</mat-radio-button>
             </mat-radio-group>
         </div>

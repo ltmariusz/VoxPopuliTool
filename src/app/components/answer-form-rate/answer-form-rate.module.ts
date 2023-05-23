@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -23,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTooltipModule
   ],exports:[
     AnswerFormRateComponent
   ]

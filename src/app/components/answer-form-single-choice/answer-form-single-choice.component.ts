@@ -23,6 +23,11 @@ export class AnswerFormSingleChoiceComponent implements OnInit {
 
   singleChoiceForm!: FormGroup
   singleChoiceAnswer!: string
+  selectedRatio!: string
+  onRatioChange() {
+    console.log('Zaznaczono ratio:', this.selectedRatio)
+    this.singleChoiceAnswer = this.selectedRatio;
+  }
 
   ngOnInit() {
     this.singleChoiceForm = this.fb.group({
@@ -35,12 +40,25 @@ export class AnswerFormSingleChoiceComponent implements OnInit {
   }
 
   getClick(singleChoiceShow: any) {
-    this.singleChoiceAnswer = singleChoiceShow
-    console.log(this.singleChoiceAnswer + "Odpalana wewnątrz komponentu")
+
+    // // console.log(this.listOfQuestionToShow.allAnswers)
+    // if(this.listOfQuestionToShow.allAnswers!.find(element=>element==singleChoiceShow)){
+    //   this.singleChoiceAnswer = singleChoiceShow
+    //   console.log(this.singleChoiceAnswer + "Odpalana wewnątrz komponentu")    
+    // }
   }
+
+
   getSingleChoiceAnswer() {
-    this.allFormsManagementService.getAllAnswerEmitter.subscribe(res=>{
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({question: this.question, answer:[this.singleChoiceAnswer]})
+    this.allFormsManagementService.getAllAnswerEmitter.subscribe(res => {
+      console.log("test")
+      if (this.singleChoiceForm.valid) {
+        console.log("wszystkie ok")
+      } else {
+        console.log("wszystkie zle")
+      }
+
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.question, answer: [this.singleChoiceAnswer] })
 
     })
   }
