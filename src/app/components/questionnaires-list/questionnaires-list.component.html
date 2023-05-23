@@ -32,9 +32,9 @@
             </div> -->
 
             <mat-accordion class="mat_accord">
-                <mat-expansion-panel *ngFor="let questionnaire of this.questionnairesList" hideToggle>
+                <mat-expansion-panel *ngFor="let questionnaire of this.questionnairesList" hideToggle class="mat_panel">
                   <mat-expansion-panel-header>
-                    <mat-panel-title>
+                    <mat-panel-title class="mat_title">
                         <div class="row_list">
                             <div class="icon desktop">
                                 <mat-icon class="green_c questionnaire_icon" *ngIf="questionnaire.type == 'Osobista'" fontIcon="help_center"></mat-icon>
@@ -44,7 +44,12 @@
                                 <p>{{questionnaire.name}}</p>
                             </div>
                         </div>
-                         <div class="icons">
+                        <div class="icons">
+                            <button *ngIf="!questionnaire.personalList" class="btn_generate_new_personal">Wygeneruj osobistą</button>
+                            <button (click)="clickItem(questionnaire.id)" class="btn_statistic">Statystyki</button>
+                            <button (click)="openDialogCloseQuestionnaire('200ms', '100ms')" class="btn_close">Zakończ</button>
+                        </div> 
+                        <div class="mobile_icons">
                             <button *ngIf="!questionnaire.personalList" class="btn_generate_new_personal">Wygeneruj osobistą</button>
                             <button (click)="clickItem(questionnaire.id)" class="btn_statistic">Statystyki</button>
                             <button (click)="openDialogCloseQuestionnaire('200ms', '100ms')" class="btn_close">Zakończ</button>

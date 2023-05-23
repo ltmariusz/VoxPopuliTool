@@ -151,6 +151,7 @@
     color: #fff;
     border-radius: 3px;
     cursor: pointer;
+    min-width: 150px;
 }
 .btn_statistic{
     background-color: #3f51b5;
@@ -185,11 +186,24 @@
 }
 
 
+
+
+
+
+
+
+
+
+.mobile_icons{
+    display: none;
+}
+
+
 @media only screen and (max-width: 900px){
     .row_list{
         flex-direction: column;
         align-items: flex-start;
-        margin-left: 1rem;
+        // margin-left: 1rem;
     }
     .desktop{
         display: none;
@@ -212,5 +226,26 @@
     .item{
         box-shadow: $box_shadow;
         
+    }
+    .icons{
+        display: none;
+    }
+    .mobile_icons{
+        display: flex;
+        column-gap: 8px;
+    }
+    .mat_title{
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        row-gap: 6px;
+    }
+    .mat_panel{
+        // height: 80px;
+        // align-items: center;
+    }
+    mat-expansion-panel-header{
+        padding-top: 22px;
+        padding-bottom: 22px;
     }
 }
