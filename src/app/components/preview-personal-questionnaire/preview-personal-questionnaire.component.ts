@@ -19,6 +19,13 @@ export class PreviewPersonalQuestionnaireComponent {
     this.titleForm = this.allFormsManagementService.exampleOfForm2.title
     this.descriptionForm = this.allFormsManagementService.exampleOfForm2.description
     this.listOfQuestionToShow = this.allFormsManagementService.exampleOfForm2.questions
+    this.emitDescription()
+  }
+
+  emitDescription(){
+    this.allFormsManagementService.getDescriptionEmit.subscribe(res=>{
+      this.descriptionForm = this.allFormsManagementService.exampleOfForm2.description
+    })
   }
   
 }

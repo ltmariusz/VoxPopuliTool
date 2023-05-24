@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GeneratePersonalQuestionnairePageComponent } from './generate-personal-questionnaire-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PreviewPersonalQuestionnaireModule } from 'src/app/components/preview-personal-questionnaire/preview-personal-questionnaire.module';
+import { PanelToCreatePersonalQuestionnaireModule } from 'src/app/components/panel-to-create-personal-questionnaire/panel-to-create-personal-questionnaire.module';
 
 const routes: Routes = [
   { path: '', component: GeneratePersonalQuestionnairePageComponent }
@@ -15,7 +16,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    PreviewPersonalQuestionnaireModule
+    PreviewPersonalQuestionnaireModule,
+    PanelToCreatePersonalQuestionnaireModule
   ],
   exports: [
     GeneratePersonalQuestionnairePageComponent

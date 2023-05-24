@@ -42,10 +42,18 @@ export class AllFormsManagementService {
 
   getAllAnswerEmitter: EventEmitter<any> = new EventEmitter()
 
+  getDescriptionEmit: EventEmitter<any> = new EventEmitter()
+
   getAllAnswerFromForm() {
     this.getAllAnswerEmitter.emit()
     console.log(this.allAnswersFromOneForm)
 
+  }
+
+  updateLiveDescription(value: any){
+    // console.log(value)
+    this.exampleOfForm2.description = value!
+    this.getDescriptionEmit.emit()
   }
 
 
