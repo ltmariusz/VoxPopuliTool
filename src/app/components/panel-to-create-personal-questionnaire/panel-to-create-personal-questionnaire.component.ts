@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AllFormsManagementService } from 'src/app/services/management/all-forms-management.service';
 
 @Component({
@@ -13,10 +13,15 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit{
     description: new FormControl ('', [Validators.required])
   })
 
+  keyInputs = this.fb.group({
+    input: this.fb.array([])
+  });
+
   question?: string
 
   constructor(
-    private allFormsManagementService: AllFormsManagementService
+    private allFormsManagementService: AllFormsManagementService,
+    private fb:FormBuilder
     ){ }
 
   ngOnInit(): void {
@@ -30,6 +35,19 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit{
       // this.allFormsManagementService.exampleOfForm2.description = value!
       console.log(this.allFormsManagementService.exampleOfForm2.description)
     });
+  }
+
+  addLesson() {
+    const inputForm = this.fb.group({
+        key: new FormControl('', [Validators.required]),
+        value: new FormControl('', [Validators.required])
+    });
+  
+    this.input.push(inputForm);
+  }
+
+  get input() {
+    return this.keyInputs.controls["input"] as FormArray;
   }
 
 }
