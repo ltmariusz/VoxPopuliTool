@@ -104,6 +104,25 @@ mat-drawer-content{
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .desktop_nav{
+        display: none;
+    }
+    .mobile_nav{
+        display: block;
+    }
+    .home_title_header{
+        font-size: 1rem;
+    }
+    .tb_user{
+        display: none;
+    }
+    .material-symbols-outlined{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+  }
+
 
 
 

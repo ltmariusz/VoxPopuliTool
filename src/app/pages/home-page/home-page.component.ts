@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 
 @Component({
@@ -6,8 +6,12 @@ import { MatDrawerMode } from '@angular/material/sidenav';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit{
 
+  @HostListener('window:resize', ['$event'])
+     onResize(event: any){
+      this.setSizeOptions(window.innerWidth)
+   }
 
   menuMode: MatDrawerMode = 'side'
   menushow?: boolean = true
@@ -30,4 +34,20 @@ export class HomePageComponent {
       name: 'Panel admina',
     }
   ]
+
+  ngOnInit(): void {
+    this.setSizeOptions(window.innerWidth);
+  }
+
+  setSizeOptions(width: number){
+    if(window.innerWidth > 1100){
+      this.menuMode = 'side';
+      this.menushow = true;
+     }
+     else{
+      this.menuMode = 'over';
+      this.menushow = false;
+     }
+
+   }
 }

@@ -64,6 +64,16 @@
     margin-top: 0.6rem;
     color: #e72929;
 }
+.delete-btn_1{
+    cursor: pointer;
+    margin-right: 4px;
+    width: 40px;
+    height: auto;
+    font-size: 2rem;
+    display: flex;
+    margin-top: 0.6rem;
+    color: #e72929;
+}
 ::ng-deep.mat-mdc-form-field-subscript-wrapper {
     box-sizing: border-box;
     width: 100%;
@@ -72,4 +82,21 @@
 }
 .matadate_card{
     margin-top: 1rem;
+}
+.title-of-question{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.title-of-question .mail{
+    color: #3f51b5;
+    cursor: pointer;
+}
+.title-of-question .phone{
+    color: #3f51b5;
+    cursor: pointer;
+}
+.title-of-question .metadate{
+    color: #3f51b5;
+    cursor: pointer;
 }

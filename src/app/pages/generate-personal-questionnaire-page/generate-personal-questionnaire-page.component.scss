@@ -9,3 +9,21 @@
 .right{
     width: 50%;
 }
+
+
+
+
+
+@media only screen and (max-width: 1200px){
+.page{
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 1rem;
+}
+.left{
+    width: 100%;
+}
+.right{
+    width: 100%;
+}
+}
