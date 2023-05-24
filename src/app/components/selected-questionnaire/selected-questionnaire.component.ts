@@ -99,10 +99,10 @@ export class SelectedQuestionnaireComponent implements OnInit{
           }
         },
         {
-          breakpoint: 480,
+          breakpoint: 900,
           options: {
             chart: {
-              width: 200
+              width: 300
             },
             legend: {
               position: "bottom"

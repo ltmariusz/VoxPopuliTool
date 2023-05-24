@@ -46,3 +46,18 @@
     height: auto;
     color: #ecc828;   
 }
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 900px){
+    .card{
+        flex-direction: column;
+    }
+}
