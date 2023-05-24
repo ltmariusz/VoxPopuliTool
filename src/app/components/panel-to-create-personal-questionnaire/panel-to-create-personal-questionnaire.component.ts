@@ -37,7 +37,7 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit{
     });
   }
 
-  addLesson() {
+  addMetadate() {
     const inputForm = this.fb.group({
         key: new FormControl('', [Validators.required]),
         value: new FormControl('', [Validators.required])
@@ -46,8 +46,16 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit{
     this.input.push(inputForm);
   }
 
+  deleteMetadate(i: any){
+    this.input.removeAt(i);
+  }
+
   get input() {
     return this.keyInputs.controls["input"] as FormArray;
+  }
+
+  isKeyArrayEmpty() {
+    return this.input.length === 0;
   }
 
 }

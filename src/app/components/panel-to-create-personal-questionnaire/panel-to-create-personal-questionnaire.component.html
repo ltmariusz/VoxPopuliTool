@@ -16,40 +16,35 @@
                 
                 <!--------------------------------------------------------------->
         </form>
-        <!-- <form [formGroup]="keyInputs"> -->
-            <!--------------------------------------------------------------->
-            <div class="title-of-question">
-                <h3>Podaj dodatkowe pola</h3>
-            </div>
-            <!-- <div> -->
-                <!-- <mat-form-field class="full-width-field" appearance="outline">
-                    <input matInput type="text" formArrayName="input">
-                </mat-form-field> -->
-            <!-- </div> -->
-            
-            <!--------------------------------------------------------------->
-        <!-- </form> -->
-        
-        <div class="add-lessons-form" [formGroup]="keyInputs">
-            <ng-container formArrayName="input">
-                <ng-container *ngFor="let inputForm of input.controls; let i = index" [formGroupName]="i">
-                    <!-- <div class="lesson-form-row" [formGroup]="inputForm"> -->
-                        <mat-form-field appearance="fill">
-                            <input matInput formControlName="key">
-                        </mat-form-field>
-                        <mat-form-field appearance="fill">
-                            <input matInput formControlName="value">
-                        </mat-form-field>
-                        <!-- <mat-icon class="delete-btn" (click)="deleteLesson(i)">
-                            delete_forever</mat-icon> -->
-                    <!-- </div> -->
-                </ng-container>
-            </ng-container>
-          
-            <button mat-mini-fab (click)="addLesson()">
-                <mat-icon class="add-course-btn">add</mat-icon>
-            </button>
-        
+        <!--------------------------------------------------------------->
+        <div *ngIf="isKeyArrayEmpty()" class="btn_add_metadate" (click)="addMetadate()">
+            Dodaj metadane
         </div>
+        <div *ngIf="!isKeyArrayEmpty()" class="matadate_card">
+            <div class="title-of-question">
+                <h3>Metadane</h3>
+            </div>
+            <!-- <div class="title-of-question">
+                <h3>Podaj dodatkowe pola</h3>
+            </div>  -->
+            <div class="add-lessons-form" [formGroup]="keyInputs">
+                <div formArrayName="input" class="metadate_container">
+                    <div *ngFor="let inputForm of input.controls; let i = index" [formGroupName]="i" class="meta_row">
+                        <!-- <div class="lesson-form-row" [formGroup]="inputForm"> -->
+                            <mat-form-field appearance="outline">
+                                <input matInput formControlName="key" placeholder="klucz">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="full-width-field">
+                                <input matInput formControlName="value" placeholder="wartość">
+                            </mat-form-field>
+                            <mat-icon class="delete-btn" (click)="deleteMetadate(i)">delete_forever</mat-icon>
+                    </div>
+                </div>
+                <div class="btn_add_new_metadate" (click)="addMetadate()">
+                    Dodaj nowe metadane
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
