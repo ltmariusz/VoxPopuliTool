@@ -40,7 +40,7 @@ export class QuestionnairesListComponent {
   ){ }
 
   clickItem(id: number){
-    this.router.navigateByUrl('/home/questionnaire');
+    this.router.navigateByUrl('/home/questionnaire')
   }
 
   openDialogCloseQuestionnaire(enterAnimationDuration: string, exitAnimationDuration: string, id: number): void {
@@ -169,6 +169,10 @@ export class QuestionnairesListComponent {
 
   editQuestionnairePersonal(id: number){
 
+  }
+
+  generatePersonal(id: number){
+    this.router.navigateByUrl('/home/generate-personal-questionnaire');
   }
 
 }

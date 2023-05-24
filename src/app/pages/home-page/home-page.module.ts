@@ -29,6 +29,10 @@ const routes: Routes =[
         loadChildren: () => import('../../components/selected-questionnaire/selected-questionnaire.module').then(m=>m.SelectedQuestionnaireModule)
       },
       {
+        path: 'generate-personal-questionnaire',
+        loadChildren: () => import('../generate-personal-questionnaire-page/generate-personal-questionnaire-page.module').then(m=>m.GeneratePersonalQuestionnairePageModule)
+      },
+      {
         path: 'admin-panel',
         loadChildren: () => import('../admin-panel-page/admin-panel-page.module').then(m=>m.AdminPanelPageModule)
       }
