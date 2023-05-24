@@ -40,6 +40,29 @@
             </div>
         </div>
         <!--------------------------------------------------------------->
+        <div *ngIf="isMailArrayIsEmpty()" class="btn_add_metadate" (click)="addMail()">
+            Dodaj maila
+        </div>
+        <div *ngIf="!isMailArrayIsEmpty()" class="matadate_card">
+            <div class="title-of-question">
+                <h3>Mail</h3>
+            </div>
+            <div class="add-lessons-form" [formGroup]="keyInputs">
+                <div formArrayName="mail" class="metadate_container">
+                    <div *ngFor="let mailForm of mail.controls; let i = index" [formGroupName]="i" class="meta_row">
+                        <!-- <div class="lesson-form-row" [formGroup]="inputForm"> -->
+                            <mat-form-field appearance="outline" class="full-width-field">
+                                <input matInput formControlName="mail" placeholder="adres mail">
+                            </mat-form-field>
+                            <mat-icon class="delete-btn" (click)="deleteMail(i)">delete_forever</mat-icon>
+                    </div>
+                </div>
+                <div class="btn_add_new_metadate" (click)="addMail()">
+                    Dodaj kolejny mail
+                </div>
+            </div>
+        </div>
+        <!--------------------------------------------------------------->
         <div *ngIf="isKeyArrayEmpty()" class="btn_add_metadate" (click)="addMetadate()">
             Dodaj metadane
         </div>
