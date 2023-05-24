@@ -17,6 +17,29 @@
                 <!--------------------------------------------------------------->
         </form>
         <!--------------------------------------------------------------->
+        <div *ngIf="isPhoneArrayIsEmpty()" class="btn_add_metadate" (click)="addPhone()">
+            Dodaj numer telefonu
+        </div>
+        <div *ngIf="!isPhoneArrayIsEmpty()" class="matadate_card">
+            <div class="title-of-question">
+                <h3>Telefon</h3>
+            </div>
+            <div class="add-lessons-form" [formGroup]="keyInputs">
+                <div formArrayName="phone" class="metadate_container">
+                    <div *ngFor="let phoneForm of phone.controls; let i = index" [formGroupName]="i" class="meta_row">
+                        <!-- <div class="lesson-form-row" [formGroup]="inputForm"> -->
+                            <mat-form-field appearance="outline" class="full-width-field">
+                                <input matInput type="number" formControlName="number" placeholder="numer telefonu">
+                            </mat-form-field>
+                            <mat-icon class="delete-btn" (click)="deletePhone(i)">delete_forever</mat-icon>
+                    </div>
+                </div>
+                <div class="btn_add_new_metadate" (click)="addPhone()">
+                    Dodaj kolejny numer
+                </div>
+            </div>
+        </div>
+        <!--------------------------------------------------------------->
         <div *ngIf="isKeyArrayEmpty()" class="btn_add_metadate" (click)="addMetadate()">
             Dodaj metadane
         </div>
@@ -24,9 +47,6 @@
             <div class="title-of-question">
                 <h3>Metadane</h3>
             </div>
-            <!-- <div class="title-of-question">
-                <h3>Podaj dodatkowe pola</h3>
-            </div>  -->
             <div class="add-lessons-form" [formGroup]="keyInputs">
                 <div formArrayName="input" class="metadate_container">
                     <div *ngFor="let inputForm of input.controls; let i = index" [formGroupName]="i" class="meta_row">
@@ -45,6 +65,6 @@
                 </div>
             </div>
         </div>
-        
+        <!--------------------------------------------------------------->
     </div>
 </div>

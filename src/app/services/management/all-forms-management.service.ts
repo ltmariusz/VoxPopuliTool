@@ -61,7 +61,7 @@ export class AllFormsManagementService {
   exampleOfForm2: OneForm =
     {
       title: "Witaj w testowej ankiecie",
-      description: "To jest testowa ankieta w kótrej będziesz odpowiadał jak chcesz",
+      description: "To jest testowa ankieta w której będziesz odpowiadał jak chcesz",
       questions: [
         {
           typeOfQuestion: 0,

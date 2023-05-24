@@ -14,7 +14,8 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit{
   })
 
   keyInputs = this.fb.group({
-    input: this.fb.array([])
+    input: this.fb.array([]),
+    phone: this.fb.array([]),
   });
 
   question?: string
@@ -46,16 +47,36 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit{
     this.input.push(inputForm);
   }
 
+  addPhone() {
+    const phoneForm = this.fb.group({
+        number: new FormControl<number|null>(null, [Validators.required]),
+    });
+  
+    this.phone.push(phoneForm);
+  }
+
   deleteMetadate(i: any){
     this.input.removeAt(i);
+  }
+
+  deletePhone(i: any){
+    this.phone.removeAt(i);
   }
 
   get input() {
     return this.keyInputs.controls["input"] as FormArray;
   }
 
+  get phone() {
+    return this.keyInputs.controls["phone"] as FormArray;
+  }
+
   isKeyArrayEmpty() {
     return this.input.length === 0;
+  }
+
+  isPhoneArrayIsEmpty(){
+    return this.phone.length === 0;
   }
 
 }
