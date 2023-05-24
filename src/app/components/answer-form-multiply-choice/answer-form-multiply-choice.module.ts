@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormCreateAddLongAnswerComponent } from './form-create-add-long-answer.component';
-import { MatIconModule } from '@angular/material/icon';
+import { AnswerFormMultiplyChoiceComponent } from './answer-form-multiply-choice.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
 @NgModule({
   declarations: [
-    FormCreateAddLongAnswerComponent
+    AnswerFormMultiplyChoiceComponent
   ],
   imports: [
     CommonModule,
@@ -25,9 +25,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule
-  ],
-  exports: [
-    FormCreateAddLongAnswerComponent
+  ], exports:[
+    AnswerFormMultiplyChoiceComponent
   ]
 })
-export class FormCreateAddLongAnswerModule { }
+export class AnswerFormMultiplyChoiceModule { }

@@ -1,0 +1,32 @@
+<form [formGroup]="rateAnswerForm">
+    <mat-card>
+        <mat-card-content class="form-container">
+            <div class="title-of-question">
+                <div class="number-and-icon">
+                    [{{index+1}}]
+                    <mat-icon color="primary" fontSet="material-icons-outlined">star_half</mat-icon>
+                </div>
+                <!-- <div class="question">{{question}}</div> -->
+                <div class="question">{{listOfQuestionToShow.question}}</div>
+            </div>
+            <div>
+                <!-- <mat-form-field appearance="outline">
+                    <mat-label>podaj cyfrę</mat-label>
+                    <input matInput placeholder="Placeholder" type="number" formControlName="rateInput">
+                </mat-form-field> -->
+                <!-- <button *ngFor="let star of stars" mat-icon-button [color]="getStarColor(star)"
+                    matTooltip="Ocena: {{ getStarValue(star) }}" (mouseenter)="onStarHover(star)"
+                    (mouseleave)="onStarHover(0)" (click)="selectStars(star)">
+                    <mat-icon>{{ getStarIcon(star) }}</mat-icon>
+                </button> -->
+
+                <button *ngFor="let star of stars" mat-icon-button [color]="star <= selectedStars ? 'primary' : 'basic'"
+                    matTooltip="Ocena: {{ star }}" (click)="selectStars(star)">
+                    <mat-icon class="rate">star</mat-icon>
+                </button>
+
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+</form>

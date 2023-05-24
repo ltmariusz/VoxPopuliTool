@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-content class="form-container">
+        <div class="title-of-question">
+            <div class="number-and-icon">
+                [{{index+1}}]
+                <mat-icon color="primary" fontSet="material-icons-outlined">check_box</mat-icon>
+            </div>
+            <!-- <div class="question">{{question}}</div> -->
+            <div class="question">{{listOfQuestionToShow.question}}</div>
+        </div>
+
+        <div>
+            <mat-radio-group class="answer-field" appearance="outline" [(ngModel)]="selectedRatio" (change)="onRatioChange()">
+                <mat-radio-button *ngFor="let item of listOfQuestionToShow.allAnswers" class="answer" [value]="item" (click)="getClick(item)">
+                    {{item}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -14,6 +14,7 @@ const routes: Routes = [
   ]},
   { path: 'home', loadChildren: () => import('./pages/home-page/home-page.module').then(m=>m.HomePageModule)},
   { path: 'new-password', loadChildren: ()=>import('./pages/new-password-page/new-password-page.module').then(m=>m.NewPasswordPageModule)},
+  { path: 'answer-form', loadChildren: ()=>import('./pages/answer-form/answer-form.module').then(m=>m.AnswerFormModule)},
   { path: '**', redirectTo: 'login-page', pathMatch:'full'},
 ];
 

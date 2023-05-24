@@ -36,7 +36,7 @@ export class FormCreateAddRateComponent implements OnInit {
   getRateForm() {
     this.createFormsManagementService.getAllFormsEmitter.subscribe(
       res => {
-        this.createFormsManagementService.createdQuestionArray?.push({question: this.rateForm.get('rateQuestionInput')?.value })
+        this.createFormsManagementService.createdQuestionArray?.push({typeOfQuestion:3, question: this.rateForm.get('rateQuestionInput')?.value })
         // this.createFormsManagementService.titleForm = this.createFormsTitle.get('titleForm')?.value!
         // this.createFormsManagementService.descriptionForm = this.createFormsTitle.get('descriptionForm')?.value!
       })

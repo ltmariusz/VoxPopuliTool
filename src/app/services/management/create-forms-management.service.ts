@@ -4,11 +4,17 @@ export interface Question {
   index: number;
   witchQuestionType: number;
 }
-
+/**
+ * typeOfQuestion
+ * 0 - singleChoice
+ * 1 - multiplyChoice
+ * 2 - longAnswer
+ * 3 - rateAnswer
+ */
 export interface OneQuestion {
+  typeOfQuestion: number;
   question: string;
   allAnswers?: Array<string>;
-  isMultiply?: boolean;
 }
 
 @Injectable({
@@ -91,13 +97,13 @@ export class CreateFormsManagementService {
           break;
         case 4:
           console.log("rateCreate service")
-
           break;
 
         default:
           break;
       }
     }
+    //Przechowuje aktualny 
     console.log(this.createdQuestionArray)
   }
 

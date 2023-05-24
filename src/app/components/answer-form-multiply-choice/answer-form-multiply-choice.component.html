@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-content class="form-container">
+        <div class="title-of-question">
+            <div class="number-and-icon">
+                [{{index+1}}]
+                <mat-icon color="primary" fontSet="material-icons-outlined">library_add_check</mat-icon>
+            </div>
+            <!-- <div class="question">{{question}}</div> -->
+            <div class="question">{{listOfQuestionToShow.question}}</div>
+        </div>
+        <div>
+            <mat-checkbox *ngFor="let item of chosenOrNot" class="full-width-field answer-field"
+                appearance="outline" [(ngModel)]="item.checked">{{item.answer}}</mat-checkbox>
+
+            <!-- <div *ngFor="let item of listOfQuestionToShow.allAnswers" class="full-width-field answer-field" appearance="outline">
+                <mat-checkbox (click)="clickOnCheckbox(item)">{{item}}</mat-checkbox>
+            </div> -->
+        </div>
+    </mat-card-content>
+</mat-card>

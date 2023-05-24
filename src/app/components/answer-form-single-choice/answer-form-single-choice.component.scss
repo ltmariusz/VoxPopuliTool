@@ -1,0 +1,30 @@
+.title-of-question {
+    display: flex;
+    align-items: center;
+    padding-bottom: 12px;
+    padding-top:8px;
+}
+.number-and-icon{
+    display: flex;
+    align-items: center;
+}
+.question {
+    padding-left: 16px;
+}
+
+.title-of-question {
+
+    align-items: flex-start;
+}
+.answer-field{
+    display: flex;
+    flex-direction: column;
+    width:auto
+}
+.mat-mdc-radio-button.mat-accent {
+    --mdc-radio-selected-focus-icon-color: #3f51b5;
+    --mdc-radio-selected-hover-icon-color: #3f51b5;
+    --mdc-radio-selected-icon-color: #3f51b5;
+    --mdc-radio-selected-pressed-icon-color: #3f51b5;
+    --mat-mdc-radio-checked-ripple-color: #3f51b5;
+}
