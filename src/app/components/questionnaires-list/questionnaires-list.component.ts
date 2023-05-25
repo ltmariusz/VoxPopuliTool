@@ -178,6 +178,10 @@ export class QuestionnairesListComponent {
     this.router.navigateByUrl('/home/questionnaire')
   }
 
+  personalQuestionnaire(id: number){
+    this.router.navigateByUrl('/home/personal-questionnaire')
+  }
+
   openDialogCloseQuestionnaire(enterAnimationDuration: string, exitAnimationDuration: string, id: number): void {
     const dialogRef = this.dialog.open(CloseQuestionnaireDialogComponent, {
       width: 'auto',

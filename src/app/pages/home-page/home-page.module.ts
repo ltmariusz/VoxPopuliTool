@@ -33,6 +33,10 @@ const routes: Routes =[
         loadChildren: () => import('../generate-personal-questionnaire-page/generate-personal-questionnaire-page.module').then(m=>m.GeneratePersonalQuestionnairePageModule)
       },
       {
+        path: 'personal-questionnaire',
+        loadChildren: () => import('../personal-preview-questionnaire-page/personal-preview-questionnaire-page.module').then(m=>m.PersonalPreviewQuestionnairePageModule)
+      },
+      {
         path: 'admin-panel',
         loadChildren: () => import('../admin-panel-page/admin-panel-page.module').then(m=>m.AdminPanelPageModule)
       }

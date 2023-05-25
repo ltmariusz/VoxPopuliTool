@@ -239,4 +239,52 @@ export class AllFormsManagementService {
   ];
 
 
+  exampleDoneAnswerForm =
+    {
+      title: "Witaj w testowej ankiecie",
+      description: "To jest testowa ankieta w której będziesz odpowiadał jak chcesz",
+      questions: [
+        {
+          typeOfQuestion: 0,
+          question: "Jakie są najpopularniejsze języki programowania?",
+          allAnswers: ["JavaScript", "Python", "Java", "C++", "C#"],
+          correct: [0]
+        },
+        {
+          typeOfQuestion: 0,
+          question: "Co oznacza skrót HTML?",
+          allAnswers: ["HyperText Markup Language", "Nic"],
+          correct: [1]
+        },
+        {
+          typeOfQuestion: 1,
+          question: "W jakim roku założono firmę Apple?",
+          allAnswers: ["1976", "1000", "Jutro założą", "Jedna odpowiedz i ta jest poprawna"],
+          correct: [1,2]
+        },
+        {
+          typeOfQuestion: 1,
+          question: "Która planeta jest najbliższa Słońcu?",
+          allAnswers: ["Merkury", "Ziemia", "Ktoś jeszcze"],
+          correct: [0,2]
+        },
+        {
+          typeOfQuestion: 2,
+          question: "Ile dni ma rok przestępny?",
+          correct: 'Tyle ile powinien'
+        },
+        {
+          typeOfQuestion: 2,
+          question: "opowiedz mi o sobie",
+          correct: 'Mam fajny guzik od bluzy'
+        },
+        {
+          typeOfQuestion: 3,
+          question: "Jak bardzo nas lubisz",
+          correct: 'Uwielbiam'
+        },
+      ]
+    }
+
+
 }
