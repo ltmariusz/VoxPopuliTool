@@ -9,7 +9,8 @@
                 </div>
                 <div class="answer_list">
                     <div *ngFor="let selectAnswer of answer.allAnswers; let indexAnswer = index" class="answer">
-                        {{alphabet[indexAnswer]}}. {{selectAnswer}}
+                        <div *ngIf="checkValueAnswer(answer, indexAnswer)" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div>
+                        <div *ngIf="!checkValueAnswer(answer, indexAnswer)" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div>
                     </div>
                 </div>
             </div>
@@ -21,7 +22,16 @@
                 </div>
                 <div class="answer_list">
                     <div *ngFor="let selectAnswer of answer.allAnswers; let indexAnswer = index" class="answer">
-                        {{alphabet[indexAnswer]}}. {{selectAnswer}}
+                        <!-- <div *ngFor="let numberCorrect of answer.correct; let numberIndex = index"> -->
+                            <!-- <div *ngIf="indexAnswer == answer.correct[numberIndex]" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div> -->
+                            <!-- <div *ngIf="indexAnswer != answer.correct[numberIndex] && !indexAnswer == answer.correct[numberIndex]" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div> -->
+                        <!-- </div> -->
+
+                        <div *ngIf="checkValueAnswer(answer, indexAnswer)" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div>
+                        <div *ngIf="!checkValueAnswer(answer, indexAnswer)" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div>
+
+                        <!-- <div *ngIf="indexAnswer == answer.correct[indexAnswer]" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div> -->
+                        <!-- <div *ngIf="indexAnswer != answer.correct[indexAnswer]" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div> -->
                     </div>
                 </div>
             </div>

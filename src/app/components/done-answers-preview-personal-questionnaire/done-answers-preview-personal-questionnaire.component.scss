@@ -38,3 +38,12 @@
 .rate{
     color: #3f51b5;
 }
+.selected_answer{
+    background-color: #72d33a;
+    width: fit-content;
+    padding: 0rem 0.5rem;
+    border-radius: 10px;
+}
+.no_selected_answer{
+    padding: 0rem 0.5rem;
+}

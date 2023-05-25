@@ -24,7 +24,20 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
 
   getDoneAnswers(){
     this.answers = this.allFormsManagementService.exampleDoneAnswerForm
-    console.log(this.answers)
+    // console.log(this.answers)
+  }
+
+  checkValueAnswer(answer: any, indexAnswer: number): any{
+    // console.log(answer.allAnswers)
+    console.log(indexAnswer)
+    console.log(answer.correct)
+    let result: boolean
+    for (let index = 0; index < answer.correct.length; index++) {
+      if (indexAnswer == answer.correct[index]) {
+        return true
+      }
+    }
+
   }
 
 }
