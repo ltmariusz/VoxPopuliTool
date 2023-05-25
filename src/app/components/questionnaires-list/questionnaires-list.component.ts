@@ -32,6 +32,141 @@ export class QuestionnairesListComponent {
       name: 'Kolejna ankieta',
       type: 'Ogólna'
     },
+    {
+      id: 0,
+      name: 'Testowa ankieta',
+      type: 'Osobista',
+      personalList: [
+        {
+          id: 0,
+          name: "testowa ankieta osobista nr 1",
+        },
+        {
+          id: 1,
+          name: "super nowa jak supernowa",
+        }
+      ]
+    },
+    {
+      id: 0,
+      name: 'Testowa ankieta',
+      type: 'Osobista',
+      personalList: [
+        {
+          id: 0,
+          name: "testowa ankieta osobista nr 1",
+        },
+        {
+          id: 1,
+          name: "super nowa jak supernowa",
+        }
+      ]
+    },
+    {
+      id: 0,
+      name: 'Testowa ankieta',
+      type: 'Osobista',
+      personalList: [
+        {
+          id: 0,
+          name: "testowa ankieta osobista nr 1",
+        },
+        {
+          id: 1,
+          name: "super nowa jak supernowa",
+        }
+      ]
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
+    {
+      id: 1,
+      name: 'Kolejna ankieta',
+      type: 'Ogólna'
+    },
   ]
 
   constructor(
