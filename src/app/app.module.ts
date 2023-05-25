@@ -13,7 +13,8 @@ import { UserDataService } from './services/global-services/user-data.service';
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
+        
     // LoginPageComponent
   ],
   imports: [
