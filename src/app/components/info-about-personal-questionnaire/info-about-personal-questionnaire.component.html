@@ -1,0 +1,46 @@
+<div class="page">
+    <div class="card">
+        <div class="title">
+            Opis ankiety
+        </div>
+        <div class="description">
+            {{this.answers.description}}
+        </div>
+    </div>
+    <div class="card">
+        <div class="title">
+            Kontakt docelowy
+        </div>
+        <div class="item_container">
+            <div class="mail_column">
+                <div class="item_row">
+                    <mat-icon class="mail_icon" fontIcon="mail"></mat-icon>
+                    testowy@gmail.com
+                </div>
+                <div class="item_row">
+                    <mat-icon class="mail_icon" fontIcon="mail"></mat-icon>
+                    mariuszpudzianowski@gmail.com
+                </div>
+            </div>
+            <div class="phone_column">
+                <div class="item_row">
+                    <mat-icon class="mail_icon" fontIcon="call"></mat-icon>
+                    666 555 444
+                </div>
+                <div class="item_row">
+                    <mat-icon class="mail_icon" fontIcon="call"></mat-icon>
+                        333 443 211
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="title">
+            Udostępnij
+        </div>
+        <div class="link_row">
+            <input class="example-full-width" [value]="this.link">
+            <button (click)="copyLink()" mat-stroked-button>Kopiuj</button>
+        </div>
+    </div>
+</div>
