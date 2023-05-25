@@ -1,15 +1,43 @@
 <div class="card_answer_container">
-    <div *ngFor="let answer of answers.questions" class="card_answer">
-        <div class="title-of-question"> [1] <mat-icon color="primary" fontSet="material-icons-outlined">
-            check_box</mat-icon>
-            <div class="title">Testowe pytanie, co na śniadanie?</div>
-        </div>
-        <div class="answer_list">
-            <!-- <div *ngFor="let answer of questionnaire.answer; let indexAnswer = index" class="answer">
-                {{alphabet[indexAnswer]}}. {{answer.title}}
-            </div> -->
-            <p>A. fajna odpowiedź 1</p>
-            A. fajna odpowiedź 1
+    <div *ngFor="let answer of answers.questions; let i = index">
+        <div [ngSwitch]="answers.questions[i].typeOfQuestion">
+            <!---------------------------------CARD--------------------------------->
+            <div *ngSwitchCase="0" class="card_answer">
+                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
+                    check_box</mat-icon>
+                    <div class="title">{{answer.question}}</div>
+                </div>
+                <div class="answer_list">
+                    <div *ngFor="let selectAnswer of answer.allAnswers; let indexAnswer = index" class="answer">
+                        {{alphabet[indexAnswer]}}. {{selectAnswer}}
+                    </div>
+                </div>
+            </div>
+            <!---------------------------------CARD--------------------------------->
+            <div *ngSwitchCase="1" class="card_answer">
+                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
+                    library_add_check</mat-icon>
+                    <div class="title">{{answer.question}}</div>
+                </div>
+                <div class="answer_list">
+                    <div *ngFor="let selectAnswer of answer.allAnswers; let indexAnswer = index" class="answer">
+                        {{alphabet[indexAnswer]}}. {{selectAnswer}}
+                    </div>
+                </div>
+            </div>
+            <!---------------------------------CARD--------------------------------->
+            <div *ngSwitchCase="2" class="card_answer">
+                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
+                    notes</mat-icon>
+                    <div class="title">{{answer.question}}</div>
+                </div>
+                <div class="answer_list">
+                    <div class="answer">
+                        {{answer.correct}}
+                    </div>
+                </div>
+            </div>
+            <!---------------------------------CARD--------------------------------->
         </div>
     </div>
 </div>

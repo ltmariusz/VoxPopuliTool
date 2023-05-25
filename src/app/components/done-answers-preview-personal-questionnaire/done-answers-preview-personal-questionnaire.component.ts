@@ -10,6 +10,10 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
 
   answers?: any
 
+  alphabet = [
+    'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','W','X','Y','Z'
+  ]
+
   constructor(
     public allFormsManagementService: AllFormsManagementService
   ) { }
