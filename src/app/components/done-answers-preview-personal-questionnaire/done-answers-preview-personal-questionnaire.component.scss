@@ -28,3 +28,13 @@
     row-gap: 0.8rem;
     padding: 1rem;
 }
+.star_list_answer{
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.8rem;
+    padding: 1rem;
+    align-items: center;
+}
+.rate{
+    color: #3f51b5;
+}

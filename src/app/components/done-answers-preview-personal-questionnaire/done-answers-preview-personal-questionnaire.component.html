@@ -38,6 +38,46 @@
                 </div>
             </div>
             <!---------------------------------CARD--------------------------------->
+            <div *ngSwitchCase="3" class="card_answer">
+                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
+                    star_half</mat-icon>
+                    <div class="title">{{answer.question}}</div>
+                </div>
+                <div class="answer_list star_list_answer">
+                    {{answer.correct}}.0
+                    <div class="answer" [ngSwitch]="answer.correct">
+                        <div *ngSwitchCase="0" class="row_stars">
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                        </div>
+                        <div *ngSwitchCase="1" class="row_stars">
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                        </div>
+                        <div *ngSwitchCase="2" class="row_stars">
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                        </div>
+                        <div *ngSwitchCase="4" class="row_stars">
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---------------------------------CARD--------------------------------->
         </div>
     </div>
 </div>

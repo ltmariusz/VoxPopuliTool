@@ -281,7 +281,7 @@ export class AllFormsManagementService {
         {
           typeOfQuestion: 3,
           question: "Jak bardzo nas lubisz",
-          correct: 'Uwielbiam'
+          correct: 4
         },
       ]
     }
