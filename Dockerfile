@@ -1,4 +1,4 @@
-FROM node:lts as build
+FROM node:16.20 as build
 WORKDIR /app
 COPY . /app/
 RUN npm install
