@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  mb2b-ph-panel:
+    image: "docker-hub.mobi-phupgniezno.pl/phup.vox-populi-tool:latest"
+    container_name: vox-populi-tool
+    restart: always
+    environment:
+      - TZ=Europe/Warsaw
+
+networks:
+  default:
+    name: traefik-network
+    external: true
