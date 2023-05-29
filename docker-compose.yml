@@ -1,13 +1,24 @@
 version: "3.9"
 services:
-  mb2b-ph-panel:
-    image: "docker-hub.mobi-phupgniezno.pl/phup.vox-populi-tool:latest"
-    container_name: vox-populi-tool
+  vox-populi-tool-dashboard:
+    image: "docker-hub.mobi-phupgniezno.pl/phup.vox-populi-tool-dashboard:latest"
     restart: always
     environment:
       - TZ=Europe/Warsaw
+    networks:
+      - traefik-net
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.test-vox-populi-tool-dashboard.rule=Host(`test-vox.mobi-phupgniezno.pl`)"
+        - "traefik.http.routers.test-vox-populi-tool-dashboard.entrypoints=https"
+        - "traefik.http.routers.test-vox-populi-tool-dashboard.service=test-vox-populi-tool-dashboard-service"
+        - "traefik.http.routers.test-vox-populi-tool-dashboard.tls=true"
+        - "traefik.http.services.test-vox-populi-tool-dashboard-service.loadbalancer.server.port=8080"
+
 
 networks:
-  default:
-    name: traefik-network
+  traefik-net:
     external: true
