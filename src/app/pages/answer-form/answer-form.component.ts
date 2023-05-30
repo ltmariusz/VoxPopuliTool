@@ -9,16 +9,18 @@ import { AllFormsManagementService, OneQuestion } from 'src/app/services/managem
 })
 export class AnswerFormComponent implements OnInit {
 
-  constructor(private allFormsManagementService: AllFormsManagementService,
+  constructor(public allFormsManagementService: AllFormsManagementService,
     private route: ActivatedRoute) { }
 
   listOfQuestionToShow!: Array<OneQuestion>
   titleForm!: string
   descriptionForm!: string
-
+  didYouEndAnswering?:boolean
 
   ngOnInit() {
     // console.log(this.allFormsManagementService.exampleOfForm2)
+    this.didYouEndAnswering=false
+    this.allFormsManagementService.didYouEndAnswering = this.didYouEndAnswering
     this.titleForm = this.allFormsManagementService.exampleOfForm2.title
     this.descriptionForm = this.allFormsManagementService.exampleOfForm2.description
     this.listOfQuestionToShow = this.allFormsManagementService.exampleOfForm2.questions
