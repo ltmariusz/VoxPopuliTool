@@ -4,6 +4,7 @@ import { ActiveUserDialogComponent } from '../dialogs/active-user-dialog/active-
 import { NewPasswordDialogComponent } from '../dialogs/new-password-dialog/new-password-dialog.component';
 import { Subscription } from 'rxjs';
 import { AdminService, User } from 'src/app/services/admin.service';
+import { AdminPanelManagementService } from 'src/app/services/management/admin-panel-management.service';
 
 
 @Component({
@@ -13,25 +14,6 @@ import { AdminService, User } from 'src/app/services/admin.service';
 })
 export class UsersListComponent implements OnInit{
 
-  listPH = [
-    {
-      id: 0,
-      name: 'Testowy tester',
-      acronym: 12352343,
-      email: "testowy@gmail.com",
-      archived: false,
-      activated: true
-    },
-    {
-      id: 1,
-      name: 'Koneser Koneserowicz',
-      acronym: 54752343,
-      email: "koneserowicz@gmail.com",
-      archived: false,
-      activated: false
-    }
-  ]
-
   subUsersList?: Subscription
   loadingUsersList = false
   customErrorUsersList?: string
@@ -40,15 +22,23 @@ export class UsersListComponent implements OnInit{
 
   constructor(
     public dialog: MatDialog,
-    private adminRest: AdminService
+    private adminRest: AdminService,
+    private adminPanelManagementService: AdminPanelManagementService
   ){ }
 
   ngOnInit(): void {
     this.getUsersList()
+    this.refreshUserListFromEmit()
   }
 
   editUser(id: number){
 
+  }
+
+  refreshUserListFromEmit(){
+    this.adminPanelManagementService.emitUsersList.subscribe(res => {
+      this.getUsersList()
+    })
   }
 
   getUsersList(){

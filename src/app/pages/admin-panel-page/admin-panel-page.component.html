@@ -9,28 +9,36 @@
     <div class="content">
         <form [formGroup]="formAddUser" class="example-form">
             <mat-form-field appearance="outline" class="example-full-width">
-              <mat-label>Imię i nazwisko</mat-label>
+              <mat-label>Imię</mat-label>
               <input formControlName="name" matInput>
             </mat-form-field>
             <mat-form-field appearance="outline" class="example-full-width">
-              <mat-label>Akronim</mat-label>
-              <input formControlName="akronim" matInput>
+              <mat-label>Nazwisko</mat-label>
+              <input formControlName="surname" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Telefon</mat-label>
+              <input formControlName="phone" matInput>
             </mat-form-field>
             <mat-form-field appearance="outline" class="example-full-width">
               <mat-label>E-mail</mat-label>
               <input formControlName="mail" matInput>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <mat-label>Status</mat-label>
-                <mat-select formControlName="status">
-                  <mat-option value="aktywny">
-                    Aktywny
-                  </mat-option>
-                  <mat-option value="nieaktywny">
-                    Nieaktywny
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+              <mat-label>Rola</mat-label>
+              <mat-select formControlName="role">
+                <mat-option value="USER">
+                  Użytkownik
+                </mat-option>
+                <mat-option value="ADMIN">
+                  Administrator
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Stanowisko</mat-label>
+              <input formControlName="position" matInput>
+            </mat-form-field>
         </form>
         <div class="buttons">
             <button color="warn" (click)="panelNewUserCard()" mat-button>Anuluj</button>

@@ -98,6 +98,16 @@ mat-drawer-content{
 .margin_icon_menu{
     padding-top: 3px;
 }
+.logout{
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+
+
+
+
 @media (max-width: 599px){
     .mat-toolbar-row, .mat-toolbar-single-row {
         height: 64px; 
@@ -120,6 +130,9 @@ mat-drawer-content{
     .material-symbols-outlined{
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+    .logout{
+        display: none;
     }
   }
 

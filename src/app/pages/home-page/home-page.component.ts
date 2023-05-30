@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -34,9 +35,16 @@ export class HomePageComponent implements OnInit{
       name: 'Panel admina',
     }
   ]
+  constructor(
+    private router: Router
+  ){ }
 
   ngOnInit(): void {
     this.setSizeOptions(window.innerWidth);
+    if(this.router.url === '/home')
+    {
+      this.router.navigate(['./home/form-list'])
+    }
   }
 
   setSizeOptions(width: number){
@@ -49,5 +57,10 @@ export class HomePageComponent implements OnInit{
       this.menushow = false;
      }
 
+   }
+
+   logout(){
+    localStorage.removeItem('auth_app_token_vox')
+    this.router.navigateByUrl('/login-page')
    }
 }

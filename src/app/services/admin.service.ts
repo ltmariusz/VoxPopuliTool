@@ -12,6 +12,7 @@ export interface User{
   phoneNumber: string,
   position: string,
   isActive: boolean,
+  archived: boolean
 }
 
 @Injectable({
@@ -43,7 +44,7 @@ export class AdminService {
      surname: string,
      email: string,
      role: string,
-     phoneNumber: string,
+     phoneNumber: number,
      position: string,
      ): Observable<HttpResponse<Message>> {
     return this.http.post<Message>(this.PATH + `/user/create`, {
