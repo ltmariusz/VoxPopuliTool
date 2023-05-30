@@ -47,6 +47,7 @@ export class UsersListComponent implements OnInit{
       next: (response) => {
         if(response.body){
           this.usersList = response.body
+          console.log(this.usersList)
         }
         else{
           this.customErrorUsersList = 'Brak obiektu odpowiedzi';

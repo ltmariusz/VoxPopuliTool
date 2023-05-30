@@ -30,26 +30,15 @@
         <div class="scroll">
             <div class="item item_padding" (click)="editUser(user.id)" *ngFor="let user of this.usersList">
                 <div class="icon mobile">
-                    <!-- <mat-icon class="green_c " *ngIf="user.isActive == true && user.archived == false" fontIcon="person"></mat-icon>
+                    <mat-icon class="green_c " *ngIf="user.isActive == true && user.archived == false" fontIcon="person"></mat-icon>
                     <mat-icon class="red_c" *ngIf="user.isActive == false && user.archived == false" fontIcon="person"></mat-icon>
-                    <mat-icon class="grey_c" *ngIf="user.isActive == true" fontIcon="person"></mat-icon> -->
-                    
-                    <!-- to edit -->
-                    <mat-icon class="green_c " *ngIf="user.isActive == true" fontIcon="person"></mat-icon>
-                    <mat-icon class="red_c" *ngIf="user.isActive == false" fontIcon="person"></mat-icon>
-                    <!-- to edit -->
+                    <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon>
                 </div>
                 <div class="row_list">
                     <div class="icon desktop">
-                        <!-- <mat-icon class="green_c " *ngIf="user.isActive == true && user.archived == false" fontIcon="person"></mat-icon>
+                        <mat-icon class="green_c " *ngIf="user.isActive == true && user.archived == false" fontIcon="person"></mat-icon>
                         <mat-icon class="red_c" *ngIf="user.isActive == false && user.archived == false" fontIcon="person"></mat-icon>
-                        <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon> -->
-                        
-                        <!-- to edit -->
-                        <mat-icon class="green_c " *ngIf="user.isActive == true " fontIcon="person"></mat-icon>
-                        <mat-icon class="red_c" *ngIf="user.isActive == false " fontIcon="person"></mat-icon>
-                        <!-- to edit -->
-
+                        <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon>
                     </div>
                     <div class="name">
                         <p>{{user.name}} {{user.surname}}</p>
