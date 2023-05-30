@@ -30,8 +30,7 @@ export class AnswerFormComponent implements OnInit {
         this.titleForm = this.allFormsManagementService.exampleRateDelivery.title
         this.descriptionForm = this.allFormsManagementService.exampleRateDelivery.description
         this.listOfQuestionToShow = this.allFormsManagementService.exampleRateDelivery.questions
-      }
-      if(formFromUrl=="exampleRateVisit"){
+      }else if(formFromUrl=="exampleRateVisit"){
         this.titleForm = this.allFormsManagementService.exampleRateVisit.title
         this.descriptionForm = this.allFormsManagementService.exampleRateVisit.description
         this.listOfQuestionToShow = this.allFormsManagementService.exampleRateVisit.questions
