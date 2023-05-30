@@ -1,6 +1,6 @@
 {
     "/api/*": {
-      "target": "http://",
+      "target": "https://test-vox.mobi-phupgniezno.pl",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true,
