@@ -38,7 +38,7 @@ export class AnswerFormRateComponent implements OnInit {
     //  console.log(this.index)
     this.question = this.listOfQuestionToShow.question
     this.getRateAnswer()
-
+    this.selectedStars =1
   }
 
   getRateAnswer() {

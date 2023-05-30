@@ -12,12 +12,23 @@ export class ExampleRateVisitComponent implements OnInit {
   listOfQuestionToShow!: Array<OneQuestion>
   titleForm!: string
   descriptionForm!: string
+  didYouEndAnswering?: boolean
 
-  constructor(private allFormsManagementService: AllFormsManagementService,
-    private route: ActivatedRoute) { }
+  constructor(public allFormsManagementService: AllFormsManagementService,
+    private route: ActivatedRoute,
+    ) { }
   ngOnInit() {
+
+
+
+    
+    this.didYouEndAnswering=false
+    this.allFormsManagementService.didYouEndAnswering = this.didYouEndAnswering
     this.titleForm = this.allFormsManagementService.exampleRateVisit.title
     this.descriptionForm = this.allFormsManagementService.exampleRateVisit.description
     this.listOfQuestionToShow = this.allFormsManagementService.exampleRateVisit.questions
+    if(this.titleForm ===undefined || this.descriptionForm===undefined){
+      console.log("undefined")
+    }
   }
 }

@@ -11,10 +11,12 @@ export class ExampleRateDeliveryComponent implements OnInit {
   listOfQuestionToShow!: Array<OneQuestion>
   titleForm!: string
   descriptionForm!: string
-
-  constructor(private allFormsManagementService: AllFormsManagementService,
+  didYouEndAnswering?:boolean
+  constructor(public allFormsManagementService: AllFormsManagementService,
     private route: ActivatedRoute) { }
   ngOnInit() {
+    this.didYouEndAnswering=false
+    this.allFormsManagementService.didYouEndAnswering = this.didYouEndAnswering
     this.titleForm = this.allFormsManagementService.exampleRateDelivery.title
     this.descriptionForm = this.allFormsManagementService.exampleRateDelivery.description
     this.listOfQuestionToShow = this.allFormsManagementService.exampleRateDelivery.questions
