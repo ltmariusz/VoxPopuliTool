@@ -15,6 +15,10 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./pages/home-page/home-page.module').then(m=>m.HomePageModule)},
   { path: 'new-password', loadChildren: ()=>import('./pages/new-password-page/new-password-page.module').then(m=>m.NewPasswordPageModule)},
   { path: 'answer-form/:id', loadChildren: ()=>import('./pages/answer-form/answer-form.module').then(m=>m.AnswerFormModule)},
+  //USUNAC TE PATHY DOCELOWO
+  { path: 'answer-form/test/exampleRateDelivery', loadChildren: ()=>import('./pages/test-pages/example-rate-delivery/example-rate-delivery.module').then(m=>m.ExampleRateDeliveryModule)},
+  { path: 'answer-form/test/exampleRateVisit', loadChildren: ()=>import('./pages/test-pages/example-rate-visit/example-rate-visit.module').then(m=>m.ExampleRateVisitModule)},
+  //------------------------
   { path: '**', redirectTo: 'login-page', pathMatch:'full'},
 ];
 

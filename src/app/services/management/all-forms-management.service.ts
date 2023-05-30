@@ -39,7 +39,7 @@ export class AllFormsManagementService {
   constructor() { }
 
   allAnswersFromOneForm: AnswerForm ={title:"",answers:new Array}
-
+  didYouEndAnswering?:boolean
   getAllAnswerEmitter: EventEmitter<any> = new EventEmitter()
 
   getDescriptionEmit: EventEmitter<any> = new EventEmitter()
@@ -47,7 +47,7 @@ export class AllFormsManagementService {
   getAllAnswerFromForm() {
     this.getAllAnswerEmitter.emit()
     console.log(this.allAnswersFromOneForm)
-
+    this.didYouEndAnswering =true
   }
 
   updateLiveDescription(value: any){

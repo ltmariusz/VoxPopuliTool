@@ -1,0 +1,17 @@
+@import '/src/style/colors.scss';
+.content{
+    margin:0 20% 0 20%;
+}
+.all-answer-page{
+    background-color: $background-color;
+
+}
+@media only screen and (max-width:800px) {
+    .content{
+        margin:0 0 0 0;
+    }
+    .all-answer-page{
+        background-color: none;
+    
+    }
+}
