@@ -8,7 +8,7 @@ import { Message } from './auth.service';
 })
 export class PublicService {
 
-  private PATH = '/api/v1/Public'
+  private PATH = '/api/v1/public'
 
   constructor(
     private http: HttpClient
@@ -19,7 +19,7 @@ export class PublicService {
   //------------------------------------------------------------------------//
 
   postRemindPassword(email: string): Observable<HttpResponse<Message>> {
-    return this.http.post<Message>(this.PATH + `/User/remindPassword`, {
+    return this.http.post<Message>(this.PATH + `/user/remindPassword`, {
       email: email,
     }, {
       observe: 'response',
@@ -30,7 +30,7 @@ export class PublicService {
   //------------------------------------------------------------------------//
 
   postResetPassword(resetCode: string, newPassword: string): Observable<HttpResponse<Message>> {
-    return this.http.post<Message>(this.PATH + `/User/resetPassword`, {
+    return this.http.post<Message>(this.PATH + `/user/resetPassword`, {
       resetCode: resetCode,
       newPassword: newPassword
     }, {
@@ -42,7 +42,7 @@ export class PublicService {
   //------------------------------------------------------------------------//
 
   postActivate(activationCode: string, newPassword: string): Observable<HttpResponse<Message>> {
-    return this.http.post<Message>(this.PATH + `/User/activate`, {
+    return this.http.post<Message>(this.PATH + `/user/activate`, {
       activationCode: activationCode,
       newPassword: newPassword
     }, {

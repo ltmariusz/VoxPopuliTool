@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActiveUserDialogComponent } from '../dialogs/active-user-dialog/active-user-dialog.component';
 import { NewPasswordDialogComponent } from '../dialogs/new-password-dialog/new-password-dialog.component';
+import { Subscription } from 'rxjs';
+import { AdminService, User } from 'src/app/services/admin.service';
+
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
-export class UsersListComponent {
+export class UsersListComponent implements OnInit{
 
   listPH = [
     {
@@ -29,12 +32,44 @@ export class UsersListComponent {
     }
   ]
 
+  subUsersList?: Subscription
+  loadingUsersList = false
+  customErrorUsersList?: string
+
+  usersList?: Array<User>
+
   constructor(
     public dialog: MatDialog,
+    private adminRest: AdminService
   ){ }
+
+  ngOnInit(): void {
+    this.getUsersList()
+  }
 
   editUser(id: number){
 
+  }
+
+  getUsersList(){
+    this.loadingUsersList = true
+    this.subUsersList = this.adminRest.getUsers().subscribe({
+      next: (response) => {
+        if(response.body){
+          this.usersList = response.body
+        }
+        else{
+          this.customErrorUsersList = 'Brak obiektu odpowiedzi';
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingUsersList = false
+        this.customErrorUsersList = errorResponse.error.message
+      },
+      complete: () => {
+        this.loadingUsersList = false;
+      }
+    })
   }
 
   openDialogNewPassword(enterAnimationDuration: string, exitAnimationDuration: string): void {

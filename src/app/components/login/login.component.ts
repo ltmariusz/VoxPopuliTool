@@ -81,27 +81,21 @@ export class LoginComponent implements OnInit{
       let loginValue = this.loginForm.get('email')!.value;
       let passwordValue = this.loginForm.get('password')!.value;
 
+      console.log('test')
+
       this.subLogin = this.authRest.postLogin(loginValue!, passwordValue!).subscribe({
         next: (response) => {
           if(response.body){
             this.router.navigateByUrl('/home');
+            localStorage.setItem('auth_app_token_vox', response.body.token)
           }
           else{
             this.customErrorLogin = 'Brak obiektu odpowiedzi';
           }
         },
         error: (errorResponse) => {
-          switch (errorResponse.status) {
-            case 400:
-            case 401:
-            case 403:
-              this.loadingLogin = false;
-              break;
-          
-            default:
-              this.customErrorLogin = 'Błąd serwera'
-              break;
-          }
+          this.loadingLogin = false
+          // this.customErrorLogin = errorResponse.error.message
           // console.log(this.customError);
         },
         complete: () => {

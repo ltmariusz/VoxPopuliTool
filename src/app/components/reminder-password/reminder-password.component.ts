@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PublicService } from 'src/app/services/public.service';
 
@@ -20,6 +21,7 @@ export class ReminderPasswordComponent implements OnInit{
 
   constructor(
     private publicService: PublicService,
+    private router: Router,
   ){ }
 
   ngOnInit(): void {
@@ -33,24 +35,13 @@ export class ReminderPasswordComponent implements OnInit{
         this.subRemindPassword = this.publicService.postRemindPassword(emailValue!).subscribe({
           next: (response) => {
             this.loading = false;
+            this.router.navigateByUrl('/login-page');
           },
           error: (errorResponse) => {
             // console.log(errorResponse);
-            switch (errorResponse.status) {
-              case 403:
-                this.customError = errorResponse.error.message;
-                this.loading = false;
-                break;
-              case 404:
-                this.customError = errorResponse.error.message;
-                this.loading = false;
-                break;
-            
-              default:
-                this.customError = 'Błąd serwera'
-                this.loading = false;
-                break;
-            }
+            this.customError = errorResponse.error.message;
+            this.loading = false;
+            console.log(this.customError)
           },
           complete: () => {
             

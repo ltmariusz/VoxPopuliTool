@@ -30,16 +30,18 @@ export interface Login{
   password: string
 }
 
-export interface User{
-  
+export interface Token{
+  token: string,
+  expires: Date
 }
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private PATH = '/api/v1/Auth'
+  private PATH = '/api/v1/auth'
 
   constructor(
     private http: HttpClient
@@ -112,8 +114,8 @@ export class AuthService {
 
   //------------------------------------------------------------------------//
 
-  postLogin(email: string, password: string): Observable<HttpResponse<Message>> {
-    return this.http.post<Message>(this.PATH + `/Login`, {
+  postLogin(email: string, password: string): Observable<HttpResponse<any>> {
+    return this.http.post<any>(this.PATH + `/login`, {
       email: email,
       password: password
     }, {
