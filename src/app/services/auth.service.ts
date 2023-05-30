@@ -39,7 +39,7 @@ export interface User{
 })
 export class AuthService {
 
-  private PATH = '/api/v1/auth'
+  private PATH = '/api/v1/Auth'
 
   constructor(
     private http: HttpClient
@@ -113,7 +113,7 @@ export class AuthService {
   //------------------------------------------------------------------------//
 
   postLogin(email: string, password: string): Observable<HttpResponse<Message>> {
-    return this.http.post<Message>(this.PATH + `/login`, {
+    return this.http.post<Message>(this.PATH + `/Login`, {
       email: email,
       password: password
     }, {

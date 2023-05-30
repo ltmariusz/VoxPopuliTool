@@ -29,7 +29,7 @@ export class AdminService {
   //------------------------------------------------------------------------//
 
   getUsers(): Observable<HttpResponse<Array<User>>> {
-    return this.http.get<Array<User>>(this.PATH + `/users`, {
+    return this.http.get<Array<User>>(this.PATH + `/Users`, {
       observe: 'response',
       responseType: 'json',
     })
@@ -46,7 +46,7 @@ export class AdminService {
      phoneNumber: string,
      position: string,
      ): Observable<HttpResponse<Message>> {
-    return this.http.post<Message>(this.PATH + `/user/create`, {
+    return this.http.post<Message>(this.PATH + `/User/create`, {
       name: name,
       surname: surname,
       email: email,
@@ -66,7 +66,7 @@ export class AdminService {
   //------------------------------------------------------------------------//
 
   putUserActivete(id: number): Observable<HttpResponse<Message>> {
-    return this.http.put<Message>(this.PATH + `/user/${id}/activate`, {
+    return this.http.put<Message>(this.PATH + `/User/${id}/activate`, {
 
     }, {
       observe: 'response',
@@ -77,7 +77,7 @@ export class AdminService {
   //------------------------------------------------------------------------//
 
   putUserChangeRole(id: number): Observable<HttpResponse<Message>> {
-    return this.http.put<Message>(this.PATH + `/user/${id}/changeRole`, {
+    return this.http.put<Message>(this.PATH + `/User/${id}/changeRole`, {
 
     }, {
       observe: 'response',
@@ -88,7 +88,7 @@ export class AdminService {
   //------------------------------------------------------------------------//
 
   putUserDeactivate(id: number): Observable<HttpResponse<Message>> {
-    return this.http.put<Message>(this.PATH + `/user/${id}/deactivate`, {
+    return this.http.put<Message>(this.PATH + `/User/${id}/deactivate`, {
 
     }, {
       observe: 'response',
@@ -99,7 +99,7 @@ export class AdminService {
   //------------------------------------------------------------------------//
 
   putUserChangePassword(id: number): Observable<HttpResponse<Message>> {
-    return this.http.put<Message>(this.PATH + `/user/${id}/changePassword`, {
+    return this.http.put<Message>(this.PATH + `/User/${id}/changePassword`, {
 
     }, {
       observe: 'response',
