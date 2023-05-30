@@ -14,7 +14,7 @@
                     <p>Dostęp</p>
                 </div> -->
                 <div class="acronim txt_title">
-                    <p>Akronim</p>
+                    <p>Rola</p>
                 </div>
                 <div class="email txt_title">
                     <p>E-mail</p>
@@ -28,26 +28,37 @@
             </div>
         </div>
         <div class="scroll">
-            <div class="item item_padding" (click)="editUser(user.id)" *ngFor="let user of this.listPH">
+            <div class="item item_padding" (click)="editUser(user.id)" *ngFor="let user of this.usersList">
                 <div class="icon mobile">
-                    <mat-icon class="green_c " *ngIf="user.activated == true && user.archived == false" fontIcon="person"></mat-icon>
-                    <mat-icon class="red_c" *ngIf="user.activated == false && user.archived == false" fontIcon="person"></mat-icon>
-                    <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon>
+                    <!-- <mat-icon class="green_c " *ngIf="user.isActive == true && user.archived == false" fontIcon="person"></mat-icon>
+                    <mat-icon class="red_c" *ngIf="user.isActive == false && user.archived == false" fontIcon="person"></mat-icon>
+                    <mat-icon class="grey_c" *ngIf="user.isActive == true" fontIcon="person"></mat-icon> -->
+                    
+                    <!-- to edit -->
+                    <mat-icon class="green_c " *ngIf="user.isActive == true" fontIcon="person"></mat-icon>
+                    <mat-icon class="red_c" *ngIf="user.isActive == false" fontIcon="person"></mat-icon>
+                    <!-- to edit -->
                 </div>
                 <div class="row_list">
                     <div class="icon desktop">
-                        <mat-icon class="green_c " *ngIf="user.activated == true && user.archived == false" fontIcon="person"></mat-icon>
-                        <mat-icon class="red_c" *ngIf="user.activated == false && user.archived == false" fontIcon="person"></mat-icon>
-                        <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon>
+                        <!-- <mat-icon class="green_c " *ngIf="user.isActive == true && user.archived == false" fontIcon="person"></mat-icon>
+                        <mat-icon class="red_c" *ngIf="user.isActive == false && user.archived == false" fontIcon="person"></mat-icon>
+                        <mat-icon class="grey_c" *ngIf="user.archived == true" fontIcon="person"></mat-icon> -->
+                        
+                        <!-- to edit -->
+                        <mat-icon class="green_c " *ngIf="user.isActive == true " fontIcon="person"></mat-icon>
+                        <mat-icon class="red_c" *ngIf="user.isActive == false " fontIcon="person"></mat-icon>
+                        <!-- to edit -->
+
                     </div>
                     <div class="name">
-                        <p>{{user.name}}</p>
+                        <p>{{user.name}} {{user.surname}}</p>
                     </div>
                     <!-- <div class="icons">
                         <img *ngIf="user.mobileCash" src="./assets/mobilna_kasa.ico" alt="">
                     </div> -->
                     <div class="acronim">
-                        <p>{{user.acronym}}</p>
+                        <p>{{user.role}}</p>
                     </div>
                     <div class="email">
                         <p>{{user.email}}</p>
@@ -61,7 +72,7 @@
                 </div> 
                 <mat-menu #menu="matMenu">
                     <button (click)="openDialogNewPassword('200ms', '100ms')" mat-menu-item>Zmiana hasła użytkownika</button>
-                    <button *ngIf="user.activated == false" (click)="openDialogActiveUser('200ms', '100ms')" mat-menu-item>Aktywacja użytkownika</button>
+                    <button *ngIf="user.isActive == false" (click)="openDialogActiveUser('200ms', '100ms')" mat-menu-item>Aktywacja użytkownika</button>
                 </mat-menu>
             </div>
         </div>

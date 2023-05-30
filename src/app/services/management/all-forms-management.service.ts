@@ -304,42 +304,40 @@ export class AllFormsManagementService {
 
   exampleDoneAnswerForm =
     {
-      title: "Witaj w testowej ankiecie",
-      description: "To jest testowa ankieta w której będziesz odpowiadał jak chcesz",
-      questions: [
+      title:"Ocena wizyty",
+      description: "Dziś odwiedził Cię Twój opiekun handlowy mamy nadzieje, że jesteś zadowolony z tej wizyty. Prosimy Cię o uzupęlnienie tej prostej ankiety.",
+        questions: [
         {
           typeOfQuestion: 0,
-          question: "Jakie są najpopularniejsze języki programowania?",
-          allAnswers: ["JavaScript", "Python", "Java", "C++", "C#"],
+          question: "Czy wizyta okazała się pomocna?",
+          allAnswers: ["Zdecydowanie tak", "tak", "raczej tak", "raczej nie", "nie", "Zdecydowanie nie"],
           correct: [0]
         },
         {
-          typeOfQuestion: 0,
-          question: "Co oznacza skrót HTML?",
-          allAnswers: ["HyperText Markup Language", "Nic"],
+          typeOfQuestion: 1,
+          question: "Co zaproponował Ci opiekun?",
+          allAnswers:["produkt w niższej cenie","dołączenie do programu lojalnościowego","przedstawił listę nowych pakietów","zaproponował opłatę zalegających faktór"],
           correct: [1]
         },
         {
-          typeOfQuestion: 1,
-          question: "W jakim roku założono firmę Apple?",
-          allAnswers: ["1976", "1000", "Jutro założą", "Jedna odpowiedz i ta jest poprawna"],
-          correct: [1,2]
+          typeOfQuestion: 3,
+          question: "Jak oceniasz przebieg wizyty?",
+          correct: 4
         },
         {
-          typeOfQuestion: 1,
-          question: "Która planeta jest najbliższa Słońcu?",
-          allAnswers: ["Merkury", "Ziemia", "Ktoś jeszcze"],
-          correct: [0,2]
-        },
-        {
-          typeOfQuestion: 2,
-          question: "Ile dni ma rok przestępny?",
-          correct: 'Tyle ile powinien'
+          typeOfQuestion: 3,
+          question: "Jak oceniasz współprace z aktualnym opiekunem?",
+          correct: 5
         },
         {
           typeOfQuestion: 2,
-          question: "opowiedz mi o sobie",
-          correct: 'Mam fajny guzik od bluzy'
+          question: "Czy masz jakieś uwagi do wizyty?",
+          correct: 'Żadnych'
+        },
+        {
+          typeOfQuestion: 2,
+          question: "Czy masz jakieś uwagi do prezencji przedstawiciela",
+          correct: 'nie'
         },
         {
           typeOfQuestion: 3,
