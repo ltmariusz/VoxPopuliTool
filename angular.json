@@ -5,6 +5,9 @@
   "projects": {
     "VoxPopuliTool": {
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "pl"
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
@@ -59,12 +62,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "40kb"
                 }
               ],
               "outputHashing": "all"

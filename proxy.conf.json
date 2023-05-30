@@ -1,0 +1,9 @@
+{
+    "/api/*": {
+      "target": "http://",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "cookieDomainRewrite": "localhost"
+    }
+}
