@@ -238,6 +238,69 @@ export class AllFormsManagementService {
     },
   ];
 
+  exampleRateDelivery: OneForm = {
+    title:"Ocena dostawy",
+    description: "Właśnie miała miejsce twoja dostawa. Twoja opinia jest dla nas bardzo ważna. Prosimy Cię o uzupełnienie tej prostej ankiety. Pozwoli to nam poprawić naszą pracę. Numer dostawy: 4568561. Data dostawy: 25.05.2023. Kierowca: GNOK2202 Mariusz Lemanski",
+    questions:[
+      {
+        typeOfQuestion: 3,
+        question: "Jak oceniasz dostawę?",
+      },
+      {
+        typeOfQuestion: 3,
+        question: "Jak oceniasz czas realizacji?",
+      },
+      {
+        typeOfQuestion: 0,
+        question: "Czy dotarły do Ciebie wszystkie zamówione produkty?",
+        allAnswers: ["tak", "nie"]
+      },
+      {
+        typeOfQuestion: 2,
+        question: "Opisz brakujące produkty",
+      },
+      {
+        typeOfQuestion: 2,
+        question: "Uwagi do dostawy",
+      },
+    ]
+  }
+  exampleRateVisit: OneForm = {
+    title:"Ocena wizyty",
+    description: "Dziś odwiedził Cię Twój opiekun handlowy mamy nadzieje, że jesteś zadowolony z tej wizyty. Prosimy Cię o uzupęlnienie tej prostej ankiety.",
+    questions:[
+      {
+        typeOfQuestion: 0,
+        question: "Czy wizyta okazała się pomocna?",
+        allAnswers: ["Zdecydowanie tak", "tak", "raczej tak", "raczej nie", "nie", "Zdecydowanie nie"]
+      },
+      {
+        typeOfQuestion: 1,
+        question: "Co zaproponował Ci opiekun?",
+        allAnswers:["produkt w niższek cenie","dołączenie do programu lojalnościowego","przedstawił listę nowych pakietów","zaproponował opłatę zalegających faktór"]
+      },
+      {
+        typeOfQuestion: 3,
+        question: "Jak oceniasz przebieg wizyty?",
+      },
+      {
+        typeOfQuestion: 3,
+        question: "Jak oceniasz współprace z aktualnym opiekunem?",
+      },
+      {
+        typeOfQuestion: 2,
+        question: "Czy masz jakieś uwagi do wizyty?",
+      },
+      {
+        typeOfQuestion: 3,
+        question: "Jak oceniasz prezencje przedstawiciela?",
+      },
+      {
+        typeOfQuestion: 2,
+        question: "Czy masz jakieś uwagi do prezencji przedstawiciela",
+      }
+    ]
+  }
 
   exampleDoneAnswerForm =
     {
