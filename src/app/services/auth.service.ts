@@ -39,7 +39,7 @@ export interface User{
 })
 export class AuthService {
 
-  private PATH = '/api/v1'
+  private PATH = '/api/v1/auth'
 
   constructor(
     private http: HttpClient
