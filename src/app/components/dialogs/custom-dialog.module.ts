@@ -12,6 +12,7 @@ import { ActiveUserDialogComponent } from './active-user-dialog/active-user-dial
 import { CloseQuestionnaireDialogComponent } from './close-questionnaire-dialog/close-questionnaire-dialog.component';
 import { CloseQuestionnairePersonalDialogComponent } from './close-questionnaire-personal-dialog/close-questionnaire-personal-dialog.component';
 import { ChangeRoleDialogComponent } from './change-role-dialog/change-role-dialog.component';
+import { DeactivateDialogComponent } from './deactivate-dialog/deactivate-dialog.component';
 
 
 
@@ -21,7 +22,8 @@ import { ChangeRoleDialogComponent } from './change-role-dialog/change-role-dial
     ActiveUserDialogComponent,
     CloseQuestionnaireDialogComponent,
     CloseQuestionnairePersonalDialogComponent,
-    ChangeRoleDialogComponent
+    ChangeRoleDialogComponent,
+    DeactivateDialogComponent
   ],
   imports: [
     CommonModule,

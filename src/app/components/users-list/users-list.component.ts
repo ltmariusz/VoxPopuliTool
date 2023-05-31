@@ -7,6 +7,7 @@ import { AdminService, User } from 'src/app/services/admin.service';
 import { AdminPanelManagementService } from 'src/app/services/management/admin-panel-management.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 import { ChangeRoleDialogComponent } from '../dialogs/change-role-dialog/change-role-dialog.component';
+import { DeactivateDialogComponent } from '../dialogs/deactivate-dialog/deactivate-dialog.component';
 
 
 @Component({
@@ -27,6 +28,10 @@ export class UsersListComponent implements OnInit{
   subUserChangeRole?: Subscription
   customErrorChangeRole?: string
   loadingChangeRole = false
+
+  subUserDeactivate?: Subscription
+  customErrorUserDeactivate?: string
+  loadingUserDeactivate = false
 
   usersList?: Array<User>
 
@@ -172,6 +177,39 @@ export class UsersListComponent implements OnInit{
           },
           complete: () => {
             this.loadingChangeRole = false;
+          }
+        })
+      }
+    })
+  }
+
+  openDialogDeactivateUser(enterAnimationDuration: string, exitAnimationDuration: string, userId: number): void {
+    const dialogRef = this.dialog.open(DeactivateDialogComponent, {
+      width: 'auto',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+    dialogRef.afterClosed().subscribe(result =>{
+      if (result) {
+        this.loadingUserDeactivate = true;
+        this.subUserDeactivate = this.adminRest.putUserDeactivate(userId!).subscribe({
+          next: (response) => {
+            if(response.body){
+              console.log(response.body)
+              this.getUsersList()
+              this.popupService.succesEmit(response.body.message)
+            }
+            else{
+              this.loadingUserDeactivate = false;
+            }
+          },
+          error: (errorResponse) => {
+            this.customErrorUserDeactivate = errorResponse.error.message;
+            this.loadingUserDeactivate = false;
+            this.popupService.errorEmit(this.customErrorUserDeactivate!)
+          },
+          complete: () => {
+            this.loadingUserDeactivate = false;
           }
         })
       }
