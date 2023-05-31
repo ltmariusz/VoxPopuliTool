@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { NavLinkModule } from 'src/app/components/nav-link/nav-link.module';
 import { SelectedQuestionnaireModule } from 'src/app/components/selected-questionnaire/selected-questionnaire.module';
 import { SelectedQuestionnaireComponent } from 'src/app/components/selected-questionnaire/selected-questionnaire.component';
+import { PopupErrorModule } from 'src/app/components/popup-error/popup-error.module';
 
 const routes: Routes =[
   {
@@ -58,7 +59,8 @@ const routes: Routes =[
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    NavLinkModule
+    NavLinkModule,
+    PopupErrorModule
   ],
   exports:[
     RouterModule,

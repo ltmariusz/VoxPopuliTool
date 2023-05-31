@@ -9,13 +9,12 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserDataService } from './services/global-services/user-data.service';
-import { ExampleRateVisitComponent } from './pages/test-pages/example-rate-visit/example-rate-visit.component';
-import { ExampleRateDeliveryComponent } from './pages/test-pages/example-rate-delivery/example-rate-delivery.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
     
         
     // LoginPageComponent
