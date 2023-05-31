@@ -63,4 +63,5 @@ export class HomePageComponent implements OnInit{
     localStorage.removeItem('auth_app_token_vox')
     this.router.navigateByUrl('/login-page')
    }
+
 }

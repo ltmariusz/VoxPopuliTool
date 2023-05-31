@@ -5,6 +5,7 @@ import { NewPasswordDialogComponent } from '../dialogs/new-password-dialog/new-p
 import { Subscription } from 'rxjs';
 import { AdminService, User } from 'src/app/services/admin.service';
 import { AdminPanelManagementService } from 'src/app/services/management/admin-panel-management.service';
+import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class UsersListComponent implements OnInit{
   constructor(
     public dialog: MatDialog,
     private adminRest: AdminService,
-    private adminPanelManagementService: AdminPanelManagementService
+    private adminPanelManagementService: AdminPanelManagementService,
+    private popupService: PopupManagementService
   ){ }
 
   ngOnInit(): void {
@@ -47,15 +49,16 @@ export class UsersListComponent implements OnInit{
       next: (response) => {
         if(response.body){
           this.usersList = response.body
-          console.log(this.usersList)
         }
         else{
           this.customErrorUsersList = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorUsersList)
         }
       },
       error: (errorResponse) => {
         this.loadingUsersList = false
         this.customErrorUsersList = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorUsersList!)
       },
       complete: () => {
         this.loadingUsersList = false;

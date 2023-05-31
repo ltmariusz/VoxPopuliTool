@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AdminService } from 'src/app/services/admin.service';
 import { AdminPanelManagementService } from 'src/app/services/management/admin-panel-management.service';
+import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
 @Component({
   selector: 'app-admin-panel-page',
@@ -28,7 +29,8 @@ export class AdminPanelPageComponent implements OnInit{
 
   constructor(
     private adminRest: AdminService,
-    private adminPanelManagementService: AdminPanelManagementService
+    private adminPanelManagementService: AdminPanelManagementService,
+    private popupService: PopupManagementService
   ){ }
 
   ngOnInit(): void {
@@ -56,14 +58,17 @@ export class AdminPanelPageComponent implements OnInit{
             this.loadingCreateUser = false
             this.adminPanelManagementService.getUserList()
             this.resetForm()
+            this.popupService.doneEmit('Dodano nowego użytkownika')
           }
           else{
             this.customCreateUser = 'Brak obiektu odpowiedzi';
+            this.popupService.errorEmit(this.customCreateUser)
           }
         },
         error: (errorResponse) => {
           this.loadingCreateUser = false
           this.customCreateUser = errorResponse.error.message
+          this.popupService.errorEmit(this.customCreateUser!)
           // console.log(this.customError);
         },
         complete: () => {

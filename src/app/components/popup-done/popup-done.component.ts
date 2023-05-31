@@ -2,27 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
 @Component({
-  selector: 'app-popup-error',
-  templateUrl: './popup-error.component.html',
-  styleUrls: ['./popup-error.component.scss']
+  selector: 'app-popup-done',
+  templateUrl: './popup-done.component.html',
+  styleUrls: ['./popup-done.component.scss']
 })
-export class PopupErrorComponent implements OnInit{
+export class PopupDoneComponent implements OnInit{
 
   showPopup = false
 
-  errorMassage?: string
+  doneMassage?: string
 
   constructor(
     private popupService: PopupManagementService
   ){ }
 
   ngOnInit(): void {
-    this.errorEmitSubscribe()
+    this.doneEmitSubscribe()
   }
 
-  errorEmitSubscribe(){
-    this.popupService.popupErrorEmit.subscribe(res => {
-      this.errorMassage = res
+  doneEmitSubscribe(){
+    this.popupService.popupDoneEmit.subscribe(res => {
+      console.log(this.doneMassage)
+      this.doneMassage = res
       this.showPopup = true
       setTimeout(() => {
         this.showPopup = false

@@ -11,6 +11,7 @@ import { NavLinkModule } from 'src/app/components/nav-link/nav-link.module';
 import { SelectedQuestionnaireModule } from 'src/app/components/selected-questionnaire/selected-questionnaire.module';
 import { SelectedQuestionnaireComponent } from 'src/app/components/selected-questionnaire/selected-questionnaire.component';
 import { PopupErrorModule } from 'src/app/components/popup-error/popup-error.module';
+import { PopupDoneModule } from 'src/app/components/popup-done/popup-done.module';
 
 const routes: Routes =[
   {
@@ -60,7 +61,8 @@ const routes: Routes =[
     MatButtonModule,
     MatMenuModule,
     NavLinkModule,
-    PopupErrorModule
+    PopupErrorModule,
+    PopupDoneModule
   ],
   exports:[
     RouterModule,
