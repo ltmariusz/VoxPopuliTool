@@ -61,7 +61,7 @@
                 </div> 
                 <mat-menu #menu="matMenu">
                     <button (click)="openDialogNewPassword('200ms', '100ms', user.id)" mat-menu-item>Zmiana hasła użytkownika</button>
-                    <button (click)="openDialogChangeRole('200ms', '100ms', user.id)" mat-menu-item>Zmiana roli użytkownika</button>
+                    <button (click)="openDialogChangeRole('200ms', '100ms', user.id, user.role)" mat-menu-item>Zmiana roli użytkownika</button>
                     <button *ngIf="user.isActive == true" (click)="openDialogDeactivateUser('200ms', '100ms', user.id)" mat-menu-item>Dezaktywuj użytkownika</button>
                     <button *ngIf="user.isActive == false" (click)="openDialogActiveUser('200ms', '100ms', user.id)" mat-menu-item>Aktywacja użytkownika</button>
                 </mat-menu>

@@ -150,7 +150,7 @@ export class UsersListComponent implements OnInit{
     })
   }
 
-  openDialogChangeRole(enterAnimationDuration: string, exitAnimationDuration: string, userId: number): void {
+  openDialogChangeRole(enterAnimationDuration: string, exitAnimationDuration: string, userId: number, userRole: string): void {
     const dialogRef = this.dialog.open(ChangeRoleDialogComponent, {
       width: 'auto',
       enterAnimationDuration,
@@ -159,7 +159,14 @@ export class UsersListComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result =>{
       if (result) {
         this.loadingChangeRole = true;
-        this.subUserChangeRole = this.adminRest.putUserChangeRole(userId!).subscribe({
+        let role = ''
+        if (userRole == 'USER') {
+          role = 'ADMIN'
+        }
+        else if(userRole == 'ADMIN'){
+          role = 'USER'
+        }
+        this.subUserChangeRole = this.adminRest.putUserChangeRole(userId!, role).subscribe({
           next: (response) => {
             if(response.body){
               console.log(response.body)

@@ -77,9 +77,9 @@ export class AdminService {
   
   //------------------------------------------------------------------------//
 
-  putUserChangeRole(id: number): Observable<HttpResponse<Message>> {
+  putUserChangeRole(id: number, role: string): Observable<HttpResponse<Message>> {
     return this.http.put<Message>(this.PATH + `/user/${id}/changeRole`, {
-
+      role: role
     }, {
       observe: 'response',
       responseType: 'json',
