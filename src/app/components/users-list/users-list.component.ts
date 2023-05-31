@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AdminService, User } from 'src/app/services/admin.service';
 import { AdminPanelManagementService } from 'src/app/services/management/admin-panel-management.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
+import { ChangeRoleDialogComponent } from '../dialogs/change-role-dialog/change-role-dialog.component';
 
 
 @Component({
@@ -22,6 +23,10 @@ export class UsersListComponent implements OnInit{
   subUserActivate?: Subscription
   loadingUserActivate = false
   customErrorUserActivate?: string
+
+  subUserChangeRole?: Subscription
+  customErrorChangeRole?: string
+  loadingChangeRole = false
 
   usersList?: Array<User>
 
@@ -134,6 +139,39 @@ export class UsersListComponent implements OnInit{
           },
           complete: () => {
             this.loadingUserActivate = false;
+          }
+        })
+      }
+    })
+  }
+
+  openDialogChangeRole(enterAnimationDuration: string, exitAnimationDuration: string, userId: number): void {
+    const dialogRef = this.dialog.open(ChangeRoleDialogComponent, {
+      width: 'auto',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+    dialogRef.afterClosed().subscribe(result =>{
+      if (result) {
+        this.loadingChangeRole = true;
+        this.subUserChangeRole = this.adminRest.putUserChangeRole(userId!).subscribe({
+          next: (response) => {
+            if(response.body){
+              console.log(response.body)
+              this.getUsersList()
+              this.popupService.succesEmit(response.body.message)
+            }
+            else{
+              this.loadingChangeRole = false;
+            }
+          },
+          error: (errorResponse) => {
+            this.customErrorChangeRole = errorResponse.error.message;
+            this.loadingChangeRole = false;
+            this.popupService.errorEmit(this.customErrorChangeRole!)
+          },
+          complete: () => {
+            this.loadingChangeRole = false;
           }
         })
       }
