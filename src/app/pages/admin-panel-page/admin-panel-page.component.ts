@@ -58,7 +58,7 @@ export class AdminPanelPageComponent implements OnInit{
             this.loadingCreateUser = false
             this.adminPanelManagementService.getUserList()
             this.resetForm()
-            this.popupService.doneEmit('Dodano nowego użytkownika')
+            this.popupService.succesEmit('Dodano nowego użytkownika')
           }
           else{
             this.customCreateUser = 'Brak obiektu odpowiedzi';

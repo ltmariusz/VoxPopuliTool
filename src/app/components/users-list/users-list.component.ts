@@ -19,6 +19,10 @@ export class UsersListComponent implements OnInit{
   loadingUsersList = false
   customErrorUsersList?: string
 
+  subUserActivate?: Subscription
+  loadingUserActivate = false
+  customErrorUserActivate?: string
+
   usersList?: Array<User>
 
   constructor(
@@ -126,64 +130,48 @@ export class UsersListComponent implements OnInit{
     // })
   }
 
-  openDialogActiveUser(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialogActiveUser(enterAnimationDuration: string, exitAnimationDuration: string, userId: number): void {
     const dialogRef = this.dialog.open(ActiveUserDialogComponent, {
       width: 'auto',
       enterAnimationDuration,
       exitAnimationDuration,
     });
-    // dialogRef.afterClosed().subscribe(result =>{
-    //   if (result) {
-    //     //console.log(result)
-    //     if (this.addRedirectionForm.valid) {
-    //       this.loading = true;
+    dialogRef.afterClosed().subscribe(result =>{
+      if (result) {
+        //console.log(result)
+        // if (this.addRedirectionForm.valid) {
+          this.loadingUserActivate = true;
           
-    //       let fromEmployeeId = this.addRedirectionForm.get('selected')!.value;
-    //       let toEmployeeId = this.addRedirectionForm.get('selectedSecond')!.value;
-    //       let fromDate = this.addRedirectionForm.get('fromDate')!.value;
-    //       let toDate = this.addRedirectionForm.get('toDate')!.value;
+          // let fromEmployeeId = this.addRedirectionForm.get('selected')!.value;
 
-    //         this.subRedirectionCreate = this.redirectionRest.postRedirectionCreate(fromEmployeeId!.id, toEmployeeId!.id, fromDate!, toDate!).subscribe({
-    //           next: (response) => {
-    //             if(response.body){
-    //               this.hideCard.emit();
-                  
-
-    //             }
-    //             else{
-    //               this.customError = 'Brak obiektu odpowiedzi';
-    //               this.loading = false;
-    //             }
-    //           },
-    //           error: (errorResponse) => {
-    //             switch (errorResponse.status) {
-    //               case 400:
-    //               case 401:
-    //               case 403:
-    //               //case 404:
-    //                 this.customError = errorResponse.error.message;
-    //                 this.loading = false;
-    //                 break;
-                
-    //               default:
-    //                 this.customError = 'Błąd serwera'
-    //                 this.loading = false;
-    //                 break;
-    //             }
-    //             // console.log(this.customError);
-    //           },
-    //           complete: () => {
-    //             this.loading = false;
-    //             this.userListManager.listRefresh.next(true);
-    //           }
-    //         }
-    //       )
-    //       }
-    //   }
-    //   else{
-    //     // console.log('Anuluj');
-    //   }
-    // })
+            this.subUserActivate = this.adminRest.putUserActivete(userId!).subscribe({
+              next: (response) => {
+                if(response.body){
+                  console.log(response.body)
+                  this.getUsersList()
+                  this.popupService.succesEmit('Aktywowano użytkownika')
+                }
+                else{
+                  this.customErrorUserActivate = 'Brak obiektu odpowiedzi';
+                  this.loadingUserActivate = false;
+                }
+              },
+              error: (errorResponse) => {
+                this.customErrorUserActivate = errorResponse.error.message;
+                this.loadingUserActivate = false;
+                this.popupService.errorEmit(this.customErrorUserActivate!)
+              },
+              complete: () => {
+                this.loadingUserActivate = false;
+              }
+            }
+          )
+          }
+      // }
+      // else{
+      //   // console.log('Anuluj');
+      // }
+    })
   }
 
 }

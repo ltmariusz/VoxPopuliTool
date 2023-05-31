@@ -6,7 +6,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class PopupManagementService {
 
   popupErrorEmit: EventEmitter<any> = new EventEmitter();
-  popupDoneEmit: EventEmitter<any> = new EventEmitter();
+  popupSuccesEmit: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -14,7 +14,7 @@ export class PopupManagementService {
     this.popupErrorEmit.emit(errorMassage)
   }
 
-  doneEmit(doneMassage: string){
-    this.popupDoneEmit.emit(doneMassage)
+  succesEmit(doneMassage: string){
+    this.popupSuccesEmit.emit(doneMassage)
   }
 }

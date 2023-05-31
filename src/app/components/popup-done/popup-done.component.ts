@@ -17,11 +17,11 @@ export class PopupDoneComponent implements OnInit{
   ){ }
 
   ngOnInit(): void {
-    this.doneEmitSubscribe()
+    this.succesEmitSubscribe()
   }
 
-  doneEmitSubscribe(){
-    this.popupService.popupDoneEmit.subscribe(res => {
+  succesEmitSubscribe(){
+    this.popupService.popupSuccesEmit.subscribe(res => {
       console.log(this.doneMassage)
       this.doneMassage = res
       this.showPopup = true
