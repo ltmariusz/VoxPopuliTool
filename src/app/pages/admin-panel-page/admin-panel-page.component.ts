@@ -37,6 +37,7 @@ export class AdminPanelPageComponent implements OnInit{
 
   panelNewUserCard(){
     this.newUserPanel = !this.newUserPanel
+    this.resetForm()
   }
 
   addNewUser(){
@@ -54,6 +55,7 @@ export class AdminPanelPageComponent implements OnInit{
           if(response.body){
             this.loadingCreateUser = false
             this.adminPanelManagementService.getUserList()
+            this.resetForm()
           }
           else{
             this.customCreateUser = 'Brak obiektu odpowiedzi';
@@ -69,6 +71,23 @@ export class AdminPanelPageComponent implements OnInit{
         }
       })
     }
+  }
+
+  resetForm(){
+    this.formAddUser.controls['name'].setValue('')
+    this.formAddUser.controls['surname'].setValue('')
+    this.formAddUser.controls['role'].setValue('USER')
+    this.formAddUser.controls['phone'].setValue(null)
+    this.formAddUser.controls['mail'].setValue('')
+    this.formAddUser.controls['position'].setValue('')
+
+    this.formAddUser.controls['name'].setErrors(null)
+    this.formAddUser.controls['surname'].setErrors(null)
+    this.formAddUser.controls['role'].setErrors(null)
+    this.formAddUser.controls['phone'].setErrors(null)
+    this.formAddUser.controls['mail'].setErrors(null)
+    this.formAddUser.controls['position'].setErrors(null)
+    this.formAddUser.reset()
   }
 
   
