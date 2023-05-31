@@ -70,64 +70,40 @@ export class UsersListComponent implements OnInit{
     })
   }
 
-  openDialogNewPassword(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialogNewPassword(enterAnimationDuration: string, exitAnimationDuration: string, userId: number): void {
     const dialogRef = this.dialog.open(NewPasswordDialogComponent, {
       width: 'auto',
       enterAnimationDuration,
       exitAnimationDuration,
     });
-    // dialogRef.afterClosed().subscribe(result =>{
-    //   if (result) {
-    //     //console.log(result)
-    //     if (this.addRedirectionForm.valid) {
-    //       this.loading = true;
-          
-    //       let fromEmployeeId = this.addRedirectionForm.get('selected')!.value;
-    //       let toEmployeeId = this.addRedirectionForm.get('selectedSecond')!.value;
-    //       let fromDate = this.addRedirectionForm.get('fromDate')!.value;
-    //       let toDate = this.addRedirectionForm.get('toDate')!.value;
-
-    //         this.subRedirectionCreate = this.redirectionRest.postRedirectionCreate(fromEmployeeId!.id, toEmployeeId!.id, fromDate!, toDate!).subscribe({
-    //           next: (response) => {
-    //             if(response.body){
-    //               this.hideCard.emit();
-                  
-
-    //             }
-    //             else{
-    //               this.customError = 'Brak obiektu odpowiedzi';
-    //               this.loading = false;
-    //             }
-    //           },
-    //           error: (errorResponse) => {
-    //             switch (errorResponse.status) {
-    //               case 400:
-    //               case 401:
-    //               case 403:
-    //               //case 404:
-    //                 this.customError = errorResponse.error.message;
-    //                 this.loading = false;
-    //                 break;
-                
-    //               default:
-    //                 this.customError = 'Błąd serwera'
-    //                 this.loading = false;
-    //                 break;
-    //             }
-    //             // console.log(this.customError);
-    //           },
-    //           complete: () => {
-    //             this.loading = false;
-    //             this.userListManager.listRefresh.next(true);
-    //           }
-    //         }
-    //       )
-    //       }
-    //   }
-    //   else{
-    //     // console.log('Anuluj');
-    //   }
-    // })
+    dialogRef.afterClosed().subscribe(result =>{
+     if (result) {
+      this.loadingUserActivate = true;
+      let password = result.password
+      console.log(password)
+      this.subUserActivate = this.adminRest.putUserChangePassword(userId!, password).subscribe({
+        next: (response) => {
+          if(response.body){
+            console.log(response.body)
+            // this.getUsersList()
+            this.popupService.succesEmit('Hasło zostało zmienione')
+          }
+          else{
+            this.customErrorUserActivate = 'Brak obiektu odpowiedzi';
+            this.loadingUserActivate = false;
+          }
+        },
+        error: (errorResponse) => {
+          this.customErrorUserActivate = errorResponse.error.message;
+          this.loadingUserActivate = false;
+          this.popupService.errorEmit(this.customErrorUserActivate!)
+        },
+        complete: () => {
+          this.loadingUserActivate = false;
+        }
+      })
+    }
+  })
   }
 
   openDialogActiveUser(enterAnimationDuration: string, exitAnimationDuration: string, userId: number): void {
@@ -138,39 +114,29 @@ export class UsersListComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result =>{
       if (result) {
-        //console.log(result)
-        // if (this.addRedirectionForm.valid) {
-          this.loadingUserActivate = true;
-          
-          // let fromEmployeeId = this.addRedirectionForm.get('selected')!.value;
-
-            this.subUserActivate = this.adminRest.putUserActivete(userId!).subscribe({
-              next: (response) => {
-                if(response.body){
-                  console.log(response.body)
-                  this.getUsersList()
-                  this.popupService.succesEmit('Aktywowano użytkownika')
-                }
-                else{
-                  this.customErrorUserActivate = 'Brak obiektu odpowiedzi';
-                  this.loadingUserActivate = false;
-                }
-              },
-              error: (errorResponse) => {
-                this.customErrorUserActivate = errorResponse.error.message;
-                this.loadingUserActivate = false;
-                this.popupService.errorEmit(this.customErrorUserActivate!)
-              },
-              complete: () => {
-                this.loadingUserActivate = false;
-              }
+        this.loadingUserActivate = true;
+        this.subUserActivate = this.adminRest.putUserActivete(userId!).subscribe({
+          next: (response) => {
+            if(response.body){
+              console.log(response.body)
+              this.getUsersList()
+              this.popupService.succesEmit('Aktywowano użytkownika')
             }
-          )
+            else{
+              this.customErrorUserActivate = 'Brak obiektu odpowiedzi';
+              this.loadingUserActivate = false;
+            }
+          },
+          error: (errorResponse) => {
+            this.customErrorUserActivate = errorResponse.error.message;
+            this.loadingUserActivate = false;
+            this.popupService.errorEmit(this.customErrorUserActivate!)
+          },
+          complete: () => {
+            this.loadingUserActivate = false;
           }
-      // }
-      // else{
-      //   // console.log('Anuluj');
-      // }
+        })
+      }
     })
   }
 

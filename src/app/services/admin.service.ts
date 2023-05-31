@@ -99,9 +99,9 @@ export class AdminService {
 
   //------------------------------------------------------------------------//
 
-  putUserChangePassword(id: number): Observable<HttpResponse<Message>> {
+  putUserChangePassword(id: number, password: string): Observable<HttpResponse<Message>> {
     return this.http.put<Message>(this.PATH + `/user/${id}/changePassword`, {
-
+      password: password
     }, {
       observe: 'response',
       responseType: 'json',

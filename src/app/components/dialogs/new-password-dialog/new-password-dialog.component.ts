@@ -17,9 +17,12 @@ export class NewPasswordDialogComponent {
 
 
   Add(){
-    this.dialogRef.close({
-      result: true
-    });
+    if (this.formNewPassword.valid) {
+      this.dialogRef.close({
+        result: true,
+        password: this.formNewPassword.get('password')!.value
+      }); 
+    }
   }
 
   Close(){

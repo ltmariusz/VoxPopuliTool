@@ -60,7 +60,7 @@
                     <mat-icon [matMenuTriggerFor]="menu" class="settings_icon" fontIcon="settings"></mat-icon>
                 </div> 
                 <mat-menu #menu="matMenu">
-                    <button (click)="openDialogNewPassword('200ms', '100ms')" mat-menu-item>Zmiana hasła użytkownika</button>
+                    <button (click)="openDialogNewPassword('200ms', '100ms', user.id)" mat-menu-item>Zmiana hasła użytkownika</button>
                     <button *ngIf="user.isActive == false" (click)="openDialogActiveUser('200ms', '100ms', user.id)" mat-menu-item>Aktywacja użytkownika</button>
                 </mat-menu>
             </div>
