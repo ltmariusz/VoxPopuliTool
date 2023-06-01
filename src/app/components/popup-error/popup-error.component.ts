@@ -8,9 +8,7 @@ import { PopupManagementService } from 'src/app/services/management/popup-manage
 })
 export class PopupErrorComponent implements OnInit{
 
-  showPopup = false
-
-  errorMassage?: string
+  popupList: any = []
 
   constructor(
     private popupService: PopupManagementService
@@ -22,16 +20,19 @@ export class PopupErrorComponent implements OnInit{
 
   errorEmitSubscribe(){
     this.popupService.popupErrorEmit.subscribe(res => {
-      this.errorMassage = res
-      this.showPopup = true
+      this.popupList!.push(
+        {
+          message: res
+        }
+      )
       setTimeout(() => {
-        this.showPopup = false
+        this.popupList!.splice(0, 1)
       }, 6000);
     })
   }
 
-  close(){
-    this.showPopup = false
+  close(id: number){
+    this.popupList.splice(id, 1)
   }
 
 }

@@ -1,16 +1,18 @@
-<div *ngIf="showPopup" class="card">
-    <div class="left">
-        <mat-icon color="icon_warning" fontIcon="warning"></mat-icon>
-        <div class="message">
-            <div class="title">
-                BŁĄD
-            </div>
-            <div class="error">
-                {{this.errorMassage}}
+<div class="container_list">
+    <div *ngFor="let popup of popupList; let i = index" class="card">
+        <div class="left">
+            <mat-icon color="icon_warning" fontIcon="warning"></mat-icon>
+            <div class="message">
+                <div class="title">
+                    BŁĄD
+                </div>
+                <div class="error">
+                    {{popup.message}}
+                </div>
             </div>
         </div>
-    </div>
-    <div class="right">
-        <mat-icon (click)="close()" color="icon_close" fontIcon="close"></mat-icon>
+        <div class="right">
+            <mat-icon (click)="close(i)" color="icon_close" fontIcon="close"></mat-icon>
+        </div>
     </div>
 </div>
