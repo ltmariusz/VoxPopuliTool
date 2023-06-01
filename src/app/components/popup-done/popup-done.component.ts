@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
+
 @Component({
   selector: 'app-popup-done',
   templateUrl: './popup-done.component.html',
   styleUrls: ['./popup-done.component.scss']
 })
+
 export class PopupDoneComponent implements OnInit{
 
-  showPopup = false
-
-  doneMassage?: string
+  popupList: any = []
 
   constructor(
     private popupService: PopupManagementService
@@ -22,17 +22,19 @@ export class PopupDoneComponent implements OnInit{
 
   succesEmitSubscribe(){
     this.popupService.popupSuccesEmit.subscribe(res => {
-      console.log(this.doneMassage)
-      this.doneMassage = res
-      this.showPopup = true
+      this.popupList!.push(
+        {
+          message: res
+        }
+      )
       setTimeout(() => {
-        this.showPopup = false
+        this.popupList!.splice(0, 1)
       }, 6000);
     })
   }
 
-  close(){
-    this.showPopup = false
+  close(id: number){
+    this.popupList.splice(id, 1)
   }
 
 }
