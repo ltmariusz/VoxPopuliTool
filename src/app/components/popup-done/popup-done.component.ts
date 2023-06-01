@@ -1,3 +1,4 @@
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
@@ -5,7 +6,33 @@ import { PopupManagementService } from 'src/app/services/management/popup-manage
 @Component({
   selector: 'app-popup-done',
   templateUrl: './popup-done.component.html',
-  styleUrls: ['./popup-done.component.scss']
+  styleUrls: ['./popup-done.component.scss'],
+  animations: [
+    trigger('animInImage', [
+      state('void', style({
+        opacity: 0,
+        transform: "translateY(50%)"
+      })),
+      transition(':enter', [
+        animate('0.7s', keyframes([
+          style({opacity: 0}),
+          style({opacity: 0}),
+          style({opacity: 1, transform: "translateY(0%)"}),
+          style({opacity: 1}),
+          
+        ]))
+      ]),
+      transition(':leave', [
+        animate('0.7s', keyframes([
+          style({opacity: 1}),
+          style({opacity: 0.8}),
+          style({opacity: 0, transform: "translateY(50%)"}),
+          style({opacity: 0}),
+          
+        ]))
+      ])
+    ]),
+  ]
 })
 
 export class PopupDoneComponent implements OnInit{

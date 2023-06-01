@@ -1,5 +1,5 @@
 <div class="container_list">
-    <div *ngFor="let popup of popupList; let i = index" class="card">
+    <div [@animInImage] *ngFor="let popup of popupList; let i = index" class="card">
         <div class="left">
             <mat-icon color="icon_warning" fontIcon="warning"></mat-icon>
             <div class="message">
