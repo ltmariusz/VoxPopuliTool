@@ -193,11 +193,13 @@
 }
 .item_personal{
     display: flex;
-    flex-direction: row;
-    // width: 100%;
-    // padding: 1rem;
-    // margin-left: 1rem;
+    flex-direction: column;
     margin-right: 1.5rem;
+}
+.personal_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 .icon_to_personal_list_arrow{
     margin-bottom: 8px;

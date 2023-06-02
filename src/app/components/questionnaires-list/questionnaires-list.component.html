@@ -32,16 +32,16 @@
             </div> -->
 
             <mat-accordion class="mat_accord">
-                <mat-expansion-panel *ngFor="let questionnaire of this.questionnairesList" hideToggle class="mat_panel">
-                  <mat-expansion-panel-header>
+                <mat-expansion-panel *ngFor="let questionnaire of this.usersAnkietaList" hideToggle class="mat_panel">
+                  <mat-expansion-panel-header *ngIf="questionnaire.type == 'GLOBAL'">
                     <mat-panel-title class="mat_title">
                         <div class="row_list">
                             <div class="icon desktop">
-                                <mat-icon *ngIf="questionnaire.status == 'publiczna'" class="green_c questionnaire_icon" fontIcon="quiz"></mat-icon>
-                                <mat-icon *ngIf="questionnaire.status == 'prywatna'" class="gray_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isPublic == true" class="green_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isPublic == false" class="gray_c questionnaire_icon" fontIcon="quiz"></mat-icon>
                             </div>
                             <div class="name">
-                                <p>{{questionnaire.name}}</p>
+                                <p>{{questionnaire.title}}</p>
                             </div>
                         </div>
                         <div class="icons">
@@ -58,26 +58,27 @@
                         </div> 
                     </mat-panel-title>
                   </mat-expansion-panel-header>
-                  <p *ngIf="!questionnaire.personalList">Brak osobistych ankiet</p>
-                  <!-- <p *ngIf="questionnaire.personalList">Lista osobistych ankiet</p> -->
-                  <div *ngIf="questionnaire.personalList" class="personal_questionnaire_list">
-                    <!-- <p>Lista osobistych ankiet</p> -->
-                    <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
-                    <div class="item_personal" *ngFor="let questionnairePersonal of questionnaire.personalList">
-                        <div class="row_list">
-                            <div class="icon desktop">
-                                <mat-icon class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
+                  <!-- <p *ngIf="questionnaire.type == 'GLOBAL'">Brak osobistych ankiet</p> -->
+                  <div class="personal_questionnaire_list">
+                    <!-- <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon> -->
+                    <div class="item_personal" *ngFor="let questionnairePersonal of this.usersAnkietaList">
+                        <!-- <p *ngIf="">Brak osobistych ankiet</p> -->
+                        <mat-icon *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.type == 'PRIVATE'" class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
+                        <div *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.type == 'PRIVATE'" class="personal_container">
+                            <div class="row_list">
+                                <div class="icon desktop">
+                                    <mat-icon class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
+                                </div>
+                                <div class="name">
+                                    <p>{{questionnairePersonal.title}}</p>
+                                </div>
                             </div>
-                            <div class="name">
-                                <p>{{questionnairePersonal.name}}</p>
-                            </div>
+                            <div class="iconsPersonal">
+                                <button (click)="personalQuestionnaire(questionnairePersonal.id)" class="btn_statistic">Informacje</button>
+                                <button (click)="editQuestionnairePersonal(questionnairePersonal.id)" class="btn_edit" (click)="$event.stopPropagation()">Edutuj</button>
+                                <button (click)="openDialogCloseQuestionnairePersonal('200ms', '100ms', questionnairePersonal.id)" class="btn_close">Zakończ</button>
+                            </div> 
                         </div>
-                        <div class="iconsPersonal">
-                            <!-- <button class="btn_generate_new_personal">Wygeneruj osobistą</button> -->
-                            <button (click)="personalQuestionnaire(questionnairePersonal.id)" class="btn_statistic">Informacje</button>
-                            <button (click)="editQuestionnairePersonal(questionnairePersonal.id)" class="btn_edit" (click)="$event.stopPropagation()">Edutuj</button>
-                            <button (click)="openDialogCloseQuestionnairePersonal('200ms', '100ms', questionnairePersonal.id)" class="btn_close">Zakończ</button>
-                        </div> 
                     </div>
                   </div>
                 </mat-expansion-panel>
