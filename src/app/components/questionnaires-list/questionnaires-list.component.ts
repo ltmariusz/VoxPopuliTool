@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CloseQuestionnaireDialogComponent } from '../dialogs/close-questionnaire-dialog/close-questionnaire-dialog.component';
 import { CloseQuestionnairePersonalDialogComponent } from '../dialogs/close-questionnaire-personal-dialog/close-questionnaire-personal-dialog.component';
-import { Ankieta, AnkietaService } from 'src/app/services/ankieta.service';
+import { AnkietaService, QuestionnaireList } from 'src/app/services/ankieta.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 import { Subscription } from 'rxjs';
 import { QuestionnaireListManagementService } from 'src/app/services/management/questionnaire-list-management.service';
@@ -198,7 +198,7 @@ export class QuestionnairesListComponent implements OnInit{
 
   subAnkietaList?: Subscription
   loadingAnkietaList = false
-  usersAnkietaList?: Array<Ankieta>
+  usersAnkietaList?: Array<QuestionnaireList>
   customErrorAnkietaList?: string
 
   constructor(
