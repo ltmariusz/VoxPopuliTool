@@ -7,11 +7,17 @@ export class QuestionnaireListManagementService {
 
   questionnaireListEmit: EventEmitter<any> = new EventEmitter();
 
+  questionnairePrivateEmit: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   getQuestionnaireList(questionnaireTitle?: string, userData?: string, questionnaireDescription?: string, isActive?: boolean|string){
     let list = [questionnaireTitle, userData, questionnaireDescription, isActive]
     console.log(isActive)
     this.questionnaireListEmit.emit(list)
+  }
+
+  postQuestionnairePrivate(){
+    this.questionnairePrivateEmit.emit()
   }
 }

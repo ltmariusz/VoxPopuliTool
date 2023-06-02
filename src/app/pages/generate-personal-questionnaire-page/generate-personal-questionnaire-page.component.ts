@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { QuestionnaireListManagementService } from 'src/app/services/management/questionnaire-list-management.service';
 
 @Component({
   selector: 'app-generate-personal-questionnaire-page',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./generate-personal-questionnaire-page.component.scss']
 })
 export class GeneratePersonalQuestionnairePageComponent {
+
+  constructor(
+    private questionnaireListManager: QuestionnaireListManagementService
+  ) { }
+
+  postQuestionnairePrivate(){
+    this.questionnaireListManager.postQuestionnairePrivate()
+  }
 
 }

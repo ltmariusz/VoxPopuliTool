@@ -61,9 +61,9 @@
                   <!-- <p *ngIf="questionnaire.type == 'GLOBAL'">Brak osobistych ankiet</p> -->
                   <div class="personal_questionnaire_list">
                     <!-- <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon> -->
+                    <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
                     <div class="item_personal" *ngFor="let questionnairePersonal of this.usersAnkietaList">
                         <!-- <p *ngIf="">Brak osobistych ankiet</p> -->
-                        <mat-icon *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.type == 'PRIVATE'" class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
                         <div *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.type == 'PRIVATE'" class="personal_container">
                             <div class="row_list">
                                 <div class="icon desktop">
