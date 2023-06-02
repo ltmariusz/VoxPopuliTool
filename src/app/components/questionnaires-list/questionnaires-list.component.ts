@@ -6,6 +6,7 @@ import { CloseQuestionnairePersonalDialogComponent } from '../dialogs/close-ques
 import { Ankieta, AnkietaService } from 'src/app/services/ankieta.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 import { Subscription } from 'rxjs';
+import { QuestionnaireListManagementService } from 'src/app/services/management/questionnaire-list-management.service';
 
 @Component({
   selector: 'app-questionnaires-list',
@@ -204,11 +205,13 @@ export class QuestionnairesListComponent implements OnInit{
     private router: Router,
     public dialog: MatDialog,
     private ankietaRest: AnkietaService,
-    private popupService: PopupManagementService
+    private popupService: PopupManagementService,
+    private questionnaireListManager: QuestionnaireListManagementService
   ){ }
 
   ngOnInit(): void {
     this.getAnkietaList()
+    this.getQuestionnaireListSubscribe()
   }
 
   clickItem(id: number){
@@ -219,7 +222,7 @@ export class QuestionnairesListComponent implements OnInit{
     this.router.navigateByUrl('/home/personal-questionnaire')
   }
 
-  getAnkietaList(userData?: string, questionnaireTitle?: string, questionnaireDescription?: string, isActive?: boolean){
+  getAnkietaList(questionnaireTitle?: string, userData?: string, questionnaireDescription?: string, isActive?: boolean){
     this.loadingAnkietaList = true
     this.subAnkietaList = this.ankietaRest.getAnkieta(userData!, questionnaireTitle!, questionnaireDescription!, isActive!).subscribe({
       next: (response) => {
@@ -240,6 +243,12 @@ export class QuestionnairesListComponent implements OnInit{
       complete: () => {
         this.loadingAnkietaList = false;
       }
+    })
+  }
+
+  getQuestionnaireListSubscribe(){
+    this.questionnaireListManager.questionnaireListEmit.subscribe(res => {
+      this.getAnkietaList(res[0], res[1], res[2], res[3])
     })
   }
 

@@ -49,9 +49,10 @@ export class AnkietaService {
     if (questionnaireDescription) {
       param = param.append('questionnaireDescription', questionnaireDescription)
     }
-    if (isActive) {
-      param = param.append('isActive', isActive)
+    if (isActive != null) {
+      param = param.append('isActive', isActive!) 
     }
+
 
     return this.http.get<Array<Ankieta>>(this.PATH, {
       observe: 'response',
