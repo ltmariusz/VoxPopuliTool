@@ -62,7 +62,7 @@
                   <div class="personal_questionnaire_list">
                     <!-- <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon> -->
                     <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
-                    <div class="item_personal" *ngFor="let questionnairePersonal of this.usersAnkietaList">
+                    <div class="item_personal" *ngFor="let questionnairePersonal of this.usersAnkietaPersonalList">
                         <!-- <p *ngIf="">Brak osobistych ankiet</p> -->
                         <div *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.type == 'PRIVATE'" class="personal_container">
                             <div class="row_list">

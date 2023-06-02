@@ -199,6 +199,7 @@ export class QuestionnairesListComponent implements OnInit{
   subAnkietaList?: Subscription
   loadingAnkietaList = false
   usersAnkietaList?: Array<QuestionnaireList>
+  usersAnkietaPersonalList?: Array<QuestionnaireList>
   customErrorAnkietaList?: string
 
   constructor(
@@ -228,7 +229,7 @@ export class QuestionnairesListComponent implements OnInit{
       next: (response) => {
         if(response.body){
           this.usersAnkietaList = response.body
-          console.log(this.usersAnkietaList)
+          this.createPersonalQuestionnaireList()
         }
         else{
           this.customErrorAnkietaList = 'Brak obiektu odpowiedzi';
@@ -244,6 +245,12 @@ export class QuestionnairesListComponent implements OnInit{
         this.loadingAnkietaList = false;
       }
     })
+  }
+
+  createPersonalQuestionnaireList(){
+    this.usersAnkietaPersonalList = this.usersAnkietaList
+    this.usersAnkietaPersonalList = this.usersAnkietaPersonalList!.filter(obj => obj.type == 'PRIVATE')
+    console.log(this.usersAnkietaPersonalList)
   }
 
   getQuestionnaireListSubscribe(){
