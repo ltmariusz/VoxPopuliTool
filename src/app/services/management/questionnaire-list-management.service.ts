@@ -19,5 +19,6 @@ export class QuestionnaireListManagementService {
 
   postQuestionnairePrivate(){
     this.questionnairePrivateEmit.emit()
+    console.log('solo emit')
   }
 }

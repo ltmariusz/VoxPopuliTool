@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,11 +12,13 @@ import { QuestionnaireListManagementService } from 'src/app/services/management/
   templateUrl: './panel-to-create-personal-questionnaire.component.html',
   styleUrls: ['./panel-to-create-personal-questionnaire.component.scss']
 })
-export class PanelToCreatePersonalQuestionnaireComponent implements OnInit{
+export class PanelToCreatePersonalQuestionnaireComponent implements OnInit, OnDestroy{
 
   subQuestionnairePrivate?: Subscription
   customErrorQuestionnairePrivate?: string
   loadingQuestionnairePrivate = false
+
+  subEventEmitterListManagment?: Subscription
 
   personalForm = new FormGroup({
     description: new FormControl ('', [Validators.required])
@@ -43,6 +45,10 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit{
     this.personalForm.controls.description.setValue(this.allFormsManagementService.exampleOfForm2.description);
     this.liveUpdateDescription()
     this.postQuestionnairePrivateSubscribe()
+  }
+
+  ngOnDestroy(): void {
+    this.subEventEmitterListManagment?.unsubscribe()
   }
 
   liveUpdateDescription(){
@@ -115,8 +121,9 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit{
   }
 
   postQuestionnairePrivateSubscribe(){
-    this.questionnaireListManager.questionnairePrivateEmit.subscribe(res => {
+    this.subEventEmitterListManagment = this.questionnaireListManager.questionnairePrivateEmit.subscribe(res => {
       this.postAnkietaPrivate()
+      console.log('test')
     })
   }
 
