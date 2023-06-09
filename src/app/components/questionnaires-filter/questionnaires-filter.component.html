@@ -4,26 +4,24 @@
           <form [formGroup]="searchForm" class="search_row">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Nazwa</mat-label>
-              <input formControlName="name" matInput>
+              <input formControlName="title" matInput>
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Twórca</mat-label>
-                <input formControlName="acronim" matInput>
+                <input formControlName="name" matInput>
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Opis</mat-label>
-                <input formControlName="email" matInput>
+                <input formControlName="description" matInput>
             </mat-form-field>
             <!-- INPUT ZAKRES DAT -->
             <mat-form-field appearance="outline" class="extraGap2">
-                <mat-label>Okres trwania</mat-label>
-                <mat-date-range-input [rangePicker]="picker">
-                    <input matStartDate formControlName="dateStartInput" placeholder="Od">
-                    <input matEndDate formControlName="dateEndInput" placeholder="Do">
-                </mat-date-range-input>
-                <!-- <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint> -->
-                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="isActive">
+                    <mat-option value='all'> Wszystkie</mat-option>
+                    <mat-option [value]=true> Aktywne</mat-option>
+                    <mat-option [value]=false> Nie aktywne</mat-option>
+                </mat-select>
             </mat-form-field> 
             <div class="btn_search_container">
                 <button [disabled]="false" (click)="search()" class="btn_search">Wyszukaj</button>
