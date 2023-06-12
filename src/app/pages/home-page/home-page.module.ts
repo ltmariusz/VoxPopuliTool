@@ -27,15 +27,15 @@ const routes: Routes =[
         loadChildren: () => import('../form-list-page/form-list-page.module').then(m=>m.FormListPageModule),
       },
       {
-        path: 'questionnaire',
+        path: 'questionnaire/:code',
         loadChildren: () => import('../../components/selected-questionnaire/selected-questionnaire.module').then(m=>m.SelectedQuestionnaireModule)
       },
       {
-        path: 'generate-personal-questionnaire',
+        path: 'generate-personal-questionnaire/:code',
         loadChildren: () => import('../generate-personal-questionnaire-page/generate-personal-questionnaire-page.module').then(m=>m.GeneratePersonalQuestionnairePageModule)
       },
       {
-        path: 'personal-questionnaire',
+        path: 'personal-questionnaire/:code',
         loadChildren: () => import('../personal-preview-questionnaire-page/personal-preview-questionnaire-page.module').then(m=>m.PersonalPreviewQuestionnairePageModule)
       },
       {

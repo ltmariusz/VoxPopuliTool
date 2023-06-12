@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { QuestionListAll } from 'src/app/services/ankieta.service';
 import { AllFormsManagementService } from 'src/app/services/management/all-forms-management.service';
 import { OneQuestion } from 'src/app/services/management/create-forms-management.service';
 
@@ -17,7 +18,7 @@ export class AnswerFormSingleChoiceComponent implements OnInit {
 
   // najpewnie to będzie zmienna typu input
   @Input() index!: number
-  @Input() listOfQuestionToShow!: OneQuestion
+  @Input() listOfQuestionToShow!: any
 
   question!: string
 

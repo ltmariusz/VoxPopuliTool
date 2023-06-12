@@ -15,187 +15,6 @@ import { QuestionnaireListManagementService } from 'src/app/services/management/
 })
 export class QuestionnairesListComponent implements OnInit{
 
-  questionnairesList = [
-    {
-      id: 0,
-      name: 'Testowa ankieta',
-      type: 'Osobista',
-      status: 'publiczna',
-      personalList: [
-        {
-          id: 0,
-          name: "testowa ankieta osobista nr 1",
-        },
-        {
-          id: 1,
-          name: "super nowa jak supernowa",
-        }
-      ]
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 0,
-      name: 'Testowa ankieta',
-      type: 'Osobista',
-      status: 'publiczna',
-      personalList: [
-        {
-          id: 0,
-          name: "testowa ankieta osobista nr 1",
-        },
-        {
-          id: 1,
-          name: "super nowa jak supernowa",
-        }
-      ]
-    },
-    {
-      id: 0,
-      name: 'Testowa ankieta',
-      type: 'Osobista',
-      status: 'prywatna',
-      personalList: [
-        {
-          id: 0,
-          name: "testowa ankieta osobista nr 1",
-        },
-        {
-          id: 1,
-          name: "super nowa jak supernowa",
-        }
-      ]
-    },
-    {
-      id: 0,
-      name: 'Testowa ankieta',
-      type: 'Osobista',
-      status: 'prywatna',
-      personalList: [
-        {
-          id: 0,
-          name: "testowa ankieta osobista nr 1",
-        },
-        {
-          id: 1,
-          name: "super nowa jak supernowa",
-        }
-      ]
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-    {
-      id: 1,
-      name: 'Kolejna ankieta',
-      type: 'Ogólna',
-      status: 'prywatna',
-    },
-  ]
-
   subAnkietaList?: Subscription
   loadingAnkietaList = false
   usersAnkietaList?: Array<QuestionnaireList>
@@ -216,11 +35,11 @@ export class QuestionnairesListComponent implements OnInit{
   }
 
   clickItem(id: number){
-    this.router.navigateByUrl('/home/questionnaire')
+    this.router.navigateByUrl(`/home/questionnaire/${id}`)
   }
 
   personalQuestionnaire(id: number){
-    this.router.navigateByUrl('/home/personal-questionnaire')
+    this.router.navigateByUrl(`/home/personal-questionnaire/${id}`)
   }
 
   getAnkietaList(questionnaireTitle?: string, userData?: string, questionnaireDescription?: string, isActive?: boolean){
@@ -249,7 +68,7 @@ export class QuestionnairesListComponent implements OnInit{
 
   createPersonalQuestionnaireList(){
     this.usersAnkietaPersonalList = this.usersAnkietaList
-    this.usersAnkietaPersonalList = this.usersAnkietaPersonalList!.filter(obj => obj.type == 'PRIVATE')
+    this.usersAnkietaPersonalList = this.usersAnkietaPersonalList!.filter(obj => obj.questionnaireType == 'PRIVATE')
     console.log(this.usersAnkietaPersonalList)
   }
 
@@ -388,7 +207,7 @@ export class QuestionnairesListComponent implements OnInit{
   }
 
   generatePersonal(id: number){
-    this.router.navigateByUrl('/home/generate-personal-questionnaire');
+    this.router.navigateByUrl(`/home/generate-personal-questionnaire/${id}`);
   }
 
 }

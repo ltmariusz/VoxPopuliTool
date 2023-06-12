@@ -22,7 +22,7 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
 
 
   @Input() index!: number
-  @Input() listOfQuestionToShow!: OneQuestion
+  @Input() listOfQuestionToShow!: any
 
   question!: string
   howMuchAnswers!: number
@@ -36,9 +36,9 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
     //  console.log(this.listOfQuestionToShow)
     //  console.log(this.index)
     this.chosenOrNot = new Array
-    this.howMuchAnswers = this.listOfQuestionToShow.allAnswers!.length
+    this.howMuchAnswers = this.listOfQuestionToShow.answerVariants!.length
     for (let i = 0; i < this.howMuchAnswers; i++) {
-      const element = this.listOfQuestionToShow.allAnswers![i];
+      const element = this.listOfQuestionToShow.answerVariants![i].answer;
       this.chosenOrNot.push({ answer: element, checked: false })
     }
     this.question = this.listOfQuestionToShow.question

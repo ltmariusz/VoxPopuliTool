@@ -17,7 +17,7 @@ export class AnswerFormLongAnswerComponent implements OnInit{
 
   // najpewnie to będzie zmienna typu input
  @Input() index!: number
- @Input() listOfQuestionToShow!: OneQuestion
+ @Input() listOfQuestionToShow!: any
   
  question!:string
 

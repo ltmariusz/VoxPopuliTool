@@ -8,7 +8,7 @@ export interface QuestionnaireList{
   title: string,
   description: string,
   creatorId: number,
-  type: string,
+  questionnaireType: string,
   isPublic: boolean,
   isActive: boolean,
   parentId: number,
@@ -41,6 +41,36 @@ export interface NewPrivateQuestionnaire{
 export interface MetadataList{
   key: string,
   value: string
+}
+
+export interface QuestionListAll{
+  id: number,
+  questionnaireId: number,
+  questionType: string,
+  isAnswerRequired: boolean,
+  question: string,
+  answerVariants: Array<AnswerVariants>,
+  createDate: string
+}
+export interface AnswerVariants{
+  id: number,
+  questionId: number,
+  answer: string,
+  createDate: string
+}
+
+export interface Questionnaire{
+  id: number,
+  title: string,
+  description: string,
+  creatorId: number,
+  questionnaireType: string,
+  isPublic: boolean,
+  isActive: boolean,
+  parentId: number,
+  uniqueCode: string,
+  link: string,
+  createDate: string
 }
 
 
@@ -86,6 +116,23 @@ export class AnkietaService {
       observe: 'response',
       responseType: 'json',
       params: param,
+    })
+  }
+  //------------------------------------------------------------------------//
+
+  getAnkietaId(id: number): Observable<HttpResponse<Questionnaire>> {
+    return this.http.get<Questionnaire>(this.PATH + `/${id}`, {
+      observe: 'response',
+      responseType: 'json'
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
+  getAnkietaIdQuestions(id: number): Observable<HttpResponse<Array<QuestionListAll>>> {
+    return this.http.get<Array<QuestionListAll>>(this.PATH + `/${id}/questions`, {
+      observe: 'response',
+      responseType: 'json'
     })
   }
 

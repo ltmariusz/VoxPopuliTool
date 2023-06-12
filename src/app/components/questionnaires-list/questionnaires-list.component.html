@@ -33,7 +33,7 @@
 
             <mat-accordion class="mat_accord">
                 <mat-expansion-panel *ngFor="let questionnaire of this.usersAnkietaList" hideToggle class="mat_panel">
-                  <mat-expansion-panel-header *ngIf="questionnaire.type == 'GLOBAL'">
+                  <mat-expansion-panel-header *ngIf="questionnaire.questionnaireType == 'GLOBAL'">
                     <mat-panel-title class="mat_title">
                         <div class="row_list">
                             <div class="icon desktop">
@@ -64,7 +64,7 @@
                     <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
                     <div class="item_personal" *ngFor="let questionnairePersonal of this.usersAnkietaPersonalList">
                         <!-- <p *ngIf="">Brak osobistych ankiet</p> -->
-                        <div *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.type == 'PRIVATE'" class="personal_container">
+                        <div *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.questionnaireType == 'PRIVATE'" class="personal_container">
                             <div class="row_list">
                                 <div class="icon desktop">
                                     <mat-icon class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>

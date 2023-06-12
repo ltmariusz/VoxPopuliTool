@@ -15,7 +15,7 @@ export class AnswerFormRateComponent implements OnInit {
     private fb: FormBuilder) { }
 
   @Input() index!: number
-  @Input() listOfQuestionToShow!: OneQuestion
+  @Input() listOfQuestionToShow!: any
 
   question!: string
   rateAnswerForm!: FormGroup
