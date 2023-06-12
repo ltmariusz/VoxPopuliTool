@@ -73,6 +73,14 @@ export interface Questionnaire{
   createDate: string
 }
 
+export interface QuestionnaireContactList{
+  id: number,
+  questionnaireId: number,
+  contactType: string,
+  value: string,
+  createDate: string
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -131,6 +139,15 @@ export class AnkietaService {
 
   getAnkietaIdQuestions(id: number): Observable<HttpResponse<Array<QuestionListAll>>> {
     return this.http.get<Array<QuestionListAll>>(this.PATH + `/${id}/questions`, {
+      observe: 'response',
+      responseType: 'json'
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
+  getAnkietaIdContact(id: number): Observable<HttpResponse<Array<QuestionnaireContactList>>> {
+    return this.http.get<Array<QuestionnaireContactList>>(this.PATH + `/${id}/contact`, {
       observe: 'response',
       responseType: 'json'
     })

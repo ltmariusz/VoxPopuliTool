@@ -11,7 +11,7 @@
         <div class="title">
             Kontakt docelowy
         </div>
-        <div class="item_container">
+        <!-- <div class="item_container" >
             <div class="mail_column">
                 <div class="item_row">
                     <mat-icon class="mail_icon" fontIcon="mail"></mat-icon>
@@ -32,7 +32,27 @@
                         333 443 211
                 </div>
             </div>
+        </div> -->
+        <div class="item_container">
+            <div class="mail_column">
+                <div class="item_container" *ngFor="let contact of this.questionsContact">
+                    <div class="item_row" *ngIf="contact.contactType == 'EMAIL'">
+                        <mat-icon class="mail_icon" fontIcon="mail"></mat-icon>
+                        {{contact.value}}
+                    </div>
+                </div>
+            </div>
+            <div class="phone_column">
+                <div class="item_container" *ngFor="let contact of this.questionsContact">
+                    <div class="item_row" *ngIf="contact.contactType == 'PHONE'">
+                        <mat-icon class="mail_icon" fontIcon="call"></mat-icon>
+                        {{contact.value}}
+                    </div>
+                </div>
+                
+            </div>
         </div>
+        
     </div>
     <div class="card">
         <div class="title">
