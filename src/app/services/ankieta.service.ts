@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Message } from './auth.service';
 
-export interface QuestionnaireList{
+export interface QuestionnaireList {
   id: number,
   title: string,
   description: string,
@@ -17,28 +17,69 @@ export interface QuestionnaireList{
   createDate: string
 }
 
-export interface NewQuestionnaire{
+export interface FormIdQuestion {
+  id: number,
+  questionnaireId: number,
+  questionType: string,
+  isAnswerRequired: boolean,
+  question: string,
+  answerVariants: Array<AnswerVariants>,
+  createDate: string
+}
+export interface AnswerVariants {
+  id: number,
+  questionId: number,
+  answer: string,
+  createDate: string
+}
+
+export interface Metadata {
+  id: number,
+  questionnaireId: number,
+  key: string,
+  value: string,
+  createDate: string
+}
+
+export interface NewQuestionnaire {
   title: string,
   description: string,
   isPublic: boolean,
   questionList: Array<QuestionList>
 }
 
-export interface QuestionList{
+export interface Contact {
+  id: number,
+  questionnaireId: number,
+  contactType: string,
+  value: string,
+  createDate: string
+}
+
+export interface PublicForm {
+  id: number,
+  title: string,
+  description: string,
+  questionnaireType: string,
+  createDate: string
+}
+
+
+export interface QuestionList {
   type: number,
   question: string,
   answerList: Array<string>,
   isRequired: boolean
 }
 
-export interface NewPrivateQuestionnaire{
+export interface NewPrivateQuestionnaire {
   description: string,
   emailList: Array<string>,
   phoneNumberList: Array<string>,
   metadataList: Array<MetadataList>
 }
 
-export interface MetadataList{
+export interface MetadataList {
   key: string,
   value: string
 }
@@ -78,9 +119,8 @@ export class AnkietaService {
       param = param.append('questionnaireDescription', questionnaireDescription)
     }
     if (isActive != null) {
-      param = param.append('isActive', isActive!) 
+      param = param.append('isActive', isActive!)
     }
-
 
     return this.http.get<Array<QuestionnaireList>>(this.PATH, {
       observe: 'response',
@@ -88,6 +128,97 @@ export class AnkietaService {
       params: param,
     })
   }
+
+  getAnkietaId(
+    id: number
+  ): Observable<HttpResponse<QuestionnaireList>> {
+    let param = new HttpParams();
+
+    if (id) {
+      param = param.append('id', id)
+    }
+    return this.http.get<QuestionnaireList>(this.PATH + `/${id}`, {
+      observe: 'response',
+      responseType: 'json',
+      params: param
+    })
+  }
+
+  getAkietaIdQuestions(
+    id: number
+  ): Observable<HttpResponse<Array<FormIdQuestion>>> {
+    let param = new HttpParams();
+
+    if (id) {
+      param = param.append('id', id)
+    }
+    return this.http.get<Array<FormIdQuestion>>(this.PATH + `/${id}/questions`, {
+      observe: 'response',
+      responseType: 'json',
+      params: param
+    })
+  }
+
+  getAkietaIdMetadata(
+    id: number
+  ): Observable<HttpResponse<Array<Metadata>>> {
+    let param = new HttpParams();
+
+    if (id) {
+      param = param.append('id', id)
+    }
+    return this.http.get<Array<Metadata>>(this.PATH + `/${id}/metadata`, {
+      observe: 'response',
+      responseType: 'json',
+      params: param
+    })
+  }
+
+  getAkietaIdContact(
+    id: number
+  ): Observable<HttpResponse<Array<Contact>>> {
+    let param = new HttpParams();
+
+    if (id) {
+      param = param.append('id', id)
+    }
+    return this.http.get<Array<Contact>>(this.PATH + `/${id}/contact`, {
+      observe: 'response',
+      responseType: 'json',
+      params: param
+    })
+  }
+
+  getPublicAkietaUuid(
+    uuid: number
+  ): Observable<HttpResponse<PublicForm>> {
+    let param = new HttpParams();
+
+    if (uuid) {
+      param = param.append('uuid', uuid)
+    }
+    return this.http.get<PublicForm>(this.PATH + `/api/v1/ankieta/public/ankieta/${uuid}`, {
+      observe: 'response',
+      responseType: 'json',
+      params: param
+    })
+  }
+
+  getPublicAkietaUuidQuestion(
+    uuid: number
+  ): Observable<HttpResponse<Array<Contact>>> {
+    let param = new HttpParams();
+
+    if (uuid) {
+      param = param.append('uuid', uuid)
+    }
+    return this.http.get<Array<Contact>>(this.PATH + `/api/v1/ankieta/public/ankieta/${uuid}/questions`, {
+      observe: 'response',
+      responseType: 'json',
+      params: param
+    })
+  }
+  
 
   //------------------------------------------------------------------------//
   // POST POST POST POST POST POST POST POST POST POST POST POST POST POST  //
@@ -98,7 +229,7 @@ export class AnkietaService {
     description: string,
     isPublic: boolean,
     questionList: Array<QuestionList>
-    ): Observable<HttpResponse<Message>> {
+  ): Observable<HttpResponse<Message>> {
     return this.http.post<Message>(this.PATH, {
       title: title,
       description: description,
@@ -118,7 +249,7 @@ export class AnkietaService {
     emailList: Array<string>,
     phoneNumberList: Array<string>,
     metadataList: Array<MetadataList>
-    ): Observable<HttpResponse<Message>> {
+  ): Observable<HttpResponse<Message>> {
     return this.http.post<Message>(this.PATH + `/${global_questionnaire_id}/private`, {
       description: description,
       emailList: emailList,

@@ -12,16 +12,6 @@ export interface CreatePola{
   opcje: string
 }
 
-export interface Form{
-  name: string,
-  idCreator: number,
-  description: string,
-  timeStart: string,
-  timeEnd: string,
-  isIndividual: boolean,
-  whenCreated: string 
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -43,12 +33,6 @@ export class QuestionnaireService {
     })
   }
 
-  getAnkiety():Observable<HttpResponse<Array<Form>>>{
-    return this.http.get<Array<Form>>(this.PATH + `/ankiety`, {
-      observe: 'response',
-      responseType: 'json'
-    })
-  }
   //----------------POST----------------//
 
   postCreate(
