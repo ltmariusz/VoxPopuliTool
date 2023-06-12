@@ -69,7 +69,6 @@ export class PreviewPersonalQuestionnaireComponent implements OnInit{
         if(response.body){
           this.questionaire = response.body
           console.log(response.body)
-          this.questionnaireListManager.descriptionFromQuestionaireToPrivate = this.questionaire.description
         }
         else{
           this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';

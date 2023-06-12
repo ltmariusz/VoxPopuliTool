@@ -5,8 +5,6 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class QuestionnaireListManagementService {
 
-  descriptionFromQuestionaireToPrivate?: string
-
   questionnaireListEmit: EventEmitter<any> = new EventEmitter();
 
   questionnairePrivateEmit: EventEmitter<any> = new EventEmitter();
