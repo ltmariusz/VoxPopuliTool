@@ -200,7 +200,13 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    border-bottom: 1px solid #ebebeb;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
 }
+// .personal_container:hover{
+//     background-color: #dddddd;
+// }
 .icon_to_personal_list_arrow{
     margin-bottom: 8px;
     margin-left: 1rem;
@@ -209,7 +215,7 @@
     margin-left: 3.2rem;
     display: flex;
     flex-direction: column;
-    row-gap: 0.5rem;
+    // row-gap: 0.5rem;
 }
 
 
