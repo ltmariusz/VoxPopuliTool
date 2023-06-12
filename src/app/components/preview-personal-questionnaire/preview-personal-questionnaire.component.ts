@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { AnkietaService, QuestionList, QuestionListAll, Questionnaire } from 'src/app/services/ankieta.service';
 import { AllFormsManagementService, OneQuestion } from 'src/app/services/management/all-forms-management.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
+import { QuestionnaireListManagementService } from 'src/app/services/management/questionnaire-list-management.service';
 
 @Component({
   selector: 'app-preview-personal-questionnaire',
@@ -29,6 +30,7 @@ export class PreviewPersonalQuestionnaireComponent implements OnInit{
     private ankietaRest: AnkietaService,
     private popupService: PopupManagementService,
     private route: ActivatedRoute,
+    private questionnaireListManager: QuestionnaireListManagementService,
     ) { }
 
   listOfQuestionToShow!: Array<OneQuestion>
@@ -67,6 +69,7 @@ export class PreviewPersonalQuestionnaireComponent implements OnInit{
         if(response.body){
           this.questionaire = response.body
           console.log(response.body)
+          this.questionnaireListManager.descriptionFromQuestionaireToPrivate = this.questionaire.description
         }
         else{
           this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';

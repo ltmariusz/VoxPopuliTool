@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AnkietaService } from 'src/app/services/ankieta.service';
+import { AnkietaService, Questionnaire } from 'src/app/services/ankieta.service';
 import { AllFormsManagementService } from 'src/app/services/management/all-forms-management.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 import { QuestionnaireListManagementService } from 'src/app/services/management/questionnaire-list-management.service';
@@ -19,6 +19,13 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit, OnDe
   loadingQuestionnairePrivate = false
 
   subEventEmitterListManagment?: Subscription
+
+  idParam?: string
+
+  subQuestionaire?: Subscription
+  questionaire?: Questionnaire
+  loadingQuestionaire = false
+  customErrorQuestionaire?: string
 
   personalForm = new FormGroup({
     description: new FormControl ('', [Validators.required])
@@ -38,11 +45,14 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit, OnDe
     private questionnaireListManager: QuestionnaireListManagementService,
     private popupService: PopupManagementService,
     private ankietaRest: AnkietaService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
     ){ }
 
   ngOnInit(): void {
-    this.personalForm.controls.description.setValue(this.allFormsManagementService.exampleOfForm2.description);
+    this.checkUrl()
+    this.getQuestionaire()
+    // this.personalForm.controls.description.setValue(this.questionaire?.description!);
     this.liveUpdateDescription()
     this.postQuestionnairePrivateSubscribe()
   }
@@ -57,6 +67,36 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit, OnDe
       // this.allFormsManagementService.exampleOfForm2.description = value!
       // console.log(this.allFormsManagementService.exampleOfForm2.description)
     });
+  }
+
+  checkUrl() {
+    this.route.paramMap.subscribe(params => {
+      this.idParam = params.get('code')!
+    });
+  }
+
+  getQuestionaire(){
+    this.loadingQuestionaire = true
+    this.subQuestionaire = this.ankietaRest.getAnkietaId(Number(this.idParam)).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionaire = response.body
+          this.personalForm.controls.description.setValue(this.questionaire?.description!);
+        }
+        else{
+          this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionaire)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionaire = false
+        this.customErrorQuestionaire = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionaire!)
+      },
+      complete: () => {
+        this.loadingQuestionaire = false;
+      }
+    })
   }
 
   addMetadate() {
