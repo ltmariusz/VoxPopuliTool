@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UserService } from '../services/user.service';
+import { UserDataService } from '../services/global-services/user-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +11,9 @@ export class CheckLoginGuard implements CanActivate {
 
   constructor(
     // private userGlobalService: UserDataService,
-    // private userRest: UserRestService,
+    private userRest: UserService,
     private router: Router,
-    // private user: UserDataService,
+    private user: UserDataService,
   ){}
   
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
@@ -36,40 +38,40 @@ export class CheckLoginGuard implements CanActivate {
   }
   private check(onlyAdmin: boolean):Promise<boolean>{
     return new Promise<boolean>((resolve, rejects) => {
-    //   this.userRest.getUser()
-    //   .subscribe({
-    //     next: (response) => {
-    //       if(response.body){
-    //         if(onlyAdmin){
-    //           if(response.body.type == 'Admin'){
-    //             this.user.setUser(response.body);
-    //             resolve(true)
-    //           }
-    //           else{
-    //             this.router.navigateByUrl('/login');
-    //             resolve(false)
-    //           }
-    //         }
-    //         else{
-    //           this.user.setUser(response.body);
-    //           resolve(true)
-    //         }
-    //       }
-    //       else{
-    //         this.router.navigateByUrl('/login');
-    //         resolve(false)
-    //       }
-    //     },
-    //     error: (errorResponse) => {
-    //       this.router.navigateByUrl('/login');
-    //       resolve(false)
+      this.userRest.getUser()
+      .subscribe({
+        next: (response) => {
+          if(response.body){
+            if(onlyAdmin){
+              if(response.body.role == 'ADMIN'){
+                this.user.setUser(response.body);
+                resolve(true)
+              }
+              else{
+                this.router.navigateByUrl('/login');
+                resolve(false)
+              }
+            }
+            else{
+              this.user.setUser(response.body);
+              resolve(true)
+            }
+          }
+          else{
+            this.router.navigateByUrl('/login');
+            resolve(false)
+          }
+        },
+        error: (errorResponse) => {
+          this.router.navigateByUrl('/login');
+          resolve(false)
 
-    //     },
-    //     complete: () => {
+        },
+        complete: () => {
 
-    //     }
-    //   }
-    // )
+        }
+      }
+    )
     }
   )}
   
