@@ -1,12 +1,21 @@
 <div class="row_title">
-    <h2>Ankieta 0543BBY Owoce leśne</h2>
-    <div class="rate">
+    <h2>Ankieta - {{this.questionaire?.title}}</h2>
+    <!-- <div class="rate">
         <mat-icon color="primary">star</mat-icon>
         <mat-icon color="primary">star</mat-icon>
         <mat-icon color="primary">star</mat-icon>
         <mat-icon color="primary">star_half</mat-icon>
         <mat-icon color="primary">star_outline</mat-icon>
+    </div> -->
+    <div *ngIf="this.questionaire?.isActive" class="icons">
+        <div class="circle_green"></div>
+        <p>Aktywna</p>
     </div>
+    <div *ngIf="!this.questionaire?.isActive" class="icons">
+        <div class="circle_red"></div>
+        <p>Nieaktywna</p>
+    </div>
+    
 </div>
 <div class="list_of_items">
     <div *ngFor="let questionnaire of poll; let i = index" class="card">

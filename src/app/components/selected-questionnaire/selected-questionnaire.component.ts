@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from 'ng-apexcharts';
+import { Subscription } from 'rxjs';
+import { AnkietaService, QuestionListAll, Questionnaire } from 'src/app/services/ankieta.service';
+import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -18,6 +22,18 @@ export class SelectedQuestionnaireComponent implements OnInit{
   alphabet = [
     'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','W','X','Y','Z'
   ]
+
+  idParam?: string
+
+  subQuestionaire?: Subscription
+  questionaire?: Questionnaire
+  loadingQuestionaire = false
+  customErrorQuestionaire?: string
+
+  subQuestionsList?: Subscription
+  questionsList?: Array<QuestionListAll>
+  loadingQuestionsList = false
+  customErrorQuestionsList?: string
 
   poll = [
     {
@@ -77,7 +93,11 @@ export class SelectedQuestionnaireComponent implements OnInit{
   @ViewChild("chart") chart?: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
+  constructor(
+    private ankietaRest: AnkietaService,
+    private route: ActivatedRoute,
+    private popupService: PopupManagementService,
+  ) {
     this.chartOptions = {
       series: [44, 55, 13, 43],
       chart: {
@@ -113,8 +133,66 @@ export class SelectedQuestionnaireComponent implements OnInit{
     };
   }
   ngOnInit(): void {
+    this.checkUrl()
+    this.getQuestionaire()
+    this.getQuestionsList()
+
     this.loadLabelsTochart()
     this.loadSeriesToChart()
+  }
+
+  checkUrl() {
+    this.route.paramMap.subscribe(params => {
+      this.idParam = params.get('code')!
+    });
+  }
+
+  getQuestionaire(){
+    this.loadingQuestionaire = true
+    this.subQuestionaire = this.ankietaRest.getAnkietaId(Number(this.idParam)).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionaire = response.body
+          console.log(response.body)
+        }
+        else{
+          this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionaire)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionaire = false
+        this.customErrorQuestionaire = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionaire!)
+      },
+      complete: () => {
+        this.loadingQuestionaire = false;
+      }
+    })
+  }
+
+  getQuestionsList(){
+    this.loadingQuestionsList = true
+    this.subQuestionsList = this.ankietaRest.getAnkietaIdQuestions(Number(this.idParam)).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionsList = response.body
+          console.log(response.body)
+        }
+        else{
+          this.customErrorQuestionsList = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionsList)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionsList = false
+        this.customErrorQuestionsList = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionsList!)
+      },
+      complete: () => {
+        this.loadingQuestionsList = false;
+      }
+    })
   }
 
   loadLabelsTochart(){

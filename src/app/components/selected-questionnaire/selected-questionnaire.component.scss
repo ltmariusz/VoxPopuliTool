@@ -35,18 +35,42 @@
 .row_title{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    column-gap: 1rem;
+    // justify-content: space-between;
 }
-// .row_title .rate{
-    
-// } 
+.row_title h2{
+    margin-bottom: 16px;
+}
 .row_title .rate mat-icon{
     font-size: 2rem;
     width: auto;
     height: auto;
     color: #ecc828;   
 }
-
+.row_title .icons{
+    display: flex;
+    flex-direction: row;
+    // justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    column-gap: 0.5rem;
+}
+.row_title .icons p{
+    margin-bottom: 0px;
+}
+.circle_green{
+    height: 12px;
+    width: 12px;
+    background-color: #22e395;
+    border-radius: 50%;
+}
+.circle_red{
+    height: 12px;
+    width: 12px;
+    background-color: #fd4560;
+    border-radius: 50%;
+}
 
 
 
