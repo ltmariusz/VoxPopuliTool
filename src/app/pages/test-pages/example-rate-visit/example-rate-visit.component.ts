@@ -20,13 +20,12 @@ export class ExampleRateVisitComponent implements OnInit {
   ngOnInit() {
 
 
-
-    
     this.didYouEndAnswering=false
     this.allFormsManagementService.didYouEndAnswering = this.didYouEndAnswering
     this.titleForm = this.allFormsManagementService.exampleRateVisit.title
     this.descriptionForm = this.allFormsManagementService.exampleRateVisit.description
     this.listOfQuestionToShow = this.allFormsManagementService.exampleRateVisit.questions
+    console.log(this.listOfQuestionToShow)
     if(this.titleForm ===undefined || this.descriptionForm===undefined){
       console.log("undefined")
     }

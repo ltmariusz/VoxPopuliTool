@@ -7,13 +7,14 @@ export interface OneForm {
 }
 
 /**
- * 0 - singleChoice
- * 1 - multiplyChoice
- * 2 - longAnswer
- * 3 - rateAnswer
+ * typeOfQuestion
+ * 0 - singleChoice - SINGLE_CHOICE
+ * 1 - multiplyChoice - MULTIPLE_CHOICE
+ * 2 - longAnswer - TEXT
+ * 3 - rateAnswer - RATING
  */
-export interface OneQuestion {
-  typeOfQuestion: number,
+ export interface OneQuestion {
+  typeOfQuestion: string;
   question: string;
   allAnswers?: Array<string>;
 }
@@ -64,87 +65,87 @@ export class AllFormsManagementService {
       description: "To jest testowa ankieta w której będziesz odpowiadał jak chcesz",
       questions: [
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "Jakie są najpopularniejsze języki programowania?",
           allAnswers: ["JavaScript", "Python", "Java", "C++", "C#"],
 
         },
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "Co oznacza skrót HTML?",
           allAnswers: ["HyperText Markup Language", "Nic"],
 
         },
         {
-          typeOfQuestion: 1,
+          typeOfQuestion: "MULTIPLE_CHOICE",
           question: "W jakim roku założono firmę Apple?",
           allAnswers: ["1976", "1000", "Jutro założą", "Jedna odpowiedz i ta jest poprawna"],
 
         },
         {
-          typeOfQuestion: 1,
+          typeOfQuestion: "MULTIPLE_CHOICE",
           question: "Która planeta jest najbliższa Słońcu?",
           allAnswers: ["Merkury", "Ziemia", "Ktoś jeszcze"],
 
         },
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "Jak nazywa się największy kontynent na Ziemi?",
           allAnswers: ["Azja"],
 
         },
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "Kto napisał powieść 'Wojna i pokój'?",
           allAnswers: ["Lew Tołstoj"],
 
         },
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "Ile wynosi pierwiastek kwadratowy z 144?",
           allAnswers: ["12"],
 
         },
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "W którym roku odbyła się pierwsza wyprawa człowieka na Księżyc?",
           allAnswers: ["1969"],
 
         },
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "Kto namalował obraz Mona Lisa?",
           allAnswers: ["Leonardo da Vinci"],
 
         },
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "Jak nazywa się najdłuższa rzeka na świecie?",
           allAnswers: ["Nil"],
 
         },
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "Które zwierzę jest największe na Ziemi?",
           allAnswers: ["Błękitny wieloryb"],
 
         },
         {
-          typeOfQuestion: 0,
+          typeOfQuestion: "SINGLE_CHOICE",
           question: "Które państwo jest największym producentem kawy na świecie?",
           allAnswers: ["Brazylia"],
 
         },
         {
-          typeOfQuestion: 2,
+          typeOfQuestion: "TEXT",
           question: "Ile dni ma rok przestępny?",
         },
         {
-          typeOfQuestion: 2,
+          typeOfQuestion: "TEXT",
           question: "opowiedz mi osobie",
         },
         {
-          typeOfQuestion: 3,
+          typeOfQuestion: "RATING",
           question: "Jak bardzo nas lubisz",
         },
       ]
@@ -153,87 +154,87 @@ export class AllFormsManagementService {
 
   exampleOfForm1: Array<OneQuestion> = [
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "Jakie są najpopularniejsze języki programowania?",
       allAnswers: ["JavaScript", "Python", "Java", "C++", "C#"],
 
     },
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "Co oznacza skrót HTML?",
       allAnswers: ["HyperText Markup Language", "Nic"],
 
     },
     {
-      typeOfQuestion: 1,
+      typeOfQuestion: "MULTIPLE_CHOICE",
       question: "W jakim roku założono firmę Apple?",
       allAnswers: ["1976", "1000", "Jutro założą", "Jedna odpowiedz i ta jest poprawna"],
 
     },
     {
-      typeOfQuestion: 1,
+      typeOfQuestion: "MULTIPLE_CHOICE",
       question: "Która planeta jest najbliższa Słońcu?",
       allAnswers: ["Merkury", "Ziemia", "Ktoś jeszcze"],
 
     },
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "Jak nazywa się największy kontynent na Ziemi?",
       allAnswers: ["Azja"],
 
     },
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "Kto napisał powieść 'Wojna i pokój'?",
       allAnswers: ["Lew Tołstoj"],
 
     },
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "Ile wynosi pierwiastek kwadratowy z 144?",
       allAnswers: ["12"],
 
     },
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "W którym roku odbyła się pierwsza wyprawa człowieka na Księżyc?",
       allAnswers: ["1969"],
 
     },
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "Kto namalował obraz Mona Lisa?",
       allAnswers: ["Leonardo da Vinci"],
 
     },
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "Jak nazywa się najdłuższa rzeka na świecie?",
       allAnswers: ["Nil"],
 
     },
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "Które zwierzę jest największe na Ziemi?",
       allAnswers: ["Błękitny wieloryb"],
 
     },
     {
-      typeOfQuestion: 0,
+      typeOfQuestion: "SINGLE_CHOICE",
       question: "Które państwo jest największym producentem kawy na świecie?",
       allAnswers: ["Brazylia"],
 
     },
     {
-      typeOfQuestion: 2,
+      typeOfQuestion: "TEXT",
       question: "Ile dni ma rok przestępny?",
     },
     {
-      typeOfQuestion: 2,
+      typeOfQuestion: "TEXT",
       question: "opowiedz mi osobie",
     },
     {
-      typeOfQuestion: 3,
+      typeOfQuestion: "RATING",
       question: "Jak bardzo nas lubisz",
     },
   ];
@@ -243,24 +244,24 @@ export class AllFormsManagementService {
     description: "Właśnie miała miejsce twoja dostawa. Twoja opinia jest dla nas bardzo ważna. Prosimy Cię o uzupełnienie tej prostej ankiety. Pozwoli to nam poprawić naszą pracę. Numer dostawy: 4568561. Data dostawy: 25.05.2023. Kierowca: GNOK2202 Mariusz Lemanski",
     questions:[
       {
-        typeOfQuestion: 3,
+        typeOfQuestion: "RATING",
         question: "Jak oceniasz dostawę?",
       },
       {
-        typeOfQuestion: 3,
+        typeOfQuestion: "RATING",
         question: "Jak oceniasz czas realizacji?",
       },
       {
-        typeOfQuestion: 0,
+        typeOfQuestion: "SINGLE_CHOICE",
         question: "Czy dotarły do Ciebie wszystkie zamówione produkty?",
         allAnswers: ["tak", "nie"]
       },
       {
-        typeOfQuestion: 2,
+        typeOfQuestion: "TEXT",
         question: "Opisz brakujące produkty",
       },
       {
-        typeOfQuestion: 2,
+        typeOfQuestion: "TEXT",
         question: "Uwagi do dostawy",
       },
     ]
@@ -270,33 +271,33 @@ export class AllFormsManagementService {
     description: "Dziś odwiedził Cię Twój opiekun handlowy mamy nadzieje, że jesteś zadowolony z tej wizyty. Prosimy Cię o uzupęlnienie tej prostej ankiety.",
     questions:[
       {
-        typeOfQuestion: 0,
+        typeOfQuestion: "SINGLE_CHOICE",
         question: "Czy wizyta okazała się pomocna?",
         allAnswers: ["Zdecydowanie tak", "tak", "raczej tak", "raczej nie", "nie", "Zdecydowanie nie"]
       },
       {
-        typeOfQuestion: 1,
+        typeOfQuestion: "MULTIPLE_CHOICE",
         question: "Co zaproponował Ci opiekun?",
         allAnswers:["produkt w niższek cenie","dołączenie do programu lojalnościowego","przedstawił listę nowych pakietów","zaproponował opłatę zalegających faktór"]
       },
       {
-        typeOfQuestion: 3,
+        typeOfQuestion: "RATING",
         question: "Jak oceniasz przebieg wizyty?",
       },
       {
-        typeOfQuestion: 3,
+        typeOfQuestion: "RATING",
         question: "Jak oceniasz współprace z aktualnym opiekunem?",
       },
       {
-        typeOfQuestion: 2,
+        typeOfQuestion: "TEXT",
         question: "Czy masz jakieś uwagi do wizyty?",
       },
       {
-        typeOfQuestion: 3,
+        typeOfQuestion: "RATING",
         question: "Jak oceniasz prezencje przedstawiciela?",
       },
       {
-        typeOfQuestion: 2,
+        typeOfQuestion: "TEXT",
         question: "Czy masz jakieś uwagi do prezencji przedstawiciela",
       }
     ]

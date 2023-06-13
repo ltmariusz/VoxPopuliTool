@@ -19,13 +19,50 @@
                         <app-answer-form-long-answer [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
                         </app-answer-form-long-answer>
                     </div>
-                    <div *ngSwitchCase="3"><app-answer-form-rate [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]"></app-answer-form-rate></div>
+                    <div *ngSwitchCase="3">
+                        <app-answer-form-rate [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
+                        </app-answer-form-rate>
+                    </div>
                     <div *ngSwitchDefault>błąd</div>
                 </div>
-                
             </div>
+            <div *ngFor="let item of listOfQuestion; let i = index">
+
+                <div *ngIf="item.questionType == 'SINGLE_CHOICE'">
+                    <app-answer-form-single-choice [index]="i" [listOfQuestionToShow]="item.answerVariants">
+                    </app-answer-form-single-choice>
+                </div>
+                <div *ngIf="item.questionType == 'MULTIPLE_CHOICE'">
+                    <app-answer-form-multiply-choice [index]="i" [listOfQuestionToShow]="item.answerVariants">
+                    </app-answer-form-multiply-choice>
+                </div>
+                <div *ngIf="item.questionType == 'TEXT'">
+                    <app-answer-form-long-answer [index]="i" [listOfQuestionToShow]="item.answerVariants">
+                    </app-answer-form-long-answer>
+                </div>
+                <div *ngIf="item.questionType == 'RATING'">
+                    <app-answer-form-rate [index]="i" [listOfQuestionToShow]="item.answerVariants">
+                    </app-answer-form-rate>
+                </div>
+                <!-- <div *ngIf="this.questionsList![i].questionType == 'MULTIPLE_CHOICE'">
+                    <app-answer-form-multiply-choice [index]="i" [listOfQuestionToShow]="this.questionsList![i]">
+                    </app-answer-form-multiply-choice>
+                </div>
+                <div *ngIf="this.questionsList![i].questionType == 'TEXT'">
+                    <app-answer-form-long-answer [index]="i" [listOfQuestionToShow]="this.questionsList![i]">
+                    </app-answer-form-long-answer>
+                </div>
+                <div *ngIf="this.questionsList![i].questionType == 'RATING'">
+                    <app-answer-form-rate [index]="i" [listOfQuestionToShow]="this.questionsList![i]">
+                    </app-answer-form-rate>
+                </div> -->
+
+            </div>
+
             <app-answer-form-confirm></app-answer-form-confirm>
         </div>
-        <ng-template #elseBlock><app-answer-form-title titleForm="Dziękuje za wykonanie ankiety"> </app-answer-form-title> </ng-template>
+        <ng-template #elseBlock>
+            <app-answer-form-title titleForm="Dziękuje za wykonanie ankiety"> </app-answer-form-title>
+        </ng-template>
     </div>
 </div>

@@ -6,13 +6,13 @@ export interface Question {
 }
 /**
  * typeOfQuestion
- * 0 - singleChoice
- * 1 - multiplyChoice
- * 2 - longAnswer
- * 3 - rateAnswer
+ * 0 - singleChoice - SINGLE_CHOICE
+ * 1 - multiplyChoice - MULTIPLE_CHOICE
+ * 2 - longAnswer - TEXT
+ * 3 - rateAnswer - RATING
  */
 export interface OneQuestion {
-  typeOfQuestion: number;
+  typeOfQuestion: string;
   question: string;
   allAnswers?: Array<string>;
 }

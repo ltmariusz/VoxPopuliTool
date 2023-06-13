@@ -178,16 +178,7 @@ export class AnkietaService {
     })
   }
 
-  getAkietaIdQuestions(
-    id: number
-  ): Observable<HttpResponse<Array<FormIdQuestion>>> {
-    return this.http.get<Array<FormIdQuestion>>(this.PATH + `/${id}/questions`, {
-      observe: 'response',
-      responseType: 'json'
-    })
-  }
-
-  getAkietaIdMetadata(
+  getAnkietaIdMetadata(
     id: number
   ): Observable<HttpResponse<Array<Metadata>>> {
     return this.http.get<Array<Metadata>>(this.PATH + `/${id}/metadata`, {
@@ -196,7 +187,7 @@ export class AnkietaService {
     })
   }
 
-  getAkietaIdContact(
+  getAnkietaIdContact(
     id: number
   ): Observable<HttpResponse<Array<Contact>>> {
     return this.http.get<Array<Contact>>(this.PATH + `/${id}/contact`, {
@@ -205,19 +196,19 @@ export class AnkietaService {
     })
   }
 
-  getPublicAkietaUuid(
-    uuid: number
+  getPublicAnkietaUuid(
+    uuid: string
   ): Observable<HttpResponse<PublicForm>> {
-    return this.http.get<PublicForm>(this.PATH + `/api/v1/ankieta/public/ankieta/${uuid}`, {
+    return this.http.get<PublicForm>( `/api/v1/public/ankieta/${uuid}`, {
       observe: 'response',
       responseType: 'json'
     })
   }
 
-  getPublicAkietaUuidQuestion(
-    uuid: number
+  getPublicAnkietaUuidQuestion(
+    uuid: string
   ): Observable<HttpResponse<Array<FormIdQuestion>>> {
-    return this.http.get<Array<FormIdQuestion>>(this.PATH + `/api/v1/ankieta/public/ankieta/${uuid}/questions`, {
+    return this.http.get<Array<FormIdQuestion>>( `/api/v1/public/ankieta/${uuid}/questions`, {
       observe: 'response',
       responseType: 'json'
     })
@@ -268,7 +259,7 @@ export class AnkietaService {
   //------------------------------------------------------------------------//
 
   postAnkietaPublicUuidAnswer(
-    uuid: number,
+    uuid: string,
     questionId: string,
     answerIds: Array<number>,
     value: string

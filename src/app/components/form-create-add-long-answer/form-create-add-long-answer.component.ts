@@ -24,7 +24,7 @@ export class FormCreateAddLongAnswerComponent implements OnInit{
   }
   getLongAnswer(){
     this.createFormsManagementService.getAllFormsEmitter.subscribe(res=>{
-      this.createFormsManagementService.createdQuestionArray?.push({typeOfQuestion: 2, question:this.longAnswerForms.get('longAnswerQuestionInput')?.value});
+      this.createFormsManagementService.createdQuestionArray?.push({typeOfQuestion: "TEXT", question:this.longAnswerForms.get('longAnswerQuestionInput')?.value});
     })
   }
 
