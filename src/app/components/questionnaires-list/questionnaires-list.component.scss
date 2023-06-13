@@ -194,19 +194,21 @@
 .item_personal{
     display: flex;
     flex-direction: column;
-    margin-right: 1.5rem;
+    // margin-right: 1.5rem;
+    padding-right: 1.5rem;
 }
 .personal_container{
     width: 100%;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid #ebebeb;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
+    // border-bottom: 1px solid #ebebeb;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
-// .personal_container:hover{
-//     background-color: #dddddd;
-// }
+.item_personal:hover{
+    background-color: #f5f5f5;
+    border-radius: 6px;
+}
 .icon_to_personal_list_arrow{
     margin-bottom: 8px;
     margin-left: 1rem;
@@ -288,7 +290,7 @@
         margin-left: 0rem;
         display: flex;
         flex-direction: column;
-        row-gap: 1rem;
+        row-gap: 0rem;
     }
     .item_personal{
         display: flex;
@@ -299,7 +301,7 @@
         align-items: center;
         column-gap: 1rem;
         row-gap: 8px;
-        border-right: 3px solid #3f51b5;
+        border-right: 0px solid #3f51b5;
     }
     .iconsPersonal {
         display: flex;
