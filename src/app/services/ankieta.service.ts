@@ -50,7 +50,8 @@ export interface QuestionListAll{
   isAnswerRequired: boolean,
   question: string,
   answerVariants: Array<AnswerVariants>,
-  createDate: string
+  createDate: string,
+  correct: any
 }
 export interface AnswerVariants{
   id: number,

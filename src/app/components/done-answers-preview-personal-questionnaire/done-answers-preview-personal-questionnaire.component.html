@@ -1,42 +1,37 @@
 <div class="card_answer_container">
-    <div *ngFor="let answer of answers.questions; let i = index">
-        <div [ngSwitch]="answers.questions[i].typeOfQuestion">
+    <div *ngFor="let answer of this.questionsList; let i = index">
+        <div >
             <!---------------------------------CARD--------------------------------->
-            <div *ngSwitchCase="0" class="card_answer">
+            <div *ngIf="this.questionsList![i].questionType == 'SINGLE_CHOICE'" class="card_answer">
                 <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
                     check_box</mat-icon>
                     <div class="title">{{answer.question}}</div>
                 </div>
                 <div class="answer_list">
-                    <div *ngFor="let selectAnswer of answer.allAnswers; let indexAnswer = index" class="answer">
-                        <div *ngIf="checkValueAnswer(answer, indexAnswer)" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div>
-                        <div *ngIf="!checkValueAnswer(answer, indexAnswer)" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div>
+                    <div *ngFor="let selectAnswer of answer.answerVariants; let indexAnswer = index" class="answer">
+                        <div *ngIf="checkValueAnswer(answer, indexAnswer)" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer.answer}}</div>
+                        <div *ngIf="!checkValueAnswer(answer, indexAnswer)" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer.answer}}</div>
                     </div>
                 </div>
             </div>
             <!---------------------------------CARD--------------------------------->
-            <div *ngSwitchCase="1" class="card_answer">
+            <div *ngIf="this.questionsList![i].questionType == 'MULTIPLE_CHOICE'" class="card_answer">
                 <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
                     library_add_check</mat-icon>
                     <div class="title">{{answer.question}}</div>
                 </div>
                 <div class="answer_list">
-                    <div *ngFor="let selectAnswer of answer.allAnswers; let indexAnswer = index" class="answer">
-                        <!-- <div *ngFor="let numberCorrect of answer.correct; let numberIndex = index"> -->
-                            <!-- <div *ngIf="indexAnswer == answer.correct[numberIndex]" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div> -->
-                            <!-- <div *ngIf="indexAnswer != answer.correct[numberIndex] && !indexAnswer == answer.correct[numberIndex]" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div> -->
-                        <!-- </div> -->
+                    <div *ngFor="let selectAnswer of answer.answerVariants; let indexAnswer = index" class="answer">
 
-                        <div *ngIf="checkValueAnswer(answer, indexAnswer)" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div>
-                        <div *ngIf="!checkValueAnswer(answer, indexAnswer)" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div>
 
-                        <!-- <div *ngIf="indexAnswer == answer.correct[indexAnswer]" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div> -->
-                        <!-- <div *ngIf="indexAnswer != answer.correct[indexAnswer]" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer}}</div> -->
+                        <div *ngIf="checkValueAnswer(answer, indexAnswer)" class="selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer.answer}}</div>
+                        <div *ngIf="!checkValueAnswer(answer, indexAnswer)" class="no_selected_answer">{{alphabet[indexAnswer]}}. {{selectAnswer.answer}}</div>
+
                     </div>
                 </div>
             </div>
             <!---------------------------------CARD--------------------------------->
-            <div *ngSwitchCase="2" class="card_answer">
+            <div *ngIf="this.questionsList![i].questionType == 'TEXT'" class="card_answer">
                 <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
                     notes</mat-icon>
                     <div class="title">{{answer.question}}</div>
@@ -48,7 +43,7 @@
                 </div>
             </div>
             <!---------------------------------CARD--------------------------------->
-            <div *ngSwitchCase="3" class="card_answer">
+            <div *ngIf="this.questionsList![i].questionType == 'RATING'" class="card_answer">
                 <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
                     star_half</mat-icon>
                     <div class="title">{{answer.question}}</div>
