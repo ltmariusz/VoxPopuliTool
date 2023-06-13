@@ -18,42 +18,96 @@
     
 </div>
 <div class="list_of_items">
-    <div *ngFor="let questionnaire of poll; let i = index" class="card">
-        <div class="column">
-            <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                check_box</mat-icon>
-                <div class="title">Testowe pytanie, co na śniadanie?</div>
+    <div *ngFor="let questionnaire of this.questionsList; let i = index" class="items_conainer">
+        
+        <div *ngIf="this.questionsList![i].questionType == 'SINGLE_CHOICE'" class="card">
+            <div class="column">
+                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
+                    check_box</mat-icon>
+                    <div class="title">{{this.questionnaire.question}}</div>
+                </div>
+                <div class="answer_list">
+                    <div *ngFor="let answer of questionnaire.answerVariants; let indexAnswer = index" class="answer">
+                        {{alphabet[indexAnswer]}}. {{answer.answer}}
+                    </div>
+                </div>
             </div>
-            <div class="answer_list">
-                <div *ngFor="let answer of questionnaire.answer; let indexAnswer = index" class="answer">
-                    {{alphabet[indexAnswer]}}. {{answer.title}}
+            <!-- <div id="chart">
+                <apx-chart
+                  [series]="arrayWithSeriesCount![i]"
+                  [chart]="chartOptions.chart!"
+                  [labels]="arrayWithLabelNames![i]"
+                  [responsive]="chartOptions.responsive!"
+                ></apx-chart>
+            </div> -->
+        </div>
+        <div *ngIf="this.questionsList![i].questionType == 'MULTIPLE_CHOICE'" class="card">
+            <div class="column">
+                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
+                    check_box</mat-icon>
+                    <div class="title">{{this.questionnaire.question}}</div>
+                </div>
+                <div class="answer_list">
+                    <div *ngFor="let answer of questionnaire.answerVariants; let indexAnswer = index" class="answer">
+                        {{alphabet[indexAnswer]}}. {{answer.answer}}
+                    </div>
+                </div>
+            </div>
+            <!-- <div id="chart">
+                <apx-chart
+                  [series]="arrayWithSeriesCount![i]"
+                  [chart]="chartOptions.chart!"
+                  [labels]="arrayWithLabelNames![i]"
+                  [responsive]="chartOptions.responsive!"
+                ></apx-chart>
+            </div> -->
+        </div>
+
+        <div *ngIf="questionnaire.questionType == 'TEXT'" class="card">
+            <div class="column">
+                <div class="title-of-question"> [3] <mat-icon color="primary" fontSet="material-icons-outlined">
+                    check_box</mat-icon>
+                    <div class="title">{{questionnaire.question}}</div>
+                </div>
+                <div class="answer_list">
+                    <div class="answer">
+                        <!-- 1. Dobre jedzenie<br>
+                        2. Złe jedzenie<br>
+                        3. Testowe testy testera testowego testującego test na teście testowym<br>
+                        4. 5345345<br>
+                        5. Alpy<br>
+                        6. Koszyk<br> -->
+                        {{questionnaire.correct}}
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="chart">
-            <apx-chart
-              [series]="arrayWithSeriesCount![i]"
-              [chart]="chartOptions.chart!"
-              [labels]="arrayWithLabelNames![i]"
-              [responsive]="chartOptions.responsive!"
-            ></apx-chart>
-          </div>
-    </div>
-    <div class="card">
-        <div class="column">
-            <div class="title-of-question"> [3] <mat-icon color="primary" fontSet="material-icons-outlined">
-                check_box</mat-icon>
-                <div class="title">Testowe pytanie, co na obiad?</div>
-            </div>
-            <div class="answer_list">
-                <div class="answer">
-                    1. Dobre jedzenie<br>
-                    2. Złe jedzenie<br>
-                    3. Testowe testy testera testowego testującego test na teście testowym<br>
-                    4. 5345345<br>
-                    5. Alpy<br>
-                    6. Koszyk<br>
+
+        <div *ngIf="questionnaire.questionType == 'RATING'" class="card">
+            <div class="column">
+                <div class="title-of-question"> [3] <mat-icon color="primary" fontSet="material-icons-outlined">
+                    check_box</mat-icon>
+                    <div class="title">{{questionnaire.question}}</div>
                 </div>
+                <div class="answer_list">
+                    <div class="answer">
+                        <!-- 1. Dobre jedzenie<br>
+                        2. Złe jedzenie<br>
+                        3. Testowe testy testera testowego testującego test na teście testowym<br>
+                        4. 5345345<br>
+                        5. Alpy<br>
+                        6. Koszyk<br> -->
+                        {{questionnaire.correct}}
+                    </div>
+                </div>
+                <!-- <div id="chart">
+                    <apx-chart
+                    [series]="arrayWithSeriesCount![i]"
+                    [chart]="chartOptions.chart!"
+                    [labels]="arrayWithLabelNames![i]"
+                    [responsive]="chartOptions.responsive!"
+                    ></apx-chart>
+                </div> -->
             </div>
         </div>
     </div>
