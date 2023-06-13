@@ -4,6 +4,7 @@ import { GeneratePersonalQuestionnairePageComponent } from './generate-personal-
 import { RouterModule, Routes } from '@angular/router';
 import { PreviewPersonalQuestionnaireModule } from 'src/app/components/preview-personal-questionnaire/preview-personal-questionnaire.module';
 import { PanelToCreatePersonalQuestionnaireModule } from 'src/app/components/panel-to-create-personal-questionnaire/panel-to-create-personal-questionnaire.module';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   { path: '', component: GeneratePersonalQuestionnairePageComponent }
@@ -17,7 +18,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     PreviewPersonalQuestionnaireModule,
-    PanelToCreatePersonalQuestionnaireModule
+    PanelToCreatePersonalQuestionnaireModule,
+    MatIconModule
   ],
   exports: [
     GeneratePersonalQuestionnairePageComponent

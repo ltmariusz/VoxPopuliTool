@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from 'ng-apexcharts';
 import { Subscription } from 'rxjs';
 import { AnkietaService, QuestionListAll, Questionnaire } from 'src/app/services/ankieta.service';
@@ -88,6 +88,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
     private ankietaRest: AnkietaService,
     private route: ActivatedRoute,
     private popupService: PopupManagementService,
+    private router: Router
   ) {
     this.chartOptions = {
       series: [44, 55, 13, 43],
@@ -207,6 +208,10 @@ export class SelectedQuestionnaireComponent implements OnInit{
       this.arrayWithSeriesCount?.push(arrayWithSeriesCountToPush)
     }
     console.log(this.arrayWithSeriesCount)
+  }
+
+  back(){
+    this.router.navigateByUrl('/home/form-list');
   }
 
 }
