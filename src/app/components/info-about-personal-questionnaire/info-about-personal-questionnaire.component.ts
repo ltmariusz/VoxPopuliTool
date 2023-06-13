@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AnkietaService, QuestionnaireContactList } from 'src/app/services/ankieta.service';
+import { AnkietaService, Questionnaire, QuestionnaireContactList } from 'src/app/services/ankieta.service';
 import { AllFormsManagementService } from 'src/app/services/management/all-forms-management.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
@@ -20,6 +20,11 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
   questionsContact?: Array<QuestionnaireContactList>
   customErrorQuestionsContact?: string
 
+  subQuestionaire?: Subscription
+  questionaire?: Questionnaire
+  loadingQuestionaire = false
+  customErrorQuestionaire?: string
+
   link = 'www.localhost.pl/reasumuje-kwintesencje-tematu-mariusz-pudzianowski'
 
   constructor(
@@ -32,6 +37,7 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
   ngOnInit(): void {
     this.checkUrl()
     this.getQuestionsContact()
+    this.getQuestionaire()
     this.answers = this.allFormsManagementService.exampleDoneAnswerForm
   }
 
@@ -44,6 +50,30 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
   copyLink(){
     navigator.clipboard.writeText(this.link);
     // alert("Skopiowano: " + this.link)
+  }
+
+  getQuestionaire(){
+    this.loadingQuestionaire = true
+    this.subQuestionaire = this.ankietaRest.getAnkietaId(Number(this.idParam)).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionaire = response.body
+          console.log(response.body)
+        }
+        else{
+          this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionaire)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionaire = false
+        this.customErrorQuestionaire = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionaire!)
+      },
+      complete: () => {
+        this.loadingQuestionaire = false;
+      }
+    })
   }
 
   getQuestionsContact(){

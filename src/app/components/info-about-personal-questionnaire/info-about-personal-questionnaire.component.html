@@ -4,7 +4,7 @@
             Opis ankiety
         </div>
         <div class="description">
-            {{this.answers.description}}
+            {{this.questionaire!.description}}
         </div>
     </div>
     <div class="card">
@@ -51,6 +51,9 @@
                 </div>
                 
             </div>
+        </div>
+        <div *ngIf="this.questionsContact?.length == 0" class="info_contact">
+            Ankieta nie posiada danych kontaktowych!
         </div>
         
     </div>
