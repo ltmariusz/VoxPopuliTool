@@ -38,7 +38,7 @@ export interface NewPrivateQuestionnaire{
   metadataList: Array<MetadataList>
 }
 
-export interface MetadataList{
+export interface MetadataListCustom{
   key: string,
   value: string
 }
@@ -77,6 +77,14 @@ export interface QuestionnaireContactList{
   id: number,
   questionnaireId: number,
   contactType: string,
+  value: string,
+  createDate: string
+}
+
+export interface MetadataList{
+  id: number,
+  questionnaireId: number,
+  key: string,
   value: string,
   createDate: string
 }
@@ -154,6 +162,15 @@ export class AnkietaService {
   }
 
   //------------------------------------------------------------------------//
+
+  getAnkietaIdMetadata(id: number): Observable<HttpResponse<Array<MetadataList>>> {
+    return this.http.get<Array<MetadataList>>(this.PATH + `/${id}/metadata`, {
+      observe: 'response',
+      responseType: 'json'
+    })
+  }
+
+  //------------------------------------------------------------------------//
   // POST POST POST POST POST POST POST POST POST POST POST POST POST POST  //
   //------------------------------------------------------------------------//
 
@@ -181,7 +198,7 @@ export class AnkietaService {
     description: string,
     emailList: Array<string>,
     phoneNumberList: Array<string>,
-    metadataList: Array<MetadataList>
+    metadataList: Array<MetadataListCustom>
     ): Observable<HttpResponse<Message>> {
     return this.http.post<Message>(this.PATH + `/${global_questionnaire_id}/private`, {
       description: description,

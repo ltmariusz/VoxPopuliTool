@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AnkietaService, Questionnaire, QuestionnaireContactList } from 'src/app/services/ankieta.service';
+import { AnkietaService, MetadataList, Questionnaire, QuestionnaireContactList } from 'src/app/services/ankieta.service';
 import { AllFormsManagementService } from 'src/app/services/management/all-forms-management.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
@@ -25,7 +25,12 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
   loadingQuestionaire = false
   customErrorQuestionaire?: string
 
-  link = 'www.localhost.pl/reasumuje-kwintesencje-tematu-mariusz-pudzianowski'
+  subQuestionsMetadate?: Subscription
+  questionsMetadate?: Array<MetadataList>
+  loadingQuestionsMetadate = false
+  customErrorQuestionsMetadate?: string
+
+  link?: string
 
   constructor(
     public allFormsManagementService: AllFormsManagementService,
@@ -38,6 +43,7 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
     this.checkUrl()
     this.getQuestionsContact()
     this.getQuestionaire()
+    this.getQuestionsMetadate()
     this.answers = this.allFormsManagementService.exampleDoneAnswerForm
   }
 
@@ -48,7 +54,7 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
   }
 
   copyLink(){
-    navigator.clipboard.writeText(this.link);
+    navigator.clipboard.writeText(this.link!);
     // alert("Skopiowano: " + this.link)
   }
 
@@ -59,6 +65,7 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
         if(response.body){
           this.questionaire = response.body
           console.log(response.body)
+          this.link = `www.localhost.pl/${this.questionaire.link}`
         }
         else{
           this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';
@@ -82,7 +89,7 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
       next: (response) => {
         if(response.body){
           this.questionsContact = response.body
-          console.log(response.body)
+          // console.log(response.body)
         }
         else{
           this.customErrorQuestionsContact = 'Brak obiektu odpowiedzi';
@@ -96,6 +103,30 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
       },
       complete: () => {
         this.loadingQuestionsContact = false;
+      }
+    })
+  }
+
+  getQuestionsMetadate(){
+    this.loadingQuestionsMetadate = true
+    this.subQuestionsMetadate = this.ankietaRest.getAnkietaIdMetadata(Number(this.idParam)).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionsMetadate = response.body
+          console.log(response.body)
+        }
+        else{
+          this.customErrorQuestionsMetadate = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionsMetadate)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionsMetadate = false
+        this.customErrorQuestionsMetadate = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionsMetadate!)
+      },
+      complete: () => {
+        this.loadingQuestionsMetadate = false;
       }
     })
   }

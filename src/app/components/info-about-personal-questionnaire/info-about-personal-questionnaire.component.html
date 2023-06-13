@@ -1,10 +1,10 @@
 <div class="page">
     <div class="card">
         <div class="title">
-            Opis ankiety
+            Opis ankiety - {{this.questionaire?.title}}
         </div>
         <div class="description">
-            {{this.questionaire!.description}}
+            {{this.questionaire?.description}}
         </div>
     </div>
     <div class="card">
@@ -55,7 +55,20 @@
         <div *ngIf="this.questionsContact?.length == 0" class="info_contact">
             Ankieta nie posiada danych kontaktowych!
         </div>
-        
+    </div>
+    <div class="card">
+        <div class="title">
+            Metadane
+        </div>
+        <div class="description">
+            <div class="metadate_container" *ngFor="let metadate of this.questionsMetadate">
+                {{metadate.value}} -
+                {{metadate.key}}
+            </div>
+            <div class="metadate_container" *ngIf="this.questionsMetadate?.length == 0">
+                Brak dostępnych metadanych do wyświetlenia!
+            </div>
+        </div>
     </div>
     <div class="card">
         <div class="title">
