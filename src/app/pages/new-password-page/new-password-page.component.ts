@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './new-password-page.component.html',
   styleUrls: ['./new-password-page.component.scss']
 })
-export class NewPasswordPageComponent {
+export class NewPasswordPageComponent{
+
+  
 
 }
