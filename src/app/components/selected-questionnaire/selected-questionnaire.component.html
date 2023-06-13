@@ -44,7 +44,7 @@
         <div *ngIf="this.questionsList![i].questionType == 'MULTIPLE_CHOICE'" class="card">
             <div class="column">
                 <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    check_box</mat-icon>
+                    library_add_check</mat-icon>
                     <div class="title">{{this.questionnaire.question}}</div>
                 </div>
                 <div class="answer_list">
@@ -66,7 +66,7 @@
         <div *ngIf="questionnaire.questionType == 'TEXT'" class="card">
             <div class="column">
                 <div class="title-of-question"> [3] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    check_box</mat-icon>
+                    notes</mat-icon>
                     <div class="title">{{questionnaire.question}}</div>
                 </div>
                 <div class="answer_list">
@@ -86,7 +86,7 @@
         <div *ngIf="questionnaire.questionType == 'RATING'" class="card">
             <div class="column">
                 <div class="title-of-question"> [3] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    check_box</mat-icon>
+                    star_half</mat-icon>
                     <div class="title">{{questionnaire.question}}</div>
                 </div>
                 <div class="answer_list">
