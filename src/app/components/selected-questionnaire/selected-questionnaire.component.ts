@@ -37,8 +37,6 @@ export class SelectedQuestionnaireComponent implements OnInit{
 
   poll = [
     {
-      id: 0,
-      title: 'Testowe pytanie, co na śniadanie?',
       answer: [
         {
           id: 0,
@@ -55,16 +53,9 @@ export class SelectedQuestionnaireComponent implements OnInit{
           title: 'sok z piwem',
           count: 30
         },
-        {
-          id: 3,
-          title: 'piwo z piwem',
-          count: 17
-        },
       ]
     },
     {
-      id: 0,
-      title: 'Mocium panie co na kolacje?',
       answer: [
         {
           id: 0,
@@ -136,9 +127,6 @@ export class SelectedQuestionnaireComponent implements OnInit{
     this.checkUrl()
     this.getQuestionaire()
     this.getQuestionsList()
-
-    this.loadLabelsTochart()
-    this.loadSeriesToChart()
   }
 
   checkUrl() {
@@ -178,6 +166,8 @@ export class SelectedQuestionnaireComponent implements OnInit{
         if(response.body){
           this.questionsList = response.body
           console.log(response.body)
+          this.loadLabelsTochart()
+          this.loadSeriesToChart()
         }
         else{
           this.customErrorQuestionsList = 'Brak obiektu odpowiedzi';
@@ -196,10 +186,10 @@ export class SelectedQuestionnaireComponent implements OnInit{
   }
 
   loadLabelsTochart(){
-    for (let index = 0; index < this.poll.length; index++) {
+    for (let index = 0; index < this.questionsList!.length; index++) {
       let arrayLabelNameToPush = []
-      for (let indexAnswer = 0; indexAnswer < this.poll[index].answer.length; indexAnswer++) {
-        arrayLabelNameToPush!.push(this.poll[index].answer[indexAnswer].title)
+      for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
+        arrayLabelNameToPush!.push(this.questionsList![index].answerVariants[indexAnswer].answer)
       }
       this.arrayWithLabelNames?.push(arrayLabelNameToPush)
     }
@@ -208,10 +198,11 @@ export class SelectedQuestionnaireComponent implements OnInit{
 
   loadSeriesToChart(){
     // arrayWithSeriesCount
-    for (let index = 0; index < this.poll.length; index++) {
+    for (let index = 0; index < this.questionsList!.length; index++) {
       let arrayWithSeriesCountToPush = []
-      for (let indexAnswer = 0; indexAnswer < this.poll[index].answer.length; indexAnswer++) {
+      for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
         arrayWithSeriesCountToPush!.push(this.poll[index].answer[indexAnswer].count)
+        // EDIT WITH STATS FORM REST
       }
       this.arrayWithSeriesCount?.push(arrayWithSeriesCountToPush)
     }
