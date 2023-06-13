@@ -6,6 +6,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { CustomDialogModule } from '../dialogs/custom-dialog.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -20,7 +21,8 @@ import { CustomDialogModule } from '../dialogs/custom-dialog.module';
     MatMenuModule,
     MatDialogModule,
     MatButtonModule,
-    CustomDialogModule
+    CustomDialogModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     UsersListComponent
