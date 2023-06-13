@@ -11,13 +11,12 @@ import { PopupManagementService } from 'src/app/services/management/popup-manage
     trigger('animInImage', [
       state('void', style({
         opacity: 0,
-        transform: "translateY(50%)"
       })),
       transition(':enter', [
         animate('0.7s', keyframes([
           style({opacity: 0}),
           style({opacity: 0}),
-          style({opacity: 1, transform: "translateY(0%)"}),
+          style({opacity: 1}),
           style({opacity: 1}),
           
         ]))
@@ -26,7 +25,7 @@ import { PopupManagementService } from 'src/app/services/management/popup-manage
         animate('0.7s', keyframes([
           style({opacity: 1}),
           style({opacity: 0.8}),
-          style({opacity: 0, transform: "translateY(50%)"}),
+          style({opacity: 0}),
           style({opacity: 0}),
           
         ]))
