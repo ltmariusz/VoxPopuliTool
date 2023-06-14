@@ -112,7 +112,9 @@
     font-weight: 700;
 }
 .bg_card{
-    background-color: #3f51b5;//DADDE2
+    background-image: url('../../../assets/cool-background-toolbar.png');
+    background-size: cover;
+    background-repeat: no-repeat;
     color: #fff;
 }
 .mobile{
@@ -140,6 +142,9 @@
     // box-shadow: $box_shadow;
     // row-gap: 0.4rem;
 }
+::-webkit-scrollbar {
+    width: 0px;
+  }
 .info_card_header{
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;

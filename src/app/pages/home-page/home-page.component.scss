@@ -30,6 +30,10 @@ mat-drawer{
 mat-toolbar{
     display: flex;
     align-content: center;
+    background-image: url('../../../assets/cool-background-toolbar.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
 }
 
 mat-toolbar button{
