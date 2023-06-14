@@ -1,4 +1,4 @@
-<mat-card class="login-card">
+<!-- <mat-card class="login-card">
     <mat-card-header>
         <mat-card-title>Zaloguj</mat-card-title>
     </mat-card-header>
@@ -7,15 +7,38 @@
             <mat-form-field class="form-field" appearance="outline">
                 <mat-label>email</mat-label>
                 <input matInput formControlName="email" >
-                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
             </mat-form-field>
             <mat-form-field class="form-field" appearance="outline">
                 <mat-label>hasło</mat-label>
                 <input type="password" matInput formControlName="password">
-                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
             </mat-form-field>
             <button mat-raised-button color="primary" class="login" type="submit">Zaloguj się</button>
         </form>
         <button mat-button color="primary" class="remind-password" routerLink="password">Przypomnij hasło</button>
     </mat-card-content>
-</mat-card>
+</mat-card> -->
+<div class="box">
+    <form [formGroup]="loginForm" (submit)="submit()" class="container">
+        <div class="top-header">
+            <img alt="logo" src="./assets/13640_Logo3.png"/>
+            <span>VoxPopuliTool</span>
+            <!-- <header>Login</header> -->
+        </div>
+
+        <div class="input-field">
+            <input type="text" formControlName="email" placeholder="e-mail">
+            <mat-icon color="primary" fontSet="material-icons-outlined">person</mat-icon>
+        </div>
+        <div class="input-field">
+            <input type="password" formControlName="password" placeholder="password">
+            <mat-icon color="primary" fontSet="material-icons-outlined">lock</mat-icon>
+        </div>
+        <div class="input-field-submit">
+            <input type="submit" value="Zaloguj się">
+        </div>
+        <div class="input-field-password">
+            <!-- <a type="submit" value="Przypomnij hasło" routerLink="password"> -->
+            <a type="submit" routerLink="password">Przypomnij hasło</a>
+        </div>
+    </form>
+</div>
