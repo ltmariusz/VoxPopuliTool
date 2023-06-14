@@ -9,6 +9,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserDataService } from './services/global-services/user-data.service';
+import { PopupDoneModule } from './components/popup-done/popup-done.module';
+import { PopupErrorModule } from './components/popup-error/popup-error.module';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { UserDataService } from './services/global-services/user-data.service';
     BrowserAnimationsModule,
     // LoginPageModule
     HttpClientModule,
+    PopupErrorModule,
+    PopupDoneModule
   ],
   providers: [
     {

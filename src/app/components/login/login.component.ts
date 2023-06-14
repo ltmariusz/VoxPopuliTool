@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit{
     private router: Router,
     private authRest: AuthService,
     private route: ActivatedRoute,
+    private popupService: PopupManagementService,
   ){}
 
   ngOnInit(): void {
@@ -91,17 +93,22 @@ export class LoginComponent implements OnInit{
           }
           else{
             this.customErrorLogin = 'Brak obiektu odpowiedzi';
+            this.popupService.errorEmit(this.customErrorLogin)
           }
         },
         error: (errorResponse) => {
           this.loadingLogin = false
           // this.customErrorLogin = errorResponse.error.message
           // console.log(this.customError);
+          this.popupService.errorEmit(errorResponse.error.message)
         },
         complete: () => {
           this.loadingLogin = false;
         }
       })
+    }
+    else{
+      this.popupService.errorEmit('Wypełnij formularz logowania!')
     }
   }
 
