@@ -8,6 +8,8 @@ import { AdminPanelManagementService } from 'src/app/services/management/admin-p
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 import { ChangeRoleDialogComponent } from '../dialogs/change-role-dialog/change-role-dialog.component';
 import { DeactivateDialogComponent } from '../dialogs/deactivate-dialog/deactivate-dialog.component';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -34,6 +36,10 @@ export class UsersListComponent implements OnInit{
   loadingUserDeactivate = false
 
   usersList?: Array<User>
+
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 100;
 
   constructor(
     public dialog: MatDialog,
@@ -63,10 +69,12 @@ export class UsersListComponent implements OnInit{
       next: (response) => {
         if(response.body){
           this.usersList = response.body
+          this.loadingUsersList = false
         }
         else{
           this.customErrorUsersList = 'Brak obiektu odpowiedzi';
           this.popupService.errorEmit(this.customErrorUsersList)
+          this.loadingUsersList = false
         }
       },
       error: (errorResponse) => {

@@ -4,6 +4,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReminderPasswordComponent } from './components/reminder-password/reminder-password.component';
 import { NewPasswordPageComponent } from './pages/new-password-page/new-password-page.component';
+import { CheckLoginGuard } from './guards/check-login.guard';
 
 
 const routes: Routes = [
@@ -12,8 +13,14 @@ const routes: Routes = [
     {path: '',component: LoginComponent},
     {path: 'password', component: ReminderPasswordComponent}
   ]},
-  { path: 'home', loadChildren: () => import('./pages/home-page/home-page.module').then(m=>m.HomePageModule)},
-  { path: 'new-password', loadChildren: ()=>import('./pages/new-password-page/new-password-page.module').then(m=>m.NewPasswordPageModule)},
+  { path: 'home', loadChildren: () => import('./pages/home-page/home-page.module').then(m=>m.HomePageModule),
+  canLoad: [CheckLoginGuard],
+  canActivate: [CheckLoginGuard],
+  canActivateChild: [CheckLoginGuard],
+  data: {
+    onlyAdmin: false,
+  }},
+  { path: 'new-password/:code', loadChildren: ()=>import('./pages/new-password-page/new-password-page.module').then(m=>m.NewPasswordPageModule)},
   { path: 'answer-form/:id', loadChildren: ()=>import('./pages/answer-form/answer-form.module').then(m=>m.AnswerFormModule)},
   //USUNAC TE PATHY DOCELOWO
   { path: 'answer-form/test/exampleRateDelivery', loadChildren: ()=>import('./pages/test-pages/example-rate-delivery/example-rate-delivery.module').then(m=>m.ExampleRateDeliveryModule)},
@@ -24,6 +31,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    CheckLoginGuard,
+  ]
 })
 export class AppRoutingModule { }

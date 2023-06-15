@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CloseQuestionnaireDialogComponent } from '../dialogs/close-questionnaire-dialog/close-questionnaire-dialog.component';
 import { CloseQuestionnairePersonalDialogComponent } from '../dialogs/close-questionnaire-personal-dialog/close-questionnaire-personal-dialog.component';
 import { AnkietaService, QuestionnaireList } from 'src/app/services/ankieta.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 import { Subscription } from 'rxjs';
 import { QuestionnaireListManagementService } from 'src/app/services/management/questionnaire-list-management.service';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-questionnaires-list',
@@ -14,6 +16,12 @@ import { QuestionnaireListManagementService } from 'src/app/services/management/
   styleUrls: ['./questionnaires-list.component.scss']
 })
 export class QuestionnairesListComponent implements OnInit{
+
+  idParam?: string
+
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 100;
 
   subAnkietaList?: Subscription
   loadingAnkietaList = false
@@ -26,13 +34,14 @@ export class QuestionnairesListComponent implements OnInit{
     public dialog: MatDialog,
     private ankietaRest: AnkietaService,
     private popupService: PopupManagementService,
-    private questionnaireListManager: QuestionnaireListManagementService
+    private questionnaireListManager: QuestionnaireListManagementService,
   ){ }
 
   ngOnInit(): void {
     this.getAnkietaList()
     this.getQuestionnaireListSubscribe()
   }
+
 
   clickItem(id: number){
     this.router.navigateByUrl(`/home/questionnaire/${id}`)
@@ -49,10 +58,12 @@ export class QuestionnairesListComponent implements OnInit{
         if(response.body){
           this.usersAnkietaList = response.body
           this.createPersonalQuestionnaireList()
+          this.loadingAnkietaList = false
         }
         else{
           this.customErrorAnkietaList = 'Brak obiektu odpowiedzi';
           this.popupService.errorEmit(this.customErrorAnkietaList)
+          this.loadingAnkietaList = false
         }
       },
       error: (errorResponse) => {

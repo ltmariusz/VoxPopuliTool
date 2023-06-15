@@ -1,4 +1,17 @@
 @import '/src/style/colors.scss';
+.page{
+    height: 100vh;
+    overflow: none;
+}
+.container_list{
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
 .home_title_header{
     margin-left: 1.2rem;
 }
@@ -17,6 +30,10 @@ mat-drawer{
 mat-toolbar{
     display: flex;
     align-content: center;
+    background-image: url('../../../assets/cool-background-toolbar.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
 }
 
 mat-toolbar button{

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { QuestionnaireListManagementService } from 'src/app/services/management/questionnaire-list-management.service';
 
 @Component({
@@ -9,11 +10,16 @@ import { QuestionnaireListManagementService } from 'src/app/services/management/
 export class GeneratePersonalQuestionnairePageComponent {
 
   constructor(
-    private questionnaireListManager: QuestionnaireListManagementService
+    private questionnaireListManager: QuestionnaireListManagementService,
+    private router: Router
   ) { }
 
   postQuestionnairePrivate(){
     this.questionnaireListManager.postQuestionnairePrivate()
+  }
+
+  back(){
+    this.router.navigateByUrl('/home/form-list');
   }
 
 }

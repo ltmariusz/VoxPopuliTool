@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from 'ng-apexcharts';
+import { Subscription } from 'rxjs';
+import { AnkietaService, QuestionListAll, Questionnaire } from 'src/app/services/ankieta.service';
+import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -19,10 +23,20 @@ export class SelectedQuestionnaireComponent implements OnInit{
     'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','W','X','Y','Z'
   ]
 
+  idParam?: string
+
+  subQuestionaire?: Subscription
+  questionaire?: Questionnaire
+  loadingQuestionaire = false
+  customErrorQuestionaire?: string
+
+  subQuestionsList?: Subscription
+  questionsList?: Array<QuestionListAll>
+  loadingQuestionsList = false
+  customErrorQuestionsList?: string
+
   poll = [
     {
-      id: 0,
-      title: 'Testowe pytanie, co na śniadanie?',
       answer: [
         {
           id: 0,
@@ -39,16 +53,9 @@ export class SelectedQuestionnaireComponent implements OnInit{
           title: 'sok z piwem',
           count: 30
         },
-        {
-          id: 3,
-          title: 'piwo z piwem',
-          count: 17
-        },
       ]
     },
     {
-      id: 0,
-      title: 'Mocium panie co na kolacje?',
       answer: [
         {
           id: 0,
@@ -77,7 +84,12 @@ export class SelectedQuestionnaireComponent implements OnInit{
   @ViewChild("chart") chart?: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
+  constructor(
+    private ankietaRest: AnkietaService,
+    private route: ActivatedRoute,
+    private popupService: PopupManagementService,
+    private router: Router
+  ) {
     this.chartOptions = {
       series: [44, 55, 13, 43],
       chart: {
@@ -113,15 +125,72 @@ export class SelectedQuestionnaireComponent implements OnInit{
     };
   }
   ngOnInit(): void {
-    this.loadLabelsTochart()
-    this.loadSeriesToChart()
+    this.checkUrl()
+    this.getQuestionaire()
+    this.getQuestionsList()
+  }
+
+  checkUrl() {
+    this.route.paramMap.subscribe(params => {
+      this.idParam = params.get('code')!
+    });
+  }
+
+  getQuestionaire(){
+    this.loadingQuestionaire = true
+    this.subQuestionaire = this.ankietaRest.getAnkietaId(Number(this.idParam)).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionaire = response.body
+          console.log(response.body)
+        }
+        else{
+          this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionaire)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionaire = false
+        this.customErrorQuestionaire = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionaire!)
+      },
+      complete: () => {
+        this.loadingQuestionaire = false;
+      }
+    })
+  }
+
+  getQuestionsList(){
+    this.loadingQuestionsList = true
+    this.subQuestionsList = this.ankietaRest.getAnkietaIdQuestions(Number(this.idParam)).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionsList = response.body
+          console.log(response.body)
+          this.loadLabelsTochart()
+          this.loadSeriesToChart()
+        }
+        else{
+          this.customErrorQuestionsList = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionsList)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionsList = false
+        this.customErrorQuestionsList = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionsList!)
+      },
+      complete: () => {
+        this.loadingQuestionsList = false;
+      }
+    })
   }
 
   loadLabelsTochart(){
-    for (let index = 0; index < this.poll.length; index++) {
+    for (let index = 0; index < this.questionsList!.length; index++) {
       let arrayLabelNameToPush = []
-      for (let indexAnswer = 0; indexAnswer < this.poll[index].answer.length; indexAnswer++) {
-        arrayLabelNameToPush!.push(this.poll[index].answer[indexAnswer].title)
+      for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
+        arrayLabelNameToPush!.push(this.questionsList![index].answerVariants[indexAnswer].answer)
       }
       this.arrayWithLabelNames?.push(arrayLabelNameToPush)
     }
@@ -130,14 +199,19 @@ export class SelectedQuestionnaireComponent implements OnInit{
 
   loadSeriesToChart(){
     // arrayWithSeriesCount
-    for (let index = 0; index < this.poll.length; index++) {
+    for (let index = 0; index < this.questionsList!.length; index++) {
       let arrayWithSeriesCountToPush = []
-      for (let indexAnswer = 0; indexAnswer < this.poll[index].answer.length; indexAnswer++) {
+      for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
         arrayWithSeriesCountToPush!.push(this.poll[index].answer[indexAnswer].count)
+        // EDIT WITH STATS FORM REST
       }
       this.arrayWithSeriesCount?.push(arrayWithSeriesCountToPush)
     }
     console.log(this.arrayWithSeriesCount)
+  }
+
+  back(){
+    this.router.navigateByUrl('/home/form-list');
   }
 
 }

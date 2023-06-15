@@ -81,7 +81,7 @@ export interface NewPrivateQuestionnaire {
   metadataList: Array<MetadataList>
 }
 
-export interface MetadataList {
+export interface MetadataListCustom{
   key: string,
   value: string
 }
@@ -93,7 +93,8 @@ export interface QuestionListAll{
   isAnswerRequired: boolean,
   question: string,
   answerVariants: Array<AnswerVariants>,
-  createDate: string
+  createDate: string,
+  correct: any
 }
 export interface AnswerVariants{
   id: number,
@@ -113,6 +114,22 @@ export interface Questionnaire{
   parentId: number,
   uniqueCode: string,
   link: string,
+  createDate: string
+}
+
+export interface QuestionnaireContactList{
+  id: number,
+  questionnaireId: number,
+  contactType: string,
+  value: string,
+  createDate: string
+}
+
+export interface MetadataList{
+  id: number,
+  questionnaireId: number,
+  key: string,
+  value: string,
   createDate: string
 }
 
@@ -173,6 +190,24 @@ export class AnkietaService {
 
   getAnkietaIdQuestions(id: number): Observable<HttpResponse<Array<QuestionListAll>>> {
     return this.http.get<Array<QuestionListAll>>(this.PATH + `/${id}/questions`, {
+      observe: 'response',
+      responseType: 'json'
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
+  getAnkietaIdContact(id: number): Observable<HttpResponse<Array<QuestionnaireContactList>>> {
+    return this.http.get<Array<QuestionnaireContactList>>(this.PATH + `/${id}/contact`, {
+      observe: 'response',
+      responseType: 'json'
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
+  getAnkietaIdMetadata(id: number): Observable<HttpResponse<Array<MetadataList>>> {
+    return this.http.get<Array<MetadataList>>(this.PATH + `/${id}/metadata`, {
       observe: 'response',
       responseType: 'json'
     })
@@ -243,8 +278,8 @@ export class AnkietaService {
     description: string,
     emailList: Array<string>,
     phoneNumberList: Array<string>,
-    metadataList: Array<MetadataList>
-  ): Observable<HttpResponse<Message>> {
+    metadataList: Array<MetadataListCustom>
+    ): Observable<HttpResponse<Message>> {
     return this.http.post<Message>(this.PATH + `/${global_questionnaire_id}/private`, {
       description: description,
       emailList: emailList,

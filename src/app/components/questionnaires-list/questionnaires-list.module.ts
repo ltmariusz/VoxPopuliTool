@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomDialogModule } from '../dialogs/custom-dialog.module';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatButtonModule,
     MatDialogModule,
     CustomDialogModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     QuestionnairesListComponent

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 import { PublicService } from 'src/app/services/public.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class ReminderPasswordComponent implements OnInit{
   constructor(
     private publicService: PublicService,
     private router: Router,
+    private popupService: PopupManagementService
   ){ }
 
   ngOnInit(): void {
@@ -35,19 +37,23 @@ export class ReminderPasswordComponent implements OnInit{
         this.subRemindPassword = this.publicService.postRemindPassword(emailValue!).subscribe({
           next: (response) => {
             this.loading = false;
+            this.popupService.succesEmit('Mail z linkiem do zmiany hasła został wysłany!')
             this.router.navigateByUrl('/login-page');
           },
           error: (errorResponse) => {
             // console.log(errorResponse);
             this.customError = errorResponse.error.message;
             this.loading = false;
-            console.log(this.customError)
+            this.popupService.errorEmit(errorResponse.error.message)
           },
           complete: () => {
             
           }
         }
       )
+    }
+    else{
+      this.popupService.errorEmit('Wypełnij formularz zmiany hasła!')
     }
   }
 

@@ -207,7 +207,7 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit, OnDe
     console.log(inputList)
 
     this.loadingQuestionnairePrivate = true
-    this.subQuestionnairePrivate = this.ankietaRest.postAnkietaPrivate(1, description!, mailList!, phoneList!, inputList).subscribe({
+    this.subQuestionnairePrivate = this.ankietaRest.postAnkietaPrivate(Number(this.idParam), description!, mailList!, phoneList!, inputList).subscribe({
       next: (response) => {
         if(response.body){
           this.popupService.succesEmit('Pomyślnie utworzono osobistą ankietę')
