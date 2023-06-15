@@ -127,7 +127,7 @@
     // row-gap: 0.4rem;
 }
 .scroll_enable_add_user{
-    max-height: calc(100vh - 322px)!important;
+    max-height: calc(100vh - 322px);
 }
 .info_card_header{
     border-top-left-radius: 4px;
@@ -172,9 +172,9 @@
         
     }
     .scroll{
-        height: 100vh!important;
+        max-height: 100%;
     }
     .scroll_enable_add_user{
-        height: 100vh!important;
+        max-height: 100%;
     }
 }
