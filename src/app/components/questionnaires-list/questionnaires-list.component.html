@@ -20,8 +20,9 @@
                     <mat-panel-title class="mat_title">
                         <div class="row_list">
                             <div class="icon desktop">
-                                <mat-icon *ngIf="questionnaire.isPublic == true" class="green_c questionnaire_icon" fontIcon="quiz"></mat-icon>
-                                <mat-icon *ngIf="questionnaire.isPublic == false" class="gray_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isPublic == true && questionnaire.isActive == true" class="green_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isPublic == false  && questionnaire.isActive == true" class="gray_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isActive == false" class="red_c questionnaire_icon" fontIcon="quiz"></mat-icon>
                             </div>
                             <div class="name">
                                 <p>{{questionnaire.title}}</p>
@@ -30,13 +31,13 @@
                         <div class="icons">
                             <button (click)="generatePersonal(questionnaire.id)" class="btn_generate_new_personal" (click)="$event.stopPropagation()">Wygeneruj osobistą</button>
                             <button (click)="clickItem(questionnaire.id)" class="btn_statistic" (click)="$event.stopPropagation()">Statystyki</button>
-                            <button (click)="editQuestionnaire(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button>
+                            <!-- <button (click)="editQuestionnaire(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button> -->
                             <button (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
                         </div> 
                         <div class="mobile_icons">
                             <button (click)="generatePersonal(questionnaire.id)" class="btn_generate_new_personal" (click)="$event.stopPropagation()">Wygeneruj osobistą</button>
                             <button (click)="clickItem(questionnaire.id)" class="btn_statistic" (click)="$event.stopPropagation()">Statystyki</button>
-                            <button (click)="editQuestionnaire(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button>
+                            <!-- <button (click)="editQuestionnaire(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button> -->
                             <button (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
                         </div> 
                         <!-- <div class="btn_more">Rozwiń</div> -->
@@ -51,7 +52,8 @@
                         <div *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.questionnaireType == 'PRIVATE'" class="personal_container">
                             <div class="row_list">
                                 <div class="icon desktop">
-                                    <mat-icon class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
+                                    <mat-icon *ngIf="questionnaire.isActive == true" class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
+                                    <mat-icon *ngIf="questionnaire.isActive == false" class="red_c questionnaire_icon" fontIcon="help_center"></mat-icon>
                                 </div>
                                 <div class="name">
                                     <p>{{questionnairePersonal.title}}</p>
@@ -59,7 +61,7 @@
                             </div>
                             <div class="iconsPersonal">
                                 <button (click)="personalQuestionnaire(questionnairePersonal.id)" class="btn_statistic">Informacje</button>
-                                <button (click)="editQuestionnairePersonal(questionnairePersonal.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button>
+                                <!-- <button (click)="editQuestionnairePersonal(questionnairePersonal.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button> -->
                                 <button (click)="openDialogCloseQuestionnairePersonal('200ms', '100ms', questionnairePersonal.id)" class="btn_close">Zakończ</button>
                             </div> 
                         </div>

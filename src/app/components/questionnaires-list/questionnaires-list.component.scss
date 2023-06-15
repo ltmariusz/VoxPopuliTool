@@ -84,7 +84,7 @@
     margin: 0px;
 }
 .green_c{
-    color: #4bddc0;
+    color: $modern_green;
 }
 .gray_c{
     color: #b1b1b1;
@@ -93,7 +93,7 @@
     color: #ccc;
 }
 .red_c{
-    color: #fd5370;
+    color: $modern_red;
 }
 .btn{
     width: 6%;
@@ -342,8 +342,34 @@
     }
     .mobile_icons{
         margin-top: 0.5rem;
+        width: -webkit-fill-available;
     }
     .btn_more{
         margin: 0px;
+    }
+    .scroll{
+        max-height: 100%;
+    }
+}
+@media only screen and (max-width: 400px){
+    .mobile_icons{
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    mat-expansion-panel-header{
+        padding-top: 70px;
+        padding-bottom: 100px;
+    }
+    .btn_generate_new_personal{
+        width: 100%;
+    }
+    .mobile_icons .btn_statistic{
+        width: 100%;
+    }
+    .mobile_icons .btn_close{
+        width: 100%;
+    }
+    .mobile_icons .btn_edit{
+        width: 100%;
     }
 }
