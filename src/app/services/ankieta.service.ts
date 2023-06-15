@@ -219,9 +219,6 @@ export class AnkietaService {
     })
   }
 
-
-
-
   getPublicAnkietaUuid(
     uuid: string
   ): Observable<HttpResponse<PublicForm>> {

@@ -1,4 +1,57 @@
+@use '@angular/material' as mat;
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@include mat.core();
+
+$bright-navy-blue-palette: (
+  50: #fbe7f2,
+  100: #f6c3df,
+  200: #f49cca,
+  300: #f376b4,
+  400: #f25aa1,
+  500: #f4438e,
+  600: #e14089,
+  700: #c93c80,
+  800: #b33879,
+  900: #8b326c,
+  A100: #f6c3df,
+  A200: #f49cca,
+  A400: #f25aa1,
+  A700: #c93c80,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+
+$my-primary: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$my-custom: mat.define-palette(mat.$purple-palette, A200, A100, A400);
+$bluesky-primary: mat.define-palette($bright-navy-blue-palette, 700, 300, 900);
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $bluesky-primary,
+   accent: $my-accent,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+@include mat.all-component-themes($my-theme);

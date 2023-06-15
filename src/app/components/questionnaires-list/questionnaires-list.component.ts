@@ -80,7 +80,7 @@ export class QuestionnairesListComponent implements OnInit{
   createPersonalQuestionnaireList(){
     this.usersAnkietaPersonalList = this.usersAnkietaList
     this.usersAnkietaPersonalList = this.usersAnkietaPersonalList!.filter(obj => obj.questionnaireType == 'PRIVATE')
-    console.log(this.usersAnkietaPersonalList)
+    // console.log(this.usersAnkietaPersonalList)
   }
 
   getQuestionnaireListSubscribe(){

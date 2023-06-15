@@ -27,7 +27,7 @@
                 <p>Edycja</p>
             </div>
         </div>
-        <div class="scroll">
+        <div [ngClass]="{'scroll_enable_add_user': true}" class="scroll">
             <div class="item item_padding" (click)="editUser(user.id)" *ngFor="let user of this.usersList">
                 <div class="icon mobile">
                     <mat-icon class="green_c " *ngIf="user.isActive == true && user.archived == false" fontIcon="person"></mat-icon>
