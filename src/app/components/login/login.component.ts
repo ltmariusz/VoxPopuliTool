@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit{
     private authRest: AuthService,
     private route: ActivatedRoute,
     private popupService: PopupManagementService,
+    private userRest: UserService
   ){}
 
   ngOnInit(): void {
@@ -48,33 +50,33 @@ export class LoginComponent implements OnInit{
   // }
 
   checkUserIsLogin(){
-    // this.subUserIsLogin = this.authRest.getUser().subscribe({
-    //   next: (response) => {
-    //     if(response.body){
-    //       this.router.navigateByUrl('/home');
-    //     }
-    //     else{
-    //       this.customErrorUserIsLogin = 'Brak obiektu odpowiedzi';
-    //     }
-    //   },
-    //   error: (errorResponse) => {
-    //     switch (errorResponse.status) {
-    //       case 400:
-    //       case 401:
-    //       case 403:
-    //         this.loadingUserIsLogin = false;
-    //         break;
+    this.subUserIsLogin = this.userRest.getUser().subscribe({
+      next: (response) => {
+        if(response.body){
+          this.router.navigateByUrl('/home');
+        }
+        else{
+          this.customErrorUserIsLogin = 'Brak obiektu odpowiedzi';
+        }
+      },
+      error: (errorResponse) => {
+        switch (errorResponse.status) {
+          case 400:
+          case 401:
+          case 403:
+            this.loadingUserIsLogin = false;
+            break;
           
-    //       default:
-    //         this.customErrorUserIsLogin = 'Błąd serwera'
-    //         break;
-    //     }
-    //     // console.log(this.customError);
-    //   },
-    //   complete: () => {
-    //     this.loadingUserIsLogin = false;
-    //   }
-    // })
+          default:
+            this.customErrorUserIsLogin = 'Błąd serwera'
+            break;
+        }
+        // console.log(this.customError);
+      },
+      complete: () => {
+        this.loadingUserIsLogin = false;
+      }
+    })
   }
 
   submit(){
