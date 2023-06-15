@@ -116,7 +116,7 @@
     // right: 50%;
 }
 .scroll{
-    max-height: calc(100vh - 288px);
+    max-height: calc(100vh - 191px);
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -125,6 +125,9 @@
     border-bottom-right-radius: 4px;
     box-shadow: $box_shadow;
     // row-gap: 0.4rem;
+}
+.scroll_enable_add_user{
+    max-height: calc(100vh - 322px)!important;
 }
 .info_card_header{
     border-top-left-radius: 4px;
@@ -135,6 +138,10 @@
     margin-right: 0.5rem;
     cursor: pointer;
 }
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
 
 @media only screen and (max-width: 900px){
     .row_list{
@@ -163,5 +170,11 @@
     .item{
         box-shadow: $box_shadow;
         
+    }
+    .scroll{
+        height: 100vh!important;
+    }
+    .scroll_enable_add_user{
+        height: 100vh!important;
     }
 }
