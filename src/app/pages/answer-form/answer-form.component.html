@@ -29,34 +29,21 @@
             <div *ngFor="let item of listOfQuestion; let i = index">
 
                 <div *ngIf="item.questionType == 'SINGLE_CHOICE'">
-                    <app-answer-form-single-choice [index]="i" [listOfQuestionToShow]="item.answerVariants">
+                    <app-answer-form-single-choice [index]="i" [listOfQuestionToShow]="item">
                     </app-answer-form-single-choice>
                 </div>
                 <div *ngIf="item.questionType == 'MULTIPLE_CHOICE'">
-                    <app-answer-form-multiply-choice [index]="i" [listOfQuestionToShow]="item.answerVariants">
+                    <app-answer-form-multiply-choice [index]="i" [listOfQuestionToShow]="item">
                     </app-answer-form-multiply-choice>
                 </div>
                 <div *ngIf="item.questionType == 'TEXT'">
-                    <app-answer-form-long-answer [index]="i" [listOfQuestionToShow]="item.answerVariants">
+                    <app-answer-form-long-answer [index]="i" [listOfQuestionToShow]="item">
                     </app-answer-form-long-answer>
                 </div>
                 <div *ngIf="item.questionType == 'RATING'">
-                    <app-answer-form-rate [index]="i" [listOfQuestionToShow]="item.answerVariants">
+                    <app-answer-form-rate [index]="i" [listOfQuestionToShow]="item">
                     </app-answer-form-rate>
                 </div>
-                <!-- <div *ngIf="this.questionsList![i].questionType == 'MULTIPLE_CHOICE'">
-                    <app-answer-form-multiply-choice [index]="i" [listOfQuestionToShow]="this.questionsList![i]">
-                    </app-answer-form-multiply-choice>
-                </div>
-                <div *ngIf="this.questionsList![i].questionType == 'TEXT'">
-                    <app-answer-form-long-answer [index]="i" [listOfQuestionToShow]="this.questionsList![i]">
-                    </app-answer-form-long-answer>
-                </div>
-                <div *ngIf="this.questionsList![i].questionType == 'RATING'">
-                    <app-answer-form-rate [index]="i" [listOfQuestionToShow]="this.questionsList![i]">
-                    </app-answer-form-rate>
-                </div> -->
-
             </div>
 
             <app-answer-form-confirm></app-answer-form-confirm>

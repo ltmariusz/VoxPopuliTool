@@ -59,7 +59,7 @@ export class AnswerFormSingleChoiceComponent implements OnInit {
         console.log("wszystkie zle")
       }
 
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.question, answer: [this.singleChoiceAnswer] })
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.listOfQuestionToShow.id, type:"SINGLE_CHOICE", answer: [this.singleChoiceAnswer] })
 
     })
   }

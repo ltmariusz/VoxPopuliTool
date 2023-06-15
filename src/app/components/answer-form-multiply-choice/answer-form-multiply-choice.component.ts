@@ -68,7 +68,7 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
           this.multipleChoiceAnswers.push(item.answer)
         }
       }
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.question, answer: this.multipleChoiceAnswers })
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.listOfQuestionToShow.id, type:"MULTIPLE_CHOICE", answer: this.multipleChoiceAnswers })
     })
   }
 }

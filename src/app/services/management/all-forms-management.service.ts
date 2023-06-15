@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { AnkietaService } from '../ankieta.service';
 
 export interface OneForm {
   title: string,
@@ -6,6 +7,11 @@ export interface OneForm {
   questions: Array<OneQuestion>
 }
 
+export interface PostAnswers {
+  questionId: number,
+  answerIds?: Array<any> | null,
+  value?: string | null,
+}
 /**
  * typeOfQuestion
  * 0 - singleChoice - SINGLE_CHOICE
@@ -13,7 +19,7 @@ export interface OneForm {
  * 2 - longAnswer - TEXT
  * 3 - rateAnswer - RATING
  */
- export interface OneQuestion {
+export interface OneQuestion {
   typeOfQuestion: string;
   question: string;
   allAnswers?: Array<string>;
@@ -23,9 +29,17 @@ export interface AnswerForm {
   title: string,
   answers: Array<OneAnswer>
 }
-
+export interface AnswerForm2 {
+  title: string,
+  answers: Array<OneAnswer2>
+}
 export interface OneAnswer {
   question: string,
+  answer: Array<string>
+}
+export interface OneAnswer2 {
+  question: string,
+  type:string,
   answer: Array<string>
 }
 
@@ -35,23 +49,62 @@ export interface OneAnswer {
 })
 export class AllFormsManagementService {
 
-  
 
-  constructor() { }
 
-  allAnswersFromOneForm: AnswerForm ={title:"",answers:new Array}
-  didYouEndAnswering?:boolean
+  constructor(
+    private ankietaService: AnkietaService
+  ) { }
+
+  allAnswersFromOneForm: AnswerForm2 = { title: "", answers: new Array }
+  didYouEndAnswering?: boolean
+  formFromUrl?: string
+  listWithAnswersToPost?: Array<PostAnswers>
   getAllAnswerEmitter: EventEmitter<any> = new EventEmitter()
 
   getDescriptionEmit: EventEmitter<any> = new EventEmitter()
 
   getAllAnswerFromForm() {
+    this.listWithAnswersToPost = new Array
     this.getAllAnswerEmitter.emit()
+
+
     console.log(this.allAnswersFromOneForm)
-    this.didYouEndAnswering =true
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //Dodc requrement (walidacje czy wszystkie potrzbene sa stworzone)
+    // if(){
+
+    // }
+
+    for (let i = 0; i < this.allAnswersFromOneForm.answers.length; i++) {
+      const element = this.allAnswersFromOneForm.answers[i];
+      console.log(element.answer)
+      if(element.type==="SINGLE_CHOICE"){
+        this.listWithAnswersToPost.push({questionId:Number(element.question), answerIds: element.answer,value:null})
+      }
+      if(element.type==="MULTIPLE_CHOICE"){
+        this.listWithAnswersToPost.push({questionId:Number(element.question), answerIds: element.answer,value:null})
+      }
+      if(element.type==="TEXT"){
+        this.listWithAnswersToPost.push({questionId:Number(element.question), answerIds: null,value:element.answer[0]})
+      }
+      if(element.type==="RATING"){
+        this.listWithAnswersToPost.push({questionId:Number(element.question), answerIds: null,value:element.answer[0]})
+      }
+      
+
+    }
+    console.log(this.listWithAnswersToPost)
+
+    this.didYouEndAnswering = true
+    // !!!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!!!!!
+    //TO DO TUTAJ JEST STWORZONE WYSYLANIE
+    // this.ankietaService.postAnkietaPublicUuidAnswer(this.formFromUrl, this.listWithAnswersToPost)
+    // console.log(this.ankietaService.postAnkietaPublicUuidAnswer())
+
   }
 
-  updateLiveDescription(value: any){
+  updateLiveDescription(value: any) {
     // console.log(value)
     this.exampleOfForm2.description = value!
     this.getDescriptionEmit.emit()
@@ -240,9 +293,9 @@ export class AllFormsManagementService {
   ];
 
   exampleRateDelivery: OneForm = {
-    title:"Ocena dostawy",
+    title: "Ocena dostawy",
     description: "Właśnie miała miejsce twoja dostawa. Twoja opinia jest dla nas bardzo ważna. Prosimy Cię o uzupełnienie tej prostej ankiety. Pozwoli to nam poprawić naszą pracę. Numer dostawy: 4568561. Data dostawy: 25.05.2023. Kierowca: GNOK2202 Mariusz Lemanski",
-    questions:[
+    questions: [
       {
         typeOfQuestion: "RATING",
         question: "Jak oceniasz dostawę?",
@@ -267,9 +320,9 @@ export class AllFormsManagementService {
     ]
   }
   exampleRateVisit: OneForm = {
-    title:"Ocena wizyty",
+    title: "Ocena wizyty",
     description: "Dziś odwiedził Cię Twój opiekun handlowy mamy nadzieje, że jesteś zadowolony z tej wizyty. Prosimy Cię o uzupęlnienie tej prostej ankiety.",
-    questions:[
+    questions: [
       {
         typeOfQuestion: "SINGLE_CHOICE",
         question: "Czy wizyta okazała się pomocna?",
@@ -278,7 +331,7 @@ export class AllFormsManagementService {
       {
         typeOfQuestion: "MULTIPLE_CHOICE",
         question: "Co zaproponował Ci opiekun?",
-        allAnswers:["produkt w niższek cenie","dołączenie do programu lojalnościowego","przedstawił listę nowych pakietów","zaproponował opłatę zalegających faktór"]
+        allAnswers: ["produkt w niższek cenie", "dołączenie do programu lojalnościowego", "przedstawił listę nowych pakietów", "zaproponował opłatę zalegających faktór"]
       },
       {
         typeOfQuestion: "RATING",
@@ -305,9 +358,9 @@ export class AllFormsManagementService {
 
   exampleDoneAnswerForm =
     {
-      title:"Ocena wizyty",
+      title: "Ocena wizyty",
       description: "Dziś odwiedził Cię Twój opiekun handlowy mamy nadzieje, że jesteś zadowolony z tej wizyty. Prosimy Cię o uzupęlnienie tej prostej ankiety.",
-        questions: [
+      questions: [
         {
           typeOfQuestion: 0,
           question: "Czy wizyta okazała się pomocna?",
@@ -317,7 +370,7 @@ export class AllFormsManagementService {
         {
           typeOfQuestion: 1,
           question: "Co zaproponował Ci opiekun?",
-          allAnswers:["produkt w niższej cenie","dołączenie do programu lojalnościowego","przedstawił listę nowych pakietów","zaproponował opłatę zalegających faktór"],
+          allAnswers: ["produkt w niższej cenie", "dołączenie do programu lojalnościowego", "przedstawił listę nowych pakietów", "zaproponował opłatę zalegających faktór"],
           correct: [1]
         },
         {

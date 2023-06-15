@@ -27,6 +27,7 @@ export class AnswerFormComponent implements OnInit {
     this.formFromUrl = ""
     this.route.paramMap.subscribe(params => {
       this.formFromUrl = params.get('id')!;
+      this.allFormsManagementService.formFromUrl =this.formFromUrl
       console.log(this.formFromUrl)})
 
     this.ankietaService.getPublicAnkietaUuid(this.formFromUrl).subscribe({

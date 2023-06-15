@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AnkietaService } from 'src/app/services/ankieta.service';
 import { AllFormsManagementService } from 'src/app/services/management/all-forms-management.service';
 import { OneQuestion } from 'src/app/services/management/create-forms-management.service';
 
@@ -12,7 +13,8 @@ export class AnswerFormLongAnswerComponent implements OnInit{
  
   constructor(
     private allFormsManagementService: AllFormsManagementService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private ankietaService: AnkietaService
     ){}
 
   // najpewnie to będzie zmienna typu input
@@ -35,7 +37,19 @@ export class AnswerFormLongAnswerComponent implements OnInit{
   getLongAnswer(){
     this.allFormsManagementService.getAllAnswerEmitter.subscribe(res=>{
       this.longAnswerForm.get('textInput')!.value
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({question:this.question,answer:[this.longAnswerForm.get('textInput')!.value]})
+      // this.ankietaService.getPublicAnkietaUuidQuestion(this.allFormsManagementService.formFromUrl!).subscribe({
+      //   next:(response)=>{
+      //     console.log(response.body)
+      //     for (let i = 0; i < response.body!.length; i++) {
+      //       const element = response.body![i];
+      //       console.log(listOfQuestionToShow)
+      //     }
+      //   },
+      //   error:() =>{},
+      //   complete: () =>{}
+      // })
+      console.log(this.listOfQuestionToShow)
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({question:this.listOfQuestionToShow.id, type: "TEXT",answer:[this.longAnswerForm.get('textInput')!.value]})
     })
   }
 }
