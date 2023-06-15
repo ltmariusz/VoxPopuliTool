@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { AnkietaService, QuestionList } from '../ankieta.service';
 
 export interface Question {
   index: number;
@@ -12,9 +13,18 @@ export interface Question {
  * 3 - rateAnswer - RATING
  */
 export interface OneQuestion {
-  typeOfQuestion: string;
+  questionType: string;
   question: string;
-  allAnswers?: Array<string>;
+  answerList?: Array<string>;
+  isRequired: boolean
+}
+
+
+export interface CreatedQuestionArray {
+  title: string,
+  description: string,
+  isPublic: boolean,
+  questionList: Array<OneQuestion>
 }
 
 @Injectable({
@@ -24,17 +34,19 @@ export class CreateFormsManagementService {
 
   getAllFormsEmitter: EventEmitter<any> = new EventEmitter();
 
+
+
   titleForm?: string // zmienic
   descriptionForm?: string
+  isPublic?: boolean
+  formCreatePostObject?: CreatedQuestionArray
+  questionList?: Array<QuestionList>
   /**
    * zmienna do przechowywania wszystkich stworzonych pytan
    */
   createdQuestionArray?: Array<OneQuestion> = new Array
 
-
-
-
-  constructor() { }
+  constructor(private ankietaService: AnkietaService) { }
 
   form!: Array<any>
 
@@ -75,9 +87,9 @@ export class CreateFormsManagementService {
   }
   submitForms() {
     console.log("test")
+    this.createdQuestionArray = new Array
     this.getAllFormsEmitter.emit()
-    console.log(this.titleForm)
-    console.log(this.descriptionForm)
+
     //użyć tej zmiennej jako petli do zdobycia wszystkich pytan
     console.log(this.listOfCreatingForms.length + "ile jest pytan")
     for (let i = 0; i < this.listOfCreatingForms.length; i++) {
@@ -104,7 +116,38 @@ export class CreateFormsManagementService {
       }
     }
     //Przechowuje aktualny 
-    console.log(this.createdQuestionArray)
+    console.log(this.titleForm)
+    console.log(this.descriptionForm)
+    console.log(this.isPublic)
+    // questionList.push({questionType: , question: , answerList: ,isRequired})
+    // answerList.psuh(string)
+    console.log(this.formCreatePostObject)
+    // this.createdQuestionArray!.forEach((element,index) => {
+    //   console.log(element.question)
+    //   if(element.question ===""){
+    //     console.log("jeden")
+    //     this.createdQuestionArray?.splice(index, 1);
+    //   }
+    // });
+
+    // this.questionList= 
+    this.createdQuestionArray
+
+    this.formCreatePostObject = {
+      title: this.titleForm!,
+      description: this.descriptionForm!,
+      questionList: this.createdQuestionArray!,
+      isPublic: this.isPublic!
+    }
+    
+    this.ankietaService.postAnkieta(this.titleForm!, this.descriptionForm!, this.isPublic!, this.createdQuestionArray).subscribe({
+      next:(response)=>{
+        console.log(response.body)
+      },
+      error:() =>{},
+      complete: () =>{}
+    })
+    console.log(this.formCreatePostObject)
   }
 
 }

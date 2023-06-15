@@ -17,9 +17,9 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Wybierz rodzaj ankiety</mat-label>
-                    <mat-select>
-                        <mat-option value="Publiczna"> Publiczna</mat-option>
-                        <mat-option value="Nie publiczna"> Nie publiczna</mat-option>
+                    <mat-select (selectionChange)="onSelectionChange($event)">
+                        <mat-option value="true"> Publiczna</mat-option>
+                        <mat-option value="false"> Nie publiczna</mat-option>
                     </mat-select>
                 </mat-form-field>
             </form>

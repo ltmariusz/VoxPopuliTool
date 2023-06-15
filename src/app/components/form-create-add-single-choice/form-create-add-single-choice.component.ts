@@ -23,6 +23,8 @@ export class FormCreateAddSingleChoiceComponent implements OnInit, OnDestroy {
   numberOfAnswer: Array<Answers> = [{ last: true }]
 
   indexOfForms!: number;
+  isDeleted?: boolean
+  isRequired?:boolean
 
   /**zmienna odpowiadająca za licznik pytania (wzięte z ngfor z form-creator-page) */
   @Input() index!: number;
@@ -36,6 +38,8 @@ export class FormCreateAddSingleChoiceComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.isRequired=false
+    this.isDeleted = false
     this.singleChoiceForm = this.fb.group({
       singleChoiceQuestionInput: ['', [Validators.required]],
       singleAnswersControlNames: this.fb.array([])
@@ -49,15 +53,24 @@ export class FormCreateAddSingleChoiceComponent implements OnInit, OnDestroy {
     this.getSingleChoice()
   }
 
+  isRequire(){
+    this.isRequired = !this.isRequired
+    console.log(this.isRequired)
+  }
+
   getSingleChoice() {
+
+
     this.createFormsManagementService.getAllFormsEmitter.subscribe(res => {
-      let singleChoiceQuestion = this.singleChoiceForm.get('singleChoiceQuestionInput')?.value
-      let allSingleChoices = new Array<string>
-      for (let i = 0; i < this.singleAnswersControlNames.controls.length; i++) {
-        allSingleChoices.push(this.singleAnswersControlNames.controls[i].value)
+      if (this.isDeleted === false) {
+        let singleChoiceQuestion = this.singleChoiceForm.get('singleChoiceQuestionInput')?.value
+        let allSingleChoices = new Array<string>
+        for (let i = 0; i < this.singleAnswersControlNames.controls.length; i++) {
+          allSingleChoices.push(this.singleAnswersControlNames.controls[i].value)
+        }
+        this.createFormsManagementService.createdQuestionArray?.push({ questionType: "SINGLE_CHOICE", question: singleChoiceQuestion, answerList: allSingleChoices,isRequired:this.isRequired! })
+        // let oneChoiceCreate
       }
-      this.createFormsManagementService.createdQuestionArray?.push({typeOfQuestion:"SINGLE_CHOICE",question:singleChoiceQuestion, allAnswers:allSingleChoices})
-      // let oneChoiceCreate
     })
   }
 
@@ -81,8 +94,11 @@ export class FormCreateAddSingleChoiceComponent implements OnInit, OnDestroy {
    * uzuwanie całego zapytania
    */
   deleteThisQuestion() {
+    this.isDeleted = true
     this.createFormsManagementService.listOfCreatingForms.splice(this.index, 1)
-    console.log(this.createFormsManagementService.listOfCreatingForms[this.indexOfForms - 1])
+    console.log(this.index)
+    this.createFormsManagementService.createdQuestionArray?.splice(this.index, 1)
+    console.log(this.createFormsManagementService.createdQuestionArray)
   }
 
 
@@ -98,7 +114,7 @@ export class FormCreateAddSingleChoiceComponent implements OnInit, OnDestroy {
     //   this.numberOfAnswer.push({ last: true })
     //   this.numberOfAnswer[this.numberOfAnswer.length - 2].last = false
     // }
-    
+
   }
 
   deleteAnswer(index: number) {

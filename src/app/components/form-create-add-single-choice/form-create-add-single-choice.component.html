@@ -5,6 +5,9 @@
             <div class="title-of-question-and-delete-button">
                 <div class="title-of-question"> [{{index+1}}] <mat-icon color="primary"
                         fontSet="material-icons-outlined">check_box</mat-icon>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" (click)="isRequire()">Obowiązkowa</mat-checkbox>
+                    </section>
                 </div>
                 <!-- <div class="title-of-question"> [{{index+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">library_add_check</mat-icon> jednokrotny wybór</div> -->
                 <button mat-button color="warn" class="delete-question" (click)="deleteThisQuestion()">usuń<mat-icon
@@ -27,9 +30,9 @@
                         <div class="idex-of-answer"> {{i+1}}</div>
 
                         <mat-form-field class="new-answer" appearance="fill">
-                            <input matInput placeholder="dodaj odpowiedz" [formControlName]="i" #inputRef placeholder="dodaj odpowiedz">
-                            <button matSuffix mat-icon-button aria-label="delete"
-                                (click)="deleteAnswer(i)">
+                            <input matInput placeholder="dodaj odpowiedz" [formControlName]="i" #inputRef
+                                placeholder="dodaj odpowiedz">
+                            <button matSuffix mat-icon-button aria-label="delete" (click)="deleteAnswer(i)">
                                 <mat-icon class="complete-button" color="primary">close</mat-icon>
                             </button>
                         </mat-form-field>

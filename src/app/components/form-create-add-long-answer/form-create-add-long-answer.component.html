@@ -6,14 +6,15 @@
                 <div>
                     <mat-icon color="primary" fontSet="material-icons-outlined">notes</mat-icon>
                 </div>
+                <section class="example-section">
+                    <mat-checkbox class="example-margin" (click)="isRequire()">Obowiązkowa</mat-checkbox>
+                </section>
             </div>
             <!-- <div class="title-of-question"> [{{index+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
                     edit_note</mat-icon>
             </div> -->
+
             <div class="right-container">
-                <section class="example-section">
-                    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                </section>
                 <button mat-button color="warn" class="delete-question" (click)="deleteThisQuestion()">usuń<mat-icon
                         color="warn">delete</mat-icon></button>
             </div>

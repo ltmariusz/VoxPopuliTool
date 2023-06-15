@@ -7,11 +7,11 @@ import { CreateFormsManagementService } from 'src/app/services/management/create
   templateUrl: './form-create-title.component.html',
   styleUrls: ['./form-create-title.component.scss']
 })
-export class FormCreateTitleComponent implements OnInit{
+export class FormCreateTitleComponent implements OnInit {
 
-  constructor(private createFormsManagementService:CreateFormsManagementService){}
-  
-  
+  constructor(private createFormsManagementService: CreateFormsManagementService) { }
+  isPublic?: boolean
+
   ngOnInit(): void {
     this.getTitleForm();
   }
@@ -32,12 +32,18 @@ export class FormCreateTitleComponent implements OnInit{
     descriptionForm: new FormControl('', [Validators.required])
   })
 
-  getTitleForm(){
+  getTitleForm() {
     this.createFormsManagementService.getAllFormsEmitter.subscribe(
-      res=>{
+      res => {
         this.createFormsManagementService.titleForm = this.createFormsTitle.get('titleForm')?.value!
         this.createFormsManagementService.descriptionForm = this.createFormsTitle.get('descriptionForm')?.value!
+        this.createFormsManagementService.isPublic = this.isPublic
       })
+  }
+
+  onSelectionChange(event: any) {
+    let selectedValue = event.value;
+    this.isPublic = selectedValue
   }
   // blurr() {
   //   console.log("testt")

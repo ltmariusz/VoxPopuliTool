@@ -2,6 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Message } from './auth.service';
+import { OneQuestion } from './management/create-forms-management.service';
 
 export interface QuestionnaireList {
   id: number,
@@ -66,7 +67,7 @@ export interface PublicForm {
 
 
 export interface QuestionList {
-  type: number,
+  questionType: number,
   question: string,
   answerList: Array<string>,
   isRequired: boolean
@@ -246,7 +247,7 @@ export class AnkietaService {
     title: string,
     description: string,
     isPublic: boolean,
-    questionList: Array<QuestionList>
+    questionList: Array<OneQuestion>
   ): Observable<HttpResponse<Message>> {
     return this.http.post<Message>(this.PATH, {
       title: title,

@@ -24,19 +24,19 @@
                     <div *ngSwitchDefault>błąd</div>
                 </div>  -->
                            
-                <div *ngIf="listOfQuestionToShow[i].typeOfQuestion == 'SINGLE_CHOICE'">
+                <div *ngIf="listOfQuestionToShow[i].questionType == 'SINGLE_CHOICE'">
                     <app-answer-form-single-choice [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
                     </app-answer-form-single-choice>
                 </div>
-                <div *ngIf="listOfQuestionToShow[i].typeOfQuestion == 'MULTIPLE_CHOICE'">
+                <div *ngIf="listOfQuestionToShow[i].questionType == 'MULTIPLE_CHOICE'">
                     <app-answer-form-multiply-choice [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
                     </app-answer-form-multiply-choice>
                 </div>
-                <div *ngIf="listOfQuestionToShow[i].typeOfQuestion == 'TEXT'">
+                <div *ngIf="listOfQuestionToShow[i].questionType == 'TEXT'">
                     <app-answer-form-long-answer [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
                     </app-answer-form-long-answer>
                 </div>
-                <div *ngIf="listOfQuestionToShow[i].typeOfQuestion == 'RATING'">
+                <div *ngIf="listOfQuestionToShow[i].questionType == 'RATING'">
                     <app-answer-form-rate [index]="i" [listOfQuestionToShow]="listOfQuestionToShow[i]">
                     </app-answer-form-rate>
                 </div>
