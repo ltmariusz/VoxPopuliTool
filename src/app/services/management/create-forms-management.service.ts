@@ -41,6 +41,8 @@ export class CreateFormsManagementService {
   isPublic?: boolean
   formCreatePostObject?: CreatedQuestionArray
   questionList?: Array<QuestionList>
+  clickedDone?:boolean
+
   /**
    * zmienna do przechowywania wszystkich stworzonych pytan
    */
@@ -139,14 +141,18 @@ export class CreateFormsManagementService {
       questionList: this.createdQuestionArray!,
       isPublic: this.isPublic!
     }
-    
-    this.ankietaService.postAnkieta(this.titleForm!, this.descriptionForm!, this.isPublic!, this.createdQuestionArray).subscribe({
-      next:(response)=>{
-        console.log(response.body)
-      },
-      error:() =>{},
-      complete: () =>{}
-    })
+    if (this.titleForm !=="") {
+      this.ankietaService.postAnkieta(this.titleForm!, this.descriptionForm!, this.isPublic!, this.createdQuestionArray).subscribe({
+        next: (response) => {
+          console.log("wysłane")
+          console.log(response.body)
+          this.clickedDone =true
+        },
+        error: () => { },
+        complete: () => { }
+      })
+      console.log("test")
+    }
     console.log(this.formCreatePostObject)
   }
 

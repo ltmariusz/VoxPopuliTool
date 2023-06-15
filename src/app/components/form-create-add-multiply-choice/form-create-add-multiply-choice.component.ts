@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 import { Answers } from '../form-create-add-single-choice/form-create-add-single-choice.component';
@@ -9,6 +9,10 @@ import { Answers } from '../form-create-add-single-choice/form-create-add-single
   styleUrls: ['../../../style/style-of-answers.scss']
 })
 export class FormCreateAddMultiplyChoiceComponent implements OnInit {
+
+  // @ViewChildren('inputRef') inputRefs!: QueryList<ElementRef<HTMLInputElement>>;
+  // @ViewChild('inputRef') inputRef!: ElementRef<HTMLInputElement>;
+
 
   multiplyChoiceForm!: FormGroup
 
@@ -64,6 +68,8 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
   }
 
 
+  
+
   get answerControlNames() {
     return this.multiplyChoiceForm.get('answerControlNames') as FormArray;
   }
@@ -98,6 +104,16 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
 
     // }
     (this.multiplyChoiceForm.get('answerControlNames') as FormArray).push(this.fb.control(''))
+    // setTimeout(() => {
+    //   this.inputRef.nativeElement.focus();
+    // }, 0);
+    // setTimeout(() => {
+    //   let lastInputRef = this.inputRefs.last;
+    //   console.log(lastInputRef)
+    //   if (lastInputRef) {
+    //     lastInputRef.nativeElement.focus();
+    //   }
+    // }, 0);
     console.log(this.multiplyChoiceForm)
   }
   deleteAnswer(index: number) {
