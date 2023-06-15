@@ -20,8 +20,9 @@
                     <mat-panel-title class="mat_title">
                         <div class="row_list">
                             <div class="icon desktop">
-                                <mat-icon *ngIf="questionnaire.isPublic == true" class="green_c questionnaire_icon" fontIcon="quiz"></mat-icon>
-                                <mat-icon *ngIf="questionnaire.isPublic == false" class="gray_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isPublic == true && questionnaire.isActive == true" class="green_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isPublic == false  && questionnaire.isActive == true" class="gray_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isActive == false" class="red_c questionnaire_icon" fontIcon="quiz"></mat-icon>
                             </div>
                             <div class="name">
                                 <p>{{questionnaire.title}}</p>
@@ -51,7 +52,8 @@
                         <div *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.questionnaireType == 'PRIVATE'" class="personal_container">
                             <div class="row_list">
                                 <div class="icon desktop">
-                                    <mat-icon class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
+                                    <mat-icon *ngIf="questionnaire.isActive == true" class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
+                                    <mat-icon *ngIf="questionnaire.isActive == false" class="red_c questionnaire_icon" fontIcon="help_center"></mat-icon>
                                 </div>
                                 <div class="name">
                                     <p>{{questionnairePersonal.title}}</p>
