@@ -46,3 +46,20 @@
 .right mat-icon{
     cursor: pointer;
 }
+
+@media only screen and (max-width: 800px){
+.container_list{
+    width: 100%;
+}
+.card{
+    margin-left: 2rem;
+    // margin-right: 1rem;
+    width: -webkit-fill-available;
+}
+.message{
+    max-width: 100%;
+}
+.left mat-icon{
+    overflow: initial;
+}
+}
