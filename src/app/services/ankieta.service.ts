@@ -213,24 +213,6 @@ export class AnkietaService {
     })
   }
 
-  getAnkietaIdMetadata(
-    id: number
-  ): Observable<HttpResponse<Array<Metadata>>> {
-    return this.http.get<Array<Metadata>>(this.PATH + `/${id}/metadata`, {
-      observe: 'response',
-      responseType: 'json'
-    })
-  }
-
-  getAnkietaIdContact(
-    id: number
-  ): Observable<HttpResponse<Array<Contact>>> {
-    return this.http.get<Array<Contact>>(this.PATH + `/${id}/contact`, {
-      observe: 'response',
-      responseType: 'json'
-    })
-  }
-
   getPublicAnkietaUuid(
     uuid: string
   ): Observable<HttpResponse<PublicForm>> {
