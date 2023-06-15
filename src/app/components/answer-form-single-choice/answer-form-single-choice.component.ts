@@ -27,6 +27,7 @@ export class AnswerFormSingleChoiceComponent implements OnInit {
   selectedRatio!: string
   onRatioChange() {
     console.log('Zaznaczono ratio:', this.selectedRatio)
+    
     this.singleChoiceAnswer = this.selectedRatio;
   }
 
@@ -37,6 +38,7 @@ export class AnswerFormSingleChoiceComponent implements OnInit {
     // console.log(this.listOfQuestionToShow)
     // console.log(this.index)
     this.question = this.listOfQuestionToShow.question
+    console.log(this.listOfQuestionToShow.answerVariants)
     this.getSingleChoiceAnswer()
   }
 
@@ -58,7 +60,7 @@ export class AnswerFormSingleChoiceComponent implements OnInit {
       } else {
         console.log("wszystkie zle")
       }
-
+      console.log(this.singleChoiceAnswer)
       this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.listOfQuestionToShow.id, type:"SINGLE_CHOICE", answer: [this.singleChoiceAnswer] })
 
     })

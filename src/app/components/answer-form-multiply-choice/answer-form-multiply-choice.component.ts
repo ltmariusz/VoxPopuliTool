@@ -4,9 +4,17 @@ import { AllFormsManagementService } from 'src/app/services/management/all-forms
 import { OneQuestion } from 'src/app/services/management/create-forms-management.service';
 
 export interface ChosenOrNotMultipleChoice {
-  answer: string,
+  answer: any,
+  answerToShow: string,
   checked: boolean
 }
+
+//TO DODAĆ I ZMODYFIKOWAC W INNY ODPOWIEDZIACH
+export interface MultiplyChoiceToPostObject {
+  answerId: number,
+  answerString: string
+}
+
 
 @Component({
   selector: 'app-answer-form-multiply-choice',
@@ -28,7 +36,7 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
   howMuchAnswers!: number
   chosenOrNot!: Array<ChosenOrNotMultipleChoice>
 
-  multipleChoiceAnswers: Array<string> = new Array
+  multipleChoiceAnswers: Array<MultiplyChoiceToPostObject> = new Array
 
   tymczasowa!: any
 
@@ -36,12 +44,14 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
     //  console.log(this.listOfQuestionToShow)
     //  console.log(this.index)
     this.chosenOrNot = new Array
-    console.log(this.listOfQuestionToShow)
+    // console.log(this.listOfQuestionToShow)
     this.howMuchAnswers = this.listOfQuestionToShow.answerVariants!.length
     for (let i = 0; i < this.howMuchAnswers; i++) {
-      const element = this.listOfQuestionToShow.answerVariants![i].answer;
-      this.chosenOrNot.push({ answer: element, checked: false })
+      const element = this.listOfQuestionToShow.answerVariants![i];
+      // console.log(element)
+      this.chosenOrNot.push({ answer: element, answerToShow: element.answer, checked: false })
     }
+
     this.question = this.listOfQuestionToShow.question
     this.getMultipleChoice()
   }
@@ -65,10 +75,13 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
     this.allFormsManagementService.getAllAnswerEmitter.subscribe(res => {
       for (const item of this.chosenOrNot) {
         if (item.checked) {
-          this.multipleChoiceAnswers.push(item.answer)
+          this.multipleChoiceAnswers.push({ answerId: item.answer.id, answerString: item.answer.answer })
+          // this.multipleChoiceAnswers.push(item.answer)
         }
       }
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.listOfQuestionToShow.id, type:"MULTIPLE_CHOICE", answer: this.multipleChoiceAnswers })
+      // console.log("this.listOfQuestionToShow.id")
+      // console.log(this.listOfQuestionToShow)
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.listOfQuestionToShow.id, type: "MULTIPLE_CHOICE", answer: this.multipleChoiceAnswers })
     })
   }
 }

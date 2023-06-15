@@ -103,6 +103,12 @@ export interface AnswerVariants{
   createDate: string
 }
 
+export interface PostAnswers {
+  questionId: number,
+  answerIds?: Array<any> | null,
+  value?: string | null,
+}
+
 export interface Questionnaire{
   id: number,
   title: string,
@@ -213,23 +219,8 @@ export class AnkietaService {
     })
   }
 
-  getAnkietaIdMetadata(
-    id: number
-  ): Observable<HttpResponse<Array<Metadata>>> {
-    return this.http.get<Array<Metadata>>(this.PATH + `/${id}/metadata`, {
-      observe: 'response',
-      responseType: 'json'
-    })
-  }
 
-  getAnkietaIdContact(
-    id: number
-  ): Observable<HttpResponse<Array<Contact>>> {
-    return this.http.get<Array<Contact>>(this.PATH + `/${id}/contact`, {
-      observe: 'response',
-      responseType: 'json'
-    })
-  }
+
 
   getPublicAnkietaUuid(
     uuid: string
@@ -295,15 +286,10 @@ export class AnkietaService {
 
   postAnkietaPublicUuidAnswer(
     uuid: string,
-    questionId: string,
-    answerIds: Array<number>,
-    value: string
+    body: Array<PostAnswers>
   ): Observable<HttpResponse<Message>> {
-    return this.http.post<Message>(this.PATH + `/api/v1/ankieta/public/ankieta/${uuid}/answer`, {
-      questionId: questionId,
-      answerIds: answerIds,
-      value: value,
-    }, {
+    console.log(body)
+    return this.http.post<Message>(`/api/v1/public/ankieta/${uuid}/answer`, body, {
       observe: 'response',
       responseType: 'json',
     })
