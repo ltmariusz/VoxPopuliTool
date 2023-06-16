@@ -27,6 +27,8 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
 
   idParam?: string
 
+  link?: string
+
   subQuestionaire?: Subscription
   questionaire?: Questionnaire
   loadingQuestionaire = false
@@ -56,6 +58,7 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
 
   ngOnInit(): void {
     this.checkUrl()
+    this.getQuestionaire()
     this.postQuestionnaireGlobalSubscribe()
     this.getQuestionsContact()
   }
@@ -137,6 +140,31 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
     })
   }
 
+  getQuestionaire(){
+    this.loadingQuestionaire = true
+    this.subQuestionaire = this.ankietaRest.getAnkietaId(Number(this.idParam)).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionaire = response.body
+          console.log(response.body)
+          this.link = `www.localhost:4200/answer-form/${this.questionaire.uniqueCode}`
+        }
+        else{
+          this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionaire)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionaire = false
+        this.customErrorQuestionaire = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionaire!)
+      },
+      complete: () => {
+        this.loadingQuestionaire = false;
+      }
+    })
+  }
+
   postAnkietaGlobal(){
     let List = []
     var phoneArray = this.keyInputs.get('phone') as FormArray;
@@ -200,6 +228,11 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
       }
     })
 
+  }
+
+  copyLink(){
+    navigator.clipboard.writeText(this.link!);
+    // alert("Skopiowano: " + this.link)
   }
 
   getQuestionsContact(){

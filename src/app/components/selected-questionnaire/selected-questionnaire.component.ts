@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from 'ng-apexcharts';
 import { Subscription } from 'rxjs';
-import { AnkietaService, QuestionListAll, Questionnaire } from 'src/app/services/ankieta.service';
+import { AnkietaService, QuestionListAll, Questionnaire, StatsList } from 'src/app/services/ankieta.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
 export type ChartOptions = {
@@ -35,47 +35,50 @@ export class SelectedQuestionnaireComponent implements OnInit{
   loadingQuestionsList = false
   customErrorQuestionsList?: string
 
-  poll = [
-    {
-      answer: [
-        {
-          id: 0,
-          title: 'płatki z mlekiem',
-          count: 10
-        },
-        {
-          id: 1,
-          title: 'piwo z sokiem',
-          count: 14
-        },
-        {
-          id: 2,
-          title: 'sok z piwem',
-          count: 30
-        },
-      ]
-    },
-    {
-      answer: [
-        {
-          id: 0,
-          title: 'cola',
-          count: 43
-        },
-        {
-          id: 1,
-          title: 'sok'
-          ,
-          count: 20
-        },
-        {
-          id: 2,
-          title: 'tyskie'
-          ,
-          count: 49
-        },
-      ]
-    }
+  subQuestionsStats?: Subscription
+  questionsStats?: Array<StatsList>
+  loadingQuestionsStats = false
+  customErrorQuestionsStats?: string
+
+  poll: any = [
+    // {
+    //   answer: [
+    //     {
+    //       // id: 0,
+    //       // title: 'płatki z mlekiem',
+    //       count: 10
+    //     },
+    //     {
+    //       // id: 1,
+    //       // title: 'piwo z sokiem',
+    //       count: 14
+    //     },
+    //     {
+    //       // id: 2,
+    //       // title: 'sok z piwem',
+    //       count: 30
+    //     },
+    //   ]
+    // },
+    // {
+    //   answer: [
+    //     {
+    //       // id: 0,
+    //       // title: 'cola',
+    //       count: 43
+    //     },
+    //     {
+    //       // id: 1,
+    //       // title: 'sok',
+    //       count: 20
+    //     },
+    //     {
+    //       // id: 2,
+    //       // title: 'tyskie',
+    //       count: 49
+    //     },
+    //   ]
+    // }
   ]
 
   arrayWithSeriesCount?: any [] = []
@@ -128,6 +131,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
     this.checkUrl()
     this.getQuestionaire()
     this.getQuestionsList()
+    this.getQuestionsStats()
   }
 
   checkUrl() {
@@ -169,6 +173,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
           console.log(response.body)
           this.loadLabelsTochart()
           this.loadSeriesToChart()
+          // this.loadChart()
         }
         else{
           this.customErrorQuestionsList = 'Brak obiektu odpowiedzi';
@@ -186,32 +191,115 @@ export class SelectedQuestionnaireComponent implements OnInit{
     })
   }
 
-  loadLabelsTochart(){
-    for (let index = 0; index < this.questionsList!.length; index++) {
-      let arrayLabelNameToPush = []
-      for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
-        arrayLabelNameToPush!.push(this.questionsList![index].answerVariants[indexAnswer].answer)
+  // loadChart(){
+  //   if (this.questionsList && this.questionsStats) {
+  //     this.takeStatsAndMoveToChart()
+  //         this.loadLabelsTochart()
+  //         this.loadSeriesToChart()
+  //   }
+  // }
+
+  getQuestionsStats(){
+    this.loadingQuestionsStats = true
+    this.subQuestionsStats = this.ankietaRest.getAnkietaIdStats(Number(this.idParam), null, null).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionsStats = response.body
+          console.log(response.body)
+          this.takeStatsAndMoveToChart()
+          this.loadLabelsTochart()
+          this.loadSeriesToChart()
+          // this.loadChart()
+        }
+        else{
+          this.customErrorQuestionsStats = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionsStats)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionsStats = false
+        this.customErrorQuestionsStats = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionsStats!)
+      },
+      complete: () => {
+        this.loadingQuestionsStats = false;
       }
-      this.arrayWithLabelNames?.push(arrayLabelNameToPush)
+    })
+  }
+
+  loadLabelsTochart(){
+    if (this.questionsList!.length != 0) {
+      for (let index = 0; index < this.questionsList!.length; index++) {
+        let arrayLabelNameToPush = []
+        for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
+          arrayLabelNameToPush!.push(this.questionsList![index].answerVariants[indexAnswer].answer)
+        }
+        this.arrayWithLabelNames?.push(arrayLabelNameToPush)
+      }  
     }
+    
     console.log(this.arrayWithLabelNames)
   }
 
   loadSeriesToChart(){
-    // arrayWithSeriesCount
-    for (let index = 0; index < this.questionsList!.length; index++) {
-      let arrayWithSeriesCountToPush = []
-      for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
-        arrayWithSeriesCountToPush!.push(this.poll[index].answer[indexAnswer].count)
-        // EDIT WITH STATS FORM REST
-      }
-      this.arrayWithSeriesCount?.push(arrayWithSeriesCountToPush)
+    if (this.questionsList!.length != 0) {
+        // arrayWithSeriesCount
+      for (let index = 0; index < this.questionsList!.length; index++) {
+        let arrayWithSeriesCountToPush = []
+        for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
+          arrayWithSeriesCountToPush!.push(this.poll[index].answer[indexAnswer].count)
+          // EDIT WITH STATS FORM REST
+        }
+        this.arrayWithSeriesCount?.push(arrayWithSeriesCountToPush)
+      } 
     }
     console.log(this.arrayWithSeriesCount)
   }
 
   back(){
     this.router.navigateByUrl('/home/form-list');
+  }
+
+  takeStatsAndMoveToChart(){
+    for (let index = 0; index < this.questionsStats!.length; index++) {
+      console.log('test')
+      if (this.questionsStats![index].answerList?.length == 0) {
+        this.poll.push(
+          {
+            answer: [
+              {
+                count: 0
+              },
+              {
+                count: 10
+              },
+              {
+                count: 10
+              }
+            ]
+          },
+        )
+      }
+      else{
+        for (let indexAnswer = 0; indexAnswer < this.questionsStats![index].answerList!.length; indexAnswer++) {
+          this.poll.push(
+            {
+              answer: []
+            }
+          )
+          this.poll[index].answer.push(
+            {
+              count: this.questionsStats![index].answerList![indexAnswer].answerSum
+            }
+          )   
+        }
+      }
+      console.log(this.poll)
+    }
+
+    this.loadLabelsTochart()
+    this.loadSeriesToChart()
+    console.log(this.poll)
   }
 
 }

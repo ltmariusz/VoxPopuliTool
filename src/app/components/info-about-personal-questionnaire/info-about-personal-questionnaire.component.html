@@ -64,8 +64,8 @@
         </div>
         <div class="description">
             <div class="metadate_container" *ngFor="let metadate of this.questionsMetadate">
-                {{metadate.value}} -
-                {{metadate.key}}
+                {{metadate.key}} -
+                {{metadate.value}}
             </div>
             <div class="metadate_container" *ngIf="this.questionsMetadate?.length == 0">
                 Brak dostępnych metadanych do wyświetlenia!

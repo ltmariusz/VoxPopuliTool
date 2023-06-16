@@ -243,7 +243,7 @@ export class AnkietaService {
   //------------------------------------------------------------------------//
 
   getAnkietaIdStats(id: number, metadataKey: string|null, metadataValue: string|null): Observable<HttpResponse<Array<StatsList>>> {
-    return this.http.get<Array<StatsList>>(this.PATH + `/${id}/metadata`, {
+    return this.http.get<Array<StatsList>>(this.PATH + `/${id}/stats`, {
       observe: 'response',
       responseType: 'json'
     })

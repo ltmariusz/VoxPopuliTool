@@ -76,6 +76,15 @@
     <!-- <div class="submit_card">
         Wygeneruj ankietę
     </div> -->
+    <div class="card">
+        <div class="title_share">
+            Udostępnij
+        </div>
+        <div class="link_row">
+            <input class="example-full-width" [value]="this.link">
+            <button (click)="copyLink()" mat-stroked-button>Kopiuj</button>
+        </div>
+    </div>
     <div class="contact_container">
         <div class="title-of-question">
             <h3>Lista dodanych kontaków</h3>
