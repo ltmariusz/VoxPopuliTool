@@ -15,7 +15,7 @@ export class SendGlobalQuestionnairePageComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
 
   postSendQuestionnaireGlobal(){

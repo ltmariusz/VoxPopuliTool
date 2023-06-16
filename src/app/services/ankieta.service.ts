@@ -133,6 +133,11 @@ export interface MetadataList{
   createDate: string
 }
 
+export interface NewQuestionnaireContactList{
+  contactType: string,
+  value: string
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -290,5 +295,16 @@ export class AnkietaService {
       responseType: 'json',
     })
   }
+
+  //------------------------------------------------------------------------//
+
+  postAnkietaIdContact(id: number, body: Array<NewQuestionnaireContactList>): Observable<HttpResponse<Message>> {
+    return this.http.post<Message>(this.PATH + `/${id}/contact`, body, {
+      observe: 'response',
+      responseType: 'json',
+    })
+  }
+
+  //------------------------------------------------------------------------//
 
 }

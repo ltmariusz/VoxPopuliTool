@@ -137,26 +137,30 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
     })
   }
 
-  postAnkietaGlobal(){//CHANGE TO GLOBAL QUESTIONNAIRE REQUEST
-    let phoneList = []
+  postAnkietaGlobal(){
+    let List = []
     var phoneArray = this.keyInputs.get('phone') as FormArray;
 
     for (let i = 0; i < this.phone.length; i++) {
       var item = phoneArray.at(i).value.number
-      phoneList.push(item);
+      List.push({
+        contactType: 'PHONE',
+        value: item
+      });
     }
 
-    console.log(phoneList)
-
-    let mailList = []
+    // let mailList = []
     var mailArray = this.keyInputs.get('mail') as FormArray;
     
     for (let i = 0; i < this.mail.length; i++) {
       var item = mailArray.at(i).value.mail
-      mailList.push(item);
+      List.push({
+        contactType: 'EMAIL',
+        value: item
+      });
     }
 
-    console.log(mailList)
+    console.log(List)
 
     // let inputList = []
     // var inputArray = this.keyInputs.get('input') as FormArray;
@@ -175,26 +179,26 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
     // console.log(inputList)
 
     this.loadingQuestionnairePrivate = true
-    // this.subQuestionnairePrivate = this.ankietaRest.postAnkietaPrivate(Number(this.idParam), mailList!, phoneList!).subscribe({
-    //   next: (response) => {
-    //     if(response.body){
-    //       this.popupService.succesEmit('Pomyślnie utworzono osobistą ankietę')
-    //       this.router.navigateByUrl('/home/form-list')
-    //     }
-    //     else{
-    //       this.customErrorQuestionnairePrivate = 'Brak obiektu odpowiedzi';
-    //       this.popupService.errorEmit(this.customErrorQuestionnairePrivate)
-    //     }
-    //   },
-    //   error: (errorResponse) => {
-    //     this.loadingQuestionnairePrivate = false
-    //     this.customErrorQuestionnairePrivate = errorResponse.error.message
-    //     this.popupService.errorEmit(this.customErrorQuestionnairePrivate!)
-    //   },
-    //   complete: () => {
-    //     this.loadingQuestionnairePrivate = false;
-    //   }
-    // })
+    this.subQuestionnairePrivate = this.ankietaRest.postAnkietaIdContact(Number(this.idParam), List!).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.popupService.succesEmit('Pomyślnie wysłano grupową ankietę')
+          this.router.navigateByUrl('/home/form-list')
+        }
+        else{
+          this.customErrorQuestionnairePrivate = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionnairePrivate)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionnairePrivate = false
+        this.customErrorQuestionnairePrivate = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionnairePrivate!)
+      },
+      complete: () => {
+        this.loadingQuestionnairePrivate = false;
+      }
+    })
 
   }
 

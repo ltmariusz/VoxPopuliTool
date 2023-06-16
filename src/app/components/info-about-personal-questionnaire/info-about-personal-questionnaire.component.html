@@ -35,6 +35,7 @@
         </div> -->
         <div class="item_container">
             <div class="mail_column">
+                <p *ngIf="this.questionsContact?.length != 0">Mail:</p>
                 <div class="item_container" *ngFor="let contact of this.questionsContact">
                     <div class="item_row" *ngIf="contact.contactType == 'EMAIL'">
                         <mat-icon class="mail_icon" fontIcon="mail"></mat-icon>
@@ -43,6 +44,7 @@
                 </div>
             </div>
             <div class="phone_column">
+                <p *ngIf="this.questionsContact?.length != 0">Telefon:</p>
                 <div class="item_container" *ngFor="let contact of this.questionsContact">
                     <div class="item_row" *ngIf="contact.contactType == 'PHONE'">
                         <mat-icon class="mail_icon" fontIcon="call"></mat-icon>
