@@ -35,6 +35,10 @@ const routes: Routes =[
         loadChildren: () => import('../generate-personal-questionnaire-page/generate-personal-questionnaire-page.module').then(m=>m.GeneratePersonalQuestionnairePageModule)
       },
       {
+        path: 'send-global-questionnaire/:code',
+        loadChildren: () => import('../send-global-questionnaire-page/send-global-questionnaire-page.module').then(m=>m.SendGlobalQuestionnairePageModule)
+      },
+      {
         path: 'personal-questionnaire/:code',
         loadChildren: () => import('../personal-preview-questionnaire-page/personal-preview-questionnaire-page.module').then(m=>m.PersonalPreviewQuestionnairePageModule)
       },

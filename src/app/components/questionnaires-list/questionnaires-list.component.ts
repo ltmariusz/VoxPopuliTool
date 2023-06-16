@@ -221,4 +221,8 @@ export class QuestionnairesListComponent implements OnInit{
     this.router.navigateByUrl(`/home/generate-personal-questionnaire/${id}`);
   }
 
+  sendGlobal(id: number){
+    this.router.navigateByUrl(`/home/send-global-questionnaire/${id}`);
+  }
+
 }

@@ -30,14 +30,14 @@
                         </div>
                         <div class="icons">
                             <button (click)="generatePersonal(questionnaire.id)" class="btn_generate_new_personal" (click)="$event.stopPropagation()">Wygeneruj osobistą</button>
-                            <button class="btn_edit" (click)="$event.stopPropagation()">Wyślij grupową</button>
+                            <button (click)="sendGlobal(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Wyślij grupową</button>
                             <button (click)="clickItem(questionnaire.id)" class="btn_statistic" (click)="$event.stopPropagation()">Statystyki</button>
                             <!-- <button (click)="editQuestionnaire(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button> -->
                             <button (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
                         </div> 
                         <div class="mobile_icons">
                             <button (click)="generatePersonal(questionnaire.id)" class="btn_generate_new_personal" (click)="$event.stopPropagation()">Wygeneruj osobistą</button>
-                            <button class="btn_edit" (click)="$event.stopPropagation()">Wyślij grupową</button>
+                            <button (click)="sendGlobal(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Wyślij grupową</button>
                             <button (click)="clickItem(questionnaire.id)" class="btn_statistic" (click)="$event.stopPropagation()">Statystyki</button>
                             <!-- <button (click)="editQuestionnaire(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button> -->
                             <button (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
