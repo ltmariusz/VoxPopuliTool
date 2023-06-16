@@ -33,13 +33,16 @@
                     </div>
                 </div>
             </div>
-            <div id="chart">
+            <div *ngIf="showChart(i)" id="chart" class="chart_render">
                 <apx-chart
                   [series]="arrayWithSeriesCount![i]"
                   [chart]="chartOptions.chart!"
                   [labels]="arrayWithLabelNames![i]"
                   [responsive]="chartOptions.responsive!"
                 ></apx-chart>
+            </div>
+            <div *ngIf="!showChart(i)" class="chart_enpty">
+                <p>Brak zebranych odpowiedzi</p>
             </div>
         </div>
         <div *ngIf="this.questionsList![i].questionType == 'MULTIPLE_CHOICE'" class="card">
@@ -54,13 +57,16 @@
                     </div>
                 </div>
             </div>
-            <div id="chart">
+            <div *ngIf="showChart(i)" id="chart" class="chart_render">
                 <apx-chart
                   [series]="arrayWithSeriesCount![i]"
                   [chart]="chartOptions.chart!"
                   [labels]="arrayWithLabelNames![i]"
                   [responsive]="chartOptions.responsive!"
                 ></apx-chart>
+            </div>
+            <div *ngIf="!showChart(i)" class="chart_enpty">
+                <p>Brak zebranych odpowiedzi</p>
             </div>
         </div>
 

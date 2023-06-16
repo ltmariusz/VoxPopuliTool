@@ -297,7 +297,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
       }
 
     }
-    // console.log(this.poll)
+    console.log(this.poll)
 
     this.loadLabelsTochart()
     this.loadSeriesToChart()
@@ -316,5 +316,23 @@ export class SelectedQuestionnaireComponent implements OnInit{
       }
     }
     console.log(this.questionsList)
+  }
+
+  showChart(id: number){
+    // for (let index = 0; index < this.poll.length; index++) {
+    let sumCount = 0
+      for (let indexAnswer = 0; indexAnswer < this.poll[id].answer.length; indexAnswer++) {
+        console.log(this.poll[id].answer[indexAnswer].count)
+        sumCount = sumCount + this.poll[id].answer[indexAnswer].count
+      }
+      // if (sumCount != 0) {
+      //   sumCount = true
+      // }
+      // if (sumCount = 0) {
+      //   sumCount = false
+      // }
+      console.log(sumCount)
+    // }
+    return sumCount
   }
 }
