@@ -138,6 +138,28 @@ export interface NewQuestionnaireContactList{
   value: string
 }
 
+export interface StatsList{
+  questionId: number,
+  answerList?: Array<AnswerList>,
+  rating?: Array<Rating>,
+  textList: Array<string>
+}
+
+export interface AnswerList{
+  answerVariantId: number,
+  answerSum: number
+}
+
+export interface Rating{
+  averageRating: number,
+  ratingList: Array<RatingList>
+}
+
+export interface RatingList{
+  value: number,
+  count: number
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -218,6 +240,17 @@ export class AnkietaService {
     })
   }
 
+  //------------------------------------------------------------------------//
+
+  getAnkietaIdStats(id: number, metadataKey: string|null, metadataValue: string|null): Observable<HttpResponse<Array<StatsList>>> {
+    return this.http.get<Array<StatsList>>(this.PATH + `/${id}/metadata`, {
+      observe: 'response',
+      responseType: 'json'
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
   getPublicAnkietaUuid(
     uuid: string
   ): Observable<HttpResponse<PublicForm>> {
@@ -226,6 +259,8 @@ export class AnkietaService {
       responseType: 'json'
     })
   }
+
+  //------------------------------------------------------------------------//
 
   getPublicAnkietaUuidQuestion(
     uuid: string
