@@ -41,8 +41,8 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
 
   ngOnInit(): void {
     this.checkUrl()
-    this.getQuestionsContact()
     this.getQuestionaire()
+    this.getQuestionsContact()
     this.getQuestionsMetadate()
     this.answers = this.allFormsManagementService.exampleDoneAnswerForm
   }
@@ -60,7 +60,7 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
 
   getQuestionaire(){
     this.loadingQuestionaire = true
-    this.subQuestionaire = this.ankietaRest.getAnkietaId(Number(this.idParam)).subscribe({
+    this.subQuestionaire = this.ankietaRest.getAnkietaId(Number(this.idParam!)).subscribe({
       next: (response) => {
         if(response.body){
           this.questionaire = response.body
@@ -85,7 +85,7 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
 
   getQuestionsContact(){
     this.loadingQuestionsContact = true
-    this.subQuestionsContact = this.ankietaRest.getAnkietaIdContact(Number(this.idParam)).subscribe({
+    this.subQuestionsContact = this.ankietaRest.getAnkietaIdContact(Number(this.idParam!)).subscribe({
       next: (response) => {
         if(response.body){
           this.questionsContact = response.body
@@ -109,7 +109,7 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
 
   getQuestionsMetadate(){
     this.loadingQuestionsMetadate = true
-    this.subQuestionsMetadate = this.ankietaRest.getAnkietaIdMetadata(Number(this.idParam)).subscribe({
+    this.subQuestionsMetadate = this.ankietaRest.getAnkietaIdMetadata(Number(this.idParam!)).subscribe({
       next: (response) => {
         if(response.body){
           this.questionsMetadate = response.body

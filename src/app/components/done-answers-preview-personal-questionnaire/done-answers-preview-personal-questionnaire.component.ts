@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AnkietaService, QuestionListAll } from 'src/app/services/ankieta.service';
+import { AnkietaService, QuestionListAll, StatsList } from 'src/app/services/ankieta.service';
 import { AllFormsManagementService } from 'src/app/services/management/all-forms-management.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
 
@@ -25,6 +25,11 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
   loadingQuestionsList = false
   customErrorQuestionsList?: string
 
+  subQuestionsStats?: Subscription
+  questionsStats?: Array<StatsList>
+  loadingQuestionsStats = false
+  customErrorQuestionsStats?: string
+
   constructor(
     public allFormsManagementService: AllFormsManagementService,
     private ankietaRest: AnkietaService,
@@ -36,6 +41,7 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
     this.checkUrl()
     this.getDoneAnswers()
     this.getQuestionsList()
+    this.getQuestionsStats()
   }
 
   checkUrl() {
@@ -48,18 +54,18 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
     this.answers = this.allFormsManagementService.exampleDoneAnswerForm
   }
 
-  checkValueAnswer(answer: any, indexAnswer: number): any{
-    let result: boolean
-    for (let index = 0; index < answer.correct.length; index++) {
-      if (indexAnswer == answer.correct[index]) {
-        return true
-      }
-    }
+  checkValueAnswer(answer: string|number|any|null, indexAnswer: number): any{
+    // let result: boolean
+    // for (let index = 0; index < answer.correct!.length; index++) {
+    //   if (indexAnswer == answer.correct![index]) {
+    //     return true
+    //   }
+    // }
   }
 
   getQuestionsList(){
     this.loadingQuestionsList = true
-    this.subQuestionsList = this.ankietaRest.getAnkietaIdQuestions(Number(this.idParam)).subscribe({
+    this.subQuestionsList = this.ankietaRest.getAnkietaIdQuestions(Number(this.idParam)!).subscribe({
       next: (response) => {
         if(response.body){
           this.questionsList = response.body
@@ -80,6 +86,46 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
         this.loadingQuestionsList = false;
       }
     })
+  }
+
+  getQuestionsStats(){
+    this.loadingQuestionsStats = true
+    this.subQuestionsStats = this.ankietaRest.getAnkietaIdStats(Number(this.idParam), null, null).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.questionsStats = response.body
+          console.log(response.body)
+          this.loadAnswersTextAndRate()
+        }
+        else{
+          this.customErrorQuestionsStats = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorQuestionsStats)
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingQuestionsStats = false
+        this.customErrorQuestionsStats = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorQuestionsStats!)
+      },
+      complete: () => {
+        this.loadingQuestionsStats = false;
+      }
+    })
+  }
+
+  loadAnswersTextAndRate(){
+    for (let index = 0; index < this.questionsStats!.length; index++) {
+      if (this.questionsStats![index].answerList) {
+        this.questionsList![index].correct = null
+      }
+      if (this.questionsStats![index].textList) {
+        this.questionsList![index].correct = [this.questionsStats![index].textList]  
+      }
+      if (this.questionsStats![index].rating) {
+        this.questionsList![index].correct = this.questionsStats![index].rating?.averageRating
+      }
+    }
+    console.log(this.questionsList)
   }
 
   addAnswer(){
