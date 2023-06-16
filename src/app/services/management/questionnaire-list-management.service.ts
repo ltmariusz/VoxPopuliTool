@@ -8,6 +8,7 @@ export class QuestionnaireListManagementService {
   questionnaireListEmit: EventEmitter<any> = new EventEmitter();
 
   questionnairePrivateEmit: EventEmitter<any> = new EventEmitter();
+  questionnaireGlobalEmit: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -19,6 +20,9 @@ export class QuestionnaireListManagementService {
 
   postQuestionnairePrivate(){
     this.questionnairePrivateEmit.emit()
-    console.log('solo emit')
+  }
+
+  postQuestionnaireGlobal(){
+    this.questionnaireGlobalEmit.emit()
   }
 }

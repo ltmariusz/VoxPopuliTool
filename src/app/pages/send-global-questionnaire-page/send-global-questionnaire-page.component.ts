@@ -19,7 +19,7 @@ export class SendGlobalQuestionnairePageComponent implements OnInit{
   }
 
   postSendQuestionnaireGlobal(){
-
+    this.questionnaireListManager.postQuestionnaireGlobal()
   }
 
   back(){
