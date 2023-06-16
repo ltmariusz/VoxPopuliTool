@@ -15,12 +15,7 @@ import { PopupErrorModule } from './components/popup-error/popup-error.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
-    
-    
-        
-    // LoginPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
