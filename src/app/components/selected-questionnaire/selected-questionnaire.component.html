@@ -66,19 +66,24 @@
 
         <div *ngIf="questionnaire.questionType == 'TEXT'" class="card">
             <div class="column">
-                <div class="title-of-question"> [3] <mat-icon color="primary" fontSet="material-icons-outlined">
+                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
                     notes</mat-icon>
                     <div class="title">{{questionnaire.question}}</div>
                 </div>
-                <div class="answer_list">
-                    <div class="answer">
+                <div *ngIf="questionnaire.correct[0].length != 0" class="answer_list">
+                    <div class="answer" *ngFor="let text of questionnaire.correct[0]; ;let iText = index">
                         <!-- 1. Dobre jedzenie<br>
                         2. Złe jedzenie<br>
                         3. Testowe testy testera testowego testującego test na teście testowym<br>
                         4. 5345345<br>
                         5. Alpy<br>
                         6. Koszyk<br> -->
-                        {{questionnaire.correct}}
+                        {{iText+1}}. {{text}}
+                    </div>
+                </div>
+                <div *ngIf="questionnaire.correct[0].length == 0" class="answer_list">
+                    <div class="answer">
+                        Brak zebranych odpowiedzi
                     </div>
                 </div>
             </div>
@@ -86,20 +91,59 @@
 
         <div *ngIf="questionnaire.questionType == 'RATING'" class="card">
             <div class="column">
-                <div class="title-of-question"> [3] <mat-icon color="primary" fontSet="material-icons-outlined">
+                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
                     star_half</mat-icon>
                     <div class="title">{{questionnaire.question}}</div>
                 </div>
-                <div class="answer_list">
-                    <div class="answer">
-                        <!-- 1. Dobre jedzenie<br>
-                        2. Złe jedzenie<br>
-                        3. Testowe testy testera testowego testującego test na teście testowym<br>
-                        4. 5345345<br>
-                        5. Alpy<br>
-                        6. Koszyk<br> -->
-                        {{questionnaire.correct}}
+                <div *ngIf="questionnaire.correct" class="answer_list star_list_answer">
+                    {{questionnaire.correct}}.0
+                    <div class="answer" [ngSwitch]="questionnaire.correct">
+                        <div *ngSwitchCase="0" class="row_stars">
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                        </div>
+                        <div *ngSwitchCase="1" class="row_stars">
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                        </div>
+                        <div *ngSwitchCase="2" class="row_stars">
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                        </div>
+                        <div *ngSwitchCase="3" class="row_stars">
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                        </div>
+                        <div *ngSwitchCase="4" class="row_stars">
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon>star</mat-icon>
+                        </div>
+                        <div *ngSwitchCase="5" class="row_stars">
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                            <mat-icon class="rate">star</mat-icon>
+                        </div>
                     </div>
+                </div>
+                <div *ngIf="!questionnaire.correct" class="answer_list">
+                    Brak zebranych odpowiedzi
                 </div>
                 <!-- <div id="chart">
                     <apx-chart

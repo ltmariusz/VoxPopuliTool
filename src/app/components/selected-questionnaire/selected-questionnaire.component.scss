@@ -85,7 +85,16 @@
     margin-left: 1rem;
     cursor: pointer;
 }
-
+.star_list_answer{
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.8rem;
+    padding: 1rem;
+    align-items: center;
+}
+.rate{
+    color: $modern_style_1_btn;
+}
 
 
 

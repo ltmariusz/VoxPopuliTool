@@ -209,6 +209,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
           this.takeStatsAndMoveToChart()
           this.loadLabelsTochart()
           this.loadSeriesToChart()
+          this.loadAnswersTextAndRate()
           // this.loadChart()
         }
         else{
@@ -238,7 +239,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
       }  
     }
     
-    console.log(this.arrayWithLabelNames)
+    // console.log(this.arrayWithLabelNames)
   }
 
   loadSeriesToChart(){
@@ -253,7 +254,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
         this.arrayWithSeriesCount?.push(arrayWithSeriesCountToPush)
       } 
     }
-    console.log(this.arrayWithSeriesCount)
+    // console.log(this.arrayWithSeriesCount)
   }
 
   back(){
@@ -262,23 +263,23 @@ export class SelectedQuestionnaireComponent implements OnInit{
 
   takeStatsAndMoveToChart(){
     for (let index = 0; index < this.questionsStats!.length; index++) {
-      console.log('test')
-      if (this.questionsStats![index].answerList?.length == 0) {
-        this.poll.push(
-          {
-            answer: [
-              {
-                count: 0
-              },
-              {
-                count: 10
-              },
-              {
-                count: 10
-              }
-            ]
-          },
-        )
+      // console.log('test' + index)
+      if (this.questionsStats![index].answerList?.length == 0 || this.questionsStats![index].answerList == null) {
+        // this.poll.push(
+        //   {
+        //     answer: [
+        //       {
+        //         count: 0
+        //       },
+        //       {
+        //         count: 10
+        //       },
+        //       {
+        //         count: 10
+        //       }
+        //     ]
+        //   },
+        // )
       }
       else{
         for (let indexAnswer = 0; indexAnswer < this.questionsStats![index].answerList!.length; indexAnswer++) {
@@ -294,12 +295,26 @@ export class SelectedQuestionnaireComponent implements OnInit{
           )   
         }
       }
-      console.log(this.poll)
+
     }
+    // console.log(this.poll)
 
     this.loadLabelsTochart()
     this.loadSeriesToChart()
-    console.log(this.poll)
   }
 
+  loadAnswersTextAndRate(){
+    for (let index = 0; index < this.questionsStats!.length; index++) {
+      if (this.questionsStats![index].answerList) {
+        this.questionsList![index].correct = null
+      }
+      if (this.questionsStats![index].textList) {
+        this.questionsList![index].correct = [this.questionsStats![index].textList]  
+      }
+      if (this.questionsStats![index].rating) {
+        this.questionsList![index].correct = this.questionsStats![index].rating?.averageRating
+      }
+    }
+    console.log(this.questionsList)
+  }
 }

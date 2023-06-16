@@ -141,7 +141,7 @@ export interface NewQuestionnaireContactList{
 export interface StatsList{
   questionId: number,
   answerList?: Array<AnswerList>,
-  rating?: Array<Rating>,
+  rating?: Rating,
   textList: Array<string>
 }
 
@@ -341,5 +341,22 @@ export class AnkietaService {
   }
 
   //------------------------------------------------------------------------//
+
+  //------------------------------------------------------------------------//
+  // PUT PUT PUT PUT PUT PUT PUT PUTPUT PUT PUT PUTPUT PUT PUT PUTPUT PUT  //
+  //------------------------------------------------------------------------//
+
+  putAnkietaIdDeactivate(id: number): Observable<HttpResponse<Message>> {
+    return this.http.put<Message>(this.PATH + `/${id}/deactivate`,{
+      
+    }, {
+      observe: 'response',
+      responseType: 'json',
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
+
 
 }
