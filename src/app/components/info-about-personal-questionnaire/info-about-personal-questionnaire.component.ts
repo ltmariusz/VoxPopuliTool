@@ -65,7 +65,7 @@ export class InfoAboutPersonalQuestionnaireComponent implements OnInit{
         if(response.body){
           this.questionaire = response.body
           console.log(response.body)
-          this.link = `www.localhost.pl/${this.questionaire.link}`
+          this.link = `${this.questionaire.link}`
         }
         else{
           this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';

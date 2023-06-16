@@ -147,7 +147,7 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
         if(response.body){
           this.questionaire = response.body
           console.log(response.body)
-          this.link = `www.localhost:4200/answer-form/${this.questionaire.uniqueCode}`
+          this.link = `${this.questionaire.link}`
         }
         else{
           this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';
