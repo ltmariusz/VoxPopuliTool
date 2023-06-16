@@ -39,8 +39,8 @@ export interface OneAnswer {
 }
 export interface OneAnswer2 {
   question: string,
-  type:string,
-  answer: Array<string>
+  type: string,
+  answer: Array<any>
 }
 
 
@@ -78,19 +78,26 @@ export class AllFormsManagementService {
     for (let i = 0; i < this.allAnswersFromOneForm.answers.length; i++) {
       const element = this.allAnswersFromOneForm.answers[i];
       console.log(element.answer)
-      if(element.type==="SINGLE_CHOICE"){
-        this.listWithAnswersToPost.push({questionId:Number(element.question), answerIds: element.answer,value:null})
+      console.log(element)
+      if (element.type === "SINGLE_CHOICE") {
+        this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: element.answer, value: null })
       }
-      if(element.type==="MULTIPLE_CHOICE"){
-        this.listWithAnswersToPost.push({questionId:Number(element.question), answerIds: element.answer,value:null})
+      if (element.type === "MULTIPLE_CHOICE") {
+        console.warn("element.answer")
+
+        let answers = new Array
+        element.answer.forEach(answer => {
+          answers.push(answer.answerId)
+        });
+        this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: answers, value: null })
       }
-      if(element.type==="TEXT"){
-        this.listWithAnswersToPost.push({questionId:Number(element.question), answerIds: null,value:element.answer[0]})
+      if (element.type === "TEXT") {
+        this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: null, value: element.answer[0] })
       }
-      if(element.type==="RATING"){
-        this.listWithAnswersToPost.push({questionId:Number(element.question), answerIds: null,value:element.answer[0]})
+      if (element.type === "RATING") {
+        this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: null, value: element.answer[0] })
       }
-      
+
 
     }
     console.log(this.listWithAnswersToPost)
@@ -99,7 +106,17 @@ export class AllFormsManagementService {
     // !!!!!!!!!!!!!!!!!!
     // !!!!!!!!!!!!!!!!!!!!!
     //TO DO TUTAJ JEST STWORZONE WYSYLANIE
-    // this.ankietaService.postAnkietaPublicUuidAnswer(this.formFromUrl, this.listWithAnswersToPost)
+    console.log(this.listWithAnswersToPost)
+    console.log(this.formFromUrl)
+    this.ankietaService.postAnkietaPublicUuidAnswer(String(this.formFromUrl), this.listWithAnswersToPost).subscribe({
+      next:(response)=>{
+        console.log(response.body)
+      },
+      error:(error) =>{
+        console.log(error)
+      },
+      complete: () =>{}
+    })
     // console.log(this.ankietaService.postAnkietaPublicUuidAnswer())
 
   }

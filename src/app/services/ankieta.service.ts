@@ -2,6 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Message } from './auth.service';
+import { OneQuestion } from './management/create-forms-management.service';
 
 export interface QuestionnaireList {
   id: number,
@@ -66,7 +67,7 @@ export interface PublicForm {
 
 
 export interface QuestionList {
-  type: number,
+  questionType: number,
   question: string,
   answerList: Array<string>,
   isRequired: boolean
@@ -101,6 +102,12 @@ export interface AnswerVariants{
   questionId: number,
   answer: string,
   createDate: string
+}
+
+export interface PostAnswers {
+  questionId: number,
+  answerIds?: Array<any> | null,
+  value?: string | null,
 }
 
 export interface Questionnaire{
@@ -280,7 +287,7 @@ export class AnkietaService {
     title: string,
     description: string,
     isPublic: boolean,
-    questionList: Array<QuestionList>
+    questionList: Array<OneQuestion>
   ): Observable<HttpResponse<Message>> {
     return this.http.post<Message>(this.PATH, {
       title: title,
@@ -317,15 +324,10 @@ export class AnkietaService {
 
   postAnkietaPublicUuidAnswer(
     uuid: string,
-    questionId: string,
-    answerIds: Array<number>,
-    value: string
+    body: Array<PostAnswers>
   ): Observable<HttpResponse<Message>> {
-    return this.http.post<Message>(this.PATH + `/api/v1/ankieta/public/ankieta/${uuid}/answer`, {
-      questionId: questionId,
-      answerIds: answerIds,
-      value: value,
-    }, {
+    console.log(body)
+    return this.http.post<Message>(`/api/v1/public/ankieta/${uuid}/answer`, body, {
       observe: 'response',
       responseType: 'json',
     })

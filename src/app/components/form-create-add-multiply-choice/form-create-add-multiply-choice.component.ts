@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 import { Answers } from '../form-create-add-single-choice/form-create-add-single-choice.component';
@@ -10,6 +10,10 @@ import { Answers } from '../form-create-add-single-choice/form-create-add-single
 })
 export class FormCreateAddMultiplyChoiceComponent implements OnInit {
 
+  // @ViewChildren('inputRef') inputRefs!: QueryList<ElementRef<HTMLInputElement>>;
+  // @ViewChild('inputRef') inputRef!: ElementRef<HTMLInputElement>;
+
+
   multiplyChoiceForm!: FormGroup
 
 
@@ -20,8 +24,8 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
     private fb: FormBuilder) { }
 
   indexOfForms!: number
-
-
+  isDeleted?:boolean
+  isRequired?:boolean
   @Input() index!: number;
 
   numberOfAnswer: Array<Answers> = [{ last: true }]
@@ -29,6 +33,7 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
 
 
   ngOnInit() {
+    this.isDeleted = false
     this.multiplyChoiceForm = this.fb.group({
       multiplyChoiceQuestionInput: ['', [Validators.required]],
       answerControlNames: this.fb.array([])
@@ -42,19 +47,28 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
     this.getMultipleChoice()
   }
 
+  isRequire(){
+    this.isRequired = !this.isRequired
+    console.log(this.isRequired)
+  }
+  
   getMultipleChoice() {
     this.createFormsManagementService.getAllFormsEmitter.subscribe(res => {
-      let multiplyChoiceQuestion = this.multiplyChoiceForm.get('multiplyChoiceQuestionInput')?.value
-      let allMultiplyChoices = new Array<string>
-      for (let i = 0; i < this.answerControlNames.controls.length; i++) {
-        const element = this.answerControlNames.controls[i].value;
-        allMultiplyChoices.push(element)
+      if (this.isDeleted === false) {
+        let multiplyChoiceQuestion = this.multiplyChoiceForm.get('multiplyChoiceQuestionInput')?.value
+        let allMultiplyChoices = new Array<string>
+        for (let i = 0; i < this.answerControlNames.controls.length; i++) {
+          const element = this.answerControlNames.controls[i].value;
+          allMultiplyChoices.push(element)
+        }
+        this.createFormsManagementService.createdQuestionArray?.push({ questionType: "MULTIPLE_CHOICE", question: multiplyChoiceQuestion, answerList: allMultiplyChoices, isRequired:this.isRequired! })
       }
-      this.createFormsManagementService.createdQuestionArray?.push({typeOfQuestion:"MULTIPLE_CHOICE", question: multiplyChoiceQuestion, allAnswers: allMultiplyChoices})
     })
 
   }
 
+
+  
 
   get answerControlNames() {
     return this.multiplyChoiceForm.get('answerControlNames') as FormArray;
@@ -73,7 +87,11 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
    * uzuwanie całego zapytania
    */
   deleteThisQuestion() {
+    this.isDeleted = true
     this.createFormsManagementService.listOfCreatingForms.splice(this.index, 1)
+    console.log(this.index)
+    this.createFormsManagementService.createdQuestionArray?.splice(this.index, 1)
+    console.log(this.createFormsManagementService.createdQuestionArray)
   }
 
   /**
@@ -86,6 +104,16 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
 
     // }
     (this.multiplyChoiceForm.get('answerControlNames') as FormArray).push(this.fb.control(''))
+    // setTimeout(() => {
+    //   this.inputRef.nativeElement.focus();
+    // }, 0);
+    // setTimeout(() => {
+    //   let lastInputRef = this.inputRefs.last;
+    //   console.log(lastInputRef)
+    //   if (lastInputRef) {
+    //     lastInputRef.nativeElement.focus();
+    //   }
+    // }, 0);
     console.log(this.multiplyChoiceForm)
   }
   deleteAnswer(index: number) {

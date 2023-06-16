@@ -11,7 +11,7 @@
 
         <div>
             <mat-radio-group class="answer-field" appearance="outline" [(ngModel)]="selectedRatio" (change)="onRatioChange()">
-                <mat-radio-button *ngFor="let item of listOfQuestionToShow.answerVariants" class="answer" [value]="item.answer" (click)="getClick(item.answer)">
+                <mat-radio-button *ngFor="let item of listOfQuestionToShow.answerVariants" class="answer" [value]="item.id" (click)="getClick(item.answer)">
                     {{item.answer}}</mat-radio-button>
             </mat-radio-group>
         </div>
