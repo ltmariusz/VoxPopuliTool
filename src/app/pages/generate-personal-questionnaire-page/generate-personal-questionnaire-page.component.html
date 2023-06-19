@@ -9,7 +9,7 @@
         <div class="right">
             <div class="title">
                 <p>Spersonalizuj ankietę dla obiorcy</p>
-                <div  (click)="postQuestionnairePrivate()" class="submit_btn">Wygeneruj ankietę</div>
+                <button [disabled]="this.questionnaireListManager.loadingSendPrivateQuestionnaire" (click)="postQuestionnairePrivate()" class="submit_btn">Wygeneruj ankietę</button>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class QuestionnaireListManagementService {
 
   loadingSendGroupQuestionnaire = false
+  loadingSendPrivateQuestionnaire = false
 
   list:any = []
 

@@ -207,24 +207,30 @@ export class PanelToCreatePersonalQuestionnaireComponent implements OnInit, OnDe
     console.log(inputList)
 
     this.loadingQuestionnairePrivate = true
+    this.questionnaireListManager.loadingSendPrivateQuestionnaire = true
     this.subQuestionnairePrivate = this.ankietaRest.postAnkietaPrivate(Number(this.idParam), description!, mailList!, phoneList!, inputList).subscribe({
       next: (response) => {
         if(response.body){
+          this.questionnaireListManager.loadingSendPrivateQuestionnaire = false
           this.popupService.succesEmit('Pomyślnie utworzono osobistą ankietę')
           this.router.navigateByUrl('/home/form-list')
+          
         }
         else{
           this.customErrorQuestionnairePrivate = 'Brak obiektu odpowiedzi';
           this.popupService.errorEmit(this.customErrorQuestionnairePrivate)
+          this.questionnaireListManager.loadingSendPrivateQuestionnaire = false
         }
       },
       error: (errorResponse) => {
         this.loadingQuestionnairePrivate = false
+        this.questionnaireListManager.loadingSendPrivateQuestionnaire = false
         this.customErrorQuestionnairePrivate = errorResponse.error.message
         this.popupService.errorEmit(this.customErrorQuestionnairePrivate!)
       },
       complete: () => {
         this.loadingQuestionnairePrivate = false;
+        this.questionnaireListManager.loadingSendPrivateQuestionnaire = false
       }
     })
 
