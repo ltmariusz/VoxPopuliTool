@@ -7,6 +7,13 @@ export class QuestionnaireListManagementService {
 
   loadingSendGroupQuestionnaire = false
 
+  list:any = []
+
+  lastQuestionnaireTitle?: string
+  lastUserData?: string
+  lastQuestionnaireDescription?: string
+  lastIsActive?: boolean|string
+
   questionnaireListEmit: EventEmitter<any> = new EventEmitter();
 
   questionnairePrivateEmit: EventEmitter<any> = new EventEmitter();
@@ -15,8 +22,18 @@ export class QuestionnaireListManagementService {
   constructor() { }
 
   getQuestionnaireList(questionnaireTitle?: string, userData?: string, questionnaireDescription?: string, isActive?: boolean|string){
-    let list = [questionnaireTitle, userData, questionnaireDescription, isActive]
-    console.log(isActive)
+    this.list = [questionnaireTitle, userData, questionnaireDescription, isActive]
+
+    this.lastQuestionnaireTitle = questionnaireTitle
+    this.lastUserData = userData
+    this.lastQuestionnaireDescription =questionnaireDescription
+    this.lastIsActive = isActive
+
+    this.questionnaireListEmit.emit(this.list)
+  }
+
+  refreshQuestionnaireList(){
+    let list = [this.lastQuestionnaireTitle, this.lastUserData, this.lastQuestionnaireDescription, this.lastIsActive]
     this.questionnaireListEmit.emit(list)
   }
 

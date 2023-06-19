@@ -105,7 +105,7 @@ export class QuestionnairesListComponent implements OnInit{
       this.subAnkietaDeactivate = this.ankietaRest.putAnkietaIdDeactivate(id).subscribe({
         next: (response) => {
           if(response.body){
-            this.getAnkietaList()//TO LOAD OLD FILTER
+            this.questionnaireListManager.refreshQuestionnaireList()//TO LOAD OLD FILTER
             this.loadingAnkietaDeactivate = false
           }
           else{
