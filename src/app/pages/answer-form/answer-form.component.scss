@@ -1,9 +1,12 @@
 @import '/src/style/colors.scss';
 .content{
-    margin:0 20% 0 20%;
+    padding:0 20% 0 20%;
+    overflow: auto;
+    height: 100vh;
 }
 .all-answer-page{
     background-color: $background-color;
+    height: 100vh;
 
 }
 @media only screen and (max-width:800px) {
