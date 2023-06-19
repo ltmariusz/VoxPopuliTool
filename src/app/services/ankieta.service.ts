@@ -140,6 +140,33 @@ export interface MetadataList{
   createDate: string
 }
 
+export interface NewQuestionnaireContactList{
+  contactType: string,
+  value: string
+}
+
+export interface StatsList{
+  questionId: number,
+  answerList?: Array<AnswerList>,
+  rating?: Rating,
+  textList: Array<string>
+}
+
+export interface AnswerList{
+  answerVariantId: number,
+  answerSum: number
+}
+
+export interface Rating{
+  averageRating: number,
+  ratingList: Array<RatingList>
+}
+
+export interface RatingList{
+  value: number,
+  count: number
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -220,6 +247,17 @@ export class AnkietaService {
     })
   }
 
+  //------------------------------------------------------------------------//
+
+  getAnkietaIdStats(id: number, metadataKey: string|null, metadataValue: string|null): Observable<HttpResponse<Array<StatsList>>> {
+    return this.http.get<Array<StatsList>>(this.PATH + `/${id}/stats`, {
+      observe: 'response',
+      responseType: 'json'
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
   getPublicAnkietaUuid(
     uuid: string
   ): Observable<HttpResponse<PublicForm>> {
@@ -228,6 +266,8 @@ export class AnkietaService {
       responseType: 'json'
     })
   }
+
+  //------------------------------------------------------------------------//
 
   getPublicAnkietaUuidQuestion(
     uuid: string
@@ -292,5 +332,33 @@ export class AnkietaService {
       responseType: 'json',
     })
   }
+
+  //------------------------------------------------------------------------//
+
+  postAnkietaIdContact(id: number, body: Array<NewQuestionnaireContactList>): Observable<HttpResponse<Message>> {
+    return this.http.post<Message>(this.PATH + `/${id}/contact`, body, {
+      observe: 'response',
+      responseType: 'json',
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
+  //------------------------------------------------------------------------//
+  // PUT PUT PUT PUT PUT PUT PUT PUTPUT PUT PUT PUTPUT PUT PUT PUTPUT PUT  //
+  //------------------------------------------------------------------------//
+
+  putAnkietaIdDeactivate(id: number): Observable<HttpResponse<Message>> {
+    return this.http.put<Message>(this.PATH + `/${id}/deactivate`,{
+      
+    }, {
+      observe: 'response',
+      responseType: 'json',
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
+
 
 }

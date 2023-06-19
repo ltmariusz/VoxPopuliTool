@@ -1,18 +1,5 @@
 <div class="page">
     <div class="card">
-        <form [formGroup]="personalForm">
-                <div class="title-of-question">
-                    <h3>Ustaw indywidualny opis ankiety</h3>
-                </div>
-                <div>
-                    <mat-form-field class="full-width-field" appearance="outline">
-                        <textarea matInput type="text" rows="3" formControlName="description"></textarea>
-                    </mat-form-field>
-                </div>
-                <!--------------------------------------------------------------->
-                
-                <!--------------------------------------------------------------->
-        </form>
         <!--------------------------------------------------------------->
         <div *ngIf="isPhoneArrayIsEmpty()" class="btn_add_metadate" (click)="addPhone()">
             Dodaj numer telefonu
@@ -62,7 +49,7 @@
             </div>
         </div>
         <!--------------------------------------------------------------->
-        <div *ngIf="isKeyArrayEmpty()" class="btn_add_metadate" (click)="addMetadate()">
+        <!-- <div *ngIf="isKeyArrayEmpty()" class="btn_add_metadate" (click)="addMetadate()">
             Dodaj metadane
         </div>
         <div *ngIf="!isKeyArrayEmpty()" class="matadate_card">
@@ -73,7 +60,6 @@
             <div class="add-lessons-form" [formGroup]="keyInputs">
                 <div formArrayName="input" class="metadate_container">
                     <div *ngFor="let inputForm of input.controls; let i = index" [formGroupName]="i" class="meta_row">
-                        <!-- <div class="lesson-form-row" [formGroup]="inputForm"> -->
                             <mat-form-field appearance="outline">
                                 <input matInput formControlName="key" placeholder="klucz">
                             </mat-form-field>
@@ -83,14 +69,49 @@
                             <mat-icon class="delete-btn" (click)="deleteMetadate(i)">delete_forever</mat-icon>
                     </div>
                 </div>
-                <!-- <div class="btn_add_new_metadate" (click)="addMetadate()">
-                    Dodaj nowe metadane
-                </div> -->
             </div>
-        </div>
+        </div> -->
         <!--------------------------------------------------------------->
     </div>
     <!-- <div class="submit_card">
         Wygeneruj ankietę
     </div> -->
+    <div class="card">
+        <div class="title_share">
+            Udostępnij
+        </div>
+        <div class="link_row">
+            <input class="example-full-width" [value]="this.link">
+            <button (click)="copyLink()" mat-stroked-button>Kopiuj</button>
+        </div>
+    </div>
+    <div class="contact_container">
+        <div class="title-of-question">
+            <h3>Lista dodanych kontaków</h3>
+        </div>
+        <div class="item_container">
+            <div class="mail_column">
+                <p *ngIf="this.questionsContact?.length != 0">Mail:</p>
+                <div class="item_container" *ngFor="let contact of this.questionsContact">
+                    <div class="item_row" *ngIf="contact.contactType == 'EMAIL'">
+                        <mat-icon class="mail_icon" fontIcon="mail"></mat-icon>
+                        {{contact.value}}
+                    </div>
+                </div>
+            </div>
+            <div class="phone_column">
+                <p *ngIf="this.questionsContact?.length != 0">Telefon:</p>
+                <div class="item_container" *ngFor="let contact of this.questionsContact">
+                    <div class="item_row" *ngIf="contact.contactType == 'PHONE'">
+                        <mat-icon class="mail_icon" fontIcon="call"></mat-icon>
+                        {{contact.value}}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div *ngIf="this.questionsContact?.length == 0" class="info_contact">
+            Ankieta nie posiada danych kontaktowych!
+        </div>
+    </div>
 </div>

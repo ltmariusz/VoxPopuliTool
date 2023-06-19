@@ -1,0 +1,35 @@
+<div class="page">
+    <div class="titles_container">
+        <div class="left">
+            <div class="title">
+                <mat-icon (click)="back()" class="btn_arrow" fontSet="material-icons-outlined">keyboard_backspace</mat-icon>
+                <p>Podgląd na żywo</p>
+            </div>
+        </div>
+        <div class="right">
+            <div class="title">
+                <p>Zarządzanie grupową ankietą</p>
+                <div  (click)="postSendQuestionnaireGlobal()" class="submit_btn">Wyślij ankietę</div>
+            </div>
+        </div>
+    </div>
+    <div class="main_container">
+        <div class="left">
+            <div class="mobile_ title">
+                <p>Podgląd na żywo</p>
+            </div>
+            <app-preview-personal-questionnaire></app-preview-personal-questionnaire>
+        </div>
+        <div class="right">
+            <div class="mobile_ title">
+                <div class="row_mobile_title_left">
+                    <mat-icon (click)="back()" class="btn_arrow" fontSet="material-icons-outlined">keyboard_backspace</mat-icon>
+                    <p>Zarządzanie grupową ankietą</p>
+                </div>
+                <div  (click)="postSendQuestionnaireGlobal()" class="submit_btn">Wyślij ankietę</div>
+            </div>
+            <app-panel-to-send-global-questionnaire></app-panel-to-send-global-questionnaire>
+        </div>
+    </div>
+</div>
+

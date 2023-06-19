@@ -85,8 +85,21 @@
     margin-left: 1rem;
     cursor: pointer;
 }
-
-
+.star_list_answer{
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.8rem;
+    padding: 1rem;
+    align-items: center;
+}
+.rate{
+    color: $modern_style_1_btn;
+}
+.chart_enpty{
+    display: flex;
+    align-items: center;
+    margin-right: 5.5rem;
+}
 
 
 
@@ -96,5 +109,16 @@
 @media only screen and (max-width: 900px){
     .card{
         flex-direction: column;
+    }
+    .chart_enpty{
+        display: flex;
+        align-items: center;
+        margin-right: 0rem;
+        justify-content: center;
+    }
+    .chart_render{
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
