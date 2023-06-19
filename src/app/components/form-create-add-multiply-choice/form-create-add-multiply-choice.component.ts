@@ -26,6 +26,8 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
   indexOfForms!: number
   isDeleted?:boolean
   isRequired?:boolean
+licznik = 0
+
   @Input() index!: number;
 
   numberOfAnswer: Array<Answers> = [{ last: true }]
@@ -61,6 +63,8 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
           const element = this.answerControlNames.controls[i].value;
           allMultiplyChoices.push(element)
         }
+        this.licznik += 1
+        console.log(this.licznik)
         this.createFormsManagementService.createdQuestionArray?.push({ questionType: "MULTIPLE_CHOICE", question: multiplyChoiceQuestion, answerList: allMultiplyChoices, isRequired:this.isRequired! })
       }
     })

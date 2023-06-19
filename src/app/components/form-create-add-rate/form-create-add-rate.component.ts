@@ -18,7 +18,7 @@ export class FormCreateAddRateComponent implements OnInit {
   rateForm!:FormGroup
   isDeleted?:boolean
   isRequired?:boolean
-
+licznik = 0
   // rateForm = new FormGroup({
   //   rateQuestionInput: new FormControl('', [Validators.required])
   // })
@@ -43,6 +43,7 @@ export class FormCreateAddRateComponent implements OnInit {
     console.log(this.index)
     this.createFormsManagementService.createdQuestionArray?.splice(this.index,1)
     console.log(this.createFormsManagementService.createdQuestionArray)
+    
   }
 
 
@@ -51,7 +52,9 @@ export class FormCreateAddRateComponent implements OnInit {
       res => {
         if (this.isDeleted === false) {
         this.createFormsManagementService.createdQuestionArray?.push({questionType:"RATING", question: this.rateForm.get('rateQuestionInput')?.value,isRequired:this.isRequired! })
-        }
+        this.licznik += 1
+        console.log(this.licznik)  
+      }
         // this.createFormsManagementService.titleForm = this.createFormsTitle.get('titleForm')?.value!
         // this.createFormsManagementService.descriptionForm = this.createFormsTitle.get('descriptionForm')?.value!
       })

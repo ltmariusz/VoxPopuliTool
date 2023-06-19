@@ -17,7 +17,7 @@ export class FormCreateAddLongAnswerComponent implements OnInit {
   longAnswerForms!: FormGroup
   isDeleted?: boolean;
   isRequired?:boolean
-
+  licznik = 0
 
   ngOnInit(): void {
     this.isDeleted = false
@@ -29,6 +29,8 @@ export class FormCreateAddLongAnswerComponent implements OnInit {
   getLongAnswer() {
     this.createFormsManagementService.getAllFormsEmitter.subscribe(res => {
       if (this.isDeleted === false) {
+        this.licznik += 1
+        console.log(this.licznik)
         this.createFormsManagementService.createdQuestionArray?.push({ questionType: "TEXT", question: this.longAnswerForms.get('longAnswerQuestionInput')?.value, isRequired:this.isRequired! });
       }
     })
