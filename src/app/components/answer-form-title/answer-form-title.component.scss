@@ -17,6 +17,24 @@
 }
 .title{
     display: flex;
+    font-size: 1rem;
+    font-weight: 700;
+
+}
+img{
+    width: 110px;
+    margin-right: 1rem;
+    margin-top: 8px;
+}
+
+.title_component{
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
 
@@ -54,5 +72,6 @@
 }
 .title-card{
     border-bottom: 3px solid $modern_style_1_btn;
+    
 }
 
