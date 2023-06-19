@@ -30,6 +30,8 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
   loadingQuestionsStats = false
   customErrorQuestionsStats?: string
 
+  answersSumNumber = 0
+
   constructor(
     public allFormsManagementService: AllFormsManagementService,
     private ankietaRest: AnkietaService,
@@ -54,13 +56,13 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
     this.answers = this.allFormsManagementService.exampleDoneAnswerForm
   }
 
-  checkValueAnswer(answer: string|number|any|null, indexAnswer: number): any{
-    // let result: boolean
-    // for (let index = 0; index < answer.correct!.length; index++) {
-    //   if (indexAnswer == answer.correct![index]) {
-    //     return true
-    //   }
-    // }
+  checkValueAnswer(answer: QuestionListAll, indexAnswer: number): any{
+    let result: boolean
+    for (let index = 0; index < answer.correct?.length; index++) {
+      if (indexAnswer == answer.correct![index]) {
+        return true
+      }
+    }
   }
 
   getQuestionsList(){
@@ -116,23 +118,46 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
   loadAnswersTextAndRate(){
     for (let index = 0; index < this.questionsStats!.length; index++) {
       if (this.questionsStats![index].answerList) {
-        this.questionsList![index].correct = null
+        for (let indexanswerList = 0; indexanswerList < this.questionsStats![index].answerList!.length; indexanswerList++) {
+          if (this.questionsStats![index].answerList![indexanswerList].answerSum == 1) {
+            if (!Array.isArray(this.questionsList![index].correct)) {
+              this.questionsList![index].correct = []  
+              // console.log("test array odpowiedzi")  
+            }
+          
+            this.questionsList![index].correct.push(indexanswerList)
+            this.answersSumNumber = this.answersSumNumber + 1
+          }
+          
+        }
+        
       }
       if (this.questionsStats![index].textList) {
         this.questionsList![index].correct = [this.questionsStats![index].textList]  
+        if (this.questionsStats![index].textList.length != 0) {
+          this.answersSumNumber = this.answersSumNumber + 1
+        }
       }
       if (this.questionsStats![index].rating) {
         this.questionsList![index].correct = this.questionsStats![index].rating?.averageRating
+        if (this.questionsStats![index].rating?.averageRating) {
+          this.answersSumNumber = this.answersSumNumber + 1  
+        }
+        
       }
     }
     console.log(this.questionsList)
+    console.log(`sum answers: ${this.answersSumNumber}`)
+
   }
 
   addAnswer(){
-    this.questionsList![0].correct = [0, 1]
-    this.questionsList![1].correct = [1]
-    this.questionsList![2].correct = ['test odpowiedzi']
-    this.questionsList![3].correct = [4]
+    // this.questionsList![0].correct = [0]
+    // this.questionsList![1].correct = [1]
+    // this.questionsList![2].correct = [1,2]
+    // this.questionsList![3].correct = [2]
   }
+
+  
 
 }

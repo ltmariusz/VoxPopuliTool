@@ -1,6 +1,6 @@
 <div class="card_answer_container">
     <div *ngFor="let answer of this.questionsList; let i = index">
-        <div >
+        <div *ngIf="this.answersSumNumber">
             <!---------------------------------CARD--------------------------------->
             <div *ngIf="this.questionsList![i].questionType == 'SINGLE_CHOICE'" class="card_answer">
                 <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
@@ -98,5 +98,8 @@
             </div>
             <!---------------------------------CARD--------------------------------->
         </div>
+    </div>
+    <div *ngIf="!this.answersSumNumber" class="no_stats card_answer">
+        Brak uzyskanych odpowiedzi
     </div>
 </div>
