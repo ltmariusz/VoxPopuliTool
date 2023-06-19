@@ -22,6 +22,7 @@ export class AnswerFormComponent implements OnInit {
   didYouEndAnswering?:boolean
   formFromUrl!:string
 
+
   ngOnInit() {
     // console.log(this.allFormsManagementService.exampleOfForm2)
     this.formFromUrl = ""
@@ -29,7 +30,7 @@ export class AnswerFormComponent implements OnInit {
       this.formFromUrl = params.get('id')!;
       this.allFormsManagementService.formFromUrl =this.formFromUrl
       console.log(this.formFromUrl)})
-
+      
     this.ankietaService.getPublicAnkietaUuid(this.formFromUrl).subscribe({
       next:(response)=>{
         

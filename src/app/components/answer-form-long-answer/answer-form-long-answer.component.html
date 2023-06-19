@@ -7,7 +7,7 @@
                     <mat-icon color="primary" fontSet="material-icons-outlined">
                         notes</mat-icon>
                 </div>
-                <div class="question">{{question}}</div>
+                <div class="question"><div *ngIf="listOfQuestionToShow.isAnswerRequired">*</div>{{question}}</div>
             </div>
 
             <div>

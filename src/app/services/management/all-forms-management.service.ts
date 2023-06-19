@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { AnkietaService } from '../ankieta.service';
+import { PopupManagementService } from './popup-management.service';
 
 export interface OneForm {
   title: string,
@@ -40,7 +41,8 @@ export interface OneAnswer {
 export interface OneAnswer2 {
   question: string,
   type: string,
-  answer: Array<any>
+  answer: Array<any>,
+  isAnswerRequired: boolean
 }
 
 
@@ -52,7 +54,8 @@ export class AllFormsManagementService {
 
 
   constructor(
-    private ankietaService: AnkietaService
+    private ankietaService: AnkietaService,
+    private popupService: PopupManagementService
   ) { }
 
   allAnswersFromOneForm: AnswerForm2 = { title: "", answers: new Array }
@@ -65,57 +68,98 @@ export class AllFormsManagementService {
 
   getAllAnswerFromForm() {
     this.listWithAnswersToPost = new Array
+    this.allAnswersFromOneForm = { title: "", answers: new Array }
     this.getAllAnswerEmitter.emit()
 
 
-    console.log(this.allAnswersFromOneForm)
+    // console.log(this.allAnswersFromOneForm)
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //Dodc requrement (walidacje czy wszystkie potrzbene sa stworzone)
     // if(){
 
     // }
-
+    console.error(this.allAnswersFromOneForm)
     for (let i = 0; i < this.allAnswersFromOneForm.answers.length; i++) {
+
       const element = this.allAnswersFromOneForm.answers[i];
-      console.log(element.answer)
-      console.log(element)
+
+      console.log("////////////////////////////////////////////")
+
+
+      // console.log(element.answer)
+      // console.log(element)
       if (element.type === "SINGLE_CHOICE") {
-        this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: element.answer, value: null })
+        if (element.answer.length === 0) {
+          this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: null, value: null })
+
+        } else {
+          this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: element.answer, value: null })
+        }
+
+
+
+
       }
       if (element.type === "MULTIPLE_CHOICE") {
-        console.warn("element.answer")
 
         let answers = new Array
         element.answer.forEach(answer => {
           answers.push(answer.answerId)
         });
-        this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: answers, value: null })
+        if (answers.length === 0) {
+          this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: null, value: null })
+        } else {
+          this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: answers, value: null })
+        }
       }
       if (element.type === "TEXT") {
-        this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: null, value: element.answer[0] })
+        if (element.answer[0]==="") {
+          this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: null, value: null })
+
+        } else {
+          this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: null, value: element.answer[0] })
+        }
       }
       if (element.type === "RATING") {
+        if((element.answer[0]==="")){
+          this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: null, value: null })
+        }
         this.listWithAnswersToPost.push({ questionId: Number(element.question), answerIds: null, value: element.answer[0] })
       }
-
+      console.log(element)
+      if (element.isAnswerRequired) {
+        if (element.answer.length === 0) {
+          console.warn(element.answer)
+          console.log("PRZERWANIE!!!!")
+          let errorMessage = "Nie odpowiedziano na wszystkie wymagane pytania (te *gwiazdką)"
+          this.popupService.errorEmit(errorMessage)
+          return
+        } else if (element.answer[0] === undefined) {
+          console.warn("trafił sie undefined")
+          console.log("PRZERWANIE!!!!")
+          let errorMessage = "Nie odpowiedziano na wszystkie wymagane pytania (te *gwiazdką)"
+          this.popupService.errorEmit(errorMessage)
+          return
+        }
+      }
 
     }
-    console.log(this.listWithAnswersToPost)
+    // console.log(this.listWithAnswersToPost)
 
     this.didYouEndAnswering = true
     // !!!!!!!!!!!!!!!!!!
     // !!!!!!!!!!!!!!!!!!!!!
     //TO DO TUTAJ JEST STWORZONE WYSYLANIE
     console.log(this.listWithAnswersToPost)
-    console.log(this.formFromUrl)
+    // console.log(this.formFromUrl)
     this.ankietaService.postAnkietaPublicUuidAnswer(String(this.formFromUrl), this.listWithAnswersToPost).subscribe({
-      next:(response)=>{
+      next: (response) => {
         console.log(response.body)
       },
-      error:(error) =>{
+      error: (error) => {
         console.log(error)
       },
-      complete: () =>{}
+      complete: () => { }
     })
     // console.log(this.ankietaService.postAnkietaPublicUuidAnswer())
 

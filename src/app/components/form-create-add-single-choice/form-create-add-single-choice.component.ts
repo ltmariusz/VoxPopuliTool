@@ -25,7 +25,7 @@ export class FormCreateAddSingleChoiceComponent implements OnInit, OnDestroy {
   indexOfForms!: number;
   isDeleted?: boolean
   isRequired?:boolean
-
+licznik =0
   /**zmienna odpowiadająca za licznik pytania (wzięte z ngfor z form-creator-page) */
   @Input() index!: number;
   singleChoiceForm!: FormGroup
@@ -68,6 +68,8 @@ export class FormCreateAddSingleChoiceComponent implements OnInit, OnDestroy {
         for (let i = 0; i < this.singleAnswersControlNames.controls.length; i++) {
           allSingleChoices.push(this.singleAnswersControlNames.controls[i].value)
         }
+        this.licznik += 1
+        console.log(this.licznik)
         this.createFormsManagementService.createdQuestionArray?.push({ questionType: "SINGLE_CHOICE", question: singleChoiceQuestion, answerList: allSingleChoices,isRequired:this.isRequired! })
         // let oneChoiceCreate
       }

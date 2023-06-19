@@ -7,7 +7,7 @@
                     <mat-icon color="primary" fontSet="material-icons-outlined">star_half</mat-icon>
                 </div>
                 <!-- <div class="question">{{question}}</div> -->
-                <div class="question">{{listOfQuestionToShow.question}}</div>
+                <div class="question"><div *ngIf="listOfQuestionToShow.isAnswerRequired">*</div>{{listOfQuestionToShow.question}}</div>
             </div>
             <div>
                 <!-- <mat-form-field appearance="outline">
