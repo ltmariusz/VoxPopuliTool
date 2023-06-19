@@ -60,6 +60,7 @@ export class QuestionnairesListComponent implements OnInit{
     this.subAnkietaList = this.ankietaRest.getAnkieta(userData!, questionnaireTitle!, questionnaireDescription!, isActive!).subscribe({
       next: (response) => {
         if(response.body){
+          response.body.sort((b, a) => a.createDate.localeCompare(b.createDate))
           this.usersAnkietaList = response.body
           this.createPersonalQuestionnaireList()
           this.loadingAnkietaList = false
