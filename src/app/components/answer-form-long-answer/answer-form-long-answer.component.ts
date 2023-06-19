@@ -29,7 +29,7 @@ export class AnswerFormLongAnswerComponent implements OnInit{
     this.longAnswerForm = this.fb.group({
       textInput: ['',[Validators.required]]
     })
-
+    console.log(this.listOfQuestionToShow)
     this.question = this.listOfQuestionToShow.question
     this.getLongAnswer()
   }
@@ -37,6 +37,7 @@ export class AnswerFormLongAnswerComponent implements OnInit{
   getLongAnswer(){
     this.allFormsManagementService.getAllAnswerEmitter.subscribe(res=>{
       this.longAnswerForm.get('textInput')!.value
+
       // this.ankietaService.getPublicAnkietaUuidQuestion(this.allFormsManagementService.formFromUrl!).subscribe({
       //   next:(response)=>{
       //     console.log(response.body)
@@ -49,7 +50,7 @@ export class AnswerFormLongAnswerComponent implements OnInit{
       //   complete: () =>{}
       // })
       console.log(this.listOfQuestionToShow)
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({question:this.listOfQuestionToShow.id, type: "TEXT",answer:[this.longAnswerForm.get('textInput')!.value]})
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({question:this.listOfQuestionToShow.id, type: "TEXT",answer:[this.longAnswerForm.get('textInput')!.value], isAnswerRequired:this.listOfQuestionToShow.isAnswerRequired})
     })
   }
 }

@@ -6,7 +6,7 @@
                 <mat-icon color="primary" fontSet="material-icons-outlined">check_box</mat-icon>
             </div>
             <!-- <div class="question">{{question}}</div> -->
-            <div class="question">{{listOfQuestionToShow.question}}</div>
+            <div class="question"><div *ngIf="listOfQuestionToShow.isAnswerRequired">*</div>{{listOfQuestionToShow.question}}</div>
         </div>
 
         <div>

@@ -6,7 +6,7 @@
                 <mat-icon color="primary" fontSet="material-icons-outlined">library_add_check</mat-icon>
             </div>
             <!-- <div class="question">{{question}}</div> -->
-            <div class="question">{{listOfQuestionToShow.question}}</div>
+            <div class="question"><div *ngIf="listOfQuestionToShow.isAnswerRequired">*</div>{{listOfQuestionToShow.question}}</div>
         </div>
         <div>
             <mat-checkbox *ngFor="let item of chosenOrNot" class="full-width-field answer-field"

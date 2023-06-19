@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { AnkietaService, QuestionList } from '../ankieta.service';
+import { PopupManagementService } from './popup-management.service';
 
 export interface Question {
   index: number;
@@ -48,7 +49,8 @@ export class CreateFormsManagementService {
    */
   createdQuestionArray?: Array<OneQuestion> = new Array
 
-  constructor(private ankietaService: AnkietaService) { }
+  constructor(private ankietaService: AnkietaService,
+    private popupService: PopupManagementService) { }
 
   form!: Array<any>
 
@@ -91,6 +93,7 @@ export class CreateFormsManagementService {
     console.log("test")
     this.createdQuestionArray = new Array
     this.getAllFormsEmitter.emit()
+
 
     //użyć tej zmiennej jako petli do zdobycia wszystkich pytan
     console.log(this.listOfCreatingForms.length + "ile jest pytan")
@@ -145,10 +148,13 @@ export class CreateFormsManagementService {
       this.ankietaService.postAnkieta(this.titleForm!, this.descriptionForm!, this.isPublic!, this.createdQuestionArray).subscribe({
         next: (response) => {
           console.log("wysłane")
+          this.popupService.succesEmit("Stworzyłeś nową ankiete!")
           console.log(response.body)
           this.clickedDone =true
         },
-        error: () => { },
+        error: (error) => { 
+          console.log(error)
+        },
         complete: () => { }
       })
       console.log("test")

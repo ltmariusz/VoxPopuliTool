@@ -8,7 +8,7 @@ import { CreateFormsManagementService, Question } from 'src/app/services/managem
 })
 export class FormCreatorPageComponent implements OnDestroy, OnInit{
 
-constructor(private createFormsManagementService: CreateFormsManagementService){ }
+constructor(public createFormsManagementService: CreateFormsManagementService){ }
   ngOnDestroy(){
     this.createFormsManagementService.listOfCreatingForms = new Array
     this.createFormsManagementService.indexOfCreatingForms = 0

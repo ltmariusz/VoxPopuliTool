@@ -81,7 +81,7 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
       }
       // console.log("this.listOfQuestionToShow.id")
       // console.log(this.listOfQuestionToShow)
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.listOfQuestionToShow.id, type: "MULTIPLE_CHOICE", answer: this.multipleChoiceAnswers })
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.listOfQuestionToShow.id, type: "MULTIPLE_CHOICE", answer: this.multipleChoiceAnswers, isAnswerRequired:this.listOfQuestionToShow.isAnswerRequired })
     })
   }
 }

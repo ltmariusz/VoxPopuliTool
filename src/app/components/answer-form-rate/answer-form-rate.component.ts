@@ -47,7 +47,7 @@ export class AnswerFormRateComponent implements OnInit {
       console.log("test")
 
       this.rateAnswerForm.get('rateInput')!.value
-      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.listOfQuestionToShow.id, type:"RATING", answer: [this.selectedStars.toString()] })
+      this.allFormsManagementService.allAnswersFromOneForm.answers.push({ question: this.listOfQuestionToShow.id, type:"RATING", answer: [this.selectedStars.toString()], isAnswerRequired:this.listOfQuestionToShow.isAnswerRequired })
 
     })
   }

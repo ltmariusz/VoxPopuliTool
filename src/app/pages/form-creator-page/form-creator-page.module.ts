@@ -9,6 +9,7 @@ import { FormCreateAddSingleChoiceModule } from 'src/app/components/form-create-
 import { FormCreateAddMultiplyChoiceModule } from 'src/app/components/form-create-add-multiply-choice/form-create-add-multiply-choice.module';
 import { FormCreateAddLongAnswerModule } from 'src/app/components/form-create-add-long-answer/form-create-add-long-answer.module';
 import { FormCreateAddRateModule } from 'src/app/components/form-create-add-rate/form-create-add-rate.module';
+import { AnswerFormTitleModule } from 'src/app/components/answer-form-title/answer-form-title.module';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
     FormCreateAddLongAnswerModule,
     FormCreateAddRateModule,
     MatIconModule,
+    AnswerFormTitleModule
   ],
   exports: [
     FormCreatorPageComponent

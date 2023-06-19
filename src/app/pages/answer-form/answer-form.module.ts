@@ -8,6 +8,8 @@ import { AnswerFormSingleChoiceModule } from 'src/app/components/answer-form-sin
 import { AnswerFormMultiplyChoiceModule } from 'src/app/components/answer-form-multiply-choice/answer-form-multiply-choice.module';
 import { AnswerFormRateModule } from 'src/app/components/answer-form-rate/answer-form-rate.module';
 import { AnswerFormConfirmModule } from 'src/app/components/answer-form-confirm/answer-form-confirm.module';
+import { PopupDoneModule } from 'src/app/components/popup-done/popup-done.module';
+import { PopupErrorModule } from 'src/app/components/popup-error/popup-error.module';
 
 const routes: Routes=[
   {
@@ -28,7 +30,9 @@ const routes: Routes=[
     AnswerFormSingleChoiceModule,
     AnswerFormMultiplyChoiceModule,
     AnswerFormRateModule,
-    AnswerFormConfirmModule
+    AnswerFormConfirmModule,
+    PopupErrorModule,
+    PopupDoneModule
   ], exports: [
     AnswerFormComponent
   ]

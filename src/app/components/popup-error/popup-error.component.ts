@@ -41,11 +41,13 @@ export class PopupErrorComponent implements OnInit{
   ){ }
 
   ngOnInit(): void {
+    console.log("emiter popup")
     this.errorEmitSubscribe()
   }
 
   errorEmitSubscribe(){
     this.popupService.popupErrorEmit.subscribe(res => {
+      console.log("STWORZONY popup")
       this.popupList!.push(
         {
           message: res
