@@ -50,7 +50,8 @@ export class CreateFormsManagementService {
   createdQuestionArray?: Array<OneQuestion> = new Array
 
   constructor(private ankietaService: AnkietaService,
-    private popupService: PopupManagementService) { }
+    private popupService: PopupManagementService,
+    ) { }
 
   form!: Array<any>
 
@@ -153,11 +154,14 @@ export class CreateFormsManagementService {
           this.clickedDone =true
         },
         error: (error) => { 
+          this.popupService.errorEmit("Nie wypełniono wszystkich wymaganych pól z gwiazdką (*)")    
           console.log(error)
         },
         complete: () => { }
       })
       console.log("test")
+    }else{
+      this.popupService.errorEmit("Nie wypełniono wszystkich wymaganych pól z gwiazdką (*)")    
     }
     console.log(this.formCreatePostObject)
   }

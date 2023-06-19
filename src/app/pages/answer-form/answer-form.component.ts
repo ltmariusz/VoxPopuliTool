@@ -21,7 +21,7 @@ export class AnswerFormComponent implements OnInit {
   descriptionForm!: string
   didYouEndAnswering?:boolean
   formFromUrl!:string
-
+  isError!:boolean
 
   ngOnInit() {
     // console.log(this.allFormsManagementService.exampleOfForm2)
@@ -33,7 +33,7 @@ export class AnswerFormComponent implements OnInit {
       
     this.ankietaService.getPublicAnkietaUuid(this.formFromUrl).subscribe({
       next:(response)=>{
-        
+        this.isError= false
         if(response.body!.questionnaireType != "GLOBAL"){
           //Sprawdzić czy osoba jest autoryzowana
           //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -66,7 +66,9 @@ export class AnswerFormComponent implements OnInit {
             }
             console.log(this.listOfQuestion)
           },
-          error:() =>{},
+          error:(error) =>{
+            console.log(error)
+          },
           complete: () =>{}
         })
         response.body!
@@ -74,8 +76,10 @@ export class AnswerFormComponent implements OnInit {
         // this.ankietaService.
       },
       error:(error) =>{
-        console.log(error)
-        console.log("być moe nie znaleziono linku")
+        console.log(error.error.message)
+        this.isError=true
+        this.titleForm =error.error.message
+        console.log("być moze nie znaleziono linku")
       },
       complete: () =>{}
     })
