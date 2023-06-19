@@ -171,10 +171,12 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
 
     for (let i = 0; i < this.phone.length; i++) {
       var item = phoneArray.at(i).value.number
-      List.push({
+      if (item) {
+        List.push({
         contactType: 'PHONE',
         value: item
       });
+      }
     }
 
     // let mailList = []
@@ -182,10 +184,12 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
     
     for (let i = 0; i < this.mail.length; i++) {
       var item = mailArray.at(i).value.mail
-      List.push({
-        contactType: 'EMAIL',
-        value: item
-      });
+      if (item) {
+        List.push({
+          contactType: 'EMAIL',
+          value: item
+        });  
+      }
     }
 
     console.log(List)
@@ -207,24 +211,30 @@ export class PanelToSendGlobalQuestionnaireComponent implements OnInit, OnDestro
     // console.log(inputList)
 
     this.loadingQuestionnairePrivate = true
+    this.questionnaireListManager.loadingSendGroupQuestionnaire = true
     this.subQuestionnairePrivate = this.ankietaRest.postAnkietaIdContact(Number(this.idParam), List!).subscribe({
       next: (response) => {
         if(response.body){
           this.popupService.succesEmit('Pomyślnie wysłano grupową ankietę')
           this.router.navigateByUrl('/home/form-list')
+          this.loadingQuestionnairePrivate = false
         }
         else{
           this.customErrorQuestionnairePrivate = 'Brak obiektu odpowiedzi';
           this.popupService.errorEmit(this.customErrorQuestionnairePrivate)
+          this.loadingQuestionnairePrivate = false
         }
+        this.questionnaireListManager.loadingSendGroupQuestionnaire = false
       },
       error: (errorResponse) => {
         this.loadingQuestionnairePrivate = false
+        this.questionnaireListManager.loadingSendGroupQuestionnaire = false
         this.customErrorQuestionnairePrivate = errorResponse.error.message
         this.popupService.errorEmit(this.customErrorQuestionnairePrivate!)
       },
       complete: () => {
         this.loadingQuestionnairePrivate = false;
+        this.questionnaireListManager.loadingSendGroupQuestionnaire = false
       }
     })
 

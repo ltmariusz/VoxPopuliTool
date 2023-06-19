@@ -9,7 +9,7 @@
         <div class="right">
             <div class="title">
                 <p>Zarządzanie grupową ankietą</p>
-                <div  (click)="postSendQuestionnaireGlobal()" class="submit_btn">Wyślij ankietę</div>
+                <button [disabled]="this.questionnaireListManager.loadingSendGroupQuestionnaire" (click)="postSendQuestionnaireGlobal()" class="submit_btn">Wyślij ankietę</button>
             </div>
         </div>
     </div>

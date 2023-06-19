@@ -10,7 +10,7 @@ import { QuestionnaireListManagementService } from 'src/app/services/management/
 export class SendGlobalQuestionnairePageComponent implements OnInit{
 
   constructor(
-    private questionnaireListManager: QuestionnaireListManagementService,
+    public questionnaireListManager: QuestionnaireListManagementService,
     private router: Router
   ) { }
 
