@@ -256,7 +256,6 @@ export class AnkietaService {
     if (metadataKey) {
       param = param.append('metadataKey', metadataKey)
     }
-
     if (metadataValue) {
       param = param.append('metadataValue', metadataValue)
     }

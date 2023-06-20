@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as ApexCharts from 'apexcharts';
 import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from 'ng-apexcharts';
 import { Subscription } from 'rxjs';
 import { AnkietaService, QuestionListAll, Questionnaire, StatsList } from 'src/app/services/ankieta.service';
@@ -55,6 +56,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
     key: new FormControl ('', [Validators.required]),
     value: new FormControl ('', [Validators.required])
   })
+
 
 
   constructor(
@@ -178,11 +180,15 @@ export class SelectedQuestionnaireComponent implements OnInit{
           console.log(response.body)
 
           this.poll = []
+          this.arrayWithSeriesCount = []
 
           this.takeStatsAndMoveToChart()
           this.loadLabelsTochart()
           this.loadSeriesToChart()
           this.loadAnswersTextAndRate()
+
+          // ApexCharts.exec('chart', 'updateOptions', this.chartOptions, true);
+          
 
           // this.loadChart()
         }
@@ -295,9 +301,9 @@ export class SelectedQuestionnaireComponent implements OnInit{
   showChart(id: number){
     // for (let index = 0; index < this.poll.length; index++) {
     let sumCount = 0
-      for (let indexAnswer = 0; indexAnswer < this.poll[id].answer.length; indexAnswer++) {
+      for (let indexAnswer = 0; indexAnswer < this.poll[id]?.answer.length; indexAnswer++) {
         // console.log(this.poll[id].answer[indexAnswer].count)
-        sumCount = sumCount + this.poll[id].answer[indexAnswer].count
+        sumCount = sumCount + this.poll[id]!.answer[indexAnswer].count
       }
       // if (sumCount != 0) {
       //   sumCount = true
@@ -311,6 +317,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
   }
 
   submitMetadateForm(){
+    
     let key = this.metadateForm.get('key')!.value;
     let value = this.metadateForm.get('value')!.value;
 
