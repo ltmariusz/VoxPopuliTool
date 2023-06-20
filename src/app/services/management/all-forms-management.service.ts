@@ -131,13 +131,13 @@ export class AllFormsManagementService {
         if (element.answer.length === 0) {
           console.warn(element.answer)
           console.log("PRZERWANIE!!!!")
-          let errorMessage = "Nie odpowiedziano na wszystkie wymagane pytania (te *gwiazdką)"
+          let errorMessage = "Nie odpowiedziano na wszystkie wymagane pytania z gwiazdką (*)"
           this.popupService.errorEmit(errorMessage)
           return
         } else if (element.answer[0] === undefined) {
           console.warn("trafił sie undefined")
           console.log("PRZERWANIE!!!!")
-          let errorMessage = "Nie odpowiedziano na wszystkie wymagane pytania (te *gwiazdką)"
+          let errorMessage = "Nie odpowiedziano na wszystkie wymagane pytania z gwiazdką (*)"
           this.popupService.errorEmit(errorMessage)
           return
         }
