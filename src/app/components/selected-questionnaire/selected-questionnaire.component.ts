@@ -87,6 +87,9 @@ export class SelectedQuestionnaireComponent implements OnInit{
   @ViewChild("chart") chart?: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
+  math = Math;
+
+
   constructor(
     private ankietaRest: AnkietaService,
     private route: ActivatedRoute,
