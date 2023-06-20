@@ -3,11 +3,11 @@
         <mat-card-content class="form-container">
             <div class="title-of-question">
                 <div class="number-and-icon">
-                    [{{index+1}}]
                     <mat-icon color="primary" fontSet="material-icons-outlined">
                         notes</mat-icon>
+                        {{index+1}}.
                 </div>
-                <div class="question"><div *ngIf="listOfQuestionToShow.isAnswerRequired">*</div>{{question}}</div>
+                <div class="question">{{question}}<div class="errorStar" *ngIf="listOfQuestionToShow.isAnswerRequired">*</div></div>
             </div>
 
             <div>

@@ -21,6 +21,7 @@ const routes: Routes = [
     onlyAdmin: false,
   }},
   { path: 'new-password/:code', loadChildren: ()=>import('./pages/new-password-page/new-password-page.module').then(m=>m.NewPasswordPageModule)},
+  { path: 'active-password/:code', loadChildren: ()=>import('./pages/active-password/active-password.module').then(m=>m.ActivePasswordModule)},
   { path: 'answer-form/:id', loadChildren: ()=>import('./pages/answer-form/answer-form.module').then(m=>m.AnswerFormModule)},
   //USUNAC TE PATHY DOCELOWO
   { path: 'answer-form/test/exampleRateDelivery', loadChildren: ()=>import('./pages/test-pages/example-rate-delivery/example-rate-delivery.module').then(m=>m.ExampleRateDeliveryModule)},
