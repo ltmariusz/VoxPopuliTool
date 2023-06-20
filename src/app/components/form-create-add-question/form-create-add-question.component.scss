@@ -1,16 +1,21 @@
-mat-card-content{
+mat-card-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size:medium;
+    font-size: medium;
 }
-mat-card{
-    margin-top:8px
+mat-card {
+    margin-top: 8px;
 }
-button{
-    font-size:medium;
+button {
+    font-size: medium;
 }
 
 @media only screen and (max-width: 800px) {
-    
+    mat-card-content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
 }

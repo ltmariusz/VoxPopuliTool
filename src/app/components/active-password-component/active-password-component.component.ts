@@ -31,6 +31,7 @@ export class ActivePasswordComponentComponent {
 
   ngOnInit(): void {
     this.checkUrl()
+    console.log(this.idParam)
   }
 
   checkUrl() {
@@ -44,10 +45,10 @@ export class ActivePasswordComponentComponent {
     let newPassword2 = this.resetPasswordForm.get('newPassword2')!.value;
     if (this.resetPasswordForm.valid && newPassword1 == newPassword2) {
       this.loadingResetPassword = true
-      this.subResetPassword = this.publicService.postResetPassword(this.idParam!, newPassword1!).subscribe({
+      this.subResetPassword = this.publicService.postActivate(this.idParam!, newPassword1!).subscribe({
         next: (response) => {
           if(response.body){
-            this.popupService.succesEmit('Hasło zostało pomyślnie zmienione!')
+            this.popupService.succesEmit('Hasło zostało pomyślnie nadane!')
             this.router.navigateByUrl('/login-page');
           }
           else{
