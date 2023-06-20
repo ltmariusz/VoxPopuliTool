@@ -34,7 +34,16 @@ img{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
+    background-color: #8b326c;
+    color: #fff;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.description{
+    background-color: #8b326c;
+    color: #fff;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 
@@ -71,7 +80,18 @@ img{
     background-color: #ffffff;
 }
 .title-card{
-    border-bottom: 3px solid $modern_style_1_btn;
+    // border-bottom: 3px solid $modern_style_1_btn;
     
+}
+.image{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    // border-bottom: 3px solid #8b326c;
+}
+.image img{
+    margin-bottom: 1rem;
 }
 
