@@ -21,6 +21,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgApexchartsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     SelectedQuestionnaireComponent

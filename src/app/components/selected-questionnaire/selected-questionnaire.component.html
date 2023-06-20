@@ -1,21 +1,30 @@
 <div class="row_title">
-    <mat-icon (click)="back()" class="btn_arrow" fontSet="material-icons-outlined">keyboard_backspace</mat-icon>
-    <h2>Ankieta - {{this.questionaire?.title}}</h2>
-    <!-- <div class="rate">
-        <mat-icon color="primary">star</mat-icon>
-        <mat-icon color="primary">star</mat-icon>
-        <mat-icon color="primary">star</mat-icon>
-        <mat-icon color="primary">star_half</mat-icon>
-        <mat-icon color="primary">star_outline</mat-icon>
-    </div> -->
-    <div *ngIf="this.questionaire?.isActive" class="icons">
-        <div class="circle_green"></div>
-        <p>Aktywna</p>
+    <div class="left">
+        <mat-icon (click)="back()" class="btn_arrow" fontSet="material-icons-outlined">keyboard_backspace</mat-icon>
+        <h2>Ankieta - {{this.questionaire?.title}}</h2>
+        <div *ngIf="this.questionaire?.isActive" class="icons">
+            <div class="circle_green"></div>
+            <p>Aktywna</p>
+        </div>
+        <div *ngIf="!this.questionaire?.isActive" class="icons">
+            <div class="circle_red"></div>
+            <p>Nieaktywna</p>
+        </div>
     </div>
-    <div *ngIf="!this.questionaire?.isActive" class="icons">
-        <div class="circle_red"></div>
-        <p>Nieaktywna</p>
-    </div>
+    <form [formGroup]="metadateForm" (submit)="submitMetadateForm()" class="right">
+        <div class="input-field">
+            <mat-icon color="primary" fontSet="material-icons-outlined">key</mat-icon>
+            <input type="text" formControlName="key" placeholder="klucz">
+            <!-- <mat-icon color="primary" fontSet="material-icons-outlined">key</mat-icon> -->
+        </div>
+        <div class="input-field">
+            <mat-icon color="primary" fontSet="material-icons-outlined">view_list</mat-icon>
+            <input type="text" formControlName="value" placeholder="wartość">
+            <!-- <mat-icon color="primary" fontSet="material-icons-outlined">view_list</mat-icon> -->
+        </div>
+        <button type="submit" class="btn_search">FILTRUJ</button>
+    </form>
+    
     
 </div>
 <div class="list_of_items">
