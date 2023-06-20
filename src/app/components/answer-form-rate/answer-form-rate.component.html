@@ -1,14 +1,28 @@
 <form [formGroup]="rateAnswerForm">
     <mat-card>
         <mat-card-content class="form-container">
-            <div class="title-of-question">
+            <!-- <div class="title-of-question">
                 <div class="number-and-icon">
                     <mat-icon color="primary" fontSet="material-icons-outlined">star_half</mat-icon>
                     {{index+1}}.
-                </div>
+                </div> -->
                 <!-- <div class="question">{{question}}</div> -->
-                <div class="question">{{listOfQuestionToShow.question}}<div class="errorStar" *ngIf="listOfQuestionToShow.isAnswerRequired">*</div></div>
+                <!-- <div class="question">{{listOfQuestionToShow.question}}<div class="errorStar" *ngIf="listOfQuestionToShow.isAnswerRequired">*</div></div>
+            </div> -->
+            <div>
+                <div class="new-answer-title-question">
+                    <mat-icon color="primary" fontSet="material-icons-outlined">check_box</mat-icon>
+                    <div class="new-answer-title-question-number">
+                        {{index+1}}.
+    
+                        {{listOfQuestionToShow.question}}<div class="errorStar"
+                            *ngIf="listOfQuestionToShow.isAnswerRequired">*
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
             <div>
                 <!-- <mat-form-field appearance="outline">
                     <mat-label>podaj cyfrę</mat-label>
