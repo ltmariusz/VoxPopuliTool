@@ -95,3 +95,15 @@ img{
     margin-bottom: 1rem;
 }
 
+
+
+@media only screen and (max-width:800px) {
+    .description{
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    .title_component{
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+}
