@@ -250,9 +250,21 @@ export class AnkietaService {
   //------------------------------------------------------------------------//
 
   getAnkietaIdStats(id: number, metadataKey: string|null, metadataValue: string|null): Observable<HttpResponse<Array<StatsList>>> {
+    
+    let param = new HttpParams();
+
+    if (metadataKey) {
+      param = param.append('metadataKey', metadataKey)
+    }
+
+    if (metadataValue) {
+      param = param.append('metadataValue', metadataValue)
+    }
+    
     return this.http.get<Array<StatsList>>(this.PATH + `/${id}/stats`, {
       observe: 'response',
-      responseType: 'json'
+      responseType: 'json',
+      params: param
     })
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from 'ng-apexcharts';
 import { Subscription } from 'rxjs';
@@ -40,46 +41,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
   loadingQuestionsStats = false
   customErrorQuestionsStats?: string
 
-  poll: any = [
-    // {
-    //   answer: [
-    //     {
-    //       // id: 0,
-    //       // title: 'płatki z mlekiem',
-    //       count: 10
-    //     },
-    //     {
-    //       // id: 1,
-    //       // title: 'piwo z sokiem',
-    //       count: 14
-    //     },
-    //     {
-    //       // id: 2,
-    //       // title: 'sok z piwem',
-    //       count: 30
-    //     },
-    //   ]
-    // },
-    // {
-    //   answer: [
-    //     {
-    //       // id: 0,
-    //       // title: 'cola',
-    //       count: 43
-    //     },
-    //     {
-    //       // id: 1,
-    //       // title: 'sok',
-    //       count: 20
-    //     },
-    //     {
-    //       // id: 2,
-    //       // title: 'tyskie',
-    //       count: 49
-    //     },
-    //   ]
-    // }
-  ]
+  poll: any = []
 
   arrayWithSeriesCount?: any [] = []
   arrayWithLabelNames?: any [] = []
@@ -88,6 +50,11 @@ export class SelectedQuestionnaireComponent implements OnInit{
   public chartOptions: Partial<ChartOptions>;
 
   math = Math;
+
+  metadateForm = new FormGroup({
+    key: new FormControl ('', [Validators.required]),
+    value: new FormControl ('', [Validators.required])
+  })
 
 
   constructor(
@@ -202,17 +169,21 @@ export class SelectedQuestionnaireComponent implements OnInit{
   //   }
   // }
 
-  getQuestionsStats(){
+  getQuestionsStats(key?: string, value?: string){
     this.loadingQuestionsStats = true
-    this.subQuestionsStats = this.ankietaRest.getAnkietaIdStats(Number(this.idParam), null, null).subscribe({
+    this.subQuestionsStats = this.ankietaRest.getAnkietaIdStats(Number(this.idParam), key!, value!).subscribe({
       next: (response) => {
         if(response.body){
           this.questionsStats = response.body
           console.log(response.body)
+
+          this.poll = []
+
           this.takeStatsAndMoveToChart()
           this.loadLabelsTochart()
           this.loadSeriesToChart()
           this.loadAnswersTextAndRate()
+
           // this.loadChart()
         }
         else{
@@ -325,7 +296,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
     // for (let index = 0; index < this.poll.length; index++) {
     let sumCount = 0
       for (let indexAnswer = 0; indexAnswer < this.poll[id].answer.length; indexAnswer++) {
-        console.log(this.poll[id].answer[indexAnswer].count)
+        // console.log(this.poll[id].answer[indexAnswer].count)
         sumCount = sumCount + this.poll[id].answer[indexAnswer].count
       }
       // if (sumCount != 0) {
@@ -334,8 +305,15 @@ export class SelectedQuestionnaireComponent implements OnInit{
       // if (sumCount = 0) {
       //   sumCount = false
       // }
-      console.log(sumCount)
+      // console.log(sumCount)
     // }
     return sumCount
+  }
+
+  submitMetadateForm(){
+    let key = this.metadateForm.get('key')!.value;
+    let value = this.metadateForm.get('value')!.value;
+
+    this.getQuestionsStats(key!, value!)
   }
 }
