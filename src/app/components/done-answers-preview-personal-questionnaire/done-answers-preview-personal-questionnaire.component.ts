@@ -43,7 +43,7 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
     this.checkUrl()
     this.getDoneAnswers()
     this.getQuestionsList()
-    this.getQuestionsStats()
+    // this.getQuestionsStats()
   }
 
   checkUrl() {
@@ -72,7 +72,7 @@ export class DoneAnswersPreviewPersonalQuestionnaireComponent implements OnInit{
         if(response.body){
           this.questionsList = response.body
           console.log(response.body)
-          this.addAnswer()
+          this.getQuestionsStats()
         }
         else{
           this.customErrorQuestionsList = 'Brak obiektu odpowiedzi';
