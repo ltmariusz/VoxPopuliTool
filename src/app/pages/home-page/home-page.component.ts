@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { UserDataService } from 'src/app/services/global-services/user-data.service';
 
 @Component({
   selector: 'app-home-page',
@@ -28,22 +29,31 @@ export class HomePageComponent implements OnInit{
       url: 'form-list',
       icon: 'manage_search',
       name: 'Lista ankiet',
-    },
-    {
-      url: 'admin-panel',
-      icon: 'admin_panel_settings',
-      name: 'Panel admina',
     }
   ]
   constructor(
-    private router: Router
+    private router: Router,
+    public userData: UserDataService
   ){ }
 
   ngOnInit(): void {
+    this.checkUserLogin()
     this.setSizeOptions(window.innerWidth);
     if(this.router.url === '/home')
     {
       this.router.navigate(['./home/form-list'])
+    }
+  }
+
+  checkUserLogin(){
+    if (this.userData.isAdmin()) {
+      this.inputs.push(
+        {
+          url: 'admin-panel',
+          icon: 'admin_panel_settings',
+          name: 'Panel admina',
+        }
+      )
     }
   }
 
