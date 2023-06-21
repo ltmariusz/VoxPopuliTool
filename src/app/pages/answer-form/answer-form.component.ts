@@ -15,7 +15,7 @@ export class AnswerFormComponent implements OnInit {
     private ankietaService: AnkietaService) { }
 
     listOfQuestionToShow!: Array<OneQuestion>
-    listOfQuestion: Array<FormIdQuestion> = new Array
+    listOfQuestion: Array<FormIdQuestion> = new Array()
     
   titleForm!: string
   descriptionForm!: string

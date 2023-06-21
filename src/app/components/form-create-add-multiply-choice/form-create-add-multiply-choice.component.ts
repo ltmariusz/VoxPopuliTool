@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 import { Answers } from '../form-create-add-single-choice/form-create-add-single-choice.component';
@@ -8,7 +8,7 @@ import { Answers } from '../form-create-add-single-choice/form-create-add-single
   templateUrl: './form-create-add-multiply-choice.component.html',
   styleUrls: ['../../../style/style-of-answers.scss']
 })
-export class FormCreateAddMultiplyChoiceComponent implements OnInit {
+export class FormCreateAddMultiplyChoiceComponent implements OnInit, OnDestroy {
 
   // @ViewChildren('inputRef') inputRefs!: QueryList<ElementRef<HTMLInputElement>>;
   // @ViewChild('inputRef') inputRef!: ElementRef<HTMLInputElement>;
@@ -22,6 +22,7 @@ export class FormCreateAddMultiplyChoiceComponent implements OnInit {
   constructor(
     private createFormsManagementService: CreateFormsManagementService,
     private fb: FormBuilder) { }
+
 
   indexOfForms!: number
   isDeleted?:boolean
@@ -58,7 +59,7 @@ licznik = 0
     this.createFormsManagementService.getAllFormsEmitter.subscribe(res => {
       if (this.isDeleted === false) {
         let multiplyChoiceQuestion = this.multiplyChoiceForm.get('multiplyChoiceQuestionInput')?.value
-        let allMultiplyChoices = new Array<string>
+        let allMultiplyChoices = new Array<string>()
         for (let i = 0; i < this.answerControlNames.controls.length; i++) {
           const element = this.answerControlNames.controls[i].value;
           allMultiplyChoices.push(element)
@@ -154,5 +155,9 @@ licznik = 0
     }
   }
 
+
+  ngOnDestroy(): void {
+    this.deleteThisQuestion()
+  }
 
 }

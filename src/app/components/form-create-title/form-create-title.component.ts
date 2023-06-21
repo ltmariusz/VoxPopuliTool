@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ControlContainer, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 
@@ -7,9 +7,10 @@ import { CreateFormsManagementService } from 'src/app/services/management/create
   templateUrl: './form-create-title.component.html',
   styleUrls: ['./form-create-title.component.scss']
 })
-export class FormCreateTitleComponent implements OnInit {
+export class FormCreateTitleComponent implements OnInit, OnDestroy {
 
   constructor(private createFormsManagementService: CreateFormsManagementService) { }
+
   isPublic?: boolean
 
   ngOnInit(): void {
@@ -48,4 +49,10 @@ export class FormCreateTitleComponent implements OnInit {
   // blurr() {
   //   console.log("testt")
   // }
+
+  ngOnDestroy() {
+    delete this.createFormsManagementService.isPublic  
+    delete this.createFormsManagementService.descriptionForm
+    delete this.createFormsManagementService.titleForm 
+  }
 }

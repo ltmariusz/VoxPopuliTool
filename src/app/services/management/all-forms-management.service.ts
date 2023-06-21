@@ -58,7 +58,7 @@ export class AllFormsManagementService {
     private popupService: PopupManagementService
   ) { }
 
-  allAnswersFromOneForm: AnswerForm2 = { title: "", answers: new Array }
+  allAnswersFromOneForm: AnswerForm2 = { title: "", answers: new Array() }
   didYouEndAnswering?: boolean
   formFromUrl?: string
   listWithAnswersToPost?: Array<PostAnswers>
@@ -67,8 +67,8 @@ export class AllFormsManagementService {
   getDescriptionEmit: EventEmitter<any> = new EventEmitter()
 
   getAllAnswerFromForm() {
-    this.listWithAnswersToPost = new Array
-    this.allAnswersFromOneForm = { title: "", answers: new Array }
+    this.listWithAnswersToPost = new Array()
+    this.allAnswersFromOneForm = { title: "", answers: new Array() }
     this.getAllAnswerEmitter.emit()
 
 
@@ -102,7 +102,7 @@ export class AllFormsManagementService {
       }
       if (element.type === "MULTIPLE_CHOICE") {
 
-        let answers = new Array
+        let answers = new Array()
         element.answer.forEach(answer => {
           answers.push(answer.answerId)
         });

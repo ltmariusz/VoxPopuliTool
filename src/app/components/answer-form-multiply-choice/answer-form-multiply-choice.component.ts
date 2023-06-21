@@ -36,14 +36,14 @@ export class AnswerFormMultiplyChoiceComponent implements OnInit {
   howMuchAnswers!: number
   chosenOrNot!: Array<ChosenOrNotMultipleChoice>
 
-  multipleChoiceAnswers: Array<MultiplyChoiceToPostObject> = new Array
+  multipleChoiceAnswers: Array<MultiplyChoiceToPostObject> = new Array()
 
   tymczasowa!: any
 
   ngOnInit() {
     //  console.log(this.listOfQuestionToShow)
     //  console.log(this.index)
-    this.chosenOrNot = new Array
+    this.chosenOrNot = new Array()
     // console.log(this.listOfQuestionToShow)
     this.howMuchAnswers = this.listOfQuestionToShow.answerVariants!.length
     for (let i = 0; i < this.howMuchAnswers; i++) {
