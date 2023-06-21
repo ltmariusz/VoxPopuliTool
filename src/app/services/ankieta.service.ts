@@ -12,6 +12,7 @@ export interface QuestionnaireList {
   questionnaireType: string,
   isPublic: boolean,
   isActive: boolean,
+  isComplete?: boolean,
   parentId: number,
   uniqueCode: string,
   link: string,
