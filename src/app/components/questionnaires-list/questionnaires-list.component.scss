@@ -234,7 +234,12 @@
     flex-direction: column;
     // row-gap: 0.5rem;
 }
-
+button:disabled,
+button[disabled]{
+//   border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #999999;
+}
 
 
 

@@ -33,7 +33,7 @@
                             <button (click)="sendGlobal(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Wyślij grupową</button>
                             <button (click)="clickItem(questionnaire.id)" class="btn_statistic" (click)="$event.stopPropagation()">Statystyki</button>
                             <!-- <button (click)="editQuestionnaire(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button> -->
-                            <button (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
+                            <button [disabled]="!questionnaire.isActive" (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
                         </div> 
                         <!-- <div class="mobile_icons">
                             <button (click)="generatePersonal(questionnaire.id)" class="btn_generate_new_personal" (click)="$event.stopPropagation()">Wygeneruj osobistą</button>
@@ -50,7 +50,7 @@
                         <button (click)="generatePersonal(questionnaire.id)" class="btn_generate_new_personal" (click)="$event.stopPropagation()">Wygeneruj osobistą</button>
                         <button (click)="sendGlobal(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Wyślij grupową</button>
                         <button (click)="clickItem(questionnaire.id)" class="btn_statistic" (click)="$event.stopPropagation()">Statystyki</button>
-                        <button (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
+                        <button [disabled]="!questionnaire.isActive" (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
                     </div> 
                     <!-- <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon> -->
                     <mat-icon *ngIf="!this.loadingAnkietaListPrivate && this.listPrivate.length != 0" class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="iconsPersonal">
                                 <button (click)="personalQuestionnaire(questionnairePersonal.id)" class="btn_statistic">Informacje</button>
-                                <button (click)="openDialogCloseQuestionnairePersonal('200ms', '100ms', questionnairePersonal.id)" class="btn_close">Zakończ</button>
+                                <button [disabled]="!questionnairePersonal.isActive" (click)="openDialogCloseQuestionnairePersonal('200ms', '100ms', questionnairePersonal.id)" class="btn_close">Zakończ</button>
                             </div> 
                         </div>
                         
