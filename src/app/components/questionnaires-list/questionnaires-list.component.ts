@@ -66,6 +66,7 @@ export class QuestionnairesListComponent implements OnInit{
         if(response.body){
           // response.body.sort((b, a) => a.createDate.localeCompare(b.createDate))
           this.usersAnkietaList = response.body
+          this.downloadedListPrivate.clear()
           // this.test()
           // this.changeQuestionnaireList()
           this.loadingAnkietaList = false
@@ -116,9 +117,10 @@ export class QuestionnairesListComponent implements OnInit{
   }
 
   getPrivateById(id: number) {
+    console.log(this.questionnaireListManager.isCompleteValue)
     // this.listPrivate = []
     this.loadingAnkietaListPrivate = true
-    this.subAnkietaListPrivate = this.ankietaRest.getAnkietaIdPrivate(id!).subscribe({
+    this.subAnkietaListPrivate = this.ankietaRest.getAnkietaIdPrivate(id!, this.questionnaireListManager.isCompleteValue).subscribe({
       next: (response) => {
         if(response.body){
           this.listPrivate = response.body

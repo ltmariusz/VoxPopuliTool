@@ -8,6 +8,9 @@ export class QuestionnaireListManagementService {
   loadingSendGroupQuestionnaire = false
   loadingSendPrivateQuestionnaire = false
 
+  isCompleteValue?: string|boolean
+  isCompleteChage = false
+
   list:any = []
 
   lastQuestionnaireTitle?: string

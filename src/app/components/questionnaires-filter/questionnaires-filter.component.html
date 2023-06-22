@@ -23,6 +23,14 @@
                     <mat-option [value]=false> Nieaktywne</mat-option>
                 </mat-select>
             </mat-form-field> 
+            <mat-form-field appearance="outline" class="extraGap2">
+                <mat-label>Wyświetlanie ankiet</mat-label>
+                <mat-select formControlName="isComplete">
+                    <mat-option value='all'> Wszystkie</mat-option>
+                    <mat-option [value]=true> Odpowiedziane</mat-option>
+                    <mat-option [value]=false> Nieodpowiedziane</mat-option>
+                </mat-select>
+            </mat-form-field> 
             <div class="btn_search_container">
                 <button [disabled]="false" (click)="search()" class="btn_search">Wyszukaj</button>
             </div> 

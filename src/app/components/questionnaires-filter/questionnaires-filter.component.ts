@@ -15,7 +15,7 @@ export class QuestionnairesFilterComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   searchForm = new FormGroup({
@@ -23,6 +23,7 @@ export class QuestionnairesFilterComponent implements OnInit{
     name: new FormControl(''),
     description: new FormControl(''),
     isActive: new FormControl<boolean|string>('all'),
+    isComplete: new FormControl<boolean|string>(true),
   });
 
   search(){
@@ -34,6 +35,8 @@ export class QuestionnairesFilterComponent implements OnInit{
     if (isActive == 'all') {
       isActive = null
     }
+
+    this.questionnaireListManager.isCompleteValue = this.searchForm.get('isComplete')!.value!
 
     // console.log(title, name, description, isActive)
 

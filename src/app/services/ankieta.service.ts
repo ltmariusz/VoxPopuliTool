@@ -223,10 +223,21 @@ export class AnkietaService {
 
   //------------------------------------------------------------------------//
 
-  getAnkietaIdPrivate(id: number): Observable<HttpResponse<any>> {
+  getAnkietaIdPrivate(id: number, isComplete?: boolean|null|string): Observable<HttpResponse<any>> {
+
+    let param = new HttpParams();
+
+    if (isComplete && isComplete != "all") {
+      param = param.append('isComplete', isComplete!)
+    }
+    if (isComplete == false) {
+      param = param.append('isComplete', false)
+    }
+
     return this.http.get<any>(this.PATH + `/${id}/private`, {
       observe: 'response',
-      responseType: 'json'
+      responseType: 'json',
+      params: param
     })
   }
 
