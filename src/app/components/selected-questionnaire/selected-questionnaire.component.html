@@ -111,7 +111,7 @@
                     <div class="title">{{questionnaire.question}}</div>
                 </div>
                 <div *ngIf="questionnaire.correct" class="answer_list star_list_answer">
-                    {{math.round(questionnaire.correct)}}.0
+                    {{questionnaire.correct.toFixed(1)}}
                     <div class="answer" [ngSwitch]="math.round(questionnaire.correct)">
                         <div *ngSwitchCase="0" class="row_stars">
                             <mat-icon>star</mat-icon>
