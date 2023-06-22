@@ -19,7 +19,7 @@
                   <mat-expansion-panel-header (click)="loadingClickedPrivate(questionnaire.id)" *ngIf="questionnaire.questionnaireType == 'GLOBAL'">
                     <mat-panel-title class="mat_title">
                         <div class="row_list">
-                            <div class="icon desktop">
+                            <div class="icon">
                                 <mat-icon *ngIf="questionnaire.isPublic == true && questionnaire.isActive == true" class="green_c questionnaire_icon" fontIcon="quiz"></mat-icon>
                                 <mat-icon *ngIf="questionnaire.isPublic == false  && questionnaire.isActive == true" class="gray_c questionnaire_icon" fontIcon="quiz"></mat-icon>
                                 <mat-icon *ngIf="questionnaire.isActive == false" class="red_c questionnaire_icon" fontIcon="quiz"></mat-icon>
@@ -35,18 +35,23 @@
                             <!-- <button (click)="editQuestionnaire(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button> -->
                             <button (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
                         </div> 
-                        <div class="mobile_icons">
+                        <!-- <div class="mobile_icons">
                             <button (click)="generatePersonal(questionnaire.id)" class="btn_generate_new_personal" (click)="$event.stopPropagation()">Wygeneruj osobistą</button>
                             <button (click)="sendGlobal(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Wyślij grupową</button>
                             <button (click)="clickItem(questionnaire.id)" class="btn_statistic" (click)="$event.stopPropagation()">Statystyki</button>
-                            <!-- <button (click)="editQuestionnaire(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button> -->
                             <button (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
-                        </div> 
+                        </div>  -->
                         <!-- <div class="btn_more">Rozwiń</div> -->
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <!-- <p *ngIf="questionnaire.type == 'GLOBAL'">Brak osobistych ankiet</p> -->
                   <div class="personal_questionnaire_list">
+                    <div class="mobile_icons">
+                        <button (click)="generatePersonal(questionnaire.id)" class="btn_generate_new_personal" (click)="$event.stopPropagation()">Wygeneruj osobistą</button>
+                        <button (click)="sendGlobal(questionnaire.id)" class="btn_edit" (click)="$event.stopPropagation()">Wyślij grupową</button>
+                        <button (click)="clickItem(questionnaire.id)" class="btn_statistic" (click)="$event.stopPropagation()">Statystyki</button>
+                        <button (click)="openDialogCloseQuestionnaire('200ms', '100ms', questionnaire.id)" class="btn_close" (click)="$event.stopPropagation()">Zakończ</button>
+                    </div> 
                     <!-- <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon> -->
                     <mat-icon *ngIf="!this.loadingAnkietaListPrivate && this.listPrivate.length != 0" class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
                     <div class="item_personal" *ngFor="let questionnairePersonal of this.listPrivate">
