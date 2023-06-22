@@ -20,9 +20,9 @@
                     <mat-panel-title class="mat_title">
                         <div class="row_list">
                             <div class="icon">
-                                <mat-icon *ngIf="questionnaire.isPublic == true && questionnaire.isActive == true" class="green_c questionnaire_icon" fontIcon="quiz"></mat-icon>
-                                <mat-icon *ngIf="questionnaire.isPublic == false  && questionnaire.isActive == true" class="gray_c questionnaire_icon" fontIcon="quiz"></mat-icon>
-                                <mat-icon *ngIf="questionnaire.isActive == false" class="red_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isPublic == true && questionnaire.isActive == true" title="Publiczna" class="green_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isPublic == false  && questionnaire.isActive == true" title="Niepubliczna" class="orange_c questionnaire_icon" fontIcon="quiz"></mat-icon>
+                                <mat-icon *ngIf="questionnaire.isActive == false" class="red_c questionnaire_icon" title="Nieaktywna" fontIcon="quiz"></mat-icon>
                             </div>
                             <div class="name">
                                 <p>{{questionnaire.title}}</p>
@@ -59,9 +59,9 @@
                         <div *ngIf="!this.loadingAnkietaListPrivate" class="personal_container">
                             <div class="row_list">
                                 <div class="icon">
-                                    <mat-icon *ngIf="questionnairePersonal.isActive == true && questionnairePersonal.isComplete == true" class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
-                                    <mat-icon *ngIf="questionnairePersonal.isComplete == false && questionnairePersonal.isActive == true" class="gray_c questionnaire_icon" fontIcon="help_center"></mat-icon>
-                                    <mat-icon *ngIf="questionnairePersonal.isActive == false" class="red_c questionnaire_icon" fontIcon="help_center"></mat-icon>                                
+                                    <mat-icon *ngIf="questionnairePersonal.isActive == true && questionnairePersonal.isComplete == true" title="Publiczna" class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
+                                    <mat-icon *ngIf="questionnairePersonal.isComplete == false && questionnairePersonal.isActive == true" title="Niepubliczna" class="orange_c questionnaire_icon" fontIcon="help_center"></mat-icon>
+                                    <mat-icon *ngIf="questionnairePersonal.isActive == false" class="red_c questionnaire_icon" title="Niekatywna" fontIcon="help_center"></mat-icon>                                
                                 </div>
                                 <div class="name">
                                     <p>{{questionnairePersonal.description}}</p>
