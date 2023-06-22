@@ -15,7 +15,7 @@ export class QuestionnairesFilterComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-
+    this.questionnaireListManager.isCompleteValue = this.searchForm.get('isComplete')!.value!
   }
 
   searchForm = new FormGroup({
