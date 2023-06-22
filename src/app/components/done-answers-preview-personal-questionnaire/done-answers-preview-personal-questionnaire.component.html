@@ -3,8 +3,8 @@
         <div *ngIf="this.answersSumNumber">
             <!---------------------------------CARD--------------------------------->
             <div *ngIf="this.questionsList![i].questionType == 'SINGLE_CHOICE'" class="card_answer">
-                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    check_box</mat-icon>
+                <div class="title-of-question"> <mat-icon color="primary" fontSet="material-icons-outlined">
+                    check_box</mat-icon> {{i+1}}.
                     <div class="title">{{answer.question}}</div>
                 </div>
                 <div class="answer_list">
@@ -16,8 +16,8 @@
             </div>
             <!---------------------------------CARD--------------------------------->
             <div *ngIf="this.questionsList![i].questionType == 'MULTIPLE_CHOICE'" class="card_answer">
-                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    library_add_check</mat-icon>
+                <div class="title-of-question"><mat-icon color="primary" fontSet="material-icons-outlined">
+                    library_add_check</mat-icon> {{i+1}}.
                     <div class="title">{{answer.question}}</div>
                 </div>
                 <div class="answer_list">
@@ -32,8 +32,8 @@
             </div>
             <!---------------------------------CARD--------------------------------->
             <div *ngIf="this.questionsList![i].questionType == 'TEXT'" class="card_answer">
-                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    notes</mat-icon>
+                <div class="title-of-question"><mat-icon color="primary" fontSet="material-icons-outlined">
+                    notes</mat-icon> {{i+1}}.
                     <div class="title">{{answer.question}}</div>
                 </div>
                 <div class="answer_list">
@@ -44,8 +44,8 @@
             </div>
             <!---------------------------------CARD--------------------------------->
             <div *ngIf="this.questionsList![i].questionType == 'RATING'" class="card_answer">
-                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    star_half</mat-icon>
+                <div class="title-of-question"><mat-icon color="primary" fontSet="material-icons-outlined">
+                    star_half</mat-icon> {{i+1}}.
                     <div class="title">{{answer.question}}</div>
                 </div>
                 <div class="answer_list star_list_answer">

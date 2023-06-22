@@ -32,8 +32,8 @@
         
         <div *ngIf="this.questionsList![i].questionType == 'SINGLE_CHOICE'" class="card">
             <div class="column">
-                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    check_box</mat-icon>
+                <div class="title-of-question"> <mat-icon color="primary" fontSet="material-icons-outlined">
+                    check_box</mat-icon> {{i+1}}.
                     <div class="title">{{this.questionnaire.question}}</div>
                 </div>
                 <div class="answer_list">
@@ -56,8 +56,8 @@
         </div>
         <div *ngIf="this.questionsList![i].questionType == 'MULTIPLE_CHOICE'" class="card">
             <div class="column">
-                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    library_add_check</mat-icon>
+                <div class="title-of-question"><mat-icon color="primary" fontSet="material-icons-outlined">
+                    library_add_check</mat-icon>  {{i+1}}.
                     <div class="title">{{this.questionnaire.question}}</div>
                 </div>
                 <div class="answer_list">
@@ -81,8 +81,8 @@
 
         <div *ngIf="questionnaire.questionType == 'TEXT'" class="card">
             <div class="column">
-                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    notes</mat-icon>
+                <div class="title-of-question"><mat-icon color="primary" fontSet="material-icons-outlined">
+                    notes</mat-icon> {{i+1}}.
                     <div class="title">{{questionnaire.question}}</div>
                 </div>
                 <div *ngIf="questionnaire.correct[0].length != 0" class="answer_list">
@@ -106,8 +106,8 @@
 
         <div *ngIf="questionnaire.questionType == 'RATING'" class="card">
             <div class="column">
-                <div class="title-of-question"> [{{i+1}}] <mat-icon color="primary" fontSet="material-icons-outlined">
-                    star_half</mat-icon>
+                <div class="title-of-question"><mat-icon color="primary" fontSet="material-icons-outlined">
+                    star_half</mat-icon> {{i+1}}.
                     <div class="title">{{questionnaire.question}}</div>
                 </div>
                 <div *ngIf="questionnaire.correct" class="answer_list star_list_answer">
