@@ -5,7 +5,7 @@ import { CloseQuestionnaireDialogComponent } from '../dialogs/close-questionnair
 import { CloseQuestionnairePersonalDialogComponent } from '../dialogs/close-questionnaire-personal-dialog/close-questionnaire-personal-dialog.component';
 import { AnkietaService, QuestionnaireList } from 'src/app/services/ankieta.service';
 import { PopupManagementService } from 'src/app/services/management/popup-management.service';
-import { Subscription } from 'rxjs';
+import { Subscription, lastValueFrom } from 'rxjs';
 import { QuestionnaireListManagementService } from 'src/app/services/management/questionnaire-list-management.service';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
@@ -26,8 +26,12 @@ export class QuestionnairesListComponent implements OnInit{
   subAnkietaList?: Subscription
   loadingAnkietaList = false
   usersAnkietaList?: Array<QuestionnaireList>
-  usersAnkietaPersonalList?: Array<QuestionnaireList>
   customErrorAnkietaList?: string
+
+  subAnkietaListPrivate?: Subscription
+  loadingAnkietaListPrivate = false
+  usersAnkietaListPrivate?: Array<QuestionnaireList>
+  customErrorAnkietaListPrivate?: string
 
   subAnkietaDeactivate?: Subscription
   loadingAnkietaDeactivate = false
@@ -60,9 +64,10 @@ export class QuestionnairesListComponent implements OnInit{
     this.subAnkietaList = this.ankietaRest.getAnkieta(userData!, questionnaireTitle!, questionnaireDescription!, isActive!).subscribe({
       next: (response) => {
         if(response.body){
-          response.body.sort((b, a) => a.createDate.localeCompare(b.createDate))
+          // response.body.sort((b, a) => a.createDate.localeCompare(b.createDate))
           this.usersAnkietaList = response.body
-          this.createPersonalQuestionnaireList()
+          // this.test()
+          // this.changeQuestionnaireList()
           this.loadingAnkietaList = false
         }
         else{
@@ -82,11 +87,135 @@ export class QuestionnairesListComponent implements OnInit{
     })
   }
 
-  createPersonalQuestionnaireList(){
-    this.usersAnkietaPersonalList = this.usersAnkietaList
-    this.usersAnkietaPersonalList = this.usersAnkietaPersonalList!.filter(obj => obj.questionnaireType == 'PRIVATE')
-    // console.log(this.usersAnkietaPersonalList)
+  // changeQuestionnaireList(){
+  //   this.usersAnkietaPersonalList = this.usersAnkietaList
+  //   this.usersAnkietaList = this.usersAnkietaList!.filter(obj => obj.questionnaireType == 'GLOBAL')
+  //   this.usersAnkietaPersonalList = this.usersAnkietaPersonalList!.filter(obj => obj.questionnaireType == 'PRIVATE')
+  //   // console.log(this.usersAnkietaPersonalList)
+  // }
+
+  // test(){
+  //   for (let index = 0; index < this.usersAnkietaList!.length; index++) {
+  //     this.getPrivateById(this.usersAnkietaList![index].id)
+  //   }
+  // }
+
+  listPrivate: Array<QuestionnaireList> = []
+  downloadedListPrivate = new Map<number,Array<QuestionnaireList> | undefined> 
+  // listPrivatePromise = new Map<number,Promise<QuestionnaireList | undefined>>()
+
+  loadingClickedPrivate(id: number){
+    this.listPrivate = []
+    let exist = this.downloadedListPrivate.get(id)
+    if (exist) {
+      this.listPrivate = exist
+    }
+    else{
+      this.getPrivateById(id)
+    }
   }
+
+  getPrivateById(id: number) {
+    // this.listPrivate = []
+    this.loadingAnkietaListPrivate = true
+    this.subAnkietaListPrivate = this.ankietaRest.getAnkietaIdPrivate(id!).subscribe({
+      next: (response) => {
+        if(response.body){
+          this.listPrivate = response.body
+          this.downloadedListPrivate.set(id, response.body)
+          // console.log(this.listPrivate)
+          this.loadingAnkietaListPrivate = false
+        }
+        else{
+          this.customErrorAnkietaListPrivate = 'Brak obiektu odpowiedzi';
+          this.popupService.errorEmit(this.customErrorAnkietaListPrivate)
+          this.loadingAnkietaListPrivate = false
+        }
+      },
+      error: (errorResponse) => {
+        this.loadingAnkietaListPrivate = false
+        this.customErrorAnkietaListPrivate = errorResponse.error.message
+        this.popupService.errorEmit(this.customErrorAnkietaListPrivate!)
+      },
+      complete: () => {
+        this.loadingAnkietaListPrivate = false;
+      }
+    })
+
+
+  //   let promise = this.listPrivatePromise.get(id)
+  //   if (promise == undefined) {
+  //     let newPromise = new Promise<QuestionnaireList | undefined>( async (resolve, reject) => {
+  //       try {
+  //         let exists = this.listPrivate.find( it => it.id == id)
+  //         if (exists) {
+  //           return resolve(exists)
+  //         }
+  //         let response = await lastValueFrom(this.ankietaRest.getAnkietaIdPrivate(id))
+  //         this.listPrivate.push(response.body!)
+  //         return resolve(response.body!)
+  //       } catch (error) {
+  //         return reject(error)
+  //       }
+  //     })
+  //     this.listPrivatePromise.set(id, newPromise)
+  //     console.log(this.listPrivate)
+  //     return newPromise
+  //   } else{
+  //     return promise
+    
+  // }
+
+  // getPrivateById(id: number): Promise<any | undefined>{
+  //   console.log("test")
+  //   let promise = this.listPrivatePromise.get(id)
+  //   if (promise == undefined) {
+  //     let newPromise = new Promise<any | undefined>( async (resolve, reject) => {
+  //       try {
+  //         let exists = this.listPrivate.find( it => it.id == id)
+  //         if (exists) {
+  //           return resolve(exists)
+  //         }
+  //         let response = await lastValueFrom(this.ankietaRest.getAnkietaIdPrivate(id))
+  //         this.listPrivate.push(response.body!)
+  //         return resolve(response.body!)
+  //       } catch (error) {
+  //         return reject(error)
+  //       }
+  //     })
+  //     this.listPrivatePromise.set(id, newPromise)
+  //     console.log(this.listPrivate)
+  //     return newPromise
+  //   } else{
+  //     return promise
+      
+  //   }
+    
+    // this.loadingAnkietaListPrivate = true
+    // let bodyPrivate
+    // this.subAnkietaListPrivate = this.ankietaRest.getAnkietaIdPrivate(id!).subscribe({
+    //   next: (response) => {
+    //     if(response.body){
+    //       bodyPrivate = response.body
+    //       this.loadingAnkietaListPrivate = false
+    //     }
+    //     else{
+    //       this.customErrorAnkietaListPrivate = 'Brak obiektu odpowiedzi';
+    //       this.popupService.errorEmit(this.customErrorAnkietaListPrivate)
+    //       this.loadingAnkietaListPrivate = false
+    //     }
+    //   },
+    //   error: (errorResponse) => {
+    //     this.loadingAnkietaListPrivate = false
+    //     this.customErrorAnkietaListPrivate = errorResponse.error.message
+    //     this.popupService.errorEmit(this.customErrorAnkietaListPrivate!)
+    //   },
+    //   complete: () => {
+    //     this.loadingAnkietaListPrivate = false;
+    //   }
+    // })
+  }
+
 
   getQuestionnaireListSubscribe(){
     this.questionnaireListManager.questionnaireListEmit.subscribe(res => {
@@ -187,5 +316,6 @@ export class QuestionnairesListComponent implements OnInit{
   sendGlobal(id: number){
     this.router.navigateByUrl(`/home/send-global-questionnaire/${id}`);
   }
+
 
 }

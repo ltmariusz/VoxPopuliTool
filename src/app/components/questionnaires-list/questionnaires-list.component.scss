@@ -131,6 +131,15 @@
     top: 50%;
     // right: 50%;
 }
+.spinner_private_list{
+    display: flex;
+    justify-content: center;
+    // position: absolute;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // top: 50%;
+}
+
 .scroll{
     max-height: calc(100vh - 290px);
     overflow: auto;

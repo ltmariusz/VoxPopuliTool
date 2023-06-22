@@ -223,6 +223,15 @@ export class AnkietaService {
 
   //------------------------------------------------------------------------//
 
+  getAnkietaIdPrivate(id: number): Observable<HttpResponse<any>> {
+    return this.http.get<any>(this.PATH + `/${id}/private`, {
+      observe: 'response',
+      responseType: 'json'
+    })
+  }
+
+  //------------------------------------------------------------------------//
+
   getAnkietaIdQuestions(id: number): Observable<HttpResponse<Array<QuestionListAll>>> {
     return this.http.get<Array<QuestionListAll>>(this.PATH + `/${id}/questions`, {
       observe: 'response',

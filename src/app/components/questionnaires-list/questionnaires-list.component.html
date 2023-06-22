@@ -16,7 +16,7 @@
         <div class="scroll">
             <mat-accordion class="mat_accord">
                 <mat-expansion-panel *ngFor="let questionnaire of this.usersAnkietaList" hideToggle class="mat_panel">
-                  <mat-expansion-panel-header *ngIf="questionnaire.questionnaireType == 'GLOBAL'">
+                  <mat-expansion-panel-header (click)="loadingClickedPrivate(questionnaire.id)" *ngIf="questionnaire.questionnaireType == 'GLOBAL'">
                     <mat-panel-title class="mat_title">
                         <div class="row_list">
                             <div class="icon desktop">
@@ -48,10 +48,10 @@
                   <!-- <p *ngIf="questionnaire.type == 'GLOBAL'">Brak osobistych ankiet</p> -->
                   <div class="personal_questionnaire_list">
                     <!-- <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon> -->
-                    <mat-icon class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
-                    <div class="item_personal" *ngFor="let questionnairePersonal of this.usersAnkietaPersonalList">
-                        <!-- <p *ngIf="">Brak osobistych ankiet</p> -->
-                        <div *ngIf="questionnairePersonal.parentId == questionnaire.id || questionnaire.questionnaireType == 'PRIVATE'" class="personal_container">
+                    <mat-icon *ngIf="!this.loadingAnkietaListPrivate && this.listPrivate.length != 0" class="icon_to_personal_list_arrow">keyboard_double_arrow_down</mat-icon>
+                    <div class="item_personal" *ngFor="let questionnairePersonal of this.listPrivate">
+                        <p *ngIf="!questionnairePersonal">Brak osobistych ankiet</p>
+                        <div *ngIf="!this.loadingAnkietaListPrivate" class="personal_container">
                             <div class="row_list">
                                 <div class="icon">
                                     <mat-icon *ngIf="questionnairePersonal.isActive == true && questionnairePersonal.isComplete == true" class="green_c questionnaire_icon" fontIcon="help_center"></mat-icon>
@@ -64,16 +64,26 @@
                             </div>
                             <div class="iconsPersonal">
                                 <button (click)="personalQuestionnaire(questionnairePersonal.id)" class="btn_statistic">Informacje</button>
-                                <!-- <button (click)="editQuestionnairePersonal(questionnairePersonal.id)" class="btn_edit" (click)="$event.stopPropagation()">Edytuj</button> -->
                                 <button (click)="openDialogCloseQuestionnairePersonal('200ms', '100ms', questionnairePersonal.id)" class="btn_close">Zakończ</button>
                             </div> 
                         </div>
+                        
                     </div>
+                    <!-- <div *ngIf="this.loadingAnkietaListPrivate" class="loading">
+                        Ładowanie...
+                    </div> -->
+
+                    <div *ngIf="this.loadingAnkietaListPrivate" class="spinner_private_list">
+                        <mat-progress-spinner diameter="40" class="example-margin" [color]="color" [mode]="mode" [value]="value">
+                        </mat-progress-spinner>
+                    </div>
+
+                    <p *ngIf="!this.loadingAnkietaListPrivate && this.listPrivate.length == 0">Brak osobistych ankiet</p>
                   </div>
                 </mat-expansion-panel>
             </mat-accordion>
             <div *ngIf="this.loadingAnkietaList" class="spinner">
-                <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" [value]="value">
+                <mat-progress-spinner [color]="color" [mode]="mode" [value]="100">
                 </mat-progress-spinner>
             </div>
 
