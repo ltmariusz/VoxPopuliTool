@@ -47,7 +47,7 @@ export class CreateFormsManagementService {
   /**
    * zmienna do przechowywania wszystkich stworzonych pytan
    */
-  createdQuestionArray?: Array<OneQuestion> = new Array
+  createdQuestionArray?: Array<OneQuestion> = new Array()
 
   constructor(private ankietaService: AnkietaService,
     private popupService: PopupManagementService,
@@ -58,7 +58,7 @@ export class CreateFormsManagementService {
   switchWitchComponentAdd!: number
 
   //tu będzie się trzymała liczba otwartych pytań
-  listOfCreatingForms: Array<Question> = new Array
+  listOfCreatingForms: Array<Question> = new Array()
   indexOfCreatingForms: number = 0
 
 
@@ -92,35 +92,37 @@ export class CreateFormsManagementService {
   }
   submitForms() {
     console.log("test")
-    this.createdQuestionArray = new Array
+    console.log(this.createdQuestionArray)
+    this.createdQuestionArray = new Array()
+    console.log(this.createdQuestionArray)
     this.getAllFormsEmitter.emit()
 
 
     //użyć tej zmiennej jako petli do zdobycia wszystkich pytan
-    console.log(this.listOfCreatingForms.length + "ile jest pytan")
-    for (let i = 0; i < this.listOfCreatingForms.length; i++) {
-      const element = this.listOfCreatingForms[i];
-      console.log(element)
+    // console.log(this.listOfCreatingForms.length + "ile jest pytan")
+    // for (let i = 0; i < this.listOfCreatingForms.length; i++) {
+    //   const element = this.listOfCreatingForms[i];
+    //   console.log(element)
 
-      switch (this.listOfCreatingForms[i].witchQuestionType) {
-        case 1:
-          console.log("oneChoiceCreate() service")
-          break;
-        case 2:
-          console.log("fewChoiseCreate service")
+    //   switch (this.listOfCreatingForms[i].witchQuestionType) {
+    //     case 1:
+    //       console.log("oneChoiceCreate() service")
+    //       break;
+    //     case 2:
+    //       console.log("fewChoiseCreate service")
 
-          break;
-        case 3:
-          console.log("longAnswerCreate service")
-          break;
-        case 4:
-          console.log("rateCreate service")
-          break;
+    //       break;
+    //     case 3:
+    //       console.log("longAnswerCreate service")
+    //       break;
+    //     case 4:
+    //       console.log("rateCreate service")
+    //       break;
 
-        default:
-          break;
-      }
-    }
+    //     default:
+    //       break;
+    //   }
+    // }
     //Przechowuje aktualny 
     console.log(this.titleForm)
     console.log(this.descriptionForm)
@@ -145,7 +147,11 @@ export class CreateFormsManagementService {
       questionList: this.createdQuestionArray!,
       isPublic: this.isPublic!
     }
-    if (this.titleForm !=="") {
+    console.log(this.isPublic)
+    if (this.isPublic === undefined) {
+      this.popupService.errorEmit("Nie wypełniono wszystkich wymaganych pól z gwiazdką (*)")
+    }else
+     if (this.titleForm !=="") {
       this.ankietaService.postAnkieta(this.titleForm!, this.descriptionForm!, this.isPublic!, this.createdQuestionArray).subscribe({
         next: (response) => {
           console.log("wysłane")
@@ -157,7 +163,9 @@ export class CreateFormsManagementService {
           this.popupService.errorEmit("Nie wypełniono wszystkich wymaganych pól z gwiazdką (*)")    
           console.log(error)
         },
-        complete: () => { }
+        complete: () => { 
+          this.createdQuestionArray = new Array()
+        }
       })
       console.log("test")
     }else{

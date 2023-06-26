@@ -64,7 +64,7 @@ licznik =0
     this.createFormsManagementService.getAllFormsEmitter.subscribe(res => {
       if (this.isDeleted === false) {
         let singleChoiceQuestion = this.singleChoiceForm.get('singleChoiceQuestionInput')?.value
-        let allSingleChoices = new Array<string>
+        let allSingleChoices = new Array<string>()
         for (let i = 0; i < this.singleAnswersControlNames.controls.length; i++) {
           allSingleChoices.push(this.singleAnswersControlNames.controls[i].value)
         }
@@ -84,12 +84,8 @@ licznik =0
     return `singleAnswersControlNames.${index}.answerControl`
   }
 
-  ngOnDestroy() {
-    // this.createFormsManagementService.indexOfCreatingForms = 0
-    // this.indexOfAnswer=0
-    // this.createFormsManagementService.listOfCreatingForms = new Array
-    // this.numberOfAnswer= new Array
-    // this.numberOfAnswer = [{last: true}]
+  ngOnDestroy(): void {
+    this.deleteThisQuestion()
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateFormsManagementService } from 'src/app/services/management/create-forms-management.service';
 
@@ -7,7 +7,7 @@ import { CreateFormsManagementService } from 'src/app/services/management/create
   templateUrl: './form-create-add-rate.component.html',
   styleUrls: ['./../../../style/style-of-answers.scss']
 })
-export class FormCreateAddRateComponent implements OnInit {
+export class FormCreateAddRateComponent implements OnInit, OnDestroy {
 
 
 
@@ -61,5 +61,7 @@ licznik = 0
   }
 
 
-
+  ngOnDestroy(): void {
+    this.deleteThisQuestion()
+  }
 }

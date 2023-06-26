@@ -10,7 +10,7 @@ export class FormCreatorPageComponent implements OnDestroy, OnInit{
 
 constructor(public createFormsManagementService: CreateFormsManagementService){ }
   ngOnDestroy(){
-    this.createFormsManagementService.listOfCreatingForms = new Array
+    this.createFormsManagementService.listOfCreatingForms = new Array()
     this.createFormsManagementService.indexOfCreatingForms = 0
 
   }
