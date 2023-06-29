@@ -83,20 +83,14 @@
             <div class="column">
                 <div class="title-of-question"><mat-icon color="primary" fontSet="material-icons-outlined">
                     notes</mat-icon> {{i+1}}.
-                    <div class="title">{{questionnaire.question}}</div>
+                    <div class="title">{{questionnaire?.question}}</div>
                 </div>
-                <div *ngIf="questionnaire.correct[0].length != 0" class="answer_list">
-                    <div class="answer" *ngFor="let text of questionnaire.correct[0]; ;let iText = index">
-                        <!-- 1. Dobre jedzenie<br>
-                        2. Złe jedzenie<br>
-                        3. Testowe testy testera testowego testującego test na teście testowym<br>
-                        4. 5345345<br>
-                        5. Alpy<br>
-                        6. Koszyk<br> -->
+                <div *ngIf="questionnaire.correct" class="answer_list">
+                    <div class="answer" *ngFor="let text of questionnaire?.correct[0]; ;let iText = index">
                         {{iText+1}}. {{text}}
                     </div>
                 </div>
-                <div *ngIf="questionnaire.correct[0].length == 0" class="answer_list">
+                <div *ngIf="!questionnaire.correct" class="answer_list">
                     <div class="answer">
                         Brak zebranych odpowiedzi
                     </div>

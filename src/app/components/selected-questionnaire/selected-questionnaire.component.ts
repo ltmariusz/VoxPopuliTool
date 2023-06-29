@@ -14,6 +14,13 @@ export type ChartOptions = {
   labels: any;
 };
 
+export interface Pool{
+  answer: any,
+  correct: Array<any>,
+  count: any
+}
+
+
 @Component({
   selector: 'app-selected-questionnaire',
   templateUrl: './selected-questionnaire.component.html',
@@ -42,7 +49,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
   loadingQuestionsStats = false
   customErrorQuestionsStats?: string
 
-  poll: any = []
+  poll: Array<any> = []
 
   arrayWithSeriesCount?: any [] = []
   arrayWithLabelNames?: any [] = []
@@ -226,10 +233,11 @@ export class SelectedQuestionnaireComponent implements OnInit{
     if (this.questionsList!.length != 0) {
         // arrayWithSeriesCount
       for (let index = 0; index < this.questionsList!.length; index++) {
-        let arrayWithSeriesCountToPush = []
+        let arrayWithSeriesCountToPush = new Array()
         for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
-          arrayWithSeriesCountToPush!.push(this.poll[index].answer[indexAnswer].count)
+          arrayWithSeriesCountToPush!.push(this.poll![index]?.answer[indexAnswer]!.count)
           // EDIT WITH STATS FORM REST
+          console.log("test 123")
         }
         this.arrayWithSeriesCount?.push(arrayWithSeriesCountToPush)
       } 
@@ -245,21 +253,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
     for (let index = 0; index < this.questionsStats!.length; index++) {
       // console.log('test' + index)
       if (this.questionsStats![index].answerList?.length == 0 || this.questionsStats![index].answerList == null) {
-        // this.poll.push(
-        //   {
-        //     answer: [
-        //       {
-        //         count: 0
-        //       },
-        //       {
-        //         count: 10
-        //       },
-        //       {
-        //         count: 10
-        //       }
-        //     ]
-        //   },
-        // )
+
       }
       else{
         for (let indexAnswer = 0; indexAnswer < this.questionsStats![index].answerList!.length; indexAnswer++) {
@@ -290,6 +284,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
       }
       if (this.questionsStats![index].textList) {
         this.questionsList![index].correct = [this.questionsStats![index].textList]  
+        console.log(this.questionsList![index].correct)
       }
       if (this.questionsStats![index].rating) {
         this.questionsList![index].correct = this.questionsStats![index].rating?.averageRating
