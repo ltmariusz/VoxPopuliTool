@@ -45,7 +45,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
   customErrorQuestionsList?: string
 
   subQuestionsStats?: Subscription
-  questionsStats?: Array<StatsList>
+  questionsStats!: Array<StatsList>
   loadingQuestionsStats = false
   customErrorQuestionsStats?: string
 
@@ -110,7 +110,6 @@ export class SelectedQuestionnaireComponent implements OnInit{
     this.checkUrl()
     this.getQuestionaire()
     this.getQuestionsList()
-    this.getQuestionsStats()
   }
 
   checkUrl() {
@@ -125,7 +124,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
       next: (response) => {
         if(response.body){
           this.questionaire = response.body
-          console.log(response.body)
+          // console.log(response.body)
         }
         else{
           this.customErrorQuestionaire = 'Brak obiektu odpowiedzi';
@@ -149,9 +148,10 @@ export class SelectedQuestionnaireComponent implements OnInit{
       next: (response) => {
         if(response.body){
           this.questionsList = response.body
-          console.log(response.body)
-          this.loadLabelsTochart()
-          this.loadSeriesToChart()
+          // console.log(response.body)
+          this.getQuestionsStats()
+          // this.loadLabelsTochart()
+          // this.loadSeriesToChart()
           // this.loadChart()
         }
         else{
@@ -184,14 +184,14 @@ export class SelectedQuestionnaireComponent implements OnInit{
       next: (response) => {
         if(response.body){
           this.questionsStats = response.body
-          console.log(response.body)
+          // console.log(response.body)
 
           this.poll = []
           this.arrayWithSeriesCount = []
 
           this.takeStatsAndMoveToChart()
-          this.loadLabelsTochart()
-          this.loadSeriesToChart()
+          // this.loadLabelsTochart()
+          // this.loadSeriesToChart()
           this.loadAnswersTextAndRate()
 
           // ApexCharts.exec('chart', 'updateOptions', this.chartOptions, true);
@@ -216,7 +216,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
   }
 
   loadLabelsTochart(){
-    if (this.questionsList!.length != 0) {
+    if (this.questionsList!.length! != 0) {
       for (let index = 0; index < this.questionsList!.length; index++) {
         let arrayLabelNameToPush = []
         for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
@@ -232,17 +232,18 @@ export class SelectedQuestionnaireComponent implements OnInit{
   loadSeriesToChart(){
     if (this.questionsList!.length != 0) {
         // arrayWithSeriesCount
-      for (let index = 0; index < this.questionsList!.length; index++) {
+      for (let index = 0; index < this.questionsList!.length!; index++) {
         let arrayWithSeriesCountToPush = new Array()
         for (let indexAnswer = 0; indexAnswer < this.questionsList![index].answerVariants.length; indexAnswer++) {
-          arrayWithSeriesCountToPush!.push(this.poll![index]?.answer[indexAnswer]!.count)
+          console.log(this.poll[index])
+          arrayWithSeriesCountToPush!.push(this.poll[index]?.answer[indexAnswer]?.count)
           // EDIT WITH STATS FORM REST
-          console.log("test 123")
+          // console.log("test 123")
         }
         this.arrayWithSeriesCount?.push(arrayWithSeriesCountToPush)
       } 
     }
-    // console.log(this.arrayWithSeriesCount)
+    console.log(this.arrayWithSeriesCount)
   }
 
   back(){
@@ -253,16 +254,24 @@ export class SelectedQuestionnaireComponent implements OnInit{
     for (let index = 0; index < this.questionsStats!.length; index++) {
       // console.log('test' + index)
       if (this.questionsStats![index].answerList?.length == 0 || this.questionsStats![index].answerList == null) {
-
+        this.poll!.push(
+          {
+            answer: []
+          }
+        )
       }
-      else{
-        for (let indexAnswer = 0; indexAnswer < this.questionsStats![index].answerList!.length; indexAnswer++) {
-          this.poll.push(
+      // if (condition) {
+        else
+      {
+        // console.log(this.questionsStats![index]!.answerList!.length)
+        for (let indexAnswer = 0; indexAnswer < this.questionsStats![index]!.answerList!.length; indexAnswer++) {
+          console.log(this.questionsStats![index].answerList![indexAnswer].answerSum)
+          this.poll!.push(
             {
               answer: []
             }
           )
-          this.poll[index].answer.push(
+          this.poll![index]?.answer.push(
             {
               count: this.questionsStats![index].answerList![indexAnswer].answerSum
             }
@@ -284,21 +293,21 @@ export class SelectedQuestionnaireComponent implements OnInit{
       }
       if (this.questionsStats![index].textList) {
         this.questionsList![index].correct = [this.questionsStats![index].textList]  
-        console.log(this.questionsList![index].correct)
+        // console.log(this.questionsList![index].correct)
       }
       if (this.questionsStats![index].rating) {
         this.questionsList![index].correct = this.questionsStats![index].rating?.averageRating
       }
     }
-    console.log(this.questionsList)
+    // console.log(this.questionsList)
   }
 
   showChart(id: number){
     // for (let index = 0; index < this.poll.length; index++) {
     let sumCount = 0
-      for (let indexAnswer = 0; indexAnswer < this.poll[id]?.answer.length; indexAnswer++) {
+      for (let indexAnswer = 0; indexAnswer < this.poll![id]?.answer.length; indexAnswer++) {
         // console.log(this.poll[id].answer[indexAnswer].count)
-        sumCount = sumCount + this.poll[id]!.answer[indexAnswer].count
+        sumCount = sumCount + this.poll![id]!.answer[indexAnswer].count
       }
       // if (sumCount != 0) {
       //   sumCount = true
