@@ -27,7 +27,7 @@
     
     
 </div>
-<div class="list_of_items">
+<div *ngIf="this.loadingPage" class="list_of_items">
     <div *ngFor="let questionnaire of this.questionsList; let i = index" class="items_conainer">
         
         <div *ngIf="this.questionsList![i].questionType == 'SINGLE_CHOICE'" class="card">
@@ -165,4 +165,8 @@
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="!this.loadingPage" class="spinner">
+    <mat-progress-spinner [color]="color" [mode]="mode" [value]="100">
+    </mat-progress-spinner>
 </div>

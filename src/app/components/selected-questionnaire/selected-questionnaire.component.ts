@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as ApexCharts from 'apexcharts';
 import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from 'ng-apexcharts';
@@ -27,6 +29,10 @@ export interface Pool{
   styleUrls: ['./selected-questionnaire.component.scss']
 })
 export class SelectedQuestionnaireComponent implements OnInit{
+
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 100;
 
   alphabet = [
     'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','W','X','Y','Z'
@@ -58,6 +64,8 @@ export class SelectedQuestionnaireComponent implements OnInit{
   public chartOptions: Partial<ChartOptions>;
 
   math = Math;
+
+  loadingPage = false
 
   metadateForm = new FormGroup({
     key: new FormControl ('', [Validators.required]),
@@ -300,6 +308,7 @@ export class SelectedQuestionnaireComponent implements OnInit{
       }
     }
     // console.log(this.questionsList)
+    this.loadingPage = true
   }
 
   showChart(id: number){

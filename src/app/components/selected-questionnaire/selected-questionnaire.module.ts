@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   { path: '', component: SelectedQuestionnaireComponent }
@@ -22,7 +23,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgApexchartsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     SelectedQuestionnaireComponent
