@@ -40,6 +40,10 @@ export class CreateFormsManagementService {
   titleForm?: string // zmienic
   descriptionForm?: string
   isPublic?: boolean
+  messageToAnswerers?: string
+  rangeStart?: string | Date
+  rangeEnd?: string | Date
+
   formCreatePostObject?: CreatedQuestionArray
   questionList?: Array<QuestionList>
   clickedDone?:boolean

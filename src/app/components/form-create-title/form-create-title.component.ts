@@ -30,7 +30,8 @@ export class FormCreateTitleComponent implements OnInit, OnDestroy {
 
   createFormsTitle = new FormGroup({
     titleForm: new FormControl('', [Validators.required]),
-    descriptionForm: new FormControl('', [Validators.required])
+    descriptionForm: new FormControl('', [Validators.required]),
+    messageToAnswerers: new FormControl('',[Validators.required])
   })
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -44,6 +45,12 @@ export class FormCreateTitleComponent implements OnInit, OnDestroy {
         this.createFormsManagementService.titleForm = this.createFormsTitle.get('titleForm')?.value!
         this.createFormsManagementService.descriptionForm = this.createFormsTitle.get('descriptionForm')?.value!
         this.createFormsManagementService.isPublic = this.isPublic
+
+        this.createFormsManagementService.messageToAnswerers = this.createFormsTitle.get('messageToAnswerers')?.value!
+        this.createFormsManagementService.rangeStart = this.range.get('start')?.value!
+        this.createFormsManagementService.rangeEnd = this.range.get('end')?.value!
+
+        
       })
   }
 
