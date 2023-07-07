@@ -32,6 +32,11 @@ export class FormCreateTitleComponent implements OnInit, OnDestroy {
     titleForm: new FormControl('', [Validators.required]),
     descriptionForm: new FormControl('', [Validators.required])
   })
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+
 
   getTitleForm() {
     this.createFormsManagementService.getAllFormsEmitter.subscribe(
