@@ -40,9 +40,10 @@ export class CreateFormsManagementService {
   titleForm?: string // zmienic
   descriptionForm?: string
   isPublic?: boolean
-  messageToAnswerers?: string
-  rangeStart?: string | Date
-  rangeEnd?: string | Date
+  messageToAnswerersSMS?: string
+  messageToAnswerersEmail?: string
+  rangeStart?: string 
+  rangeEnd?: string 
 
   formCreatePostObject?: CreatedQuestionArray
   questionList?: Array<QuestionList>
@@ -145,6 +146,14 @@ export class CreateFormsManagementService {
     // this.questionList= 
     this.createdQuestionArray
 
+
+
+
+
+
+
+
+
     this.formCreatePostObject = {
       title: this.titleForm!,
       description: this.descriptionForm!,
@@ -153,10 +162,20 @@ export class CreateFormsManagementService {
     }
     console.log(this.isPublic)
     if (this.isPublic === undefined) {
+      console.log("jeden")
       this.popupService.errorEmit("Nie wypełniono wszystkich wymaganych pól z gwiazdką (*)")
     }else
+    /*
+        smsMessage: string,
+    emailMessage: string,
+    openingDate: string,
+    expireDate: string 
+      messageToAnswerers?: string
+  rangeStart?: string | Date
+  rangeEnd?: string | Date
+    */
      if (this.titleForm !=="") {
-      this.ankietaService.postAnkieta(this.titleForm!, this.descriptionForm!, this.isPublic!, this.createdQuestionArray).subscribe({
+      this.ankietaService.postAnkieta(this.titleForm!, this.descriptionForm!, this.isPublic!, this.createdQuestionArray, this.messageToAnswerersSMS!, this.messageToAnswerersEmail!, this.rangeStart!, this.rangeEnd!).subscribe({
         next: (response) => {
           console.log("wysłane")
           this.popupService.succesEmit("Stworzyłeś nową ankiete!")
@@ -164,6 +183,8 @@ export class CreateFormsManagementService {
           this.clickedDone =true
         },
         error: (error) => { 
+          console.log("dwa")
+
           this.popupService.errorEmit("Nie wypełniono wszystkich wymaganych pól z gwiazdką (*)")    
           console.log(error)
         },
@@ -173,6 +194,7 @@ export class CreateFormsManagementService {
       })
       console.log("test")
     }else{
+      console.log("trzy")
       this.popupService.errorEmit("Nie wypełniono wszystkich wymaganych pól z gwiazdką (*)")    
     }
     console.log(this.formCreatePostObject)

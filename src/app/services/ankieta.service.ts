@@ -319,13 +319,21 @@ export class AnkietaService {
     title: string,
     description: string,
     isPublic: boolean,
-    questionList: Array<OneQuestion>
+    questionList: Array<OneQuestion>,
+    smsMessage: string,
+    emailMessage: string,
+    openingDate: string,
+    expireDate: string
   ): Observable<HttpResponse<Message>> {
     return this.http.post<Message>(this.PATH, {
       title: title,
       description: description,
       isPublic: isPublic,
-      questionList: questionList
+      questionList: questionList,
+      smsMessage: smsMessage,
+      emailMessage: emailMessage,
+      openingDate: openingDate,
+      expireDate: expireDate
     }, {
       observe: 'response',
       responseType: 'json',

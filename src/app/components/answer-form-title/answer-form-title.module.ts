@@ -24,7 +24,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    
   ],exports:[
     AnswerFormTitleComponent
   ]

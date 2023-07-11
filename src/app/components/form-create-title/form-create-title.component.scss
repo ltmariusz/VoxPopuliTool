@@ -2,6 +2,7 @@
   width: 100%;
 }
 .full-width-field {
+  margin-bottom: 6px;
   width: 100%;
 }
 mat-card {
@@ -12,8 +13,8 @@ mat-card {
 }
 
 .row-type-and-range {
-  // margin-top: 5px;
-  // margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 16px;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto;
